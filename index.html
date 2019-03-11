@@ -1,9 +1,45 @@
-extends includes/layout.pug
+extends base
+
+block title
+    title= config.title
 
 block content
-  include includes/recent-posts.pug
-  include includes/partial/page-nav.pug
-    
+    include _partial/common.pug
+    .l-postlist
+        each post in page.posts.toArray()
+            .l-post
+                .p-desc.box
+                    .p-pic
+                    //- title
+                    h1.p-title
+                        a(href=url_for(post.path))
+                            +title(post)
 
+                    //- description
+                    if post.description
+                        .p-content
+                            != post.description
+                    else if post.excerpt
+                        .p-content
+                            != post.excerpt
+                    else if post.content
+                        - var br = 0
+                        - for (var i = 0; i < 5; ++i) {
+                            - br = post.content.indexOf('\n',br+1)
+                            if br < 0
+                                - break
+                            if br > 150
+                                - break
+                        - }
+                        if br < 0
+                            .p-content
+                                != post.content
+                        else
+                            .p-content
+                                != post.content.substring(0, br)
+                    //- readmore
+                    p(class='p-readmore')
+                        a(href=url_for(post.path))= __('阅读更多 >>')
 
-
+                +post-meta(post)
+    include _partial/paginator.pug
