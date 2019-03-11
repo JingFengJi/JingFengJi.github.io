@@ -86,16 +86,13 @@
 <meta property="og:site_name" content="JingFengJi">
 <meta property="og:description" content="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。 使用TexturePacker打图集，会输出两个文件，一个PNG合图，一个txt图集信息文件，而到Unity中使用UIAtlas，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20180909131827960?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-03-11T10:36:14.562Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909131827960?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-03-11T13:32:13.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具">
 <meta name="twitter:description" content="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。 使用TexturePacker打图集，会输出两个文件，一个PNG合图，一个txt图集信息文件，而到Unity中使用UIAtlas，">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
 
@@ -370,8 +367,7 @@ blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
         <h1 id="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"><a href="#Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具" class="headerlink" title="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"></a>Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具</h1><p>NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。</p>
 <p>使用TexturePacker打图集，会输出两个文件，一个PNG合图，一个txt图集信息文件，而到Unity中使用UIAtlas，则需要一个Material材质文件和一个Prefab预制体文件，这两个文件也由工具生成。</p>
 <p>鉴于项目不是从一开始就用该工具进行打图集工作的，因此这些文件的命名不具有统一的规范，因此使用一个配置文件来记录每个图集的输出文件信息。</p>
-<p><img src="https://img-
-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <h3 id="Atlas-ini图集配置文件"><a href="#Atlas-ini图集配置文件" class="headerlink" title="Atlas.ini图集配置文件"></a>Atlas.ini图集配置文件</h3><p>该文件以CSV格式进行配置，共有5列，图片文件夹相对路径、PNG合图输出路径、txt图集信息文件输出路径、UIAtlasPrefab输出路径、Material材质输出路径，后面四个输出路径都是基于Unity工程的Assets目录。</p>
 <h3 id="命令行打图集"><a href="#命令行打图集" class="headerlink" title="命令行打图集"></a>命令行打图集</h3><p>TexturePacker支持使用命令行打图集</p>
 <pre><code>$TexturePacker_PATH $imgDir --max-size 4096 --allow-free-size --format unity --size-constraints POT --shape-padding 2 --border-padding 2 --common-divisor-x 1 --common-divisor-y 1 --disable-rotation --algorithm MaxRects --opt RGBA8888 --scale 1 --scale-mode Smooth --smart-update --sheet $ASSETS_PATH$atlasPng --data $ASSETS_PATH$atlasData
@@ -381,11 +377,9 @@ blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
 <pre><code>NGUIEditorTools.ImportTexture(uiAtlas.texture, false, false, !uiAtlas.premultipliedAlpha);
 NGUIJson.LoadSpriteData(uiAtlas, atlasTextAsset);
 </code></pre><h3 id="UIAtlas信息拷贝"><a href="#UIAtlas信息拷贝" class="headerlink" title="UIAtlas信息拷贝"></a>UIAtlas信息拷贝</h3><p>创建图集后，有时需要拷贝另一个图集的border和padding信息，例如两个图集内容其实是一直的，只是皮肤颜色不一样（换肤图集），因此这两个图集的border和padding数据是一样的，提供工具进行数据拷贝。</p>
-<p><img src="https://img-
-blog.csdn.net/20180909131827960?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/20180909131827960?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <h3 id="清理Editor进度条"><a href="#清理Editor进度条" class="headerlink" title="清理Editor进度条"></a>清理Editor进度条</h3><p>为避免Atlas.ini配置错误，导致打图集中断，而EditorUtility.DisplayProgressBar进度条无法清除，提供Editor进度条清理功能，菜单栏Tools-&gt;清理进度条</p>
-<h3 id="工程下载"><a href="#工程下载" class="headerlink" title="工程下载"></a>工程下载</h3><p>GitHub地址： <a href="https://github.com/JingFengJi/CreateAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/CreateAtlas
-</a></p>
+<h3 id="工程下载"><a href="#工程下载" class="headerlink" title="工程下载"></a>工程下载</h3><p>GitHub地址： <a href="https://github.com/JingFengJi/CreateAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/CreateAtlas</a></p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
 
       

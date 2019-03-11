@@ -87,11 +87,9 @@
 <meta property="og:description" content="本文主要介绍根据一款Node Editor库开发的新手引导系统git地址如下： https://github.com/luis-l/UnityNodeEditorBase  一、旧版新手引导做法 GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，当前无引导，则直接进行引导，否则存入缓存队列中。 GuideCheckManager注册跟引导有关的消息">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190201142407883.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201142445605.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201143046251.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-03-11T10:36:12.808Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201142445605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190201143046251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-03-11T13:24:36.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二十四：基于Unity Node Editor、ScriptableObject的配置化新手引导系统">
 <meta name="twitter:description" content="本文主要介绍根据一款Node Editor库开发的新手引导系统git地址如下： https://github.com/luis-l/UnityNodeEditorBase  一、旧版新手引导做法 GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，当前无引导，则直接进行引导，否则存入缓存队列中。 GuideCheckManager注册跟引导有关的消息">
@@ -380,8 +378,7 @@ process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9n
 <p>填充数据也较为繁琐。</p>
 <p>二、基于结点编辑的配置化新手引导系统</p>
 <p>（1）基于ScriptableObject、结点编辑的配置</p>
-<p>工具截图如下：<br><img src="https://img-blog.csdnimg.cn/20190201142445605.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>工具截图如下：<br><img src="https://img-blog.csdnimg.cn/20190201142445605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>GuideNodeGraph：一个结点树称为一个大步引导</p>
 <p>GuideNode：一个结点称为一个单步引导</p>
 <p>一个GuideNodeGraph就是一个ScriptableObject文件</p>
@@ -392,8 +389,7 @@ process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9n
 <p>Condition：引导条件结点。单步引导结点可包含多个Condition引导条件，只有当多个Condition均成立时，才会引导。</p>
 <p>Trigger和Condition均为Node 的子类。</p>
 <p>库中ActionTriggerSystem类的setupNodeCreateMenu函数，实现了在NodeEditor中的右键菜单，自行修改可以实现排序，某一类node在前，某一类在后</p>
-<p><img src="https://img-blog.csdnimg.cn/20190201143046251.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190201143046251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>根据Guide View界面类型的不同，可以定义多种Guide Node保存数据，一般有对话模式的，以及点击UI模式的，本文主要讲如何使用Node<br>Editor、ScriptableObject进行配置化，如果项目中不是使用ScriptableObject进行配置存储的话，该方案就不适用了。</p>
 <p>可以NodeEditor的优点：<br>配置引导可读性高，并且不存在配置数据解析逻辑，更改引导内顺序也很方便快捷。</p>
 <p>最后感谢作者提供的Node Editor库<br>git地址如下：<br><a href="https://github.com/luis-l/UnityNodeEditorBase" target="_blank" rel="noopener"> https://github.com/luis-l/UnityNodeEditorBase

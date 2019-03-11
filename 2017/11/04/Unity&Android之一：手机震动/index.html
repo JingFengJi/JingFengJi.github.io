@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="JingFengJi">
 <meta property="og:description" content="Unity调用手机震动在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。 实现步骤Unity中提供了一个接口 Handheld.Vibrate(); 该接口无需做平台判断。官方介绍：Triggers device vibration.翻译就是指触发装置振动。https://docs.unity3d.com/2017.3/Documentation/ScriptRefere">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-11T10:36:29.135Z">
+<meta property="og:updated_time" content="2019-03-11T13:31:14.397Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity&amp;Android之一：手机震动">
 <meta name="twitter:description" content="Unity调用手机震动在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。 实现步骤Unity中提供了一个接口 Handheld.Vibrate(); 该接口无需做平台判断。官方介绍：Triggers device vibration.翻译就是指触发装置振动。https://docs.unity3d.com/2017.3/Documentation/ScriptRefere">
@@ -342,8 +342,7 @@
         <h1 id="Unity调用手机震动"><a href="#Unity调用手机震动" class="headerlink" title="Unity调用手机震动"></a>Unity调用手机震动</h1><p>在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。</p>
 <h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p>Unity中提供了一个接口</p>
 <pre><code>Handheld.Vibrate();
-</code></pre><p>该接口无需做平台判断。<br>官方介绍：Triggers device vibration.<br>翻译就是指触发装置振动。<br><a href="https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html" target="_blank" rel="noopener"><br>https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html
-</a></p>
+</code></pre><p>该接口无需做平台判断。<br>官方介绍：Triggers device vibration.<br>翻译就是指触发装置振动。<br><a href="https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html" target="_blank" rel="noopener">https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html</a></p>
 <p>该接口无法为振动设置时长、频率等。如有需要，安卓则需要通过获取系统服务后开启振动</p>
 <pre><code>public void Shake()
     {
@@ -351,8 +350,7 @@
         m_vibrator = (Vibrator)curActivity.getSystemService(Service.VIBRATOR_SERVICE);
         m_vibrator.vibrate(new long[]{100,10,100,1000},-1);
     }
-</code></pre><p>详情参考：<br><a href="http://www.cnblogs.com
-/android-blogs/p/6381850.html" target="_blank" rel="noopener"> http://www.cnblogs.com/android-blogs/p/6381850.html </a></p>
+</code></pre><p>详情参考：<br><a href="http://www.cnblogs.com/android-blogs/p/6381850.html" target="_blank" rel="noopener"> http://www.cnblogs.com/android-blogs/p/6381850.html </a></p>
 <p>如果只是简单的使用，Unity 提供的接口已经够了。。</p>
 <h4 id="请在真机下进行测试"><a href="#请在真机下进行测试" class="headerlink" title="请在真机下进行测试"></a>请在真机下进行测试</h4><p>最近正在补充Unity跟Android交互相关的知识，包括接入SDK、游戏中使用二维码等</p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步</p>

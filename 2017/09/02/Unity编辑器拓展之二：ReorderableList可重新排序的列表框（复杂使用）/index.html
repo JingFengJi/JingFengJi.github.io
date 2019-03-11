@@ -79,23 +79,20 @@
 
 
 
-<meta name="description" content="先看效果gif图： 如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177  在此基础上，来绘制更加复杂的类 先提供一个需要绘制的类 using UnityEngine; using System.Collections">
+<meta name="description" content="先看效果gif图： 如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177 在此基础上，来绘制更加复杂的类 先提供一个需要绘制的类 using UnityEngine; using System.Collections;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）">
 <meta property="og:url" content="http://yoursite.com/2017/09/02/Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="先看效果gif图： 如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177  在此基础上，来绘制更加复杂的类 先提供一个需要绘制的类 using UnityEngine; using System.Collections">
+<meta property="og:description" content="先看效果gif图： 如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177 在此基础上，来绘制更加复杂的类 先提供一个需要绘制的类 using UnityEngine; using System.Collections;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170902160317066?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T10:36:30.244Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170902160317066?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-11T13:31:30.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）">
-<meta name="twitter:description" content="先看效果gif图： 如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177  在此基础上，来绘制更加复杂的类 先提供一个需要绘制的类 using UnityEngine; using System.Collections">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:description" content="先看效果gif图： 如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177 在此基础上，来绘制更加复杂的类 先提供一个需要绘制的类 using UnityEngine; using System.Collections;">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -367,10 +364,8 @@ blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXF
       
 
       
-        <p>先看效果gif图：<br><img src="https://img-
-blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇：<br><a href="http://blog.csdn.net/qq_26999509/article/details/77782177" target="_blank" rel="noopener"> http://blog.csdn.net/qq_26999509/article/details/77782177
-</a></p>
+        <p>先看效果gif图：<br><img src="https://img-blog.csdn.net/20170902160043794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇：<br><a href="http://blog.csdn.net/qq_26999509/article/details/77782177" target="_blank" rel="noopener"> http://blog.csdn.net/qq_26999509/article/details/77782177</a></p>
 <p>在此基础上，来绘制更加复杂的类</p>
 <p>先提供一个需要绘制的类</p>
 <pre><code>using UnityEngine;
@@ -460,8 +455,7 @@ public class CharacterInspector : Editor
     }
 }
 </code></pre><p>目前的效果如下图：</p>
-<p><img src="https://img-
-blog.csdn.net/20170902160317066?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/20170902160317066?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>最后还需要利用PropertyDrawer来绘制单个Serializable类的每个实例的GUI，也就是Character类</p>
 <pre><code>using UnityEngine;
 using System.Collections;

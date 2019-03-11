@@ -86,16 +86,13 @@
 <meta property="og:site_name" content="JingFengJi">
 <meta property="og:description" content="使用场景最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundleName、path之类的数据，资源管理模块内加载出来然后返回。结合ObjectFiled这个编辑器类来介绍，我们拖入某一个asset，然后序列化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181222133618421.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-03-11T10:36:14.066Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181222133618421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-03-11T13:32:32.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二十三：基于ObjectField的FileField">
 <meta name="twitter:description" content="使用场景最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundleName、path之类的数据，资源管理模块内加载出来然后返回。结合ObjectFiled这个编辑器类来介绍，我们拖入某一个asset，然后序列化">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70">
 
 
 
@@ -368,12 +365,9 @@ process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9n
 
       
         <h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset<br>，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundle<br>Name、path之类的数据，资源管理模块内加载出来然后返回。结合ObjectFiled这个编辑器类来介绍，我们拖入某一个asset，然后序列化存储其guid和asset<br>path，表面上看起来是引用了该asset，实际上只是存住了guid和path（用于load，结合资源管理模块而定），guid用于绝对指向asset资源，就算路径更改，也不怕引用丢失。</p>
-<p><img src="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20181222133618421.png?x-oss-
-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="ObjectField介绍"><a href="#ObjectField介绍" class="headerlink" title="ObjectField介绍"></a>ObjectField介绍</h1><p><a href="https://docs.unity3d.com/2017.2/Documentation/ScriptReference/EditorGUI.ObjectField.html" target="_blank" rel="noopener"><br>https://docs.unity3d.com/2017.2/Documentation/ScriptReference/EditorGUI.ObjectField.html
-</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20181222133618421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="ObjectField介绍"><a href="#ObjectField介绍" class="headerlink" title="ObjectField介绍"></a>ObjectField介绍</h1><p><a href="https://docs.unity3d.com/2017.2/Documentation/ScriptReference/EditorGUI.ObjectField.html" target="_blank" rel="noopener">https://docs.unity3d.com/2017.2/Documentation/ScriptReference/EditorGUI.ObjectField.html</a></p>
 <h1 id="FileField实现"><a href="#FileField实现" class="headerlink" title="FileField实现"></a>FileField实现</h1><pre><code>private string[] FileField(Rect position, string label, string guid,Type type)
     {
         string[] guidPath = new string[2];//存储guid和path，这里的path是assetPath，实际存储起来需要做一步处理，处理成资源管理模块能load的path或者别的数据

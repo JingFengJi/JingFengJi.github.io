@@ -87,14 +87,12 @@
 <meta property="og:site_name" content="JingFengJi">
 <meta property="og:description" content="本文介绍如何在PreferencesWindow中新增条目在  Unity编辑器拓展之六 中，有介绍到部分PreferencesWindow.cs的代码，而本文从源码开始给大家介绍。 PreferencesWindow.cs中： private void AddCustomSections() {     Assembly[] loadedAssemblies = EditorAssemblies">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-03-11T10:36:24.461Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-03-11T13:33:49.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之七：如何在PreferencesWindow中新增条目">
 <meta name="twitter:description" content="本文介绍如何在PreferencesWindow中新增条目在  Unity编辑器拓展之六 中，有介绍到部分PreferencesWindow.cs的代码，而本文从源码开始给大家介绍。 PreferencesWindow.cs中： private void AddCustomSections() {     Assembly[] loadedAssemblies = EditorAssemblies">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
 
@@ -400,12 +398,10 @@ blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     }
 }
 </code></pre><p>代码片中标注的那一行，MSDN中的介绍是：<br>“检索应用于程序集、 模块、 类型成员或方法参数的指定类型的自定义属性。”</p>
-<p><a href="https://msdn.microsoft.com/zh-
-cn/library/system.attribute.getcustomattribute%28v=vs.110%29.aspx" target="_blank" rel="noopener"> MSDN中关于该接口的介绍 </a></p>
+<p><a href="https://msdn.microsoft.com/zh-cn/library/system.attribute.getcustomattribute%28v=vs.110%29.aspx" target="_blank" rel="noopener"> MSDN中关于该接口的介绍 </a></p>
 <p>那么，上述代码中检索了程序中使用 PreferenceItem<br>的所有method，随后将带有PreferenceItem的methodInfo实例化成一个委托，进而构造一个Section对象，添加到m_Setions集合中。</p>
 <p>接着，看Unity 文档，关于 PreferenceItem 的介绍。</p>
-<p><a href="https://docs.unity3d.com/2017.2/Documentation/ScriptReference/PreferenceItem.html" target="_blank" rel="noopener"><br>https://docs.unity3d.com/2017.2/Documentation/ScriptReference/PreferenceItem.html
-</a></p>
+<p><a href="https://docs.unity3d.com/2017.2/Documentation/ScriptReference/PreferenceItem.html" target="_blank" rel="noopener">https://docs.unity3d.com/2017.2/Documentation/ScriptReference/PreferenceItem.html</a></p>
 <p>PreferenceItem属性允许您添加首选项到preferences窗口。</p>
 <p>解释跟源码分析的一样，接下来进行代码测试。</p>
 <pre><code>[PreferenceItem(&quot;Preference Item&quot;)]
@@ -418,8 +414,7 @@ private static void SelfPreferenceItem()
     }
     EditorGUILayout.Space();
 }
-</code></pre><p><img src="https://img-
-blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+</code></pre><p><img src="https://img-blog.csdn.net/20180406153027300?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p>但是，发现有点不对劲，编辑器拓展之六中提到的选中左侧，出现问题了。没有自动选中新增的那一项。</p>
 <p>然后通过断点，查看到反射出来的m_Sections集合里，并没有新增的那一项，使得在遍历的时候，没法自动选中它。</p>
 <p>也就是说，AddCustomSections函数在此时并没有执行到，使得新增的 “Preference Item”<br>并没有被添加到m_Sections这个集合里。</p>

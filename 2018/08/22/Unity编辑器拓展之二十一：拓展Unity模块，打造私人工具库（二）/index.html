@@ -88,9 +88,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-
 blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-03-11T10:36:15.149Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-03-11T13:32:55.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）">
 <meta name="twitter:description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： public">
@@ -404,8 +403,7 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
 }
 </code></pre><p>通过尝试，一次导入多个UnityPackage时，后一个会将前一个覆盖掉（估计是导入资源Unity需要加载并且编译吧），所以目前工具只能单个导入。</p>
 <p>封装一个Package2Folder类，用来导入UnityPackage，只需调用ImportPackageToFolder函数即可。</p>
-<p><img src="https://img-
-blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <pre><code>public class Package2Folder
     {
         #region reflection stuff
@@ -645,11 +643,9 @@ blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
             return !Directory.Exists(path) ? null : path;
         }
     }
-</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>【UnityEditor 编辑器间快速复制粘贴】： <a href="https://539go.com/2018/02/04/Unity-QuickCopy/" target="_blank" rel="noopener"> https://539go.com/2018/02/04/Unity-QuickCopy/
-</a><br>引用了该文章中的UnityPackage导入代码。</p>
+</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>【UnityEditor 编辑器间快速复制粘贴】： <a href="https://539go.com/2018/02/04/Unity-QuickCopy/" target="_blank" rel="noopener"> https://539go.com/2018/02/04/Unity-QuickCopy/</a><br>引用了该文章中的UnityPackage导入代码。</p>
 <h2 id="工具下载"><a href="#工具下载" class="headerlink" title="工具下载"></a>工具下载</h2><p>git仓库：</p>
-<p><a href="https://github.com/JingFengJi/UnityCenterTool" target="_blank" rel="noopener"> https://github.com/JingFengJi/UnityCenterTool
-</a></p>
+<p><a href="https://github.com/JingFengJi/UnityCenterTool" target="_blank" rel="noopener"> https://github.com/JingFengJi/UnityCenterTool</a></p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
 
       

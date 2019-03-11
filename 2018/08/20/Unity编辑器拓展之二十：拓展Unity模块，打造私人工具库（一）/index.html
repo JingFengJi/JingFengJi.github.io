@@ -86,20 +86,15 @@
 <meta property="og:site_name" content="JingFengJi">
 <meta property="og:description" content="拓展Unity模块，打造私人工具库（一）功能介绍经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。 通过查阅资料发现，在Unity的安装目录 Unity2017.3.1f1\Editor\Data\UnityExtensions\Unity(我的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-
-blog.csdn.net/2018082022321790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-
-blog.csdn.net/2018082022325173?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-
-blog.csdn.net/2018082022350796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-03-11T10:36:15.691Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018082022321790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018082022325173?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018082022350796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-03-11T13:31:59.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二十：拓展Unity模块，打造私人工具库（一）">
 <meta name="twitter:description" content="拓展Unity模块，打造私人工具库（一）功能介绍经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。 通过查阅资料发现，在Unity的安装目录 Unity2017.3.1f1\Editor\Data\UnityExtensions\Unity(我的">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
 
@@ -384,17 +379,13 @@ blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
 &lt;/ivy-module&gt;
 </code></pre><p>2、Editor文件夹<br>放入dll 代码中属于编辑器拓展的代码</p>
 <h2 id="逻辑说明"><a href="#逻辑说明" class="headerlink" title="逻辑说明"></a>逻辑说明</h2><p>工具初版示意图：</p>
-<p><img src="https://img-
-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p>通过勾选UnityPackage，直接导入到项目中，简单快捷。</p>
-<p>为了不直接将UnityPackage文件放入到Unity安装目录下，因此新增一个config.ini文件，里面配置UnityPackage文件的路径（绝对路径），例如下图：<br><img src="https://img-
-blog.csdn.net/2018082022321790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><img src="https://img-
-blog.csdn.net/2018082022325173?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>为了不直接将UnityPackage文件放入到Unity安装目录下，因此新增一个config.ini文件，里面配置UnityPackage文件的路径（绝对路径），例如下图：<br><img src="https://img-blog.csdn.net/2018082022321790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/2018082022325173?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p>通过读取该配置文件，加载配置下所有路径的所有后缀名为unitypackage文件，然后显示在编辑器中。</p>
 <h2 id="使用介绍"><a href="#使用介绍" class="headerlink" title="使用介绍"></a>使用介绍</h2><p>将脚本打成dll后，将UnityToolCenter.dll和UnityToolCenter.pdb文件放入安装目录下</p>
-<p><img src="https://img-
-blog.csdn.net/2018082022350796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/2018082022350796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p>修改ivy.xml文件为</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ivy-module version=&quot;2.0&quot;&gt;
@@ -405,8 +396,7 @@ blog.csdn.net/2018082022350796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Fx
 &lt;/ivy-module&gt;
 </code></pre><p>【注意】版本号，以及dll的路径</p>
 <p>此时，新建另一个Unity工程（同版本），就会发现菜单栏也带有Tools/UnityToolCenter，具体导入UnityPackage逻辑见下期</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://539go.com/2017/10/20/UnityEditor-Unity%E7%9A%84%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener"> https://539go.com/2017/10/20/UnityEditor-Unity%E7%9A%84%E6%A8%A1%E5%9D%97/
-</a></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://539go.com/2017/10/20/UnityEditor-Unity%E7%9A%84%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener"> https://539go.com/2017/10/20/UnityEditor-Unity%E7%9A%84%E6%A8%A1%E5%9D%97/</a></p>
 <h2 id="工具终版见下期"><a href="#工具终版见下期" class="headerlink" title="工具终版见下期"></a>工具终版见下期</h2><p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
 
       
