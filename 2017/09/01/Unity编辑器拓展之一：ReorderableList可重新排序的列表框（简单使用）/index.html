@@ -79,23 +79,20 @@
 
 
 
-<meta name="description" content="可重新排序的列表框先看效果图： UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。 基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度show">
+<meta name="description" content="可重新排序的列表框先看效果图： UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。 基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度sh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）">
 <meta property="og:url" content="http://yoursite.com/2017/09/01/Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="可重新排序的列表框先看效果图： UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。 基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度show">
+<meta property="og:description" content="可重新排序的列表框先看效果图： UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。 基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度sh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170901232457862?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T10:36:30.804Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170901232457862?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-11T14:05:00.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）">
-<meta name="twitter:description" content="可重新排序的列表框先看效果图： UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。 基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度show">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:description" content="可重新排序的列表框先看效果图： UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。 基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度sh">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -367,8 +364,9 @@ blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXF
       
 
       
-        <h1 id="可重新排序的列表框"><a href="#可重新排序的列表框" class="headerlink" title="可重新排序的列表框"></a>可重新排序的列表框</h1><p>先看效果图：<br><img src="https://img-
-blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="可重新排序的列表框"><a href="#可重新排序的列表框" class="headerlink" title="可重新排序的列表框"></a>可重新排序的列表框</h1><p>先看效果图：<br><img src="https://img-blog.csdn.net/20170901231522594?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。</p>
 <p>基本使用：<br>名称 描述<br>draggable 拖曳排序<br>displayAdd 显示添加按钮<br>displayRemove 显示移除按钮<br>elementHeight 元素高度<br>headerHeight 表头高度<br>footerHeight 尾部高度<br>showDefaultBackground 显示默认背景<br>drawHeaderCallback 绘制表头回调<br>drawFooterCallback 绘制尾部回调<br>drawElementCallback 绘制元素回调<br>drawElementBackgroundCallback 绘制元素背景回调<br>onReorderCallback 重新排序回调<br>onSelectCallback 选中回调<br>onAddCallback 添加按钮回调<br>onAddDropdownCallback 添加下拉选项回调<br>onRemoveCallback 移除元素回调<br>onMouseUpCallback 鼠标抬起回调<br>onCanRemoveCallback 是否显示可移除按钮回调<br>onChangedCallback 列表改变回调</p>
 <p>示例代码如下：<br>先创建一个脚本：TestList</p>
@@ -459,8 +457,7 @@ public class TestListEditor : Editor
     }
 }
 </code></pre><p>结果就如之前的图中显示所示。</p>
-<p>其中OnInspectorGUI函数中，删除了base.OnInspectorGUI();<br>不然的话，效果如下图：<br><img src="https://img-
-blog.csdn.net/20170901232457862?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>其中OnInspectorGUI函数中，删除了base.OnInspectorGUI();<br>不然的话，效果如下图：<br><img src="https://img-blog.csdn.net/20170901232457862?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>可以看出，colors绘制了两遍。</p>
 <p>示例工程链接：<br>链接： <a href="http://pan.baidu.com/s/1o7Tjslc" target="_blank" rel="noopener"> http://pan.baidu.com/s/1o7Tjslc </a><br>密码：pgri</p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步</p>

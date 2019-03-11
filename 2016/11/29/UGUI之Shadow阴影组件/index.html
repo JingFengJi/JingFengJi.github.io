@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,">
+<meta name="description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-60">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UGUI之Shadow阴影组件">
 <meta property="og:url" content="http://yoursite.com/2016/11/29/UGUI之Shadow阴影组件/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,">
+<meta property="og:description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-60">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdn.net/20161129135448227">
 <meta property="og:image" content="https://img-blog.csdn.net/20161129141244514">
@@ -92,10 +92,10 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20161129142217738">
 <meta property="og:image" content="https://img-blog.csdn.net/20161129143409977">
 <meta property="og:image" content="https://img-blog.csdn.net/20161129143927273">
-<meta property="og:updated_time" content="2019-03-11T10:36:45.745Z">
+<meta property="og:updated_time" content="2019-03-11T14:03:12.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UGUI之Shadow阴影组件">
-<meta name="twitter:description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,">
+<meta name="twitter:description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-60">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20161129135448227">
 
 
@@ -346,7 +346,9 @@
       
 
       
-        <p>基本属性图如下：<br><img src="https://img-blog.csdn.net/20161129135448227" alt="这里写图片描述"></p>
+        <meta name="referrer" content="no-referrer">
+
+<p>基本属性图如下：<br><img src="https://img-blog.csdn.net/20161129135448227" alt="这里写图片描述"></p>
 <p>1、Effect Color：阴影的颜色<br>2、Effect Distance：阴影的偏移距离<br>（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&gt;0时，阴影在右方；当x&lt;0时，阴影在左方<br>（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&gt;0时，阴影在上方；当y&lt;0时，阴影在下方<br>从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,600]，当然实际应用中这个范围是绝对足够用的<br>源码如下：</p>
 <pre><code>public Vector2 effectDistance
         {

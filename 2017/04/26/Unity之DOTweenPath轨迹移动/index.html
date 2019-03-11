@@ -79,29 +79,23 @@
 
 
 
-<meta name="description" content="先简单介绍一下DOTweenPath。 先来看一下DOTweenPath组件的截图  1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点 2、INfo（1）Path Length：轨迹长度 3、Tween Options（1）AutoPlay：自动播放（2）Auto">
+<meta name="description" content="先简单介绍一下DOTweenPath。 先来看一下DOTweenPath组件的截图  1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点 2、INfo（1）Path Length：轨迹长度 3、Tween Options（1）AutoPlay：自动播放（2）Au">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity之DOTweenPath轨迹移动">
 <meta property="og:url" content="http://yoursite.com/2017/04/26/Unity之DOTweenPath轨迹移动/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="先简单介绍一下DOTweenPath。 先来看一下DOTweenPath组件的截图  1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点 2、INfo（1）Path Length：轨迹长度 3、Tween Options（1）AutoPlay：自动播放（2）Auto">
+<meta property="og:description" content="先简单介绍一下DOTweenPath。 先来看一下DOTweenPath组件的截图  1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点 2、INfo（1）Path Length：轨迹长度 3、Tween Options（1）AutoPlay：自动播放（2）Au">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170426152601405?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170426160635797?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170426162319897?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170426162640305?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T10:36:36.615Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170426152601405?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170426160635797?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170426162319897?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170426162640305?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-11T14:05:22.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity之DOTweenPath轨迹移动">
-<meta name="twitter:description" content="先简单介绍一下DOTweenPath。 先来看一下DOTweenPath组件的截图  1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点 2、INfo（1）Path Length：轨迹长度 3、Tween Options（1）AutoPlay：自动播放（2）Auto">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:description" content="先简单介绍一下DOTweenPath。 先来看一下DOTweenPath组件的截图  1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点 2、INfo（1）Path Length：轨迹长度 3、Tween Options（1）AutoPlay：自动播放（2）Au">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -351,29 +345,24 @@ blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXF
       
 
       
-        <p>先简单介绍一下DOTweenPath。</p>
+        <meta name="referrer" content="no-referrer">
+
+<p>先简单介绍一下DOTweenPath。</p>
 <p>先来看一下DOTweenPath组件的截图</p>
-<p><img src="https://img-
-blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><img src="https://img-blog.csdn.net/20170426150708706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>1、Scene View Commands<br>（1）SHIFT+CTRL：add a waypoint<br>加一个轨迹点<br>（2）SHIFT+ALT：remove a waypoint<br>移除一个轨迹点</p>
 <p>2、INfo<br>（1）Path Length：轨迹长度</p>
 <p>3、Tween Options<br>（1）AutoPlay：自动播放<br>（2）AutoKill：播放完自动销毁动画<br>（3）Duration：动画时长<br>SpeedBased：If selected ,the duration will count as units/degreex<br>second;如果被选上，该时间作为单位时间。</p>
-<p>（4）Delay：延时<br>（5）Ease：这是一个枚举，可以理解为动画播放速率曲线<br><img src="https://img-
-blog.csdn.net/20170426152601405?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>相关网址：<br><a href="http://dotween.demigiant.com/documentation.php" target="_blank" rel="noopener"> http://dotween.demigiant.com/documentation.php
-</a><br>以及： <a href="http://robertpenner.com/easing/easing_demo.html" target="_blank" rel="noopener"> http://robertpenner.com/easing/easing_demo.html
-</a></p>
+<p>（4）Delay：延时<br>（5）Ease：这是一个枚举，可以理解为动画播放速率曲线<br><img src="https://img-blog.csdn.net/20170426152601405?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>相关网址：<br><a href="http://dotween.demigiant.com/documentation.php" target="_blank" rel="noopener"> http://dotween.demigiant.com/documentation.php</a><br>以及： <a href="http://robertpenner.com/easing/easing_demo.html" target="_blank" rel="noopener"> http://robertpenner.com/easing/easing_demo.html</a></p>
 <p>（6）Loops：循环次数，动画循环播放的次数<br>-1：表示 一直循环<br>0：表示只播放一次<br>当该值&gt;1时，检视面板出现LoopType，顾名思义就是指循环类型：<br>Restart：重新开始，后面的动画循环播放会从起点重新开始；<br>Yoyo：来回播放<br>Incremental：增加的，后面的path移动动画会在上一次循环的终点的基础上进行播放</p>
 <p>（7）ID：动画ID<br>（8）UpdateType：这个枚举有三个值，指更新类型<br>Normal：正常更新，Update()<br>Late：晚于更新，LateUpdate()<br>Fixed：固定更新，FixedUpdate()</p>
 <p>4、Path Tween Options<br>（1）Path Type：轨迹线类型<br>Linear：线型的<br>Catmull Rom：曲线<br>（2）Close Path：封闭曲线，将起点和终点相连<br>（3）Lock Rotation：锁旋转，xyzw</p>
 <p>5、Path Editor Options：轨迹编辑参数，就不介绍了</p>
 <p>6、ResetPath：重置轨迹<br>7、Events：<br>（1）OnStart：开始时<br>（2）OnPlay：播放时<br>（3）OnUpdate：更新时<br>（4）OnStep：单步完成时<br>（5）OnComplete：完成时<br>（6）OnCreated：动画创建时<br>事件顺序为：OnCreated-&gt;OnStart-&gt;OnPlay-&gt;OnUpdate（一直执行，直到完成），动画过程中单步完成时执行OnStep，整个动画完成后执行OnComplete</p>
-<p>8、WayPoints：移动轨迹点<br>其中右边的Copy to clipboard，将坐标复制至剪贴板<br><img src="https://img-
-blog.csdn.net/20170426160635797?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>加减按钮即指增加减少坐标点</p>
+<p>8、WayPoints：移动轨迹点<br>其中右边的Copy to clipboard，将坐标复制至剪贴板<br><img src="https://img-blog.csdn.net/20170426160635797?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>加减按钮即指增加减少坐标点</p>
 <p>以上便是对于DOTweenPath组件的一个基本介绍。</p>
-<p>接下来，DOTween对于轨迹移动提供的接口：<br>（1）DOPath：<br><img src="https://img-
-blog.csdn.net/20170426162319897?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>（2）DOLocalPath<br><img src="https://img-
-blog.csdn.net/20170426162640305?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>接下来，DOTween对于轨迹移动提供的接口：<br>（1）DOPath：<br><img src="https://img-blog.csdn.net/20170426162319897?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>（2）DOLocalPath<br><img src="https://img-blog.csdn.net/20170426162640305?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>以上两个函数的参数再上面已经介绍过，这里就不再重复说明了。</p>
 <p>DOTween插件，大家请自行下载。</p>
 

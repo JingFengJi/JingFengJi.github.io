@@ -79,37 +79,27 @@
 
 
 
-<meta name="description" content="先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下： private Vector3 mStart = new Vector3(-1, 1, 0); private Vector3 mEnd =">
+<meta name="description" content="先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下： private Vector3 mStart = new Vector3(-1, 1, 0); private Vector3 mEnd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity之Vector3.Slerp球形插值原理介绍">
 <meta property="og:url" content="http://yoursite.com/2016/12/09/Unity之Vector3.Slerp球形插值原理介绍/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下： private Vector3 mStart = new Vector3(-1, 1, 0); private Vector3 mEnd =">
+<meta property="og:description" content="先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下： private Vector3 mStart = new Vector3(-1, 1, 0); private Vector3 mEnd">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161209112850532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161209113159037?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161209114817399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161209115239713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161209134923381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161211204127975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161211204257397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161212121854699?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T10:36:40.837Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161209112850532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161209113159037?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161209114817399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161209115239713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161209134923381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161211204127975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161211204257397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20161212121854699?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-11T14:02:08.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity之Vector3.Slerp球形插值原理介绍">
-<meta name="twitter:description" content="先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下： private Vector3 mStart = new Vector3(-1, 1, 0); private Vector3 mEnd =">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:description" content="先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下： private Vector3 mStart = new Vector3(-1, 1, 0); private Vector3 mEnd">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -359,8 +349,9 @@ blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXF
       
 
       
-        <p>先看API：<br>public static Vector3 Slerp(Vector3 a, Vector3 b, float t);<br>介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。<br>先上一个示意图：<br><img src="https://img-
-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>上图的代码如下：</p>
+        <meta name="referrer" content="no-referrer">
+
+<p>先看API：<br>public static Vector3 Slerp(Vector3 a, Vector3 b, float t);<br>介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。<br>先上一个示意图：<br><img src="https://img-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>上图的代码如下：</p>
 <pre><code>private Vector3 mStart = new Vector3(-1, 1, 0);
 private Vector3 mEnd = new Vector3(1, 1, 0);
 
@@ -387,18 +378,13 @@ private void Update()
 <pre><code>//加在for循环里
 Debug.Log(&quot;插值向量长度：&quot;+ drawVec.magnitude);
 Debug.Log(&quot;角度：&quot; + Vector3.Angle(drawVec, mStart) / i);
-</code></pre><p><img src="https://img-
-blog.csdn.net/20161209112850532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+</code></pre><p><img src="https://img-blog.csdn.net/20161209112850532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>我们发现虽然有误差，但是猜想基本成立，我们修改mStart和mEnd两向量继续实验。</p>
-<p>实验二：mStart = (-1,0,0) mEnd = (0,3,4)<br><img src="https://img-
-blog.csdn.net/20161209113159037?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>实验二：mStart = (-1,0,0) mEnd = (0,3,4)<br><img src="https://img-blog.csdn.net/20161209113159037?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>从上面可以看出两个猜想成立</p>
-<p>这里额外要验证一个问题，就是当两个向量为平行向量时，结果如下，下面直接看图：<br>（1）mStart = (-1, 0, 0) mEnd = (1, 0, 0)<br><img src="https://img-
-blog.csdn.net/20161209114817399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>（2）mStart = (-1, 1, 0) mEnd = (1, -1, 0)<br><img src="https://img-
-blog.csdn.net/20161209115239713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>（3）mStart = (-1, 1, 1) mEnd = (1, -1, -1)<br><img src="https://img-
-blog.csdn.net/20161209134923381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>这里额外要验证一个问题，就是当两个向量为平行向量时，结果如下，下面直接看图：<br>（1）mStart = (-1, 0, 0) mEnd = (1, 0, 0)<br><img src="https://img-blog.csdn.net/20161209114817399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>（2）mStart = (-1, 1, 0) mEnd = (1, -1, 0)<br><img src="https://img-blog.csdn.net/20161209115239713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>（3）mStart = (-1, 1, 1) mEnd = (1, -1, -1)<br><img src="https://img-blog.csdn.net/20161209134923381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>那么现在就可以利用这几个结论来自实现Slerp插值了。</p>
 <p>下面直接上代码：<br>代码关键内容如下：<br>（1）旋转向量函数<br>（2）旋转矩阵</p>
 <pre><code>/// &lt;summary&gt;
@@ -488,16 +474,13 @@ public Vector3 ToVector3()
 {
     return new Vector3(x, y, z);
 }
-</code></pre><p>这里暂时没有对两个向量共线反向的情况进行说明，不过主要实现已经给出来了。但是，我发现一点问题，看图：<br>（1）v1 = new Vector3(0, 2, 0);v2 = new Vector3(5, 0, 0);<br><img src="https://img-
-blog.csdn.net/20161211204127975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+</code></pre><p>这里暂时没有对两个向量共线反向的情况进行说明，不过主要实现已经给出来了。但是，我发现一点问题，看图：<br>（1）v1 = new Vector3(0, 2, 0);v2 = new Vector3(5, 0, 0);<br><img src="https://img-blog.csdn.net/20161211204127975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>ok，正常</p>
-<p>（2）v1 = new Vector3(3, 0, 0);v2 = new Vector3(0, 0, 5);<br><img src="https://img-
-blog.csdn.net/20161211204257397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>（2）v1 = new Vector3(3, 0, 0);v2 = new Vector3(0, 0, 5);<br><img src="https://img-blog.csdn.net/20161211204257397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>ok，正常</p>
 <p>（3）在RotateTo函数中，数据不精确导致存在误差，也就是我打印v1和v2的叉乘 （图中黄色） 与 （图中红色向量）的叉乘<br>存在误差，这样其实就是该函数的旋转轴不准确。</p>
 <p>以上猜想以及代码实现 没有找到权威认证，如有异议，欢迎探讨。。。</p>
-<p>补充：<br>自己无聊利用Slerp插值画了下面这个图，纯属娱乐。。。<br><img src="https://img-
-blog.csdn.net/20161212121854699?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>补充：<br>自己无聊利用Slerp插值画了下面这个图，纯属娱乐。。。<br><img src="https://img-blog.csdn.net/20161212121854699?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
 
       

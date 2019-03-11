@@ -340,9 +340,11 @@
       
         
           
-          Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类
+          
+
+Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类
 脚本截图如下：
-图中包括以下属性：1、Padding：RectOffset类型，矩形偏移
+图中包括以下属性：1、Padding：RectOffset类型，矩形
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -468,9 +470,11 @@
       
         
           
-          具体属性截图：
+          
+
+具体属性截图：
 Horizontal Fit和VerticalFit均为UI.ContentSizeFitter.FitMode枚举类型，有三个值可选：Unconstrained，MinSize，PreferredSize
-Unconstrained：不执行任何调整MinSize：调整内容的最小大小
+Unconstrained：不执行任何调整MinSize：调整内容的最小
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -596,11 +600,13 @@ Unconstrained：不执行任何调整MinSize：调整内容的最小大小
       
         
           
-          属性图如下：
+          
+
+属性图如下：
 从源码中可以看出，其实Outline是Shadow的子类，只不过Outline脚本在四个方向上调用了Shadow的ApplyShadowZeroAlloc函数而已，具体源码如下：
 using System.Collections.Generic;
 
-namespace UnityEng
+namespace UnityE
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -726,8 +732,10 @@ namespace UnityEng
       
         
           
-          基本属性图如下：
-1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&gt;0时，阴影在右方；当x&lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&gt;0时，阴影在上
+          
+
+基本属性图如下：
+1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&gt;0时，阴影在右方；当x&lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&gt;0时，阴影
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -853,9 +861,11 @@ namespace UnityEng
       
         
           
-          基本属性如下图：
+          
 
-Character：1、Font：字体2、Font Style：（1）Normal：正常（2）Bold：粗体（3）Italic：斜体（4）Bold And Italic：粗体+斜体3、Font Size：字体大小4、Line Spacing：行间距（注：Text组件没有提供修改字
+基本属性如下图：
+
+Character：1、Font：字体2、Font Style：（1）Normal：正常（2）Bold：粗体（3）Italic：斜体（4）Bold And Italic：粗体+斜体3、Font Size：字体大小4、Line Spacing：行间距（注：Text组件没有提供修
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -981,12 +991,14 @@ Character：1、Font：字体2、Font Style：（1）Normal：正常（2）Bold�
       
         
           
-          UGUI之Text对齐至格子背景：前几天有个需求：玩家输入的6位房间ID号，要对齐至背景格子图中，故将前面写的调整Text字间距勉强给boss用了
+          
+
+UGUI之Text对齐至格子背景：前几天有个需求：玩家输入的6位房间ID号，要对齐至背景格子图中，故将前面写的调整Text字间距勉强给boss用了
 大致效果如图：
 具体脚本代码如下:
 using UnityEngine;
 using System.Collections;
-using UnityEn
+using Unity
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1134,7 +1146,9 @@ using UnityEn
       
         
           
-          UGUI之修改Text字间距第一版先看效果图：
+          
+
+UGUI之修改Text字间距第一版先看效果图：
 
 
 思路是修改顶点坐标
@@ -1143,7 +1157,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System;
-using System.C
+using System
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1269,14 +1283,16 @@ using System.C
       
         
           
-          UGUI之Text镜像效果先上效果图：
+          
+
+UGUI之Text镜像效果先上效果图：
 脚本Mirror直接挂在Text下，distance是镜像距离
 Mirror脚本如下：
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System;
-using
+usi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1402,7 +1418,9 @@ using
       
         
           
-          UGUI之Text彩虹字脚本Rainbow直接挂在Text下
+          
+
+UGUI之Text彩虹字脚本Rainbow直接挂在Text下
 
 使得每个字母或者汉字均为一种随机颜色
 
@@ -1410,7 +1428,7 @@ Rainbow脚本如下：
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using System.Colle
+using System.Col
           ...
           <!--noindex-->
           <div class="post-button text-center">

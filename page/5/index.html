@@ -362,10 +362,12 @@
       
         
           
-          两个连字符（–）在Lua中表示开始一条注释
+          
+
+两个连字符（–）在Lua中表示开始一条注释
 Lua定义一个计算阶乘的函数：–定义一个阶乘函数function fact(n)if n == 0 thenreturn 1elsereturn n * fact(n-1)endend
 –打印print(“Hello World”)
-–读取一个数字a = 
+–读取一个数字a 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -491,7 +493,9 @@ Lua定义一个计算阶乘的函数：–定义一个阶乘函数function fact(
       
         
           
-          事件机制主要用于模块之间解耦和，事件机制将各个模块联系在一起，并且它们之间的耦合性非常低，特别适用于游戏产品的模块化开发。事件的类型可以通过枚举的形式来表示。事件机制的实现原理是将表示不同事件的枚举与其对应的回调函数通过AddListener函数加到定义好的表中，触发回调函数通过notify函数对已
+          
+
+事件机制主要用于模块之间解耦和，事件机制将各个模块联系在一起，并且它们之间的耦合性非常低，特别适用于游戏产品的模块化开发。事件的类型可以通过枚举的形式来表示。事件机制的实现原理是将表示不同事件的枚举与其对应的回调函数通过AddListener函数加到定义好的表中，触发回调函数通过notify函数
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -617,14 +621,16 @@ Lua定义一个计算阶乘的函数：–定义一个阶乘函数function fact(
       
         
           
-          其实原理很简单，这里用到的是富文本的知识，也许大家会觉得这种low定制反而显得麻烦了，那就直接跳过。。。
+          
+
+其实原理很简单，这里用到的是富文本的知识，也许大家会觉得这种low定制反而显得麻烦了，那就直接跳过。。。
 直接上代码：
 using UnityEngine;
 using System.Collections;
 using System;
 using System.Text;
 
-namespace S
+namespace
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -750,7 +756,9 @@ namespace S
       
         
           
-          直接上代码
+          
+
+直接上代码
 using System;
 using System.Text;
 using UnityEngine;
@@ -762,7 +770,7 @@ public class Vector3D
     {
         get
         {
-      
+    
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -888,11 +896,13 @@ public class Vector3D
       
         
           
-          先看下面这个图：
+          
+
+先看下面这个图：
 画的比较潦草，大家将就看。。。
 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。
 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。
-下面看下函数：public static Vector3 Ler
+下面看下函数：public static Vector3 L
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1018,8 +1028,10 @@ public class Vector3D
       
         
           
-          先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下：
-private Vector3 mStar
+          
+
+先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下：
+private Vector3 mSt
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1145,7 +1157,9 @@ private Vector3 mStar
       
         
           
-          组件截图如下：
+          
+
+组件截图如下：
 1、Aspect Mode：AspectMode枚举类型
 public enum AspectMode 
 {                     
@@ -1153,7 +1167,7 @@ public enum AspectMode
     None,
 
     //让Height随着Width自动调节
-    WidthContr
+    WidthCon
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1279,7 +1293,9 @@ public enum AspectMode
       
         
           
-          聊天系统中的UGUI布局常用的聊天系统内容包括以下几点：1、发言内容；2、发言人头像3、发言人名称4、语言聊天（本文不考虑该功能，与布局无关）5、表情（本文暂不考虑该功能，后续补充）（4.1）表情与文字混排，比如：PC端的QQ聊天（4.2）表情与文字分开，比如：移动端的QQ6、聊天模式：文本模式、气
+          
+
+聊天系统中的UGUI布局常用的聊天系统内容包括以下几点：1、发言内容；2、发言人头像3、发言人名称4、语言聊天（本文不考虑该功能，与布局无关）5、表情（本文暂不考虑该功能，后续补充）（4.1）表情与文字混排，比如：PC端的QQ聊天（4.2）表情与文字分开，比如：移动端的QQ6、聊天模式：文本模式
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1405,11 +1421,13 @@ public enum AspectMode
       
         
           
-          Grid Layout Group是LayoutGroup的子类
+          
+
+Grid Layout Group是LayoutGroup的子类
 脚本属性截图如下：
 1、Padding：RectOffset类型，矩形偏移，详解请戳  UGUI之Horizontal Layout Group组件介绍
 
-2、Cell Size：Vector2类型，默认值为(100,100)，网格中
+2、Cell Size：Vector2类型，默认值为(100,100)，网
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1535,10 +1553,12 @@ public enum AspectMode
       
         
           
-          VerticalLayoutGroup也是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup是LayoutGroup的子类，下面从源码中进行对比
+          
+
+VerticalLayoutGroup也是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup是LayoutGroup的子类，下面从源码中进行对比
 namespace UnityEngine.UI
 {
-    [AddC
+    [Ad
           ...
           <!--noindex-->
           <div class="post-button text-center">

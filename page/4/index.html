@@ -340,7 +340,9 @@
       
         
           
-          在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然
+          
+
+在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -466,10 +468,12 @@
       
         
           
-          有时候我们会有这样的需求：几秒或者几帧之后做什么事，也就是一个定时器。这里我利用Time.realtimeSinceStartup实现了一个简单的秒钟定时器，当然还可以利用Time.frameCount实现一个帧计时器
+          
+
+有时候我们会有这样的需求：几秒或者几帧之后做什么事，也就是一个定时器。这里我利用Time.realtimeSinceStartup实现了一个简单的秒钟定时器，当然还可以利用Time.frameCount实现一个帧计时器
 上代码：
 using System;
-using System.Collecti
+using System.Collec
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -595,10 +599,12 @@ using System.Collecti
       
         
           
-          双击直接利用的eventData.clickCount实现，而长按则是在PointerDown的时候记录时间，然后在Update里判断时间即可，由于代码比较简单，直接上源码。
+          
+
+双击直接利用的eventData.clickCount实现，而长按则是在PointerDown的时候记录时间，然后在Update里判断时间即可，由于代码比较简单，直接上源码。
 using System.Collections;
 using System.Collections.Generic;
-us
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -724,8 +730,10 @@ us
       
         
           
-          先上效果图
-这里同时支持水平方向和垂直方向，同时ScrollRect支持使用GridLayoutGroup、HorizontalLayoutGroup、VerticalLayoutGroup三种LayoutGroup，不过水平方向的ScrollRect不支持VerticalLayoutGroup，垂
+          
+
+先上效果图
+这里同时支持水平方向和垂直方向，同时ScrollRect支持使用GridLayoutGroup、HorizontalLayoutGroup、VerticalLayoutGroup三种LayoutGroup，不过水平方向的ScrollRect不支持VerticalLayoutGroup
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -851,10 +859,12 @@ us
       
         
           
-          Unity之粘贴板操作Untiy提供GUIUtility.systemCopyBuffer进行对粘贴板缓存数据存储与获取
+          
+
+Unity之粘贴板操作Untiy提供GUIUtility.systemCopyBuffer进行对粘贴板缓存数据存储与获取
 官方解释为访问系统的粘贴板，可set，可get
 上图
-附上官方文档地址： https://docs.unity3d.com/2017.2/Documentation/Script
+附上官方文档地址： https://docs.unity3d.com/2017.2/Documentation/Scri
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -980,10 +990,12 @@ us
       
         
           
-          任务队列该功能包括两个类：Task任务类，TaskQueue任务队列类其中TaskQueue负责：1、开始任务2、添加任务3、清空任务4、开始任务回调5、完成队列中所有任务回调6、下一个任务7、当前任务进度8、队列存储所有任务
+          
+
+任务队列该功能包括两个类：Task任务类，TaskQueue任务队列类其中TaskQueue负责：1、开始任务2、添加任务3、清空任务4、开始任务回调5、完成队列中所有任务回调6、下一个任务7、当前任务进度8、队列存储所有任务
 其中Task类代码如下：
 using System;
-using Sys
+using S
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1109,8 +1121,10 @@ using Sys
       
         
           
-          Unity自带一个枚举NetworkReachability，用来描述网络可达性NotReachable：网络无法访问ReachableViaCarrierDataNetwork：通过运营商数据网络可以访问网络ReachableViaLocalAreaNetwork：网络通过WIFI或电缆可达
-附上
+          
+
+Unity自带一个枚举NetworkReachability，用来描述网络可达性NotReachable：网络无法访问ReachableViaCarrierDataNetwork：通过运营商数据网络可以访问网络ReachableViaLocalAreaNetwork：网络通过WIFI或电缆可达
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1236,7 +1250,9 @@ using Sys
       
         
           
-          Unity工程在IOS平台使用3DTouch功能，提供了以下接口：（1）Input.touchPressureSupported：是否支持3Dtouch，bool类型（2）Touch.pressure：获取当前按压值，float类型（3）Touch.maximumPossiblePressure：获
+          
+
+Unity工程在IOS平台使用3DTouch功能，提供了以下接口：（1）Input.touchPressureSupported：是否支持3Dtouch，bool类型（2）Touch.pressure：获取当前按压值，float类型（3）Touch.maximumPossiblePressure
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1362,11 +1378,13 @@ using Sys
       
         
           
-          先简单介绍一下DOTweenPath。
+          
+
+先简单介绍一下DOTweenPath。
 先来看一下DOTweenPath组件的截图
 
 1、Scene View Commands（1）SHIFT+CTRL：add a waypoint加一个轨迹点（2）SHIFT+ALT：remove a waypoint移除一个轨迹点
-2、INfo（1）Path 
+2、INfo（1）Pat
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1492,13 +1510,14 @@ using Sys
       
         
           
-          先上示意图：
+          
+
+先上示意图：
 从图中可以看出，这是标准的MessageBox样式。我采用的是UGUI，中间是文字内容，下面包括确定取消两个按钮，右上角一个关闭按钮。
 那么模仿MFC呢，我写了一个枚举如下：
 public enum MessageType
 {
-    Confirm,            //确定
-
+    Confirm,            //确
           ...
           <!--noindex-->
           <div class="post-button text-center">

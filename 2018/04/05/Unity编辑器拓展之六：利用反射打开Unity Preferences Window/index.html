@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：  作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。 使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录中的">
+<meta name="description" content="如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：  作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。 使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity编辑器拓展之六：利用反射打开Unity Preferences Window">
 <meta property="og:url" content="http://yoursite.com/2018/04/05/Unity编辑器拓展之六：利用反射打开Unity Preferences Window/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：  作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。 使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录中的">
+<meta property="og:description" content="如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：  作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。 使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdn.net/2018040521134474?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/2018040521190433?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180405213022507?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180405215336898?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-03-11T13:33:30.561Z">
+<meta property="og:updated_time" content="2019-03-11T14:04:15.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之六：利用反射打开Unity Preferences Window">
-<meta name="twitter:description" content="如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：  作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。 使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录中的">
+<meta name="twitter:description" content="如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：  作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。 使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录">
 <meta name="twitter:image" content="https://img-blog.csdn.net/2018040521134474?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
@@ -366,7 +366,9 @@
       
 
       
-        <h1 id="如何利用反射打开Unity-Preferences-Window"><a href="#如何利用反射打开Unity-Preferences-Window" class="headerlink" title="如何利用反射打开Unity Preferences Window"></a>如何利用反射打开Unity Preferences Window</h1><p>Unity Preferences Window如下图所示：</p>
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="如何利用反射打开Unity-Preferences-Window"><a href="#如何利用反射打开Unity-Preferences-Window" class="headerlink" title="如何利用反射打开Unity Preferences Window"></a>如何利用反射打开Unity Preferences Window</h1><p>Unity Preferences Window如下图所示：</p>
 <p><img src="https://img-blog.csdn.net/2018040521134474?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p>作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及Unity<br>Editor代码来实现用代码打开Preferences Window以及设置选中项。</p>
 <p>使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录中的PreferencesWinndow.cs脚本</p>

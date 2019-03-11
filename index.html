@@ -362,10 +362,12 @@
       
         
           
-          meta 
+          
+
+
 本文主要介绍根据一款Node Editor库开发的新手引导系统git地址如下： https://github.com/luis-l/UnityNodeEditorBase
 一、旧版新手引导做法
-GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到
+GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -491,12 +493,14 @@ GuideCheckManager负责check各种类型的引导，判断是否达到触发条�
       
         
           
-          两种颜色的条纹状背景Shader &quot;Custom/Flag&quot;
+          
+
+两种颜色的条纹状背景Shader &quot;Custom/Flag&quot;
 {
     Properties
     {
         [PerRendererData]_MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
-   
+ 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -644,7 +648,9 @@ GuideCheckManager负责check各种类型的引导，判断是否达到触发条�
       
         
           
-          使用场景最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundleName、path之类的数据，资源管理模块内
+          
+
+使用场景最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundleName、path之类的数据，资源管理模
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -792,8 +798,10 @@ GuideCheckManager负责check各种类型的引导，判断是否达到触发条�
       
         
           
-          Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。
-使用TexturePacker
+          
+
+Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。
+使用TexturePack
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -941,9 +949,11 @@ GuideCheckManager负责check各种类型的引导，判断是否达到触发条�
       
         
           
-          拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage
+          
+
+拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage
 Gif示意图
-程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子
+程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1091,8 +1101,10 @@ Gif示意图
       
         
           
-          拓展Unity模块，打造私人工具库（一）功能介绍经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。
-通过查阅资料发现，在Unity的安装目录 Un
+          
+
+拓展Unity模块，打造私人工具库（一）功能介绍经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。
+通过查阅资料发现，在Unity的安装目录 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1240,9 +1252,11 @@ Gif示意图
       
         
           
-          NGUI UISprite预览图Preview拓展功能说明1、拓展UISprite的Preview视图，同时显示UIAtlas Texture和Sprite2、支持在UIAtlas上直接点选Sprite3、无需打开Atlas选择框和Sprite选择框两步操作
+          
+
+NGUI UISprite预览图Preview拓展功能说明1、拓展UISprite的Preview视图，同时显示UIAtlas Texture和Sprite2、支持在UIAtlas上直接点选Sprite3、无需打开Atlas选择框和Sprite选择框两步操作
 Gif示意图
-逻辑介绍1、找到UISpr
+逻辑介绍1、找到UIS
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1368,7 +1382,9 @@ Gif示意图
       
         
           
-          1、图片查重文件查重，如果只是文件名或者md5码的匹配查重，功能就不全面了，尤其是图片查重。图片查重应该更侧重于图片内容相似度查重。最近项目中使用TexturePacker&amp; NGUI，发现存在一些图片重复，新人对业务逻辑不熟悉，导致图片乱放等问题，使得图片存在重复、浪费资源等。因此收集了W
+          
+
+1、图片查重文件查重，如果只是文件名或者md5码的匹配查重，功能就不全面了，尤其是图片查重。图片查重应该更侧重于图片内容相似度查重。最近项目中使用TexturePacker&amp; NGUI，发现存在一些图片重复，新人对业务逻辑不熟悉，导致图片乱放等问题，使得图片存在重复、浪费资源等。因此收集
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1516,9 +1532,11 @@ Gif示意图
       
         
           
-          Unity编辑器拓展之十五：NGUI批量替换图集工具 2.0版本1.0版本 https://blog.csdn.net/qq_26999509/article/details/81256493
+          
 
-新增内容工具1.0版本，同事在使用过程中，发现批量替换图集时，不一定是全部都替换，这样的话，工具就没法使
+Unity编辑器拓展之十五：NGUI批量替换图集工具 2.0版本1.0版本 https://blog.csdn.net/qq_26999509/article/details/81256493
+
+新增内容工具1.0版本，同事在使用过程中，发现批量替换图集时，不一定是全部都替换，这样的话，工具就没
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1666,10 +1684,12 @@ Gif示意图
       
         
           
-          NGUI ComponentSelector增加搜索框目的最近在使用NGUI，给Sprite选择图集的时候，没有搜索框要挨个找挺麻烦，因此修改一下ComponentSelector组件，增加一个搜索框，便于搜索图集
+          
+
+NGUI ComponentSelector增加搜索框目的最近在使用NGUI，给Sprite选择图集的时候，没有搜索框要挨个找挺麻烦，因此修改一下ComponentSelector组件，增加一个搜索框，便于搜索图集
 
 Gif动图展示
-SearchField介绍关于SearchField介绍请看  U
+SearchField介绍关于SearchField介绍请看 
           ...
           <!--noindex-->
           <div class="post-button text-center">

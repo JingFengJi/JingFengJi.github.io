@@ -79,21 +79,19 @@
 
 
 
-<meta name="description" content="先看下面这个图： 画的比较潦草，大家将就看。。。 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。 下面看下函数：public static Vector3 Lerp(Vector3 a, Vector3 b, float t); 其中a就是图中的from向量，b">
+<meta name="description" content="先看下面这个图： 画的比较潦草，大家将就看。。。 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。 下面看下函数：public static Vector3 Lerp(Vector3 a, Vector3 b, float t); 其中a就是图中的from向量">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity之Vector3.Lerp线性插值原理介绍">
 <meta property="og:url" content="http://yoursite.com/2016/12/13/Unity之Vector3.Lerp线性插值原理介绍/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="先看下面这个图： 画的比较潦草，大家将就看。。。 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。 下面看下函数：public static Vector3 Lerp(Vector3 a, Vector3 b, float t); 其中a就是图中的from向量，b">
+<meta property="og:description" content="先看下面这个图： 画的比较潦草，大家将就看。。。 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。 下面看下函数：public static Vector3 Lerp(Vector3 a, Vector3 b, float t); 其中a就是图中的from向量">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T10:36:40.217Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-11T14:01:39.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity之Vector3.Lerp线性插值原理介绍">
-<meta name="twitter:description" content="先看下面这个图： 画的比较潦草，大家将就看。。。 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。 下面看下函数：public static Vector3 Lerp(Vector3 a, Vector3 b, float t); 其中a就是图中的from向量，b">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:description" content="先看下面这个图： 画的比较潦草，大家将就看。。。 向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。 图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。 下面看下函数：public static Vector3 Lerp(Vector3 a, Vector3 b, float t); 其中a就是图中的from向量">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -343,8 +341,9 @@ blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXF
       
 
       
-        <p>先看下面这个图：<br><img src="https://img-
-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+        <meta name="referrer" content="no-referrer">
+
+<p>先看下面这个图：<br><img src="https://img-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
 <p>画的比较潦草，大家将就看。。。</p>
 <p>向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。</p>
 <p>图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。</p>

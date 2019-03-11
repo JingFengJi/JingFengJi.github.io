@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： public">
+<meta name="description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： publ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）">
 <meta property="og:url" content="http://yoursite.com/2018/08/22/Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： public">
+<meta property="og:description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： publ">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-
 blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-03-11T13:32:55.174Z">
+<meta property="og:updated_time" content="2019-03-11T14:04:05.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）">
-<meta name="twitter:description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： public">
+<meta name="twitter:description" content="拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage Gif示意图 程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下： publ">
 <meta name="twitter:image" content="https://img-
 blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
@@ -366,7 +366,9 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
       
 
       
-        <h1 id="拓展Unity模块，打造私人工具库（二）"><a href="#拓展Unity模块，打造私人工具库（二）" class="headerlink" title="拓展Unity模块，打造私人工具库（二）"></a>拓展Unity模块，打造私人工具库（二）</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage</p>
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="拓展Unity模块，打造私人工具库（二）"><a href="#拓展Unity模块，打造私人工具库（二）" class="headerlink" title="拓展Unity模块，打造私人工具库（二）"></a>拓展Unity模块，打造私人工具库（二）</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage</p>
 <h2 id="Gif示意图"><a href="#Gif示意图" class="headerlink" title="Gif示意图"></a>Gif示意图</h2><p><img src="https://img-
 blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <h2 id="程序导入UnityPackage"><a href="#程序导入UnityPackage" class="headerlink" title="程序导入UnityPackage"></a>程序导入UnityPackage</h2><p>通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下：</p>

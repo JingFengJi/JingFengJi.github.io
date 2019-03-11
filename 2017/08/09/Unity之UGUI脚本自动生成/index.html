@@ -79,23 +79,20 @@
 
 
 
-<meta name="description" content="在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。 先定义一个枚举 using System.Collections; us">
+<meta name="description" content="在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。 先定义一个枚举 using System.Collections;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity之UGUI脚本自动生成">
 <meta property="og:url" content="http://yoursite.com/2017/08/09/Unity之UGUI脚本自动生成/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。 先定义一个枚举 using System.Collections; us">
+<meta property="og:description" content="在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。 先定义一个枚举 using System.Collections;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="https://img-
-blog.csdn.net/20170809002336955?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T10:36:31.953Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170809002336955?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-11T14:05:31.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity之UGUI脚本自动生成">
-<meta name="twitter:description" content="在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。 先定义一个枚举 using System.Collections; us">
-<meta name="twitter:image" content="https://img-
-blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:description" content="在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。 先定义一个枚举 using System.Collections;">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -345,7 +342,9 @@ blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXF
       
 
       
-        <p>在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。</p>
+        <meta name="referrer" content="no-referrer">
+
+<p>在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot的路径，得到路径就可以通过FindChild得到交互UI物体，然后给他们加上事件监听即可。</p>
 <p>先定义一个枚举</p>
 <pre><code>using System.Collections;
 using System.Collections.Generic;
@@ -366,10 +365,8 @@ public enum UIType
     ScrollRect,
 }
 </code></pre><p>然后上一个效果图来给UI物体加标记</p>
-<p><img src="https://img-
-blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>从图中可以看出，加完标记之后，生成代码。<br>先看示例的UIDialog<br><img src="https://img-
-blog.csdn.net/20170809002336955?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>其中图中两一个Image，一个InputFiel，一个Button，一个Toggle<br>生成的代码如下：</p>
+<p><img src="https://img-blog.csdn.net/20170809002217766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>从图中可以看出，加完标记之后，生成代码。<br>先看示例的UIDialog<br><img src="https://img-blog.csdn.net/20170809002336955?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>其中图中两一个Image，一个InputFiel，一个Button，一个Toggle<br>生成的代码如下：</p>
 <pre><code>using UnityEngine;
 using UnityEngine.UI;
 using System;
