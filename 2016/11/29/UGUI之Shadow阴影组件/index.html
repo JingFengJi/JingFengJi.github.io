@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UGUI之Shadow阴影组件">
+<meta property="og:url" content="http://yoursite.com/2016/11/29/UGUI之Shadow阴影组件/index.html">
+<meta property="og:site_name" content="JingFengJi">
+<meta property="og:description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20161129135448227">
+<meta property="og:image" content="https://img-blog.csdn.net/20161129141244514">
+<meta property="og:image" content="https://img-blog.csdn.net/20161129141513365">
+<meta property="og:image" content="https://img-blog.csdn.net/20161129142217738">
+<meta property="og:image" content="https://img-blog.csdn.net/20161129143409977">
+<meta property="og:image" content="https://img-blog.csdn.net/20161129143927273">
+<meta property="og:updated_time" content="2019-03-11T10:36:45.745Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UGUI之Shadow阴影组件">
+<meta name="twitter:description" content="基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&amp;gt;0时，阴影在右方；当x&amp;lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&amp;gt;0时，阴影在上方；当y&amp;lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161129135448227">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/29/UGUI之Shadow阴影组件/">
+
+
+
+
+
+  <title>UGUI之Shadow阴影组件 | JingFengJi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JingFengJi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/29/UGUI之Shadow阴影组件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Ding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JingFengJi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UGUI之Shadow阴影组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-29T14:40:37+08:00">
+                2016-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基本属性图如下：<br><img src="https://img-blog.csdn.net/20161129135448227" alt="这里写图片描述"></p>
+<p>1、Effect Color：阴影的颜色<br>2、Effect Distance：阴影的偏移距离<br>（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&gt;0时，阴影在右方；当x&lt;0时，阴影在左方<br>（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&gt;0时，阴影在上方；当y&lt;0时，阴影在下方<br>从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,600]，当然实际应用中这个范围是绝对足够用的<br>源码如下：</p>
+<pre><code>public Vector2 effectDistance
+        {
+            get { return m_EffectDistance; }
+            set
+            {
+                if (value.x &gt; 600)
+                    value.x = 600;
+                if (value.x &lt; -600)
+                    value.x = -600;
+
+                if (value.y &gt; 600)
+                    value.y = 600;
+                if (value.y &lt; -600)
+                    value.y = -600;
+
+                if (m_EffectDistance == value)
+                    return;
+
+                m_EffectDistance = value;
+
+                if (graphic != null)
+                    graphic.SetVerticesDirty();
+            }
+        }
+</code></pre><p>3、Use Graphic Alpha：是否使用Graphic中的Alpha透明度<br>（1）勾选：阴影的透明度会根据Graphic的透明度变化而变化<br>注意看下面两个图中的颜色Alpha值以及左边的Text透明度变化<br><img src="https://img-blog.csdn.net/20161129141244514" alt="这里写图片描述"><br>图一</p>
+<p><img src="https://img-blog.csdn.net/20161129141513365" alt="这里写图片描述"><br>图二</p>
+<p>从以上可以看出勾选Use Graphic Alpha的效果<br>（2）不勾选：阴影的透明度不会根据Graphic的透明度变化而变化<br>在图二的基础上，去掉Use Graphic Alpha的勾选，结果如下：<br><img src="https://img-blog.csdn.net/20161129142217738" alt="这里写图片描述"><br>阴影部分透明度并没有受到Graphic的影响<br>源码部分：<br>如果Use Graphic<br>Alpha被勾选，m_UseGraphicAlpha为true，否则为false，从源码中可以如果m_UseGraphicAlpha为true，阴影的alpha经过了以下运算：newColor.a<br>= (byte)((newColor.a * verts[i].color.a) / 255)；</p>
+<pre><code>protected void ApplyShadowZeroAlloc(List&lt;UIVertex&gt; verts, Color32 color, int start, int end, float x, float y)
+        {
+            UIVertex vt;
+
+            var neededCpacity = verts.Count * 2;
+            if (verts.Capacity &lt; neededCpacity)
+                verts.Capacity = neededCpacity;
+
+            for (int i = start; i &lt; end; ++i)
+            {
+                vt = verts[i];
+                verts.Add(vt);
+
+                Vector3 v = vt.position;
+                v.x += x;
+                v.y += y;
+                vt.position = v;
+                var newColor = color;
+                if (m_UseGraphicAlpha)
+                    newColor.a = (byte)((newColor.a * verts[i].color.a) / 255);
+                vt.color = newColor;
+                verts[i] = vt;
+            }
+        }
+</code></pre><p>以上为Shadow结合Text组件的使用介绍，下面看一下Shadow结合Image组件的使用：<br><img src="https://img-blog.csdn.net/20161129143409977" alt="这里写图片描述"></p>
+<p>这里不再过多介绍，大家有兴趣，可以深入研究源码。</p>
+<p>另外，使用Shadow会导致顶点数翻倍：</p>
+<p><img src="https://img-blog.csdn.net/20161129143927273" alt="这里写图片描述"></p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/29/UGUI之Text组件详解/" rel="next" title="UGUI之Text组件详解">
+                <i class="fa fa-chevron-left"></i> UGUI之Text组件详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/29/UGUI之Outline轮廓组件/" rel="prev" title="UGUI之Outline轮廓组件">
+                UGUI之Outline轮廓组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Mr.Ding">
+            
+              <p class="site-author-name" itemprop="name">Mr.Ding</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JingFengJi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/qq_26999509" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Ding</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

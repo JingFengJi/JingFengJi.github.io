@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类 脚本截图如下： 图中包括以下属性：1、Padding：RectOffset类型，矩形偏移源码如下： public sealed class RectOffset {     public">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UGUI之Horizontal Layout Group组件介绍">
+<meta property="og:url" content="http://yoursite.com/2016/11/30/UGUI之Horizontal Layout Group组件介绍/index.html">
+<meta property="og:site_name" content="JingFengJi">
+<meta property="og:description" content="Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类 脚本截图如下： 图中包括以下属性：1、Padding：RectOffset类型，矩形偏移源码如下： public sealed class RectOffset {     public">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130105302623">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130112111669">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130112316107">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130113434288">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130112521843">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130112740875">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130113918270">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130114007873">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130114047546">
+<meta property="og:image" content="https://img-blog.csdn.net/20161130114433364">
+<meta property="og:updated_time" content="2019-03-11T10:36:43.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UGUI之Horizontal Layout Group组件介绍">
+<meta name="twitter:description" content="Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类 脚本截图如下： 图中包括以下属性：1、Padding：RectOffset类型，矩形偏移源码如下： public sealed class RectOffset {     public">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20161130105302623">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/30/UGUI之Horizontal Layout Group组件介绍/">
+
+
+
+
+
+  <title>UGUI之Horizontal Layout Group组件介绍 | JingFengJi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JingFengJi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/30/UGUI之Horizontal Layout Group组件介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Ding">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JingFengJi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UGUI之Horizontal Layout Group组件介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-30T11:46:15+08:00">
+                2016-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Horizontal Layout<br>Group是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类</p>
+<p>脚本截图如下：<br><img src="https://img-blog.csdn.net/20161130105302623" alt="这里写图片描述"></p>
+<p>图中包括以下属性：<br>1、Padding：RectOffset类型，矩形偏移<br>源码如下：</p>
+<pre><code>public sealed class RectOffset
+{
+    public RectOffset();
+    public RectOffset(int left, int right, int top, int bottom);
+
+    ~RectOffset();
+
+    public int bottom { get; set; }       //底边缘
+    public int horizontal { get; }        //水平
+    public int left { get; set; }         //左边缘
+    public int right { get; set; }        //右边缘
+    public int top { get; set; }          //顶边缘
+    public int vertical { get; }          //垂直
+
+    public Rect Add(Rect rect);           //向一个Rect添加边框偏移
+    public Rect Remove(Rect rect);        //从一个Rect移除边框偏移
+    public override string ToString();      
+}
+</code></pre><p>如下面几个图中：<br>图一：默认情况</p>
+<p><img src="https://img-blog.csdn.net/20161130112111669" alt="这里写图片描述"></p>
+<p>图二：只改变Padding</p>
+<p><img src="https://img-blog.csdn.net/20161130112316107" alt="这里写图片描述"></p>
+<p>当Padding中的边缘大小过大时，会自动缩放布局元素以保持布局元素均在边框内，从下图可以看出<br>图三<br><img src="https://img-blog.csdn.net/20161130113434288" alt="这里写图片描述"></p>
+<p>2、Spacing：float类型<br>布局元素之间的间隔</p>
+<p>图四：只改变Spacing</p>
+<p><img src="https://img-blog.csdn.net/20161130112521843" alt="这里写图片描述"></p>
+<p>当Spacing过大，会自动缩放布局元素以保持布局元素均在边框内，从下图可以看出布局元素宽度缩小了<br>图五：</p>
+<p><img src="https://img-blog.csdn.net/20161130112740875" alt="这里写图片描述"></p>
+<p>3、Child Alignment：TextAnchor枚举类型，文本锚点<br>源码如下：</p>
+<pre><code>public enum TextAnchor
+{
+    UpperLeft = 0,           //上左
+    UpperCenter = 1,         //上中
+    UpperRight = 2,          //上右
+    MiddleLeft = 3,          //中左
+    MiddleCenter = 4,        //中中
+    MiddleRight = 5,         //中右
+    LowerLeft = 6,           //下左
+    LowerCenter = 7,         //下中
+    LowerRight = 8           //下右
+}
+</code></pre><p>4、Child Force Expand：有两个可选<br>（1）Width：是否强行扩大布局元素宽度以填补额外可用的空间<br>（2）Height：是否强行扩大布局元素高度以填补额外可用的空间<br>下面结合截图来说明：<br>图六：勾选Width，填补宽度<br><img src="https://img-blog.csdn.net/20161130113918270" alt="这里写图片描述"></p>
+<p>图七：勾选Height，填补高度<br><img src="https://img-blog.csdn.net/20161130114007873" alt="这里写图片描述"></p>
+<p>图八：勾选Width和Height，填补宽度和高度<br><img src="https://img-blog.csdn.net/20161130114047546" alt="这里写图片描述"></p>
+<p>从以上三图结合图一默认图可以看出其具体效果</p>
+<p>实际开发中，我经常结合Content Size Fitter组件一起使用<br><img src="https://img-blog.csdn.net/20161130114433364" alt="这里写图片描述"></p>
+<p>关于UI布局，大家开发的多了，就熟练了。</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/29/UGUI之Content Size Fitter组件/" rel="next" title="UGUI之Content Size Fitter组件">
+                <i class="fa fa-chevron-left"></i> UGUI之Content Size Fitter组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/UGUI之Vertical Layout Group组件介绍/" rel="prev" title="UGUI之Vertical Layout Group组件介绍">
+                UGUI之Vertical Layout Group组件介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Mr.Ding">
+            
+              <p class="site-author-name" itemprop="name">Mr.Ding</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/JingFengJi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/qq_26999509" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Ding</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
