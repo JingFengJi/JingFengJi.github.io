@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,11 +30,15 @@
 
 
 
+  <meta name="google-site-verification" content="qO8UCW09X9iG6TULO0viSuQ7-NmOzn64_7wnA5qcVdA">
 
 
 
 
 
+
+
+  <meta name="baidu-site-verification" content="WVhb9vesat">
 
 
 
@@ -54,10 +58,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.ico?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.ico?v=7.0.1">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
@@ -72,9 +76,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -167,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container sidebar-position-right 
   page-home">
     <div class="headband"></div>
 
@@ -223,6 +227,57 @@
         
         
           
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -236,17 +291,60 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
 
       
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
       
     </ul>
   
 
   
-    
 
   
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
 
+
+
+    </div>
   
 </nav>
 
@@ -265,6 +363,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -290,7 +391,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -412,39 +513,24 @@
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
 
-<p>本文主要介绍根据一款Node Editor库开发的新手引导系统<br>git地址如下：<br><a href="https://github.com/luis-l/UnityNodeEditorBase" target="_blank" rel="noopener"> https://github.com/luis-l/UnityNodeEditorBase</a></p>
-<p>一、旧版新手引导做法</p>
-<p>GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，当前无引导，则直接进行引导，否则存入缓存队列中。</p>
-<p>GuideCheckManager注册跟引导有关的消息通知，等收到通知，做一些check工作。</p>
-<p>一个大步引导包含多个单线的单步引导，每个单步引导又可有check条件，如果中间某一单步引导未check通过，则打断引导。</p>
-<p>缺点：</p>
-<p>（1）配置采用CSV，可读性极差</p>
-<p>使用CSV作为配置，为了将触发条件也配置化，就必须做一些数据解析的工作，如下图所示：<br><img src="https://img-blog.csdnimg.cn/20190201142407883.png" alt="在这里插入图片描述"></p>
-<p>然后在程序中定义各种类型trigger的数据解析函数。从CSV中无法很直观的知道这一单步引导具体是引导什么。</p>
-<p>填充数据也较为繁琐。</p>
-<p>二、基于结点编辑的配置化新手引导系统</p>
-<p>（1）基于ScriptableObject、结点编辑的配置</p>
-<p>工具截图如下：<br><img src="https://img-blog.csdnimg.cn/20190201142445605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>GuideNodeGraph：一个结点树称为一个大步引导</p>
-<p>GuideNode：一个结点称为一个单步引导</p>
-<p>一个GuideNodeGraph就是一个ScriptableObject文件</p>
-<p>一个GuideNodeGraph包含多个Node，连接NextStepGuide-&gt; LastStepGuide，形成结点树。</p>
-<p>每个GuideNode，包含一个Input（LastStepGuide，目前无实际作用，只是为了连接结点树，OutPut必与Input连接)，三个Output（NextStepGuide、Trigger、Condition）</p>
-<p>NextStepGuide：用来存储下一个单步引导结点，如果无下一单步引导结点，则当前引导结点完成时，引导结束。</p>
-<p>Trigger：该单步引导结点触发条件，如果有多个Trigger，则只要有一个Trigger Success，则该引导则触发。</p>
-<p>Condition：引导条件结点。单步引导结点可包含多个Condition引导条件，只有当多个Condition均成立时，才会引导。</p>
-<p>Trigger和Condition均为Node 的子类。</p>
-<p>库中ActionTriggerSystem类的setupNodeCreateMenu函数，实现了在NodeEditor中的右键菜单，自行修改可以实现排序，某一类node在前，某一类在后</p>
-<p><img src="https://img-blog.csdnimg.cn/20190201143046251.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>根据Guide View界面类型的不同，可以定义多种Guide Node保存数据，一般有对话模式的，以及点击UI模式的，本文主要讲如何使用Node<br>Editor、ScriptableObject进行配置化，如果项目中不是使用ScriptableObject进行配置存储的话，该方案就不适用了。</p>
-<p>可以NodeEditor的优点：<br>配置引导可读性高，并且不存在配置数据解析逻辑，更改引导内顺序也很方便快捷。</p>
-<p>最后感谢作者提供的Node Editor库<br>git地址如下：<br><a href="https://github.com/luis-l/UnityNodeEditorBase" target="_blank" rel="noopener"> https://github.com/luis-l/UnityNodeEditorBase</a></p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+本文主要介绍根据一款Node Editor库开发的新手引导系统git地址如下： https://github.com/luis-l/UnityNodeEditorBase
+一、旧版新手引导做法
+GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Unity编辑器拓展之二十四：基于Unity Node Editor、ScriptableObject的配置化新手引导系统/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -460,6 +546,8 @@
     
       
     
+    
+
     
 
     
@@ -504,7 +592,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -608,74 +696,26 @@
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="两种颜色的条纹状背景"><a href="#两种颜色的条纹状背景" class="headerlink" title="两种颜色的条纹状背景"></a>两种颜色的条纹状背景</h1><pre><code>Shader &quot;Custom/Flag&quot;
+两种颜色的条纹状背景Shader &quot;Custom/Flag&quot;
 {
     Properties
     {
         [PerRendererData]_MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
-        _1stColor(&quot;1stColo&quot;,Color) = (0,0,0,1)
-        _2ndColor(&quot;2ndColor&quot;,Color) = (1,1,1,1)
-        _tileNum(&quot;tile num&quot;, Range (2, 20)) = 10
-    }
-    SubShader
-    {
-        Tags { &quot;RenderType&quot;=&quot;Opaque&quot; }
-        LOD 100
-
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
-
-            #include &quot;UnityCG.cginc&quot;
-
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
-            };
-
-            sampler2D _MainTex;
-            fixed4 _1stColor;
-            fixed4 _2ndColor;
-            int _tileNum;
-
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
-                return o;
-            }
-
-            fixed4 frag (v2f i) : SV_Target
-            {
-                //i.uv * _tileNum 将uv放大
-                //frac函数，取其小数部分
-                float2 newuv = frac(i.uv*_tileNum);
-                //step函数小于0.5返回0，否则返回1，再lerp一下，也就是uv.x小于0.5，返回_1stColor，否则返回_2ndColor
-                fixed4 color = lerp(_1stColor,_2ndColor,step(0.5,newuv.x));
-                return color;
-            }
-            ENDCG
-        }
-    }
-}
-</code></pre><p>效果图：</p>
-<p><img src="https://img-blog.csdnimg.cn/20181222145228919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
+ 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/22/Unity Shader编程之一：多颜色条纹背景/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -691,6 +731,8 @@
     
       
     
+    
+
     
 
     
@@ -735,7 +777,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -857,94 +899,21 @@
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset<br>，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundle<br>Name、path之类的数据，资源管理模块内加载出来然后返回。结合ObjectFiled这个编辑器类来介绍，我们拖入某一个asset，然后序列化存储其guid和asset<br>path，表面上看起来是引用了该asset，实际上只是存住了guid和path（用于load，结合资源管理模块而定），guid用于绝对指向asset资源，就算路径更改，也不怕引用丢失。</p>
-<p><img src="https://img-blog.csdnimg.cn/20181222133749902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20181222133618421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="ObjectField介绍"><a href="#ObjectField介绍" class="headerlink" title="ObjectField介绍"></a>ObjectField介绍</h1><p><a href="https://docs.unity3d.com/2017.2/Documentation/ScriptReference/EditorGUI.ObjectField.html" target="_blank" rel="noopener">https://docs.unity3d.com/2017.2/Documentation/ScriptReference/EditorGUI.ObjectField.html</a></p>
-<h1 id="FileField实现"><a href="#FileField实现" class="headerlink" title="FileField实现"></a>FileField实现</h1><pre><code>private string[] FileField(Rect position, string label, string guid,Type type)
-    {
-        string[] guidPath = new string[2];//存储guid和path，这里的path是assetPath，实际存储起来需要做一步处理，处理成资源管理模块能load的path或者别的数据
-        string path = AssetDatabase.GUIDToAssetPath(guid);
-        UnityEngine.Object file = AssetDatabase.LoadAssetAtPath(path,type);
-        EditorGUI.BeginChangeCheck();
-        {
-            //编辑器上显示的是ObjectField绘制出来的                                                                                  
-            file = EditorGUI.ObjectField(position, label, file, type, false);
-        }
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            path = AssetDatabase.GetAssetPath(file);
-            guid = AssetDatabase.AssetPathToGUID(path);
-        }
-
-        guidPath[0] = guid;
-        guidPath[1] = path;
-        return guidPath;
-    }
-</code></pre><p>不算完整的代码：</p>
-<pre><code>using UnityEditor;
-using UnityEngine;
-using System;
-using System.IO;
-using IdleGames.Core.AssetManagement;
-
-[CustomPropertyDrawer(typeof(WeakReferenceAttribute), true)]
-public class WeakReferenceBaseDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        WeakReferenceAttribute attribute = (WeakReferenceAttribute)base.attribute;
-        Type referenceType = typeof(GameObject);
-        if (attribute != null)
-        {
-            referenceType = attribute.AssetType;
-        }
-
-        SerializedProperty guidProperty = property.FindPropertyRelative(&quot;_guid&quot;);
-        SerializedProperty pathProperty = property.FindPropertyRelative(&quot;_path&quot;);
-        Rect guidRect = position;
-
-        string[] guidPath = FileField(guidRect, property.displayName, guidProperty.stringValue,referenceType);
-        guidProperty.stringValue = guidPath[0];
-        //这里演示的是把path存成了Resources文件夹下的path
-        if (string.IsNullOrEmpty(guidPath[1]) == false &amp;&amp; guidPath[1].Contains(&quot;Resources/&quot;))
-        {
-            int index = guidPath[1].LastIndexOf(&quot;Resources/&quot;) + &quot;Resources/&quot;.Length;
-            string path = guidPath[1].Substring(index);
-            path = path.Remove(path.LastIndexOf(&quot;.&quot;));
-            pathProperty.stringValue = path;
-        }
-        property.serializedObject.ApplyModifiedProperties();
-    }
-
-    private string[] FileField(Rect position, string label, string guid,Type type)
-    {
-        string[] guidPath = new string[2];
-        string path = AssetDatabase.GUIDToAssetPath(guid);
-        UnityEngine.Object file = AssetDatabase.LoadAssetAtPath(path,type);
-        EditorGUI.BeginChangeCheck();
-        {                                                                                  
-            file = EditorGUI.ObjectField(position, label, file, type, false);
-        }
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            path = AssetDatabase.GetAssetPath(file);
-            guid = AssetDatabase.AssetPathToGUID(path);
-        }
-
-        guidPath[0] = guid;
-        guidPath[1] = path;
-        return guidPath;
-    }
-}
-</code></pre><p>上述代码仅供参考，拖入的object与实际序列化存储的不是同一个东西时，可以用上述类似的思路</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+使用场景最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundleName、path之类的数据，资源管理模
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/22/Unity编辑器拓展之二十三：基于ObjectField的FileField/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -960,6 +929,8 @@ public class WeakReferenceBaseDrawer : PropertyDrawer
     
       
     
+    
+
     
 
     
@@ -1004,7 +975,7 @@ public class WeakReferenceBaseDrawer : PropertyDrawer
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1126,27 +1097,22 @@ public class WeakReferenceBaseDrawer : PropertyDrawer
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"><a href="#Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具" class="headerlink" title="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"></a>Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具</h1><p>NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。</p>
-<p>使用TexturePacker打图集，会输出两个文件，一个PNG合图，一个txt图集信息文件，而到Unity中使用UIAtlas，则需要一个Material材质文件和一个Prefab预制体文件，这两个文件也由工具生成。</p>
-<p>鉴于项目不是从一开始就用该工具进行打图集工作的，因此这些文件的命名不具有统一的规范，因此使用一个配置文件来记录每个图集的输出文件信息。</p>
-<p><img src="https://img-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h3 id="Atlas-ini图集配置文件"><a href="#Atlas-ini图集配置文件" class="headerlink" title="Atlas.ini图集配置文件"></a>Atlas.ini图集配置文件</h3><p>该文件以CSV格式进行配置，共有5列，图片文件夹相对路径、PNG合图输出路径、txt图集信息文件输出路径、UIAtlasPrefab输出路径、Material材质输出路径，后面四个输出路径都是基于Unity工程的Assets目录。</p>
-<h3 id="命令行打图集"><a href="#命令行打图集" class="headerlink" title="命令行打图集"></a>命令行打图集</h3><p>TexturePacker支持使用命令行打图集</p>
-<pre><code>$TexturePacker_PATH $imgDir --max-size 4096 --allow-free-size --format unity --size-constraints POT --shape-padding 2 --border-padding 2 --common-divisor-x 1 --common-divisor-y 1 --disable-rotation --algorithm MaxRects --opt RGBA8888 --scale 1 --scale-mode Smooth --smart-update --sheet $ASSETS_PATH$atlasPng --data $ASSETS_PATH$atlasData
-</code></pre><p>详细命令行介绍请自行搜索相关文档</p>
-<h3 id="一键批量设置图片资源设置"><a href="#一键批量设置图片资源设置" class="headerlink" title="一键批量设置图片资源设置"></a>一键批量设置图片资源设置</h3><p>PNG合图文件输出到Unity后，通过使用Unity提供的TextureImporter类和TextImporterPlatformSetting类进行图片设置</p>
-<h3 id="生成材质和Prefab问阿金并自动关联引用"><a href="#生成材质和Prefab问阿金并自动关联引用" class="headerlink" title="生成材质和Prefab问阿金并自动关联引用"></a>生成材质和Prefab问阿金并自动关联引用</h3><p>材质使用的Shader是“Unlit/Transparent<br>Colored”，mainTexture则为TexturePacker输出的合图，创建Prefab，并Add UIAtlas<br>Component，给UIAtlas组件导入texture和txt图集信息文件</p>
-<pre><code>NGUIEditorTools.ImportTexture(uiAtlas.texture, false, false, !uiAtlas.premultipliedAlpha);
-NGUIJson.LoadSpriteData(uiAtlas, atlasTextAsset);
-</code></pre><h3 id="UIAtlas信息拷贝"><a href="#UIAtlas信息拷贝" class="headerlink" title="UIAtlas信息拷贝"></a>UIAtlas信息拷贝</h3><p>创建图集后，有时需要拷贝另一个图集的border和padding信息，例如两个图集内容其实是一直的，只是皮肤颜色不一样（换肤图集），因此这两个图集的border和padding数据是一样的，提供工具进行数据拷贝。</p>
-<p><img src="https://img-blog.csdn.net/20180909131827960?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h3 id="清理Editor进度条"><a href="#清理Editor进度条" class="headerlink" title="清理Editor进度条"></a>清理Editor进度条</h3><p>为避免Atlas.ini配置错误，导致打图集中断，而EditorUtility.DisplayProgressBar进度条无法清除，提供Editor进度条清理功能，菜单栏Tools-&gt;清理进度条</p>
-<h3 id="工程下载"><a href="#工程下载" class="headerlink" title="工程下载"></a>工程下载</h3><p>GitHub地址： <a href="https://github.com/JingFengJi/CreateAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/CreateAtlas</a></p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。
+使用TexturePack
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/09/Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1162,6 +1128,8 @@ NGUIJson.LoadSpriteData(uiAtlas, atlasTextAsset);
     
       
     
+    
+
     
 
     
@@ -1206,7 +1174,7 @@ NGUIJson.LoadSpriteData(uiAtlas, atlasTextAsset);
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1328,291 +1296,23 @@ NGUIJson.LoadSpriteData(uiAtlas, atlasTextAsset);
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="拓展Unity模块，打造私人工具库（二）"><a href="#拓展Unity模块，打造私人工具库（二）" class="headerlink" title="拓展Unity模块，打造私人工具库（二）"></a>拓展Unity模块，打造私人工具库（二）</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage</p>
-<h2 id="Gif示意图"><a href="#Gif示意图" class="headerlink" title="Gif示意图"></a>Gif示意图</h2><p><img src="https://img-
-blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h2 id="程序导入UnityPackage"><a href="#程序导入UnityPackage" class="headerlink" title="程序导入UnityPackage"></a>程序导入UnityPackage</h2><p>通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下：</p>
-<pre><code>public static void ShowImportPackage(string packagePath, ImportPackageItem[] items, string packageIconPath, bool allowReInstall)
-{
-    if (PackageImport.ValidateInput(items))
-    {
-        PackageImport window = EditorWindow.GetWindow&lt;PackageImport&gt;(true, &quot;Import Unity Package&quot;);
-        window.Init(packagePath, items, packageIconPath, allowReInstall);
-    }
-}
-</code></pre><p>该函数除了需要传入package 的路径外，还需要传入<br>ImportPackageItem[]（也就是该package的内容），通过在UnityEditor中搜索ShowImportPackage函数调用，发现在AssetDataBase类中有一个静态函数ImportPackage用来导入Package的，该函数中先调用PackageUtility.ExtractAndPrepareAssetList函数获取到package里内容的列表，然后在调用的导入，当然此处还用到了interactive变量来控制是否打开Import<br>Window。而PackageUtility.ExtractAndPrepareAssetList详细代码则是看不到了。</p>
-<pre><code>public static void ImportPackage(string packagePath, bool interactive)
-{
-    if (string.IsNullOrEmpty(packagePath))
-    {
-        throw new ArgumentException(&quot;Path can not be empty or null&quot;, &quot;packagePath&quot;);
-    }
-    string packageIconPath;
-    bool allowReInstall;
-    ImportPackageItem[] array = PackageUtility.ExtractAndPrepareAssetList(packagePath, out packageIconPath, out allowReInstall);
-    if (array != null)
-    {
-        if (interactive)
-        {
-            PackageImport.ShowImportPackage(packagePath, array, packageIconPath, allowReInstall);
-        }
-        else
-        {
-            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(packagePath);
-            PackageUtility.ImportPackageAssets(fileNameWithoutExtension, array, false);
-        }
-    }
-}
-</code></pre><p>通过尝试，一次导入多个UnityPackage时，后一个会将前一个覆盖掉（估计是导入资源Unity需要加载并且编译吧），所以目前工具只能单个导入。</p>
-<p>封装一个Package2Folder类，用来导入UnityPackage，只需调用ImportPackageToFolder函数即可。</p>
-<p><img src="https://img-blog.csdn.net/20180822232606973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<pre><code>public class Package2Folder
-    {
-        #region reflection stuff
-
-        private delegate AssetsItem[] ImportPackageStep1Delegate(string packagePath, out string packageIconPath);
-
-        private static Type assetServerType;
-
-        private static Type AssetServerType
-        {
-            get
-            {
-                if (assetServerType == null)
-                {
-                    assetServerType = typeof(MenuItem).Assembly.GetType(&quot;UnityEditor.AssetServer&quot;);
-                }
-
-                return assetServerType;
-            }
-        }
-
-        private static ImportPackageStep1Delegate importPackageStep1;
-
-        private static ImportPackageStep1Delegate ImportPackageStep1
-        {
-            get
-            {
-                if (importPackageStep1 == null)
-                {
-                    importPackageStep1 = (ImportPackageStep1Delegate)Delegate.CreateDelegate(
-                        typeof(ImportPackageStep1Delegate),
-                        null,
-                        AssetServerType.GetMethod(&quot;ImportPackageStep1&quot;));
-                }
-
-                return importPackageStep1;
-            }
-        }
-
-        private static MethodInfo importPackageStep2MethodInfo;
-
-        private static MethodInfo ImportPackageStep2MethodInfo
-        {
-            get
-            {
-                if (importPackageStep2MethodInfo == null)
-                {
-                    importPackageStep2MethodInfo = AssetServerType.GetMethod(&quot;ImportPackageStep2&quot;);
-                }
-
-                return importPackageStep2MethodInfo;
-            }
-        }
-
-        private delegate object[] ExtractAndPrepareAssetListDelegate(string packagePath, out string packageIconPath,
-            out bool allowReInstall);
-
-        private static Type packageUtilityType;
-
-        private static Type PackageUtilityType
-        {
-            get
-            {
-                if (packageUtilityType == null)
-                {
-                    packageUtilityType
-                        = typeof(MenuItem).Assembly.GetType(&quot;UnityEditor.PackageUtility&quot;);
-                }
-                return packageUtilityType;
-            }
-        }
-
-        private static ExtractAndPrepareAssetListDelegate extractAndPrepareAssetList;
-
-        private static ExtractAndPrepareAssetListDelegate ExtractAndPrepareAssetList
-        {
-            get
-            {
-                if (extractAndPrepareAssetList == null)
-                {
-                    extractAndPrepareAssetList
-                        = (ExtractAndPrepareAssetListDelegate)Delegate.CreateDelegate(
-                            typeof(ExtractAndPrepareAssetListDelegate),
-                            null,
-                            PackageUtilityType.GetMethod(&quot;ExtractAndPrepareAssetList&quot;));
-                }
-
-                return extractAndPrepareAssetList;
-            }
-        }
-
-        private static FieldInfo destinationAssetPathFieldInfo;
-
-        private static FieldInfo DestinationAssetPathFieldInfo
-        {
-            get
-            {
-                if (destinationAssetPathFieldInfo == null)
-                {
-                    Type importPackageItem
-                        = typeof(MenuItem).Assembly.GetType(&quot;UnityEditor.ImportPackageItem&quot;);
-                    destinationAssetPathFieldInfo
-                        = importPackageItem.GetField(&quot;destinationAssetPath&quot;);
-                }
-                return destinationAssetPathFieldInfo;
-            }
-        }
-
-        private static MethodInfo importPackageAssetsMethodInfo;
-
-        private static MethodInfo ImportPackageAssetsMethodInfo
-        {
-            get
-            {
-                if (importPackageAssetsMethodInfo == null)
-                {
-                    // ImportPackageAssetsImmediately 是同步的导入5.4以上版本可用
-                    importPackageAssetsMethodInfo
-                        = PackageUtilityType.GetMethod(&quot;ImportPackageAssetsImmediately&quot;) ??
-                          PackageUtilityType.GetMethod(&quot;ImportPackageAssets&quot;);
-                }
-
-                return importPackageAssetsMethodInfo;
-            }
-        }
-
-        private static MethodInfo showImportPackageMethodInfo;
-
-        private static MethodInfo ShowImportPackageMethodInfo
-        {
-            get
-            {
-                if (showImportPackageMethodInfo == null)
-                {
-                    Type packageImport = typeof(MenuItem).Assembly.GetType(&quot;UnityEditor.PackageImport&quot;);
-                    showImportPackageMethodInfo = packageImport.GetMethod(&quot;ShowImportPackage&quot;);
-                }
-
-                return showImportPackageMethodInfo;
-            }
-        }
-
-        #endregion reflection stuff
-
-        public static void ImportPackageToFolder(string packagePath, string selectedFolderPath, bool interactive)
-        {
-            string packageIconPath;
-            bool allowReInstall;
-            if (AssetServerType != null &amp;&amp; AssetServerType.GetMethod(&quot;ImportPackageStep1&quot;) != null)
-                IsOlder53VersionAPI = true;
-            else
-                IsOlder53VersionAPI = false;
-            //IsOlder53VersionAPI = false;
-            object[] assetsItems = ExtractAssetsFromPackage(packagePath, out packageIconPath, out allowReInstall);
-            if (assetsItems == null) return;
-            foreach (object item in assetsItems)
-            {
-                ChangeAssetItemPath(item, selectedFolderPath);
-            }
-
-            if (interactive)
-            {
-                ShowImportPackageWindow(packagePath, assetsItems, packageIconPath, allowReInstall);
-            }
-            else
-            {
-                ImportPackageSilently(assetsItems);
-            }
-        }
-
-        private static bool IsOlder53VersionAPI = false;
-
-        public static object[] ExtractAssetsFromPackage(string path, out string packageIconPath,
-            out bool allowReInstall)
-        {
-            if (IsOlder53VersionAPI)
-            {
-                AssetsItem[] array = ImportPackageStep1(path, out packageIconPath);
-                allowReInstall = false;
-                return array;
-            }
-            else
-            {
-                object[] array = ExtractAndPrepareAssetList(path, out packageIconPath, out allowReInstall);
-                return array;
-            }
-        }
-
-        private static void ChangeAssetItemPath(object assetItem, string selectedFolderPath)
-        {
-            if (IsOlder53VersionAPI)
-            {
-                AssetsItem item = (AssetsItem)assetItem;
-                item.exportedAssetPath = selectedFolderPath + item.exportedAssetPath.Remove(0, 6);
-                item.pathName = selectedFolderPath + item.pathName.Remove(0, 6);
-            }
-            else
-            {
-                string destinationPath
-                    = (string)DestinationAssetPathFieldInfo.GetValue(assetItem);
-                destinationPath
-                    = selectedFolderPath + destinationPath.Remove(0, 6);
-                DestinationAssetPathFieldInfo.SetValue(assetItem, destinationPath);
-            }
-        }
-
-        public static void ShowImportPackageWindow(string path, object[] array, string packageIconPath,
-            bool allowReInstall)
-        {
-            if (IsOlder53VersionAPI)
-            {
-                ShowImportPackageMethodInfo.Invoke(null, new object[] { path, array, packageIconPath });
-            }
-            else
-            {
-                ShowImportPackageMethodInfo.Invoke(null, new object[] { path, array, packageIconPath, allowReInstall });
-            }
-        }
-
-        public static void ImportPackageSilently(object[] assetsItems)
-        {
-            if (IsOlder53VersionAPI)
-            {
-                ImportPackageStep2MethodInfo.Invoke(null, new object[] { assetsItems, false });
-            }
-            else
-            {
-                ImportPackageAssetsMethodInfo.Invoke(null, new object[] { assetsItems, false });
-            }
-        }
-
-        private static string GetSelectedFolderPath()
-        {
-            UnityEngine.Object obj = Selection.activeObject;
-            if (obj == null) return null;
-            string path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
-            return !Directory.Exists(path) ? null : path;
-        }
-    }
-</code></pre><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>【UnityEditor 编辑器间快速复制粘贴】： <a href="https://539go.com/2018/02/04/Unity-QuickCopy/" target="_blank" rel="noopener"> https://539go.com/2018/02/04/Unity-QuickCopy/</a><br>引用了该文章中的UnityPackage导入代码。</p>
-<h2 id="工具下载"><a href="#工具下载" class="headerlink" title="工具下载"></a>工具下载</h2><p>git仓库：</p>
-<p><a href="https://github.com/JingFengJi/UnityCenterTool" target="_blank" rel="noopener"> https://github.com/JingFengJi/UnityCenterTool</a></p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage
+Gif示意图
+程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/22/Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1628,6 +1328,8 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     
       
     
+    
+
     
 
     
@@ -1672,7 +1374,7 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1794,42 +1496,22 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="拓展Unity模块，打造私人工具库（一）"><a href="#拓展Unity模块，打造私人工具库（一）" class="headerlink" title="拓展Unity模块，打造私人工具库（一）"></a>拓展Unity模块，打造私人工具库（一）</h1><h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><p>经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。</p>
-<p>通过查阅资料发现，在Unity的安装目录 Unity2017.3.1f1\Editor\Data\UnityExtensions\Unity<br>(我的版本是2017.3.1f1)下，有一些Unity自带的模块，可以通过在该路径下放入自己的模块，就可以实现Unity新建的项目都拥有该拓展模块的功能。那么，接下来就写一个工具导入模块放入该文件夹中。</p>
-<h2 id="UnityExtensions文件结构基本介绍"><a href="#UnityExtensions文件结构基本介绍" class="headerlink" title="UnityExtensions文件结构基本介绍"></a>UnityExtensions文件结构基本介绍</h2><p>1、ivy.xml文件</p>
-<p>其中：version、unityVersion均为当前Unity的版本号；artifact name 标签为我们的DLL文件的相对路径。</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;ivy-module version=&quot;2.0&quot;&gt;
-  &lt;info version=&quot;2017.3.1&quot; organisation=&quot;Unity&quot; module=&quot;UnityToolCenter&quot; e:packageType=&quot;UnityExtension&quot; e:unityVersion=&quot;2017.3.1f1&quot; xmlns:e=&quot;http://ant.apache.org/ivy/extra&quot; /&gt;
-  &lt;publications xmlns:e=&quot;http://ant.apache.org/ivy/extra&quot;&gt;
-    &lt;artifact name=&quot;Editor/UnityToolCenter&quot; type=&quot;dll&quot; ext=&quot;dll&quot; e:guid=&quot;adebbd281f1a4ef3a30be7f21937e02f&quot; /&gt;
-  &lt;/publications&gt;
-&lt;/ivy-module&gt;
-</code></pre><p>2、Editor文件夹<br>放入dll 代码中属于编辑器拓展的代码</p>
-<h2 id="逻辑说明"><a href="#逻辑说明" class="headerlink" title="逻辑说明"></a>逻辑说明</h2><p>工具初版示意图：</p>
-<p><img src="https://img-blog.csdn.net/20180820223019383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>通过勾选UnityPackage，直接导入到项目中，简单快捷。</p>
-<p>为了不直接将UnityPackage文件放入到Unity安装目录下，因此新增一个config.ini文件，里面配置UnityPackage文件的路径（绝对路径），例如下图：<br><img src="https://img-blog.csdn.net/2018082022321790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><img src="https://img-blog.csdn.net/2018082022325173?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>通过读取该配置文件，加载配置下所有路径的所有后缀名为unitypackage文件，然后显示在编辑器中。</p>
-<h2 id="使用介绍"><a href="#使用介绍" class="headerlink" title="使用介绍"></a>使用介绍</h2><p>将脚本打成dll后，将UnityToolCenter.dll和UnityToolCenter.pdb文件放入安装目录下</p>
-<p><img src="https://img-blog.csdn.net/2018082022350796?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>修改ivy.xml文件为</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;ivy-module version=&quot;2.0&quot;&gt;
-  &lt;info version=&quot;2017.3.1&quot; organisation=&quot;Unity&quot; module=&quot;UnityToolCenter&quot; e:packageType=&quot;UnityExtension&quot; e:unityVersion=&quot;2017.3.1f1&quot; xmlns:e=&quot;http://ant.apache.org/ivy/extra&quot; /&gt;
-  &lt;publications xmlns:e=&quot;http://ant.apache.org/ivy/extra&quot;&gt;
-    &lt;artifact name=&quot;Editor/UnityToolCenter&quot; type=&quot;dll&quot; ext=&quot;dll&quot; e:guid=&quot;adebbd281f1a4ef3a30be7f21937e02f&quot; /&gt;
-  &lt;/publications&gt;
-&lt;/ivy-module&gt;
-</code></pre><p>【注意】版本号，以及dll的路径</p>
-<p>此时，新建另一个Unity工程（同版本），就会发现菜单栏也带有Tools/UnityToolCenter，具体导入UnityPackage逻辑见下期</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://539go.com/2017/10/20/UnityEditor-Unity%E7%9A%84%E6%A8%A1%E5%9D%97/" target="_blank" rel="noopener"> https://539go.com/2017/10/20/UnityEditor-Unity%E7%9A%84%E6%A8%A1%E5%9D%97/</a></p>
-<h2 id="工具终版见下期"><a href="#工具终版见下期" class="headerlink" title="工具终版见下期"></a>工具终版见下期</h2><p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+拓展Unity模块，打造私人工具库（一）功能介绍经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。
+通过查阅资料发现，在Unity的安装目录 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/20/Unity编辑器拓展之二十：拓展Unity模块，打造私人工具库（一）/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1845,6 +1527,8 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     
       
     
+    
+
     
 
     
@@ -1889,7 +1573,7 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2011,190 +1695,23 @@ blog.csdn.net/20180822230440180?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="NGUI-UISprite预览图Preview拓展"><a href="#NGUI-UISprite预览图Preview拓展" class="headerlink" title="NGUI UISprite预览图Preview拓展"></a>NGUI UISprite预览图Preview拓展</h1><h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><p>1、拓展UISprite的Preview视图，同时显示UIAtlas Texture和Sprite<br>2、支持在UIAtlas上直接点选Sprite<br>3、无需打开Atlas选择框和Sprite选择框两步操作</p>
-<h2 id="Gif示意图"><a href="#Gif示意图" class="headerlink" title="Gif示意图"></a>Gif示意图</h2><p><img src="https://img-blog.csdn.net/20180810224120831?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h2 id="逻辑介绍"><a href="#逻辑介绍" class="headerlink" title="逻辑介绍"></a>逻辑介绍</h2><p>1、找到UISpriteInspector脚本，其脚本的OnPreView函数逻辑，源码如下：</p>
-<pre><code>public override void OnPreviewGUI (Rect rect, GUIStyle background)
-{
-    UISprite sprite = target as UISprite;
-    if (sprite == null || !sprite.isValid) return;
-    Texture2D tex = sprite.mainTexture as Texture2D;
-    if (tex == null) return;
-    UISpriteData sd = sprite.atlas.GetSprite(sprite.spriteName);
-    NGUIEditorTools.DrawSprite(tex, rect, sd, sprite.color);
-}
-</code></pre><p>其中NGUIEditorTools.DrawSprite函数负责绘制Sprite，包括背景、border line、out line、size<br>label等，如下图所示：</p>
-<p>2、PreView区域为左右两边，分别绘制Atlas Texture和Sprite，并且Atlas<br>Texture在绘制时依然采用sprite的绘制样式，底图背景 + 黑色轮廓，再次基础上使用的Sprite采用绿色轮廓</p>
-<pre><code>public override void OnPreviewGUI (Rect rect, GUIStyle background)
-{
-    UISprite sprite = target as UISprite;
-    if (sprite == null || !sprite.isValid) return;
-    Texture2D tex = sprite.mainTexture as Texture2D;
-    if (tex == null) return;
-    float interval = 10f;
-    float width = (rect.width - interval) / 2;
-    Rect leftRect = new Rect(rect.x,rect.y,width,rect.height);
-    Rect rightRect = new Rect(rect.x + width + interval,rect.y,width,rect.height);
-    UISpriteData sd = sprite.atlas.GetSprite(sprite.spriteName);
-    NGUIEditorTools.DrawAtlas(tex,leftRect,sd); 
-    NGUIEditorTools.DrawSprite(tex, rightRect, sd, sprite.color);
-}
-
-
-    static public void DrawAtlas(Texture2D tex,Rect drawRect,UISpriteData sprite)
-    {
-        if (!tex) return;
-
-        // Create the texture rectangle that is centered inside rect.
-        Rect outerRect = drawRect;
-        outerRect.width = tex.width;
-        outerRect.height = tex.height;
-
-        if (tex.width &gt; 0)
-        {
-            float f = drawRect.width / outerRect.width;
-            outerRect.width *= f;
-            outerRect.height *= f;
-        }
-
-        if (drawRect.height &gt; outerRect.height)
-        {
-            outerRect.y += (drawRect.height - outerRect.height) * 0.5f;
-        }
-        else if (outerRect.height &gt; drawRect.height)
-        {
-            float f = drawRect.height / outerRect.height;
-            outerRect.width *= f;
-            outerRect.height *= f;
-        }
-
-        if (drawRect.width &gt; outerRect.width) outerRect.x += (drawRect.width - outerRect.width) * 0.5f;
-
-        // Draw the background
-        NGUIEditorTools.DrawTiledTexture(outerRect, NGUIEditorTools.backdropTexture);
-
-        Handles.color = Color.black;
-        Handles.DrawLine(new Vector3(outerRect.xMin, outerRect.yMin), new Vector3(outerRect.xMin, outerRect.yMax));
-        Handles.DrawLine(new Vector3(outerRect.xMax, outerRect.yMin), new Vector3(outerRect.xMax, outerRect.yMax));
-        Handles.DrawLine(new Vector3(outerRect.xMin, outerRect.yMin), new Vector3(outerRect.xMax, outerRect.yMin));
-        Handles.DrawLine(new Vector3(outerRect.xMin, outerRect.yMax), new Vector3(outerRect.xMax, outerRect.yMax));
-
-        if(sprite != null)
-        {
-            Handles.color = Color.green;
-            Rect spriteOutlineRect = outerRect;
-            float r = outerRect.width / tex.width;
-            spriteOutlineRect.x = outerRect.xMin + sprite.x * r;
-            spriteOutlineRect.y = outerRect.yMin + sprite.y * r;
-            spriteOutlineRect.width = sprite.width * r;
-            spriteOutlineRect.height = sprite.height * r;
-            Handles.DrawLine(new Vector3(spriteOutlineRect.xMin, spriteOutlineRect.yMin), new Vector3(spriteOutlineRect.xMin, spriteOutlineRect.yMax));
-            Handles.DrawLine(new Vector3(spriteOutlineRect.xMax, spriteOutlineRect.yMin), new Vector3(spriteOutlineRect.xMax, spriteOutlineRect.yMax));
-            Handles.DrawLine(new Vector3(spriteOutlineRect.xMin, spriteOutlineRect.yMin), new Vector3(spriteOutlineRect.xMax, spriteOutlineRect.yMin));
-            Handles.DrawLine(new Vector3(spriteOutlineRect.xMin, spriteOutlineRect.yMax), new Vector3(spriteOutlineRect.xMax, spriteOutlineRect.yMax));
-        }
-
-        Rect uv = new Rect(0, 0, tex.width, tex.height);
-        uv = NGUIMath.ConvertToTexCoords(uv, tex.width, tex.height);
-        GUI.DrawTextureWithTexCoords(outerRect, tex, uv, true);
-
-        // Sprite size label
-        string text = string.Format(&quot;Atlas Size: {0}x{1}&quot;, Mathf.RoundToInt(tex.width), Mathf.RoundToInt(tex.height));
-        EditorGUI.DropShadowLabel(GUILayoutUtility.GetRect(Screen.width, 18f), text);
-    }
-</code></pre><p>示意图如下：<br><img src="https://img-blog.csdn.net/20180810223913392?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>3、点选功能实现</p>
-<pre><code>public override void OnPreviewGUI (Rect rect, GUIStyle background)
-{
-    UISprite sprite = target as UISprite;
-    if (sprite == null || !sprite.isValid) return;
-
-    Texture2D tex = sprite.mainTexture as Texture2D;
-    if (tex == null) return;
-    float interval = 10f;
-    float width = (rect.width - interval) / 2;
-    Rect leftRect = new Rect(rect.x,rect.y,width,rect.height);
-    Rect rightRect = new Rect(rect.x + width + interval,rect.y,width,rect.height);
-    UISpriteData sd = sprite.atlas.GetSprite(sprite.spriteName);
-    NGUIEditorTools.DrawAtlas(tex,leftRect,sd);
-
-    NGUIEditorTools.DrawSprite(tex, rightRect, sd, sprite.color);
-
-    //点选图片
-    Event e = Event.current;
-    if(e.type == EventType.MouseDown)
-    {
-        //下面函数通过点击的坐标，和texture、texture draw rect等信息计算出被点选的sprite
-        UISpriteData click = NGUIEditorTools.GetUISpriteData(tex,sprite.atlas,leftRect,e.mousePosition);
-        if(click != null)
-        {
-            sprite.spriteName = click.name;
-            EditorUtility.SetDirty(sprite);
-        }
-    }
-}
-
-
-//获取sprite在preview中的区域
-static public Rect GetAreaInPreview(Texture2D tex,Rect drawRect,UISpriteData sprite)
-{
-    // Create the texture rectangle that is centered inside rect.
-    Rect outerRect = drawRect;
-    outerRect.width = tex.width;
-    outerRect.height = tex.height;
-
-    if (tex.width &gt; 0)
-    {
-        float f = drawRect.width / outerRect.width;
-        outerRect.width *= f;
-        outerRect.height *= f;
-    }
-
-    if (drawRect.height &gt; outerRect.height)
-    {
-        outerRect.y += (drawRect.height - outerRect.height) * 0.5f;
-    }
-    else if (outerRect.height &gt; drawRect.height)
-    {
-        float f = drawRect.height / outerRect.height;
-        outerRect.width *= f;
-        outerRect.height *= f;
-    }
-
-    if (drawRect.width &gt; outerRect.width) outerRect.x += (drawRect.width - outerRect.width) * 0.5f;
-
-    Rect spriteOutlineRect = outerRect;
-    float r = outerRect.width / tex.width;
-    spriteOutlineRect.x = outerRect.xMin + sprite.x * r;
-    spriteOutlineRect.y = outerRect.yMin + sprite.y * r;
-    spriteOutlineRect.width = sprite.width * r;
-    spriteOutlineRect.height = sprite.height * r;
-
-    return spriteOutlineRect;
-}
-
-
-//根据点击的坐标，循环遍历出哪个Sprite的Area包含了该pos即可
-static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect drawRect,Vector2 pos)
-{
-    List&lt;UISpriteData&gt; sprites = atlas.spriteList;
-    if(sprites == null || sprites.Count &lt;= 0) return null;
-    for (int i = 0; i &lt; sprites.Count; i++)
-    {
-        UISpriteData sprite = sprites[i];
-        Rect area = GetAreaInPreview(tex,drawRect,sprite);
-        if(area.Contains(pos))
-        {
-            return sprite;
-        }
-    }
-    return null;
-}
-</code></pre><p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+NGUI UISprite预览图Preview拓展功能说明1、拓展UISprite的Preview视图，同时显示UIAtlas Texture和Sprite2、支持在UIAtlas上直接点选Sprite3、无需打开Atlas选择框和Sprite选择框两步操作
+Gif示意图
+逻辑介绍1、找到UIS
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/10/Unity编辑器拓展之十九：NGUI  UISprite预览图Preview拓展/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2210,6 +1727,8 @@ static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect dra
     
       
     
+    
+
     
 
     
@@ -2254,7 +1773,7 @@ static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect dra
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2358,19 +1877,21 @@ static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect dra
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="1、图片查重"><a href="#1、图片查重" class="headerlink" title="1、图片查重"></a>1、图片查重</h1><p>文件查重，如果只是文件名或者md5码的匹配查重，功能就不全面了，尤其是图片查重。图片查重应该更侧重于图片内容相似度查重。最近项目中使用TexturePacker<br>&amp; NGUI，发现存在一些图片重复，新人对业务逻辑不熟悉，导致图片乱放等问题，使得图片存在重复、浪费资源等。因此收集了Windows 和Mac<br>下使用的两款图片查重软件。</p>
-<h4 id="Win"><a href="#Win" class="headerlink" title="Win"></a>Win</h4><p><a href="http://www.newrain.cn/app/info/1" target="_blank" rel="noopener"> http://www.newrain.cn/app/info/1 </a></p>
-<p><img src="https://img-blog.csdn.net/20180806211702519?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>支持修改相似度进行匹配查重</p>
-<h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h4><p>SnapSelect软件</p>
-<p>官网： <a href="https://skylum.com/snapselect" target="_blank" rel="noopener"> https://skylum.com/snapselect </a><br>pojie版请自行下载</p>
-<p><img src="https://img-blog.csdn.net/20180806212314576?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>支持四个级别的相似度查重 （Low、High、、、）</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+1、图片查重文件查重，如果只是文件名或者md5码的匹配查重，功能就不全面了，尤其是图片查重。图片查重应该更侧重于图片内容相似度查重。最近项目中使用TexturePacker&amp; NGUI，发现存在一些图片重复，新人对业务逻辑不熟悉，导致图片乱放等问题，使得图片存在重复、浪费资源等。因此收集
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/06/常用软件集锦/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2386,6 +1907,8 @@ static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect dra
     
       
     
+    
+
     
 
     
@@ -2430,7 +1953,7 @@ static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect dra
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2552,45 +2075,23 @@ static public UISpriteData GetUISpriteData(Texture2D tex, UIAtlas atlas,Rect dra
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本"><a href="#Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本" class="headerlink" title="Unity编辑器拓展之十五：NGUI批量替换图集工具 2.0版本"></a>Unity编辑器拓展之十五：NGUI批量替换图集工具 2.0版本</h1><h1 id="1-0版本"><a href="#1-0版本" class="headerlink" title="1.0版本"></a>1.0版本</h1><p><a href="https://blog.csdn.net/qq_26999509/article/details/81256493" target="_blank" rel="noopener"> https://blog.csdn.net/qq_26999509/article/details/81256493
-</a></p>
-<h1 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容"></a>新增内容</h1><p>工具1.0版本，同事在使用过程中，发现批量替换图集时，不一定是全部都替换，这样的话，工具就没法使用了。<br>2.0版本新增功能：对于替换图集的Sprite支持可选择性的是否替换。</p>
-<h1 id="工具截图"><a href="#工具截图" class="headerlink" title="工具截图"></a>工具截图</h1><p><img src="https://img-blog.csdn.net/20180804224118848?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>在之前的右下角空白区域，增加了预制体所有UISprite的列表显示，使用的TreeView编写的。</p>
-<h1 id="TreeView介绍"><a href="#TreeView介绍" class="headerlink" title="TreeView介绍"></a>TreeView介绍</h1><p>目前，TreeView我还没有单独写文字来介绍该内容，后续会更新。<br>官方文档： <a href="https://docs.unity3d.com/Manual/TreeViewAPI.html" target="_blank" rel="noopener"> https://docs.unity3d.com/Manual/TreeViewAPI.html
-</a></p>
-<h1 id="代码Git地址"><a href="#代码Git地址" class="headerlink" title="代码Git地址"></a>代码Git地址</h1><p><a href="https://github.com/JingFengJi/ReplaceAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/ReplaceAtlas
-</a></p>
-<p>欢迎加星</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-<hr>
-<h1 id="2018-8-5日更新"><a href="#2018-8-5日更新" class="headerlink" title="2018.8.5日更新"></a>2018.8.5日更新</h1><h1 id="更新内容"><a href="#更新内容" class="headerlink" title="更新内容"></a>更新内容</h1><p>1、支持Sprite预览</p>
-<h1 id="Gif示例图"><a href="#Gif示例图" class="headerlink" title="Gif示例图"></a>Gif示例图</h1><p><img src="https://img-blog.csdn.net/20180805211815279?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h1 id="重要代码介绍"><a href="#重要代码介绍" class="headerlink" title="重要代码介绍"></a>重要代码介绍</h1><p>Sprite的绘制，是通过查看UISpriteInspector类（NGUI）发现的，该类中在使用OnPreviewGUI接口绘制示意图的时候，调用了NGUIEdiotrTools.DrawSprite接口</p>
-<pre><code>public override void OnPreviewGUI (Rect rect, GUIStyle background)
-{
-    UISprite sprite = target as UISprite;
-    if (sprite == null || !sprite.isValid) return;
+Unity编辑器拓展之十五：NGUI批量替换图集工具 2.0版本1.0版本 https://blog.csdn.net/qq_26999509/article/details/81256493
 
-    Texture2D tex = sprite.mainTexture as Texture2D;
-    if (tex == null) return;
-
-    UISpriteData sd = sprite.atlas.GetSprite(sprite.spriteName);
-    NGUIEditorTools.DrawSprite(tex, rect, sd, sprite.color);
-}
-</code></pre><p><img src="https://img-blog.csdn.net/20180805212237230?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>那里这次更新的内容，也使用该接口进行绘制。详情请看NGUI源码。</p>
-<p>但是，该处PreviewGUI在底部绘制了 Sprite<br>Size的Label，而本工具不需要将图和尺寸信息绘制在一起，因此修改了源码，增加了一个bool类型的needSizeLabel参数，来控制是否显示尺寸信息</p>
-<p><img src="https://img-
-blog.csdn.net/20180805212621503?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h1 id="代码Git地址-1"><a href="#代码Git地址-1" class="headerlink" title="代码Git地址"></a>代码Git地址</h1><p><a href="https://github.com/JingFengJi/ReplaceAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/ReplaceAtlas
-</a></p>
-<p>欢迎加星</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+新增内容工具1.0版本，同事在使用过程中，发现批量替换图集时，不一定是全部都替换，这样的话，工具就没
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/04/Unity编辑器拓展之十八：NGUI批量替换图集工具 2.0版本/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2606,6 +2107,8 @@ blog.csdn.net/20180805212621503?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     
       
     
+    
+
     
 
     
@@ -2650,7 +2153,7 @@ blog.csdn.net/20180805212621503?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2772,65 +2275,24 @@ blog.csdn.net/20180805212621503?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h1 id="NGUI-ComponentSelector增加搜索框"><a href="#NGUI-ComponentSelector增加搜索框" class="headerlink" title="NGUI ComponentSelector增加搜索框"></a>NGUI ComponentSelector增加搜索框</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>最近在使用NGUI，给Sprite选择图集的时候，没有搜索框要挨个找挺麻烦，因此修改一下ComponentSelector组件，增加一个搜索框，便于搜索图集</p>
-<p><img src="https://img-blog.csdn.net/20180731230908117?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h2 id="Gif动图展示"><a href="#Gif动图展示" class="headerlink" title="Gif动图展示"></a>Gif动图展示</h2><p><img src="https://img-blog.csdn.net/20180731232015407?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h2 id="SearchField介绍"><a href="#SearchField介绍" class="headerlink" title="SearchField介绍"></a>SearchField介绍</h2><p>关于SearchField介绍请看 <a href="https://blog.csdn.net/qq_26999509/article/details/80301320%20Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95%E4%B9%8B%E4%B9%9D%EF%BC%9ASearchField" target="_blank" rel="noopener"> Unity编辑器拓展之九</a></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>以下代码是修改的NGUI里的ComponentSelector脚本</p>
-<pre><code>private SearchField search;
-private bool isInit = false;
-private string searchStr = &quot;&quot;;
-private void IfNeedInit()
-{
-    if(isInit == false)
-        search = new SearchField();
-    isInit = true;
-}
+NGUI ComponentSelector增加搜索框目的最近在使用NGUI，给Sprite选择图集的时候，没有搜索框要挨个找挺麻烦，因此修改一下ComponentSelector组件，增加一个搜索框，便于搜索图集
 
-void OnGUI ()
-{
-    IfNeedInit();
-    searchStr = search.OnGUI(new Rect(10,10,200,10),searchStr);
-    searchStr = searchStr.ToLower();
-    //省略后面源码    
-}
-
-
-
-bool DrawObject (Object obj)
-{
-    if (obj == null) return false;
-
-    //搜索
-    if(!string.IsNullOrEmpty(searchStr) &amp;&amp; !obj.name.ToLower().Contains(searchStr)) return false;
-
-    bool retVal = false;
-    Component comp = obj as Component;
-    GUILayout.BeginHorizontal();
-    {
-        string path = AssetDatabase.GetAssetPath(obj);
-        if (string.IsNullOrEmpty(path))
-        {
-            path = &quot;[Embedded]&quot;;
-            GUI.contentColor = new Color(0.7f, 0.7f, 0.7f);
-        }
-        else if (comp != null &amp;&amp; EditorUtility.IsPersistent(comp.gameObject))
-            GUI.contentColor = new Color(0.6f, 0.8f, 1f);
-
-        retVal |= GUILayout.Button(obj.name, &quot;AS TextArea&quot;, GUILayout.Width(160f), GUILayout.Height(20f));
-        retVal |= GUILayout.Button(path.Replace(&quot;Assets/&quot;, &quot;&quot;), &quot;AS TextArea&quot;, GUILayout.Height(20f));
-        GUI.contentColor = Color.white;
-
-        retVal |= GUILayout.Button(&quot;Select&quot;, &quot;ButtonLeft&quot;, GUILayout.Width(60f), GUILayout.Height(16f));
-    }
-    GUILayout.EndHorizontal();
-    return retVal;
-}
-</code></pre><p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+Gif动图展示
+SearchField介绍关于SearchField介绍请看 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/07/31/Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2846,6 +2308,8 @@ bool DrawObject (Object obj)
     
       
     
+    
+
     
 
     
@@ -2904,6 +2368,8 @@ bool DrawObject (Object obj)
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Mr.Ding">
             
               <p class="site-author-name" itemprop="name">Mr.Ding</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -2975,6 +2441,39 @@ bool DrawObject (Object obj)
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/JingFengJi" title="GitHub &rarr; https://github.com/JingFengJi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_26999509" title="CSDN &rarr; https://blog.csdn.net/qq_26999509" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+            </div>
+          
+
+          <!-- 音乐播放器 -->
+          <div>
+            
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2708490017&auto=1&height=90"></iframe>
+            
+          </div>
 
           
 
@@ -3016,19 +2515,40 @@ bool DrawObject (Object obj)
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
 
+
+
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span> 
+<script> 
+    var now = new Date(); 
+    function createtime() {
+    var grt= new Date("03/01/2019 12:00:00");
+    //此处修改你的建站时间或者网站上线时间 
+    now.setTime(now.getTime()+250); 
+    days = (now - grt ) / 1000 / 60 / 60 / 24; 
+    dnum = Math.floor(days); hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); 
+    hnum = Math.floor(hours); 
+    if(String(hnum).length ==1 ){
+        hnum = "0" + hnum;
+    } 
+    minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 )
+    {
+       mnum = "0" + mnum;
+    } 
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if(String(snum).length ==1 ){snum = "0" + snum;} 
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+} 
+    setInterval("createtime()",250); 
+</script>
         
 
 
@@ -3079,6 +2599,9 @@ bool DrawObject (Object obj)
 
 
 
+  
+  
+
 
 
 
@@ -3098,6 +2621,12 @@ bool DrawObject (Object obj)
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
 
   
 
@@ -3112,7 +2641,9 @@ bool DrawObject (Object obj)
   
 
 
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
 
 
 
@@ -3130,6 +2661,326 @@ bool DrawObject (Object obj)
 
 
   
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -3211,6 +3062,16 @@ bool DrawObject (Object obj)
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
@@ -3230,3 +3091,10 @@ bool DrawObject (Object obj)
 
 </body>
 </html>
+
+<script type="text/javascript" src="/js/src/copy.js"></script>
+
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/src/fireworks.js"></script>

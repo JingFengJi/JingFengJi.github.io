@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,11 +30,15 @@
 
 
 
+  <meta name="google-site-verification" content="qO8UCW09X9iG6TULO0viSuQ7-NmOzn64_7wnA5qcVdA">
 
 
 
 
 
+
+
+  <meta name="baidu-site-verification" content="WVhb9vesat">
 
 
 
@@ -54,10 +58,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32x32.ico?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16x16.ico?v=7.0.1">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
@@ -72,9 +76,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -167,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container sidebar-position-right 
   page-home">
     <div class="headband"></div>
 
@@ -223,6 +227,57 @@
         
         
           
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -236,17 +291,60 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>Sitemap</a>
+
+  </li>
 
       
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
       
     </ul>
   
 
   
-    
 
   
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
 
+
+
+    </div>
   
 </nav>
 
@@ -265,6 +363,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
           
           <div id="content" class="content">
             
@@ -290,7 +391,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -412,107 +513,24 @@
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>两个连字符（–）在Lua中表示开始一条注释</p>
-<p>Lua定义一个计算阶乘的函数：<br>–定义一个阶乘函数<br>function fact(n)<br>if n == 0 then<br>return 1<br>else<br>return n * fact(n-1)<br>end<br>end</p>
-<p>–打印<br>print(“Hello World”)</p>
-<p>–读取一个数字<br>a = io.read(“*number”)</p>
-<p>Lua执行的 每段代码，例如一个源代码文件或在交互模式中输入的一行代码，都称为一个“程序块”，一个程序块也就是一连串的语句或命令。</p>
-<p>几条连续的Lua语句之间并不需要分隔符，但也可以使用分号来分割语句。<br>代码中的换行不起任何作用<br>a = 1 b=a*2 –有点难看，但是合法</p>
-<p>程序块可以是任意大小</p>
-<h2 id="语法规范"><a href="#语法规范" class="headerlink" title="语法规范"></a>语法规范</h2><p>Lua的标识符可以是任意字母、数字和下画线构成的字符串，但不能以数字开头</p>
-<p>Lua的保留字：<br>and break do else elseif<br>end false for function if<br>in local nil not or<br>repeat return then true unitl<br>while</p>
-<p>Lua 是有大小写之分的</p>
-<p>Lua注释：<br>可以在任何地方以两个连字符（–）开始一个“行注释”，该注释一直延伸到一行的结尾。<br>Lua也提供了“块注释”，以“–[[”开始，直至“–]]”，如果块注释包含的“–]]”并非是注释结尾，例如下面的例子</p>
-<pre><code>--[[
-function fact(n)
-    if n == 0 then
-        return 1
-    else
-        return n * fact(n - 1)
-    end
-end
---]]
-print(&quot;enter a number:&quot;)            --打印
-a = io.read(&quot;*number&quot;)              --读取一个数字
-print(fact(a))
---]]
-</code></pre><p>如果代码中的第一个“–]]”并非是想要的块注释结尾，那么就改为以下依然合法</p>
-<pre><code>--[=[
-function fact(n)
-    if n == 0 then
-        return 1
-    else
-        return n * fact(n - 1)
-    end
-end
---]]
-print(&quot;enter a number:&quot;)            --打印
-a = io.read(&quot;*number&quot;)              --读取一个数字
-print(fact(a))
---]=]
-</code></pre><p>Lua全局变量：<br>全局变量不需要声明。只需要将一个值赋予一个全局变量就可以创建了。在Lua中，访问一个未初始化的变量不会引发错误，访问结果是一个特殊的值nil。</p>
-<pre><code>print(a)        --nil
-a=10
-print(a)        --10
-</code></pre><p>删除一个全局变量，只需要将其赋值为nil</p>
-<p>Lua类型与值：<br>Lua是一种动态类型的语言。在语言中没有类型定义的语法，每个值都“携带”了它本身的类型信息。<br>在Lua中有8种基础类型：nil（空），boolean（布尔），number（数字），string（字符串），userdata（自定义类型），function（函数），thread（线程），table（表）。函数type可根据一个值返回其类型名称。</p>
-<pre><code>print(type(&quot;Hello world&quot;))      --string
-print(type(10.4 * 3))           --number
-print(type(print))              --function
-print(type(type))               --function
-print(type(true))               --boolean
-print(type(nil))                --nil
-print(type(type(X)))            --string
-</code></pre><p>最后一行将永远返回“string”，而无关乎X这个值的内容，这是因为type函数总是返回一个字符串。</p>
-<p>变量没有预定义的类型，任何变量都可以包含任何类型的值：</p>
-<pre><code>print(type(a))          --nil
-a = 10
-print(type(a))          --number
-a = &quot;a string&quot;
-print(type(a))          --string
-a = print
-a(type(a))              --function
-</code></pre><p>将一个变量用于不同类型，通常会导致代码混乱，但有时明智地使用这种特性会带来便利。</p>
-<h2 id="nil（空）"><a href="#nil（空）" class="headerlink" title="nil（空）"></a>nil（空）</h2><p>nil是一种类型，只有一个值nil，它的主要功能是用于区别其他任何值。一个全局变量在第一次赋值前的默认值就是nil，将nil赋予一个全局变量等同于删除它。Lua将nil用于表示一种无效值的情况，也就是没有任何有效值的情况。</p>
-<h2 id="boolean（布尔）"><a href="#boolean（布尔）" class="headerlink" title="boolean（布尔）"></a>boolean（布尔）</h2><p>boolean类型有两个可选值：false和true，在Lua中任何值都可以表示一个条件。Lua将false和nil视为假，其他值全为真，Lua在条件测试中，将数字零和空字符串也都视为真</p>
-<h2 id="number（数字）"><a href="#number（数字）" class="headerlink" title="number（数字）"></a>number（数字）</h2><p>number类型用于表示双精度浮点数，支持科学计数法：0.3e12</p>
-<h2 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h2><p>Lua中的字符串通常表示“一个字符序列”。可以将任意二进制数据存储到一个字符串中。Lua的字符串是不可变的值，不能直接修改字符串的某个字符，而是根据修改要求来创建一个新的字符串。</p>
-<pre><code>a=&quot;Hello world&quot;
-b=string.gsub(a,&quot;world&quot;,&quot;lua&quot;)      --修改字符串的一部分
-c=string.gsub(a,&quot;o&quot;,&quot;c&quot;)
-print(a)                            --Hello world
-print(b)                            --Hello lua
-print(c)                            --Hellc wcrld
-</code></pre><p>string的gsub函数修改所有匹配到的子串。<br>Lua的字符串和其他Lua对象一样，都是自动内存管理机制所管理的对象。以一对匹配的单引号或者双引号来界定字符串，根据编程风格，应该坚持在程序中使用相同类型的引号，如果字符串本身包含引号，那么使用转义序列</p>
-<p><img src="https://img-
-blog.csdn.net/20170313192419753?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>Lua字符串中的转义序列</p>
-<p>还可以通过数值来指定字符串中的字符，数值以转义序列“\”给出，其中是一个至多3个十进制数字组成的序列。例如：<br>“alo\n123\””与字符串”\97lo\10\04923”是相同的，在ASCII中，’a’的ASCII编码是97，换行是10，’1’的编码是49.这里必须将49写成三个数字049，不然Lua会读取到数值492.</p>
-<p>另外，可以用一对匹配的双方括号来界定一个字母字符串，就像写“块注释”那样，不过Lua不会解释其中的转义序列，并且会忽略第一个字符是换行字符的部分，这种写法对于书写那种含有程序代码的字符串尤为有用。</p>
-<pre><code>page=[[
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;an html page&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;a href=&quot;http://www.lua.org&quot;&gt;lua&lt;/a&gt;
-&lt;/body&gt;
-&lt;/html&gt;]]
-print(page)
-print(type(page))                   --string
-</code></pre><p>Lua提供了运行时的数字与字符串的自动转换。在一个字符串上应用算术操作时，Lua会尝试将这个字符串转换成一个数字:</p>
-<pre><code>print(&quot;10&quot; + 1)         --11
-print(&quot;10+1&quot;)           --10+1
-print(&quot;hello&quot; + 1)      --报错，不能将string字符串转换成一个数字
-</code></pre><p>在Lua期望一个字符串但却得到一个数字时，它也会将数字转换成字符串：</p>
-<pre><code>a=10 .. 20
-print(10 .. 20)         --1020
-print(a)                --1020
-print(type(a))          --string
-</code></pre><p>在Lua中，“..”是字符串连接操作符，记得该操作符与数字之间必须要用空格来分隔，不然Lua会将第一个点理解为一个小数点。</p>
-
+两个连字符（–）在Lua中表示开始一条注释
+Lua定义一个计算阶乘的函数：–定义一个阶乘函数function fact(n)if n == 0 thenreturn 1elsereturn n * fact(n-1)endend
+–打印print(“Hello World”)
+–读取一个数字a 
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2017/04/25/Lua/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -528,6 +546,8 @@ print(type(a))          --string
     
       
     
+    
+
     
 
     
@@ -572,7 +592,7 @@ print(type(a))          --string
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -676,14 +696,21 @@ print(type(a))          --string
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>事件机制主要用于模块之间解耦和，事件机制将各个模块联系在一起，并且它们之间的耦合性非常低，特别适用于游戏产品的模块化开发。事件的类型可以通过枚举的形式来表示。事件机制的实现原理是将表示不同事件的枚举与其对应的回调函数通过AddListener函数加到定义好的表中，触发回调函数通过notify函数对已定义的事件枚举进行分类分发，从发触发已加载到内存的事件回调函数。等开发者不需要监听事件可通过RemoveListener函数移除监听即可。</p>
-<p>下面给出一个Demo的UnityPackage的链接：<br>链接： <a href="http://pan.baidu.com/s/1c1LOD4O" target="_blank" rel="noopener"> http://pan.baidu.com/s/1c1LOD4O </a><br>密码：y4fv</p>
-<p>链接如有失效，联系博主及时更新。</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+事件机制主要用于模块之间解耦和，事件机制将各个模块联系在一起，并且它们之间的耦合性非常低，特别适用于游戏产品的模块化开发。事件的类型可以通过枚举的形式来表示。事件机制的实现原理是将表示不同事件的枚举与其对应的回调函数通过AddListener函数加到定义好的表中，触发回调函数通过notify函数
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/12/29/Unity之事件机制/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -699,6 +726,8 @@ print(type(a))          --string
     
       
     
+    
+
     
 
     
@@ -743,7 +772,7 @@ print(type(a))          --string
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -847,204 +876,28 @@ print(type(a))          --string
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>其实原理很简单，这里用到的是富文本的知识，也许大家会觉得这种low定制反而显得麻烦了，那就直接跳过。。。</p>
-<p>直接上代码：</p>
-<pre><code>using UnityEngine;
+其实原理很简单，这里用到的是富文本的知识，也许大家会觉得这种low定制反而显得麻烦了，那就直接跳过。。。
+直接上代码：
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Text;
 
-namespace Scripts.CoreScripts.Core.Helper
-{
-    public class Debugger
-    {
-        /// &lt;summary&gt;
-        /// 是否开启Debugger
-        /// &lt;/summary&gt;
-        static public bool Enable = true;
-
-        /// &lt;summary&gt;
-        /// 默认错误颜色：红色
-        /// &lt;/summary&gt;
-        static public string ErrorColor = &quot;red&quot;;
-
-        /// &lt;summary&gt;
-        /// 默认警告颜色：黄色
-        /// &lt;/summary&gt;
-        static public string WarningColor = &quot;yellow&quot;;
-
-        /// &lt;summary&gt;
-        /// 默认输出颜色：白色
-        /// &lt;/summary&gt;
-        static public string LogColor = &quot;white&quot;;
-
-        /// &lt;summary&gt;
-        /// 默认字号：20
-        /// &lt;/summary&gt;
-        static public int FontSize = 20;
-
-        /// &lt;summary&gt;
-        /// 默认颜色，默认字号输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        static public void Log(object message)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + LogColor + &quot;&gt;&quot; + &quot;&lt;size=&quot; + FontSize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot; + &quot;&lt;/color&gt;&quot;);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 默认颜色，默认字号输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;context&quot;&gt;连接上下文&lt;/param&gt;
-        static public void Log(object message, UnityEngine.Object context)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + LogColor + &quot;&gt;&quot; + &quot;&lt;size=&quot; + FontSize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot; + &quot;&lt;/color&gt;&quot;, context);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 自定义颜色输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;color&quot;&gt;颜色&lt;/param&gt;
-        static public void Log(object message, Color32 color)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + FormatColor32(color) + &quot;&gt;&quot; + message + &quot;&lt;/color&gt;&quot;);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 自定义颜色、默认字号输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;color&quot;&gt;颜色&lt;/param&gt;
-        /// &lt;param name=&quot;context&quot;&gt;连接上下文&lt;/param&gt;
-        static public void Log(object message, Color32 color, UnityEngine.Object context)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + FormatColor32(color) + &quot;&gt;&quot; + &quot;&lt;size=&quot; + FontSize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot; + &quot;&lt;/color&gt;&quot;, context);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 自定义字号输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;fontSize&quot;&gt;字号大小，汉字上限26，大写英文上限30，小写英文上限25，仅供参考&lt;/param&gt;
-        static public void Log(object message, int fontSize)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + LogColor + &quot;&gt;&quot; + &quot;&lt;size=&quot; + FontSize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot; + &quot;&lt;/color&gt;&quot;);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 自定义字号输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;fontSize&quot;&gt;字号&lt;/param&gt;
-        /// &lt;param name=&quot;context&quot;&gt;连接上下文&lt;/param&gt;
-        static public void Log(object message, int fontSize, UnityEngine.Object context)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;size=&quot; + fontSize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot;, context);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 自定义字号、颜色输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;color&quot;&gt;颜色&lt;/param&gt;
-        /// &lt;param name=&quot;fontsize&quot;&gt;字号&lt;/param&gt;
-        static public void Log(object message, Color32 color, int fontsize)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + FormatColor32(color) + &quot;&gt;&quot; + &quot;&lt;size=&quot; + fontsize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot; + &quot;&lt;/color&gt;&quot;);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 自定义字号、颜色输出
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;message&quot;&gt;输出内容&lt;/param&gt;
-        /// &lt;param name=&quot;color&quot;&gt;颜色&lt;/param&gt;
-        /// &lt;param name=&quot;fontSize&quot;&gt;字号&lt;/param&gt;
-        /// &lt;param name=&quot;context&quot;&gt;连接上下文&lt;/param&gt;
-        static public void Log(object message, Color32 color, int fontSize, UnityEngine.Object context)
-        {
-            if (Enable)
-            {
-                Debug.Log(&quot;&lt;color=&quot; + FormatColor32(color) + &quot;&gt;&quot; + &quot;&lt;size=&quot; + fontSize + &quot;&gt;&quot; + message + &quot;&lt;/size&gt;&quot; + &quot;&lt;/color&gt;&quot;, context);
-            }
-        }
-
-        static public void LogWarning(object message)
-        {
-            if (Enable)
-            {
-                Debug.LogWarning(&quot;&lt;color=&quot; + WarningColor + &quot;&gt;&quot; + message + &quot;&lt;/color&gt;&quot;);
-            }
-        }
-
-        static public void LogWarning(object message, UnityEngine.Object context)
-        {
-            if (Enable)
-            {
-                Debug.LogWarning(&quot;&lt;color=&quot; + WarningColor + &quot;&gt;&quot; + message + &quot;&lt;/color&gt;&quot;, context);
-            }
-        }
-
-        static public void LogError(object message)
-        {
-            if (Enable)
-            {
-                Debug.LogError(&quot;&lt;color=&quot; + ErrorColor + &quot;&gt;&quot; + message + &quot;&lt;/color&gt;&quot;);
-            }
-        }
-
-        static public void LogError(object message, UnityEngine.Object context)
-        {
-            if (Enable)
-            {
-                Debug.LogError(&quot;&lt;color=&quot; + ErrorColor + &quot;&gt;&quot; + message + &quot;&lt;/color&gt;&quot;, context);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 将Color32转换为#FFFFFFFF格式
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;color&quot;&gt;&lt;/param&gt;
-        /// &lt;returns&gt;&lt;/returns&gt;
-        static private string FormatColor32(Color32 color)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(&quot;#&quot;);
-            sb.Append(color.r.ToString(&quot;x2&quot;));
-            sb.Append(color.g.ToString(&quot;x2&quot;));
-            sb.Append(color.b.ToString(&quot;x2&quot;));
-            sb.Append(color.a.ToString(&quot;x2&quot;));
-            return sb.ToString();
-        }
-    }
-}
-</code></pre><p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+namespace
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/12/14/Unity之私人订制Debug/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1060,6 +913,8 @@ namespace Scripts.CoreScripts.Core.Helper
     
       
     
+    
+
     
 
     
@@ -1104,7 +959,7 @@ namespace Scripts.CoreScripts.Core.Helper
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1208,10 +1063,11 @@ namespace Scripts.CoreScripts.Core.Helper
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>直接上代码</p>
-<pre><code>using System;
+直接上代码
+using System;
 using System.Text;
 using UnityEngine;
 
@@ -1222,563 +1078,18 @@ public class Vector3D
     {
         get
         {
-            return new Vector3D(0, 0, -1);
-        }
-    }
-
-    public static Vector3D down
-    {
-        get
-        {
-            return new Vector3D(0, -1, 0);
-        }
-    }
-
-    public static Vector3D forward
-    {
-        get
-        {
-            return new Vector3D(0, 0, 1);
-        }
-    }
-
-    public static Vector3D left
-    {
-        get
-        {
-            return new Vector3D(-1, 0, 0);
-        }
-    }
-
-    public static Vector3D right
-    {
-        get
-        {
-            return new Vector3D(1, 0, 0);
-        }
-    }
-
-    public static Vector3D up
-    {
-        get
-        {
-            return new Vector3D(0, 1, 0);
-        }
-    }
-
-    public static Vector3D one
-    {
-        get
-        {
-            return new Vector3D(1, 1, 1);
-        }
-    }
-
-    public static Vector3D zero
-    {
-        get
-        {
-            return new Vector3D(0, 0, 0);
-        }
-    }
-
-    /// &lt;summary&gt;
-    /// 向量的长度
-    /// &lt;/summary&gt;
-    public float magnitude
-    {
-        get
-        {
-            return (float)Math.Sqrt(sqrMagnitudfe);
-        }
-    }
-
-    /// &lt;summary&gt;
-    /// 向量的的长度的平方
-    /// &lt;/summary&gt;
-    public float sqrMagnitudfe
-    {
-        get
-        {
-            return x * x + y * y + z * z;
-        }
-    }
-
-    /// &lt;summary&gt;
-    /// 规范化
-    /// &lt;/summary&gt;
-    public Vector3D normalized
-    {
-        get
-        {
-            if (IsZero)
-            {
-                return Vector3D.zero;
-            }
-            else
-            {
-                Vector3D v = new Vector3D();
-                float length = magnitude;
-                v.x = this.x / length;
-                v.y = this.y / length;
-                v.z = this.z / length;
-                return v;
-            }
-        }
-    }
-
-    /// &lt;summary&gt;
-    /// 是否是零向量
-    /// &lt;/summary&gt;
-    public bool IsZero
-    {
-        get
-        {
-            return this.x == 0 &amp;&amp; this.y == 0 &amp;&amp; this.z == 0;
-        }
-    }
-
-    #region 操作符重载
-
-    /// &lt;summary&gt;
-    /// 两个向量相加
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
-    /// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
-    /// &lt;returns&gt;两个向量的和&lt;/returns&gt;
-    public static Vector3D operator +(Vector3D a,Vector3D b)
-    {
-        return new Vector3D(a.x + b.x, a.y + b.y, a.z + b.z);
-    }
-
-    /// &lt;summary&gt;
-    /// 两个向量相减
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
-    /// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
-    /// &lt;returns&gt;两个向量的差&lt;/returns&gt;
-    public static Vector3D operator -(Vector3D a,Vector3D b)
-    {
-        return new Vector3D(a.x - b.x, a.y - b.y, a.z - b.z);
-    }
-
-    /// &lt;summary&gt;
-    /// 向量取反
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
-    /// &lt;returns&gt;向量a的反向量&lt;/returns&gt;
-    public static Vector3D operator -(Vector3D a)
-    {
-        return new Vector3D(-a.x, -a.y, -a.z);
-    }
-
-    /// &lt;summary&gt;
-    /// 一个数乘以一个向量
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;d&quot;&gt;一个数&lt;/param&gt;
-    /// &lt;param name=&quot;a&quot;&gt;一个向量&lt;/param&gt;
-    /// &lt;returns&gt;返回数与向量的乘积&lt;/returns&gt;
-    public static Vector3D operator *(float d, Vector3D a)
-    {
-        return new Vector3D(a.x * d, a.y * d, a.z * d);
-    }
-
-    /// &lt;summary&gt;
-    /// 一个向量乘以一个数
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;一个向量&lt;/param&gt;
-    /// &lt;param name=&quot;d&quot;&gt;一个数&lt;/param&gt;
-    /// &lt;returns&gt;返回向量与数的乘积&lt;/returns&gt;
-    public static Vector3D operator *(Vector3D a, float d)
-    {
-        return new Vector3D(a.x * d, a.y * d, a.z * d);
-    }
-
-    /// &lt;summary&gt;
-    /// 一个数除一个向量，向量a/数b
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;一个向量&lt;/param&gt;
-    /// &lt;param name=&quot;d&quot;&gt;一个数&lt;/param&gt;
-    /// &lt;returns&gt;返回向量a/d&lt;/returns&gt;
-    public static Vector3D operator /(Vector3D a,float d)
-    {
-        return new Vector3D(a.x / d, a.y / d, a.z / d);
-    }
-
-    /// &lt;summary&gt;
-    /// 两个向量是否相等
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;lhs&quot;&gt;向量lhs&lt;/param&gt;
-    /// &lt;param name=&quot;rhs&quot;&gt;向量rhs&lt;/param&gt;
-    /// &lt;returns&gt;如果相等，则为true，否则为false&lt;/returns&gt;
-    public static bool operator ==(Vector3D lhs, Vector3D rhs)
-    {
-        bool x = Math.Abs(lhs.x - rhs.x) &lt; 0.00001f;
-        bool y = Math.Abs(lhs.y - rhs.y) &lt; 0.00001f;
-        bool z = Math.Abs(lhs.z - rhs.z) &lt; 0.00001f;
-        return x &amp;&amp; y &amp;&amp; z;
-    }
-
-    /// &lt;summary&gt;
-    /// 两个向量是否不等
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;lhs&quot;&gt;向量lhs&lt;/param&gt;
-    /// &lt;param name=&quot;rhs&quot;&gt;向量rhs&lt;/param&gt;
-    /// &lt;returns&gt;如果不等，则为true，否则为false&lt;/returns&gt;
-    public static bool operator !=(Vector3D lhs, Vector3D rhs)
-    {
-        return !(lhs == rhs);
-    }
-
-    #endregion
-
-    public float x;
-    public float y;
-    public float z;
-
-    private float[] data = new float[3];
-
-    #region 构造器
-    public Vector3D()
-    {
-        this.x = 0.0f;
-        this.y = 0.0f;
-        this.z = 0.0f;
-
-        data[0] = 0.0f;
-        data[1] = 0.0f;
-        data[2] = 0.0f;
-    }
-
-    public Vector3D(float x, float y)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = 1.0f;
-
-        data[0] = 0.0f;
-        data[1] = 0.0f;
-        data[2] = 1.0f;
-    }
-
-    public Vector3D(float x, float y, float z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-
-        data[0] = x;
-        data[1] = y;
-        data[2] = z;
-    }
-
-    #endregion
-
-    public float this[int index]
-    {
-        get
-        {
-            switch (index)
-            {
-                case 0:
-                    return this.x;
-                case 1:
-                    return this.y;
-                case 2:
-                    return this.z;
-                default:
-                    throw new Exception(&quot;index is out of array&quot;);
-            }
-        }
-        set
-        {
-            data[index] = value;
-            switch (index)
-            {
-                case 0:
-                    this.x = value;
-                    break;
-                case 1:
-                    this.y = value;
-                    break;
-                case 2:
-                    this.z = value;
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
-    public override string ToString()
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.Append(&quot;(&quot;);
-        sb.Append(this.x);
-        sb.Append(&quot;,&quot;);
-        sb.Append(this.y);
-        sb.Append(&quot;,&quot;);
-        sb.Append(this.z);
-        sb.Append(&quot;)&quot;);
-        return sb.ToString();
-    }
-
-    public void Set(float new_x, float new_y, float new_z)
-    {
-        this.x = new_x;
-        this.y = new_y;
-        this.z = new_z;
-        data[0] = new_x;
-        data[1] = new_y;
-        data[2] = new_z;
-    }
-
-    /// &lt;summary&gt;
-    /// 规范化，使向量长度为1
-    /// &lt;/summary&gt;
-    public void Normalize()
-    {
-        if (!IsZero)
-        {
-            this.x /= magnitude;
-            this.y /= magnitude;
-            this.z /= magnitude;
-        }
-    }
-
-    #region 静态函数
-
-    /// &lt;summary&gt;
-    /// 距离
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;返回a和b之间的距离&lt;/returns&gt;
-    public static float Distance(Vector3D a, Vector3D b)
-    {
-        return (float)Math.Sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z));
-    }
-
-    /// &lt;summary&gt;
-    /// 计算两个向量的点乘积
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;lhs&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;rhs&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static float Dot(Vector3D lhs, Vector3D rhs)
-    {
-        return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
-    }
-
-    /// &lt;summary&gt;
-    /// 计算两个向量的叉乘
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;v1&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;v2&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector3D Cross(Vector3D v1, Vector3D v2)
-    {
-        float x = v1.y * v2.z - v2.y * v1.z;
-        float y = v1.z * v2.x - v2.z * v1.x;
-        float z = v1.x * v2.y - v2.x * v1.y;
-        return new Vector3D(x, y, z);
-    }
-
-    /// &lt;summary&gt;
-    /// 限制长度
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;v&quot;&gt;向量v&lt;/param&gt;
-    /// &lt;param name=&quot;maxLength&quot;&gt;最长长度&lt;/param&gt;
-    /// &lt;returns&gt;返回限制长度后的向量&lt;/returns&gt;
-    public static Vector3D ClampMagnitude(Vector3D v,float maxLength)
-    {
-        if (maxLength &gt;= v.magnitude)
-        {
-            return v;
-        }
-
-        return (maxLength / v.magnitude) * v;
-    }
-
-    /// &lt;summary&gt;
-    /// 计算两个向量的夹角
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;from&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;to&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static float Angle(Vector3D from,Vector3D to)
-    {
-        float dot = Dot(from, to);
-        return (float)(180 * Math.Acos(dot / (from.magnitude * to.magnitude)) / Math.PI);
-    }
-
-    /// &lt;summary&gt;
-    /// 投射一个向量到另一个向量
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;vector&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;onNormal&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;返回被投射到onNormal的vector&lt;/returns&gt;
-    public static Vector3D Project(Vector3D vector, Vector3D onNormal)
-    {
-        if (vector.IsZero || onNormal == Vector3D.zero)
-        {
-            return Vector3D.zero;
-        }
-        return Dot(vector, onNormal) / (onNormal.magnitude * onNormal.magnitude) * onNormal;
-    }
-
-    /// &lt;summary&gt;
-    /// 反射
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;inDirection&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;inNormal&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector3D Reflect(Vector3D inDirection,Vector3D inNormal)
-    {
-        return Vector3D.zero;
-    }
-
-    /// &lt;summary&gt;
-    /// 缩放
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;scale&quot;&gt;&lt;/param&gt;
-    public void Scale(Vector3D scale)
-    {
-        this.x *= scale.x;
-        this.y *= scale.y;
-        this.z *= scale.z;
-    }
-    /// &lt;summary&gt;
-    /// 缩放
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector3D Scale(Vector3D a,Vector3D b)
-    {
-        return new Vector3D(a.x * b.x, a.y * b.y, a.z * b.z);
-    }
-
-    /// &lt;summary&gt;
-    /// 两个向量是否平行
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static bool Parallel(Vector3D a, Vector3D b)
-    {
-        return Cross(a,b).IsZero;
-    }
-
-    /// &lt;summary&gt;
-    /// 两个向量之间的线性插值
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;from&quot;&gt;向量from&lt;/param&gt;
-    /// &lt;param name=&quot;to&quot;&gt;向量to&lt;/param&gt;
-    /// &lt;param name=&quot;t&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector3D Lerp(Vector3D from, Vector3D to, float t)
-    {
-        if (t &lt;= 0)
-        {
-            return from;
-        }
-        else if (t &gt;= 1)
-        {
-            return to;
-        }
-        return t * to + (1 - t) * from;
-    }
-
-    /// &lt;summary&gt;
-    /// 两个向量的球形插值
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
-    /// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
-    /// &lt;param name=&quot;t&quot;&gt;t的值在[0..1]&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector3D Slerp(Vector3D a, Vector3D b, float t)
-    {
-        if (t &lt;= 0)
-        {
-            return a;
-        }
-        else if (t &gt;= 1)
-        {
-            return b;
-        }
-
-        Vector3D v = RotateTo(a, b, Vector3D.Angle(a, b) * t);
-
-        //向量的长度，跟线性插值一样计算
-        float length = b.magnitude * t + a.magnitude * (1 - t);
-        return v.normalized * length;
-    }
-
-    /// &lt;summary&gt;
-    /// 将向量from向向量to旋转角度angle
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;from&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;to&quot;&gt;&lt;/param&gt;
-    /// &lt;param name=&quot;angle&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector3D RotateTo(Vector3D from, Vector3D to, float angle)
-    {
-        //如果两向量角度为0
-        if (Vector3D.Angle(from, to) == 0)
-        {
-            return from;
-        }
-
-        //旋转轴
-        Vector3D n = Vector3D.Cross(from, to);
-        n.Normalize();
-
-        //旋转矩阵
-        Matrix4x4 rotateMatrix = new Matrix4x4();
-
-        //旋转的弧度
-        double radian = angle * Math.PI / 180;
-        float cosAngle = (float)Math.Cos(radian);
-        float sinAngle = (float)Math.Sin(radian);
-        rotateMatrix.SetRow(0, new Vector4(n.x * n.x * (1 - cosAngle) + cosAngle, n.x * n.y * (1 - cosAngle) + n.z * sinAngle, n.x * n.z * (1 - cosAngle) - n.y * sinAngle, 0));
-        rotateMatrix.SetRow(1, new Vector4(n.x * n.y * (1 - cosAngle) - n.z * sinAngle, n.y * n.y * (1 - cosAngle) + cosAngle, n.y * n.z * (1 - cosAngle) + n.x * sinAngle, 0));
-        rotateMatrix.SetRow(2, new Vector4(n.x * n.z * (1 - cosAngle) + n.y * sinAngle, n.y * n.z * (1 - cosAngle) - n.x * sinAngle, n.z * n.z * (1 - cosAngle) + cosAngle, 0));
-        rotateMatrix.SetRow(3, new Vector4(0, 0, 0, 1));
-
-        Vector4 v = Vector3D.ToVector4(from);
-        Vector3D vector = new Vector3D();
-        for (int i = 0; i &lt; 3; ++i)
-        {
-            for (int j = 0; j &lt; 3; j++)
-            {
-                vector[i] += v[j] * rotateMatrix[j, i];
-            }
-        }
-        return vector;
-    }
-
-    /// &lt;summary&gt;
-    /// 将一个Vector3D转换为Vector4
-    /// &lt;/summary&gt;
-    /// &lt;param name=&quot;v&quot;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static Vector4 ToVector4(Vector3D v)
-    {
-        return new Vector4(v.x, v.y, v.z, 0);
-    }
-
-    public Vector3 ToVector3()
-    {
-        return new Vector3(x, y, z);
-    }
-
-    #endregion
-}
-</code></pre><p>以上代码只是自己在学习过程中一点成果，希望对大家有帮助，当然跟Vector3比起来肯定差很多。</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+    
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/12/13/Unity之Vector3D：重现Vector3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1794,6 +1105,8 @@ public class Vector3D
     
       
     
+    
+
     
 
     
@@ -1838,7 +1151,7 @@ public class Vector3D
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1942,38 +1255,25 @@ public class Vector3D
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>先看下面这个图：<br><img src="https://img-blog.csdn.net/20161213114512329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>画的比较潦草，大家将就看。。。</p>
-<p>向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。</p>
-<p>图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。</p>
-<p>下面看下函数：<br>public static Vector3 Lerp(Vector3 a, Vector3 b, float t);</p>
-<p>其中a就是图中的from向量，b就是to向量。<br>t是夹在 [0…1]之间，当t = 0时，返回from，当t = 1时，返回to。当t = 0.5 返回from和to的平均数</p>
-<p>所以具体实现代码如下：</p>
-<pre><code>/// &lt;summary&gt;
-/// 两个向量之间的线性插值
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;from&quot;&gt;向量from&lt;/param&gt;
-/// &lt;param name=&quot;to&quot;&gt;向量to&lt;/param&gt;
-/// &lt;param name=&quot;t&quot;&gt;&lt;/param&gt;
-/// &lt;returns&gt;&lt;/returns&gt;
-public static Vector3D Lerp(Vector3D from, Vector3D to, float t)
-{
-    if (t &lt;= 0)
-    {
-        return from;
-    }
-    else if (t &gt;= 1)
-    {
-        return to;
-    }
-    return t * to + (1 - t) * from;
-}
-</code></pre><p>线性插值比Slerp球形插值简单的多。</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+先看下面这个图：
+画的比较潦草，大家将就看。。。
+向量from 和 向量to在xy平面上，其实这并不影响讲解插值原理。
+图中可以看出当t=0.5f时，插值向量就是中间那个向量，其x轴分量的计算图中已经给出了，y轴也同理，z轴也一样。。
+下面看下函数：public static Vector3 L
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/12/13/Unity之Vector3.Lerp线性插值原理介绍/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1989,6 +1289,8 @@ public static Vector3D Lerp(Vector3D from, Vector3D to, float t)
     
       
     
+    
+
     
 
     
@@ -2033,7 +1335,7 @@ public static Vector3D Lerp(Vector3D from, Vector3D to, float t)
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2137,141 +1439,22 @@ public static Vector3D Lerp(Vector3D from, Vector3D to, float t)
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>先看API：<br>public static Vector3 Slerp(Vector3 a, Vector3 b, float t);<br>介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。<br>先上一个示意图：<br><img src="https://img-blog.csdn.net/20161209112110583?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>上图的代码如下：</p>
-<pre><code>private Vector3 mStart = new Vector3(-1, 1, 0);
-private Vector3 mEnd = new Vector3(1, 1, 0);
-
-// Update is called once per frame
-private void Update()
-{
-    //绘制坐标轴
-    Debug.DrawLine(new Vector3(-100, 0, 0), new Vector3(100, 0, 0), Color.green);
-    Debug.DrawLine(new Vector3(0, -100, 0), new Vector3(0, 100, 0), Color.green);
-    Debug.DrawLine(new Vector3(0, 0, -100), new Vector3(0, 0, 100), Color.green);
-
-    Debug.DrawLine(Vector3.zero, mStart, Color.red);
-    Debug.DrawLine(Vector3.zero, mEnd, Color.red);
-    Debug.DrawLine(mStart, mEnd, Color.red);
-    for (int i = 1; i &lt; 10; ++i)
-    {
-        Vector3 drawVec = Vector3.Slerp(mStart, mEnd, 0.1f * i);
-        Debug.DrawLine(Vector3.zero, drawVec, Color.yellow);
-
-    }
-}
-</code></pre><p>下面先做几次实验来验证下面两个猜想：<br>1、猜想一：插值的向量的长度是均匀线性变化的<br>2、猜想二：插值的向量之间的角度是一样大的</p>
-<p>上图验证：<br>实验一：我们在上面代码的基础上加上输出：</p>
-<pre><code>//加在for循环里
-Debug.Log(&quot;插值向量长度：&quot;+ drawVec.magnitude);
-Debug.Log(&quot;角度：&quot; + Vector3.Angle(drawVec, mStart) / i);
-</code></pre><p><img src="https://img-blog.csdn.net/20161209112850532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>我们发现虽然有误差，但是猜想基本成立，我们修改mStart和mEnd两向量继续实验。</p>
-<p>实验二：mStart = (-1,0,0) mEnd = (0,3,4)<br><img src="https://img-blog.csdn.net/20161209113159037?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>从上面可以看出两个猜想成立</p>
-<p>这里额外要验证一个问题，就是当两个向量为平行向量时，结果如下，下面直接看图：<br>（1）mStart = (-1, 0, 0) mEnd = (1, 0, 0)<br><img src="https://img-blog.csdn.net/20161209114817399?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>（2）mStart = (-1, 1, 0) mEnd = (1, -1, 0)<br><img src="https://img-blog.csdn.net/20161209115239713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>（3）mStart = (-1, 1, 1) mEnd = (1, -1, -1)<br><img src="https://img-blog.csdn.net/20161209134923381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>那么现在就可以利用这几个结论来自实现Slerp插值了。</p>
-<p>下面直接上代码：<br>代码关键内容如下：<br>（1）旋转向量函数<br>（2）旋转矩阵</p>
-<pre><code>/// &lt;summary&gt;
-/// 两个向量的球形插值
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
-/// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
-/// &lt;param name=&quot;t&quot;&gt;t的值在[0..1]&lt;/param&gt;
-/// &lt;returns&gt;&lt;/returns&gt;
-public static Vector3D Slerp(Vector3D a, Vector3D b, float t)
-{
-    if (t &lt;= 0)
-    {
-        return a;
-    }
-    else if (t &gt;= 1)
-    {
-        return b;
-    }
-
-    Vector3D v = RotateTo(a, b, Vector3D.Angle(a, b) * t);
-
-    //向量的长度，跟线性插值一样计算
-    float length = b.magnitude * t + a.magnitude * (1 - t);
-    return v.normalized * length;
-}
-
-/// &lt;summary&gt;
-/// 将向量from向向量to旋转角度angle
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;from&quot;&gt;&lt;/param&gt;
-/// &lt;param name=&quot;to&quot;&gt;&lt;/param&gt;
-/// &lt;param name=&quot;angle&quot;&gt;&lt;/param&gt;
-/// &lt;returns&gt;&lt;/returns&gt;
-public static Vector3D RotateTo(Vector3D from, Vector3D to, float angle)
-{
-    //如果两向量角度为0
-    if (Vector3D.Angle(from, to) == 0)
-    {
-        return from;
-    }
-
-    //旋转轴
-    Vector3D n = Vector3D.Cross(from, to);
-
-    //旋转轴规范化
-    n.Normalize();
-
-    //旋转矩阵
-    Matrix4x4 rotateMatrix = new Matrix4x4();
-
-    //旋转的弧度
-    double radian = angle * Math.PI / 180;
-    float cosAngle = (float)Math.Cos(radian);
-    float sinAngle = (float)Math.Sin(radian);
-
-    //矩阵的数据
-    //这里看不懂的自行科普矩阵知识
-    rotateMatrix.SetRow(0, new Vector4(n.x * n.x * (1 - cosAngle) + cosAngle, n.x * n.y * (1 - cosAngle) + n.z * sinAngle, n.x * n.z * (1 - cosAngle) - n.y * sinAngle, 0));
-    rotateMatrix.SetRow(1, new Vector4(n.x * n.y * (1 - cosAngle) - n.z * sinAngle, n.y * n.y * (1 - cosAngle) + cosAngle, n.y * n.z * (1 - cosAngle) + n.x * sinAngle, 0));
-    rotateMatrix.SetRow(2, new Vector4(n.x * n.z * (1 - cosAngle) + n.y * sinAngle, n.y * n.z * (1 - cosAngle) - n.x * sinAngle, n.z * n.z * (1 - cosAngle) + cosAngle, 0));
-    rotateMatrix.SetRow(3, new Vector4(0, 0, 0, 1));
-
-    Vector4 v = Vector3D.ToVector4(from);
-    Vector3D vector = new Vector3D();
-    for (int i = 0; i &lt; 3; ++i)
-    {
-        for (int j = 0; j &lt; 3; j++)
-        {
-            vector[i] += v[j] * rotateMatrix[j, i];
-        }
-    }
-    return vector;
-}
-
-/// &lt;summary&gt;
-/// 将一个Vector3D转换为Vector4
-/// &lt;/summary&gt;
-/// &lt;param name=&quot;v&quot;&gt;&lt;/param&gt;
-/// &lt;returns&gt;&lt;/returns&gt;
-public static Vector4 ToVector4(Vector3D v)
-{
-    return new Vector4(v.x, v.y, v.z, 0);
-}
-
-public Vector3 ToVector3()
-{
-    return new Vector3(x, y, z);
-}
-</code></pre><p>这里暂时没有对两个向量共线反向的情况进行说明，不过主要实现已经给出来了。但是，我发现一点问题，看图：<br>（1）v1 = new Vector3(0, 2, 0);v2 = new Vector3(5, 0, 0);<br><img src="https://img-blog.csdn.net/20161211204127975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>ok，正常</p>
-<p>（2）v1 = new Vector3(3, 0, 0);v2 = new Vector3(0, 0, 5);<br><img src="https://img-blog.csdn.net/20161211204257397?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>ok，正常</p>
-<p>（3）在RotateTo函数中，数据不精确导致存在误差，也就是我打印v1和v2的叉乘 （图中黄色） 与 （图中红色向量）的叉乘<br>存在误差，这样其实就是该函数的旋转轴不准确。</p>
-<p>以上猜想以及代码实现 没有找到权威认证，如有异议，欢迎探讨。。。</p>
-<p>补充：<br>自己无聊利用Slerp插值画了下面这个图，纯属娱乐。。。<br><img src="https://img-blog.csdn.net/20161212121854699?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+先看API：public static Vector3 Slerp(Vector3 a, Vector3 b, float t);介绍：通过t数值在from和to之间插值。返回的向量的长度将被插值到from到to的长度之间。先上一个示意图：上图的代码如下：
+private Vector3 mSt
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/12/09/Unity之Vector3.Slerp球形插值原理介绍/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2287,6 +1470,8 @@ public Vector3 ToVector3()
     
       
     
+    
+
     
 
     
@@ -2331,7 +1516,7 @@ public Vector3 ToVector3()
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2435,37 +1620,29 @@ public Vector3 ToVector3()
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>组件截图如下：<br><img src="https://img-blog.csdn.net/20161130181516831" alt="这里写图片描述"></p>
-<p>1、Aspect Mode：AspectMode枚举类型</p>
-<pre><code>public enum AspectMode 
+组件截图如下：
+1、Aspect Mode：AspectMode枚举类型
+public enum AspectMode 
 {                     
     //不使用适合的纵横比
     None,
 
     //让Height随着Width自动调节
-    WidthControlsHeight,
-
-    //让Width随着Height自动调节
-    HeightControlsWidth,
-
-    //宽度、高度、位置和锚点都会被自动调整，以使得该矩形拟合父物体的矩形内，同时保持宽高比例
-    FitInParent,
-
-    //宽度、高度、位置和锚点都会被自动调整，以使得该矩形覆盖父物体的整个区域，同时保持宽高比
-    EnvelopeParent
-}
-</code></pre><p>2、Aspect Ratio：宽高比例，width/height</p>
-<p>下面根据实际情况来介绍一下该组件。在我的工作中，遇到一种情况，玩家获得一些奖励，做成一个通用的UI界面，该界面通常包括以下东西：标题、获得按钮、中间是一排物品item，显然中间的一排物品item会用到水平布局，并且居中显示，每一个item又包括一个icon和一个text（显示count），如果此时存在某一个icon比其他的大些，就会显得很突兀，这个时候我就用到了该组件</p>
-<p>给item预制件 中的icon 添加一个父物体，然后给icon加一个Aspect Ratio<br>Fitter，AspectMode选用FitInParent，Aspect Ratio的值需要在代码中计算，因为我们在做这个UI的时候<br>，肯定是根据数据来动态实例化这些item的，每一个icon的宽高比不一样，所以需要在代码中计算，代码如下：</p>
-<pre><code>Rect rect = GetComponent&lt;Image&gt;().sprite.rect;
-AspectRatioFitter fitter = GetComponent&lt;AspectRatioFitter&gt;();
-fitter.aspectRatio = rect.width / rect.height;
-</code></pre><p>这种做法就会保持icon的大小基本一致，当然如果美术团队出的物品图片资源都一致大小，咱们也就省去了这一步。</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+    WidthCon
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/12/08/UGUI之Aspect Ratio Fitter组件介绍/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2481,6 +1658,8 @@ fitter.aspectRatio = rect.width / rect.height;
     
       
     
+    
+
     
 
     
@@ -2525,7 +1704,7 @@ fitter.aspectRatio = rect.width / rect.height;
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2629,28 +1808,21 @@ fitter.aspectRatio = rect.width / rect.height;
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<h2 id="聊天系统中的UGUI布局"><a href="#聊天系统中的UGUI布局" class="headerlink" title="聊天系统中的UGUI布局"></a>聊天系统中的UGUI布局</h2><p>常用的聊天系统内容包括以下几点：<br>1、发言内容；<br>2、发言人头像<br>3、发言人名称<br>4、语言聊天（本文不考虑该功能，与布局无关）<br>5、表情（本文暂不考虑该功能，后续补充）<br>（4.1）表情与文字混排，比如：PC端的QQ聊天<br>（4.2）表情与文字分开，比如：移动端的QQ<br>6、聊天模式：文本模式、气泡模式<br>（5.1）文本模式：参与聊天的所有人均在左边<br>（5.2）气泡模式：自己的气泡在左边，其余玩家的气泡在右边，如下图：<br><img src="https://img-blog.csdn.net/20161130170008725" alt="这里写图片描述"></p>
-<p><img src="https://img-blog.csdn.net/20161130170129242" alt="这里写图片描述"></p>
-<p>这里以气泡模式为例进行讲解：<br>先上类似效果图：<br><img src="https://img-blog.csdn.net/20161130170902322" alt="这里写图片描述"></p>
-<p>先简单分析一下：<br>这里分为三个预制件：<br>（1）整个对话框作为一个预制件a<br>（2）玩家自己的气泡作为一个预制件b<br>（3）其余玩家的气泡作为一个预制件c<br>然后预制件a对气泡用了垂直布局；预制件b和c做法类似，大小一致；预制件b和c中的气泡背景图片要随着文字内容变化而自动缩放，因此背景图片身上挂上一个Vertical<br>Layout Group组件和Content Size Fitter组件，相关设置如下：<br><img src="https://img-blog.csdn.net/20161130173138099" alt="这里写图片描述"><br>然后将文字内容物体作为背景图片的子物体，并添加组件Content Size Fitter<br>相关设置如下：<br><img src="https://img-blog.csdn.net/20161130173402647" alt="这里写图片描述"></p>
-<p>预制件b和c还有一点区别就是b（玩家自己）的Pivot为（1,1），预制件c（其他玩家）的Pivot为（0,1）</p>
-<p>这样描述可能不太好理解，最后会直接给大家提供一个工程下载地址。</p>
-<p>然后聊天框还支持滚动翻阅浏览前面的聊天记录，因此还需要Scroll Rect、Mask等组件<br><img src="https://img-blog.csdn.net/20161130175154983" alt="这里写图片描述"></p>
-<p><img src="https://img-blog.csdn.net/20161130175312655" alt="这里写图片描述"></p>
-<p>由于聊天窗口下方几个按钮和输入框不是布局的重点，这里就不做介绍，如有需要，后续给大家提供一个工程下载地址。</p>
-<p>那么，布局实战——聊天系统就介绍到这里。</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-<hr>
-<p>更新：<br>Demo示意图如下：<br><img src="https://img-blog.csdn.net/20170114224142012?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>此时图中是空的聊天窗口，每发送或者收到一条聊天记录，只需要生成一个相应 的预制件并作为Content的子物体</p>
-<p><img src="https://img-blog.csdn.net/20170114224522158?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>关于聊天系统的布局呢，根据设计不同布局也就不同，这里是将我工作中的一个聊天系统讲解给大家，具体详情如有兴趣欢迎点击链接： <a href="http://pan.baidu.com/s/1hrMxwf6" target="_blank" rel="noopener"><br>http://pan.baidu.com/s/1hrMxwf6 </a> 密码：6bss<br>下载工程</p>
-<p>我用的unity版本是5.3.7，工程所用美术资源非本人原创，请不要商用，仅限学习使用，如因此出现版权问题，与本人无关。</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+聊天系统中的UGUI布局常用的聊天系统内容包括以下几点：1、发言内容；2、发言人头像3、发言人名称4、语言聊天（本文不考虑该功能，与布局无关）5、表情（本文暂不考虑该功能，后续补充）（4.1）表情与文字混排，比如：PC端的QQ聊天（4.2）表情与文字分开，比如：移动端的QQ6、聊天模式：文本模式
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/11/30/UGUI之布局实战——聊天系统/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2666,6 +1838,8 @@ fitter.aspectRatio = rect.width / rect.height;
     
       
     
+    
+
     
 
     
@@ -2710,7 +1884,7 @@ fitter.aspectRatio = rect.width / rect.height;
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2814,51 +1988,25 @@ fitter.aspectRatio = rect.width / rect.height;
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>Grid Layout Group是LayoutGroup的子类</p>
-<p>脚本属性截图如下：<br><img src="https://img-blog.csdn.net/20161130135310391" alt="这里写图片描述"></p>
-<p>1、Padding：RectOffset类型，矩形偏移，详解请戳 <a href="http://blog.csdn.net/qq_26999509/article/details/53406107" target="_blank" rel="noopener"> UGUI之Horizontal Layout Group组件介绍
-</a></p>
-<p>2、Cell Size：Vector2类型，默认值为(100,100)，网格中的每个单元格的大小</p>
-<pre><code>[SerializeField] protected Vector2 m_CellSize = new Vector2(100, 100);
-public Vector2 cellSize { get { return m_CellSize; } set { SetProperty(ref m_CellSize, value); } }
-</code></pre><p>3、Spacing：这里的Spacing不同于水平布局、垂直布局，是Vector2类型，既然是网格布局，当然存在水平方向的间隔和垂直方向的间隔，这里也不做过多的介绍。</p>
-<p>3、Start Corner：Corner枚举类型</p>
-<pre><code>public enum Corner 
-{ 
-    UpperLeft = 0,      //左上角
-    UpperRight = 1,     //右上角
-    LowerLeft = 2,      //左下角
-    LowerRight = 3      //右下角
-}
-</code></pre><p>第一个单元格放在哪个角落，默认为UpperLeft左上角</p>
-<p>4、Start Axis：Axis枚举类型</p>
-<pre><code>public enum Axis 
-{ 
-    Horizontal = 0,     //水平
-    Vertical = 1        //垂直
-}
-</code></pre><p>（1）Horizontal：水平<br>优先水平排列单元格<br>（2）Vertical：垂直<br>优先垂直排列单元格</p>
-<p>5、Child Alignment：TextAnchor枚举类型，文本锚点，详解请戳 <a href="http://blog.csdn.net/qq_26999509/article/details/53406107" target="_blank" rel="noopener"> UGUI之Horizontal Layout Group组件介绍
-</a></p>
-<p>6、Constraint：Constraint枚举类型</p>
-<pre><code>public enum Constraint 
-{ 
-    Flexible = 0,              //不限制行数和列数
-    FixedColumnCount = 1,      //约束指定数量的列数
-    FixedRowCount = 2          //约束指定数量的行数
-}
-</code></pre><p>下面以几个截图来看看上面几个设置具体是怎样的作用：<br>以下单元格物体加了一个Text来表示其编号，并且Hierarchy面板中的层级关系并未调整</p>
-<p>图一：默认情况<br><img src="https://img-blog.csdn.net/20161130144209367" alt="这里写图片描述"></p>
-<p>图二：设置Start Corner为Upper Right<br><img src="https://img-blog.csdn.net/20161130163937264" alt="这里写图片描述"></p>
-<p>图三：设置Start Axis为Vertical<br><img src="https://img-blog.csdn.net/20161130164106471" alt="这里写图片描述"></p>
-<p>图四：设置Start Corner为Lower Left、Start Axis为Vertical<br><img src="https://img-blog.csdn.net/20161130164300577" alt="这里写图片描述"></p>
-<p>从以上图中不难看出这两个设置的使用用途。</p>
-<p>实际开发中，我常与Content Size Fitter组件一起使用<br><img src="https://img-blog.csdn.net/20161130164549547" alt="这里写图片描述"></p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+Grid Layout Group是LayoutGroup的子类
+脚本属性截图如下：
+1、Padding：RectOffset类型，矩形偏移，详解请戳  UGUI之Horizontal Layout Group组件介绍
 
+2、Cell Size：Vector2类型，默认值为(100,100)，网
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/11/30/UGUI之Grid Layout Group组件介绍/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -2874,6 +2022,8 @@ public Vector2 cellSize { get { return m_CellSize; } set { SetProperty(ref m_Cel
     
       
     
+    
+
     
 
     
@@ -2918,7 +2068,7 @@ public Vector2 cellSize { get { return m_CellSize; } set { SetProperty(ref m_Cel
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -3022,77 +2172,24 @@ public Vector2 cellSize { get { return m_CellSize; } set { SetProperty(ref m_Cel
       
         
           
-            <meta name="referrer" content="no-referrer">
+            <p>
+              
 
-<p>VerticalLayoutGroup也是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup是LayoutGroup的子类，下面从源码中进行对比</p>
-<pre><code>namespace UnityEngine.UI
-{
-    [AddComponentMenu(&quot;Layout/Horizontal Layout Group&quot;, 150)]
-    public class HorizontalLayoutGroup : HorizontalOrVerticalLayoutGroup
-    {
-        protected HorizontalLayoutGroup()
-        {}
-
-        public override void CalculateLayoutInputHorizontal()
-        {
-            base.CalculateLayoutInputHorizontal();
-            CalcAlongAxis(0, false);
-        }
-
-        public override void CalculateLayoutInputVertical()
-        {
-            CalcAlongAxis(1, false);
-        }
-
-        public override void SetLayoutHorizontal()
-        {
-            SetChildrenAlongAxis(0, false);
-        }
-
-        public override void SetLayoutVertical()
-        {
-            SetChildrenAlongAxis(1, false);
-        }
-    }
-}
-
-
-
+VerticalLayoutGroup也是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup是LayoutGroup的子类，下面从源码中进行对比
 namespace UnityEngine.UI
 {
-    [AddComponentMenu(&quot;Layout/Vertical Layout Group&quot;, 151)]
-    public class VerticalLayoutGroup : HorizontalOrVerticalLayoutGroup
-    {
-        protected VerticalLayoutGroup()
-        {}
-
-        public override void CalculateLayoutInputHorizontal()
-        {
-            base.CalculateLayoutInputHorizontal();
-            CalcAlongAxis(0, true);
-        }
-
-        public override void CalculateLayoutInputVertical()
-        {
-            CalcAlongAxis(1, true);
-        }
-
-        public override void SetLayoutHorizontal()
-        {
-            SetChildrenAlongAxis(0, true);
-        }
-
-        public override void SetLayoutVertical()
-        {
-            SetChildrenAlongAxis(1, true);
-        }
-    }
-}
-</code></pre><p>可以看出，唯一的区别就是四个重写的基方法里的调用的CalcAlongAxis、SetChildrenAlongAxis一个是false，一个是true，那么显然true表示是vertical，false表示horizontal</p>
-<p>所以在这就不过多的对Vertical Layout Group组件做过多的介绍，用法跟 Horizontal Layout<br>Group组件一样的用，如果对Horizontal Layout Group组件有不了解的，详情请点击这里 <a href="http://blog.csdn.net/qq_26999509/article/details/53406107" target="_blank" rel="noopener"> Horizontal Layout<br>Group组件介绍 </a></p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
-
+    [Ad
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/11/30/UGUI之Vertical Layout Group组件介绍/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -3108,6 +2205,8 @@ namespace UnityEngine.UI
     
       
     
+    
+
     
 
     
@@ -3166,6 +2265,8 @@ namespace UnityEngine.UI
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Mr.Ding">
             
               <p class="site-author-name" itemprop="name">Mr.Ding</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -3237,6 +2338,39 @@ namespace UnityEngine.UI
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/JingFengJi" title="GitHub &rarr; https://github.com/JingFengJi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_26999509" title="CSDN &rarr; https://blog.csdn.net/qq_26999509" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+            </div>
+          
+
+          <!-- 音乐播放器 -->
+          <div>
+            
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2708490017&auto=1&height=90"></iframe>
+            
+          </div>
 
           
 
@@ -3278,19 +2412,40 @@ namespace UnityEngine.UI
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
 
+
+
+
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span> 
+<script> 
+    var now = new Date(); 
+    function createtime() {
+    var grt= new Date("03/01/2019 12:00:00");
+    //此处修改你的建站时间或者网站上线时间 
+    now.setTime(now.getTime()+250); 
+    days = (now - grt ) / 1000 / 60 / 60 / 24; 
+    dnum = Math.floor(days); hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); 
+    hnum = Math.floor(hours); 
+    if(String(hnum).length ==1 ){
+        hnum = "0" + hnum;
+    } 
+    minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 )
+    {
+       mnum = "0" + mnum;
+    } 
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if(String(snum).length ==1 ){snum = "0" + snum;} 
+    document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+} 
+    setInterval("createtime()",250); 
+</script>
         
 
 
@@ -3341,6 +2496,9 @@ namespace UnityEngine.UI
 
 
 
+  
+  
+
 
 
 
@@ -3360,6 +2518,12 @@ namespace UnityEngine.UI
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/three-waves.min.js"></script>
+
 
   
 
@@ -3374,7 +2538,9 @@ namespace UnityEngine.UI
   
 
 
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
 
 
 
@@ -3392,6 +2558,326 @@ namespace UnityEngine.UI
 
 
   
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -3473,6 +2959,16 @@ namespace UnityEngine.UI
   
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
 
   
 
@@ -3492,3 +2988,10 @@ namespace UnityEngine.UI
 
 </body>
 </html>
+
+<script type="text/javascript" src="/js/src/copy.js"></script>
+
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/src/fireworks.js"></script>
