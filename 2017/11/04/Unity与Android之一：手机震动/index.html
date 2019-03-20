@@ -100,26 +100,24 @@
 
 
 
-  <meta name="description" content="效果图：  上图中在Hierarchy右侧绘制了Toggle，Label，以及自定义的texture和Unity原声的Texture，知道了原理，其实这些都很简单。。 这里主要是使用了EditorApplication类下的HierarchyWindowItemCallback类型的hierarchyWindowItemOnGUI // // 摘要: //     /// //     Del">
+  <meta name="description" content="Unity调用手机震动在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。 实现步骤Unity中提供了一个接口 Handheld.Vibrate(); 该接口无需做平台判断。官方介绍：Triggers device vibration.翻译就是指触发装置振动。https://docs.unity3d.com/2017.3/Documentation/ScriptRefe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity编辑器拓展之三：拓展Unity的Hierarchy面板">
-<meta property="og:url" content="https://jingfengji.github.io/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/index.html">
+<meta property="og:title" content="Unity&amp;Android之一：手机震动">
+<meta property="og:url" content="https://jingfengji.github.io/2017/11/04/Unity与Android之一：手机震动/index.html">
 <meta property="og:site_name" content="JingFengJi">
-<meta property="og:description" content="效果图：  上图中在Hierarchy右侧绘制了Toggle，Label，以及自定义的texture和Unity原声的Texture，知道了原理，其实这些都很简单。。 这里主要是使用了EditorApplication类下的HierarchyWindowItemCallback类型的hierarchyWindowItemOnGUI // // 摘要: //     /// //     Del">
+<meta property="og:description" content="Unity调用手机震动在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。 实现步骤Unity中提供了一个接口 Handheld.Vibrate(); 该接口无需做平台判断。官方介绍：Triggers device vibration.翻译就是指触发装置振动。https://docs.unity3d.com/2017.3/Documentation/ScriptRefe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdn.net/20170916213433810?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-03-11T14:04:22.869Z">
+<meta property="og:updated_time" content="2019-03-11T14:03:37.325Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unity编辑器拓展之三：拓展Unity的Hierarchy面板">
-<meta name="twitter:description" content="效果图：  上图中在Hierarchy右侧绘制了Toggle，Label，以及自定义的texture和Unity原声的Texture，知道了原理，其实这些都很简单。。 这里主要是使用了EditorApplication类下的HierarchyWindowItemCallback类型的hierarchyWindowItemOnGUI // // 摘要: //     /// //     Del">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20170916213433810?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:title" content="Unity&amp;Android之一：手机震动">
+<meta name="twitter:description" content="Unity调用手机震动在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。 实现步骤Unity中提供了一个接口 Handheld.Vibrate(); 该接口无需做平台判断。官方介绍：Triggers device vibration.翻译就是指触发装置振动。https://docs.unity3d.com/2017.3/Documentation/ScriptRefe">
 
 
 
 
 
 
-  <link rel="canonical" href="https://jingfengji.github.io/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/">
+  <link rel="canonical" href="https://jingfengji.github.io/2017/11/04/Unity与Android之一：手机震动/">
 
 
 
@@ -129,7 +127,7 @@
   };
 </script>
 
-  <title>Unity编辑器拓展之三：拓展Unity的Hierarchy面板 | JingFengJi</title>
+  <title>Unity&Android之一：手机震动 | JingFengJi</title>
   
 
 
@@ -391,7 +389,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingfengji.github.io/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/">
+    <link itemprop="mainEntityOfPage" href="https://jingfengji.github.io/2017/11/04/Unity与Android之一：手机震动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Ding">
@@ -408,7 +406,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Unity编辑器拓展之三：拓展Unity的Hierarchy面板
+          <h1 class="post-title" itemprop="name headline">Unity&Android之一：手机震动
 
               
             
@@ -434,7 +432,7 @@
                 
               
 
-              <time title="创建时间：2017-09-16 21:58:42" itemprop="dateCreated datePublished" datetime="2017-09-16T21:58:42+08:00">2017-09-16</time>
+              <time title="创建时间：2017-11-04 00:06:42" itemprop="dateCreated datePublished" datetime="2017-11-04T00:06:42+08:00">2017-11-04</time>
             
 
             
@@ -451,30 +449,12 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-11 22:04:22" itemprop="dateModified" datetime="2019-03-11T22:04:22+08:00">2019-03-11</time>
+                <time title="修改时间：2019-03-11 22:03:37" itemprop="dateModified" datetime="2019-03-11T22:03:37+08:00">2019-03-11</time>
               
             
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Unity编辑器拓展/" itemprop="url" rel="index"><span itemprop="name">Unity编辑器拓展</span></a></span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -483,7 +463,7 @@
 
           
           
-            <span id="/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/" class="leancloud_visitors" data-flag-title="Unity编辑器拓展之三：拓展Unity的Hierarchy面板">
+            <span id="/2017/11/04/Unity与Android之一：手机震动/" class="leancloud_visitors" data-flag-title="Unity&Android之一：手机震动">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -516,205 +496,20 @@
       
         <meta name="referrer" content="no-referrer">
 
-<p>效果图：</p>
-<p><img src="https://img-blog.csdn.net/20170916213433810?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>上图中在Hierarchy右侧绘制了Toggle，Label，以及自定义的texture和Unity原声的Texture，知道了原理，其实这些都很简单。。</p>
-<p>这里主要是使用了EditorApplication类下的HierarchyWindowItemCallback类型的hierarchyWindowItemOnGUI</p>
-<pre><code>//
-// 摘要:
-//     ///
-//     Delegate to be called for every visible list item in the HierarchyWindow on every
-//     OnGUI event.
-//     ///
-//
-// 参数:
-//   instanceID:
-//
-//   selectionRect:
-public delegate void HierarchyWindowItemCallback(int instanceID, Rect selectionRect);
-</code></pre><p>该委托有两个参数，一个是int类型的instanceID，通过该ID利用EditorUtility.InstanceIDToObject(instanceID)可以获取该GameObject，然后第二个参数Rect，也就是该物体在Hierarchy面板的位置信息了，通过这两个数据，在Hierarchy面板上拓展就很简单了。</p>
-<pre><code>using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-
-[InitializeOnLoad]
-public class HierachyIconManager
-{
-    // 层级窗口项回调
-    private static readonly EditorApplication.HierarchyWindowItemCallback hiearchyItemCallback;
-
-    private static Texture2D hierarchyIcon;
-    private static Texture2D HierarchyIcon
+<h1 id="Unity调用手机震动"><a href="#Unity调用手机震动" class="headerlink" title="Unity调用手机震动"></a>Unity调用手机震动</h1><p>在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。</p>
+<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p>Unity中提供了一个接口</p>
+<pre><code>Handheld.Vibrate();
+</code></pre><p>该接口无需做平台判断。<br>官方介绍：Triggers device vibration.<br>翻译就是指触发装置振动。<br><a href="https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html" target="_blank" rel="noopener">https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html</a></p>
+<p>该接口无法为振动设置时长、频率等。如有需要，安卓则需要通过获取系统服务后开启振动</p>
+<pre><code>public void Shake()
     {
-        get
-        {
-            if (HierachyIconManager.hierarchyIcon == null)
-            {
-                HierachyIconManager.hierarchyIcon = (Texture2D)Resources.Load(&quot;icon_1&quot;);
-            }
-            return HierachyIconManager.hierarchyIcon;
-        }
+        Activity curActivity = UnityPlayer.currentActivity;
+        m_vibrator = (Vibrator)curActivity.getSystemService(Service.VIBRATOR_SERVICE);
+        m_vibrator.vibrate(new long[]{100,10,100,1000},-1);
     }
-
-    /// &lt;summary&gt;
-    /// 静态构造
-    /// &lt;/summary&gt;
-    static HierachyIconManager()
-    {
-        HierachyIconManager.hiearchyItemCallback = new EditorApplication.HierarchyWindowItemCallback(HierachyIconManager.DrawHierarchyIcon);
-        EditorApplication.hierarchyWindowItemOnGUI = (EditorApplication.HierarchyWindowItemCallback)Delegate.Combine(
-            EditorApplication.hierarchyWindowItemOnGUI,
-            HierachyIconManager.hiearchyItemCallback);
-
-        //EditorApplication.update += Update;
-    }
-
-    // 绘制icon方法
-    private static void DrawHierarchyIcon(int instanceID, Rect selectionRect)
-    {
-        Rect rectCheck = new Rect(selectionRect);
-        rectCheck.x += rectCheck.width - 20;
-        rectCheck.width = 18;
-        GameObject go = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
-        go.SetActive(GUI.Toggle(rectCheck, go.activeSelf, string.Empty));
-
-        var index = 0;
-        GUIStyle style = null;
-        if (go.isStatic)
-        {
-            index += 1;
-            Rect rectIcon = GetRect(selectionRect, index);
-            GUI.Label(rectIcon, &quot;S&quot;);
-        }
-
-        // 文字颜色定义 
-        var colorMesh = new Color(42 / 255f, 210 / 255f, 235 / 255f);
-        var colorSkinMesh = new Color(0.78f, 0.35f, 0.78f);
-        var colorLight = new Color(251 / 255f, 244 / 255f, 124 / 255f);
-        var colorPhysic = new Color(0.35f, 0.75f, 0f);
-        var colorCollider = new Color(0.35f, 0.75f, 0.196f);
-        var colorAnimation = new Color(175 / 255f, 175 / 255f, 218 / 255f);
-        var colorCamera = new Color(111 / 255f, 121 / 255f, 212 / 255f);
-        var colorParticle = new Color(130 / 255f, 124 / 255f, 251 / 255f);
-        var colorNav = new Color(217 / 255f, 80 / 255f, 62 / 255f);
-        var colorNetwork = new Color(42 / 255f, 129 / 255f, 235 / 255f);
-        var colorAudio = new Color(255 / 255f, 126 / 255f, 0f);
-
-        DrawRectIcon(selectionRect,HierarchyIcon,ref index);
-
-
-        DrawRectIcon&lt;MeshRenderer&gt;(selectionRect, go, colorMesh, ref index, ref style);
-        DrawRectIcon&lt;SkinnedMeshRenderer&gt;(selectionRect, go, colorSkinMesh, ref index, ref style);
-
-        // Colliders
-        DrawRectIcon&lt;BoxCollider&gt;(selectionRect, go, colorCollider, ref index, ref style);
-        DrawRectIcon&lt;SphereCollider&gt;(selectionRect, go, colorCollider, ref index, ref style);
-        DrawRectIcon&lt;CapsuleCollider&gt;(selectionRect, go, colorCollider, ref index, ref style);
-        DrawRectIcon&lt;MeshCollider&gt;(selectionRect, go, colorCollider, ref index, ref style);
-        DrawRectIcon&lt;CharacterController&gt;(selectionRect, go, colorCollider, ref index, ref style);
-
-        // RigidBody
-        DrawRectIcon&lt;Rigidbody&gt;(selectionRect, go, colorPhysic, ref index, ref style);
-
-        // Lights
-        DrawRectIcon&lt;Light&gt;(selectionRect, go, colorLight, ref index, ref style);
-
-        // Joints
-
-        // Animation / Animator
-        DrawRectIcon&lt;Animator&gt;(selectionRect, go, colorAnimation, ref index, ref style);
-        DrawRectIcon&lt;Animation&gt;(selectionRect, go, colorAnimation, ref index, ref style);
-
-        // Camera / Projector
-        DrawRectIcon&lt;Camera&gt;(selectionRect, go, colorCamera, ref index, ref style);
-        DrawRectIcon&lt;Projector&gt;(selectionRect, go, colorCamera, ref index, ref style);
-
-        // NavAgent
-        DrawRectIcon&lt;UnityEngine.AI.NavMeshAgent&gt;(selectionRect, go, colorNav, ref index, ref style);
-        DrawRectIcon&lt;UnityEngine.AI.NavMeshObstacle&gt;(selectionRect, go, colorNav, ref index, ref style);
-
-        // Network
-        DrawRectIcon&lt;NetworkIdentity&gt;(selectionRect, go, colorNetwork, ref index, ref style);
-        DrawRectIcon&lt;NetworkAnimator&gt;(selectionRect, go, colorNetwork, ref index, ref style);
-        DrawRectIcon&lt;NetworkTransform&gt;(selectionRect, go, colorNetwork, ref index, ref style);
-        DrawRectIcon&lt;NetworkBehaviour&gt;(selectionRect, go, colorNetwork, ref index, ref style);
-        DrawRectIcon&lt;NetworkManager&gt;(selectionRect, go, colorNetwork, ref index, ref style);
-
-        // Particle
-        DrawRectIcon&lt;ParticleSystem&gt;(selectionRect, go, colorParticle, ref index, ref style);
-
-        // Audio
-        DrawRectIcon&lt;AudioSource&gt;(selectionRect, go, colorAudio, ref index, ref style);
-        DrawRectIcon&lt;AudioReverbZone&gt;(selectionRect, go, colorAudio, ref index, ref style);
-        //UI
-        DrawRectIcon&lt;Image&gt;(selectionRect, go, colorParticle, ref index, ref style);
-        DrawRectIcon&lt;Text&gt;(selectionRect, go, colorParticle, ref index, ref style);
-
-        DrawRectIcon&lt;SpriteRenderer&gt;(selectionRect, go, colorParticle, ref index, ref style);
-
-        // 绘制Label来覆盖原有的名字
-        if (style != null &amp;&amp; go.activeInHierarchy)
-        {
-            GUI.Label(selectionRect, go.name, style);
-        }
-    }
-
-    private static void Update()
-    {
-        Debug.Log(&quot;1&quot;);
-    }
-
-    private static Rect GetRect(Rect selectionRect , int index)
-    {
-        Rect rect = new Rect(selectionRect);
-        rect.x += rect.width - 20 - (20 * index);
-        rect.width = 18;
-        return rect;
-    }
-
-    /// &lt;summary&gt;
-    /// 绘制一个Unity原声图标
-    /// &lt;/summary&gt;
-    /// &lt;typeparam name=&quot;T&quot;&gt;&lt;/typeparam&gt;
-    /// &lt;param name=&quot;rect&quot;&gt;&lt;/param&gt;
-    private static void DrawIcon&lt;T&gt;(Rect rect)
-    {
-        var icon = EditorGUIUtility.ObjectContent(null, typeof(T)).image;
-        GUI.Label(rect, icon);
-    }
-
-    private static void DrawRectIcon&lt;T&gt;(Rect selectionRect,GameObject go,Color textColor,ref int order, ref GUIStyle style)where T :Component
-    {
-        if (go.HasComponent&lt;T&gt;())
-        {
-            order += 1;
-            var rect = GetRect(selectionRect, order);
-            DrawIcon&lt;T&gt;(rect);
-        }
-    }
-
-    private static void DrawRectIcon(Rect selectionRect,Texture2D texture,ref int order)
-    {
-        order += 1;
-        var rect = GetRect(selectionRect,order);
-        GUI.Label(rect,texture);
-    }
-}
-
-public static class ExtensionMethods
-{
-    public static bool HasComponent&lt;T&gt;(this GameObject go) where T : Component
-    {
-        return go.GetComponent&lt;T&gt;() != null;
-    }
-}
-</code></pre><p>其中使用了[InitializeOnLoad]，这个Attribute的意思是在启动Unity的时候运行的编辑器脚本，该类需要一个静态的构造函数。。</p>
-<p>通过EditorGUIUtility.ObjectContent(null,<br>typeof(T)).image就可以获取到T类型的Unity原声Texture了。<br>而Label和Toggle，则分别使用GUI.Label和GUI.Toggle即可。。具体参见上面代码。</p>
-<p>我们可以根据需要定制自己需要的Hierarchy面板，例如上述代码中通过判断该GameObject是否是static的，如果是，则绘制一个S在旁边，这样就可以很快速的查看哪些物体是static的了。。</p>
+</code></pre><p>详情参考：<br><a href="http://www.cnblogs.com/android-blogs/p/6381850.html" target="_blank" rel="noopener"> http://www.cnblogs.com/android-blogs/p/6381850.html </a></p>
+<p>如果只是简单的使用，Unity 提供的接口已经够了。。</p>
+<h4 id="请在真机下进行测试"><a href="#请在真机下进行测试" class="headerlink" title="请在真机下进行测试"></a>请在真机下进行测试</h4><p>最近正在补充Unity跟Android交互相关的知识，包括接入SDK、游戏中使用二维码等</p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步</p>
 
       
@@ -785,8 +580,8 @@ public static class ExtensionMethods
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/02/Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）/" rel="next" title="Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）">
-                <i class="fa fa-chevron-left"></i> Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）
+              <a href="/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/" rel="next" title="Unity编辑器拓展之三：拓展Unity的Hierarchy面板">
+                <i class="fa fa-chevron-left"></i> Unity编辑器拓展之三：拓展Unity的Hierarchy面板
               </a>
             
           </div>
@@ -795,8 +590,8 @@ public static class ExtensionMethods
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/04/Unity与Android之一：手机震动/" rel="prev" title="Unity&Android之一：手机震动">
-                Unity&Android之一：手机震动 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/04/Unity与Android之二：获取手机电量信息、网络状况/" rel="prev" title="Unity&Android之二：获取手机电量信息、网络状况">
+                Unity&Android之二：获取手机电量信息、网络状况 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -841,8 +636,17 @@ public static class ExtensionMethods
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -977,6 +781,23 @@ public static class ExtensionMethods
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unity调用手机震动"><span class="nav-number">1.</span> <span class="nav-text">Unity调用手机震动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现步骤"><span class="nav-number">1.0.1.</span> <span class="nav-text">实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请在真机下进行测试"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">请在真机下进行测试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
