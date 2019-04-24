@@ -1,23 +1,255 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Unity之MessageBox · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Unity之MessageBox</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2017-04-25</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<p>先上示意图：<br><img src="https://img-blog.csdn.net/20170425112628114?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>从图中可以看出，这是标准的MessageBox样式。我采用的是UGUI，中间是文字内容，下面包括确定取消两个按钮，右上角一个关闭按钮。</p>
+<p>那么模仿MFC呢，我写了一个枚举如下：</p>
+<pre><code>public enum MessageType
+{
+    Confirm,            //确定
+    Cancel,             //取消
+    ConfirmCancel,      //确定取消
+    Yes,                //是
+    No,                 //否
+    YesNO,              //是否
+}
+</code></pre><p>从上可以看出，这是在定义按钮的样式，举例：Confirm指仅包括确定按钮。</p>
+<p>接下来，直接上挂在该UI上的脚本代码：</p>
+<pre><code>using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+
+public class MessageBoxDialog : MonoBehaviour
+{
+    public GameObject CancelButton = null;          //取消按钮
+    public GameObject ConfirmButton = null;         //确定按钮
+    public GameObject CloseButton = null;           //关闭按钮
+    public Text MessageText = null;                 //提示文字
+
+    public Text ConfirmText = null;                 //确定文字
+    public Text CancelText = null;                  //取消文字
+
+    public Action OnCloseEvent = null;
+    public Action OnConfirmEvent = null;
+    // Use this for initialization
+    void Start()
+    {
+        AddListener();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void AddListener()
+    {
+        if (CancelButton != null)
+        {
+            EventTriggerListener.Get(CancelButton).onClick = OnCancelButtonClicked;
+        }
+        if (ConfirmButton != null)
+        {
+            EventTriggerListener.Get(ConfirmButton).onClick = OnConfirmButtonClicked;
+        }
+    }
+
+    private void OnConfirmButtonClicked(GameObject go, BaseEventData eventData)
+    {
+        if (OnConfirmEvent != null)
+        {
+            OnConfirmEvent();
+        }
+        else
+        {
+            OnCloseButtonClicked(null, null);
+        }
+
+    }
+
+    private void OnCancelButtonClicked(GameObject go, BaseEventData eventData)
+    {
+        if (OnCloseEvent != null)
+        {
+            OnCloseEvent();
+        }
+        else
+        {
+            OnCloseButtonClicked(null, null);
+        }
+    }
+
+    private void OnCloseButtonClicked(GameObject go, BaseEventData eventData)
+    {
+        GameObject.DestroyImmediate(gameObject);
+    }
+
+    public void UpdateButton(MessageType type)
+    {
+        switch (type)
+        {
+            case MessageType.ConfirmCancel:
+                break;
+            case MessageType.Cancel:
+                ConfirmButton.SetActive(false);
+                break;
+            case MessageType.Confirm:
+                CancelButton.SetActive(false);
+                break;
+            case MessageType.No:
+                ConfirmButton.SetActive(false);
+                CancelText.text = &quot;否&quot;;
+                break;
+            case MessageType.Yes:
+                CancelButton.SetActive(false);
+                ConfirmText.text = &quot;是&quot;;
+                break;
+            case MessageType.YesNO:
+                ConfirmText.text = &quot;是&quot;;
+                CancelText.text = &quot;否&quot;;
+                break;
+        }
+    }
+}
+</code></pre><p>接下来是该篇文章的重点代码了，</p>
+<pre><code>using System;
+using UnityEngine;
+
+
+public class MessageBox
+{
+    private static GameObject _messageBoxPrefab = null;
+    private static GameObject _messageBox = null;
+
+    private static string _messageBoxPrefabPath = &quot;UI/MessageBox&quot;;
+
+    public static void Show(string info, MessageType type = MessageType.ConfirmCancel, Action cancelCallback = null,
+        Action confirmCallback = null)
+    {
+        if (_messageBoxPrefab == null)
+        {
+            _messageBoxPrefab = Resources.Load(_messageBoxPrefabPath) as GameObject;
+        }
+        _messageBox = GameObject.Instantiate(_messageBoxPrefab) as GameObject;
+        MessageBoxDialog msgbox = _messageBox.GetComponent&lt;MessageBoxDialog&gt;();
+        msgbox.UpdateButton(type);
+        msgbox.OnConfirmEvent += confirmCallback;
+        msgbox.OnCloseEvent += cancelCallback;
+        msgbox.MessageText.text = info;
+
+        //以下是在自己的场景管理的基础上写的，既然这里还没讲到我的场景管理，就暂时用比较low的方法了
+        //GameObject uiRoot = ScenesManager.Instance.CurScene.UiRoot.gameObject;
+        //_messageBox.transform.SetParent(uiRoot.transform, false);
+
+        GameObject canvas = GameObject.Find(&quot;Canvas&quot;);
+        if(canvas != null)
+        {
+            _messageBox.transform.SetParent(canvas.transform, false);
+        }
+    }
+}
+</code></pre><p>该段代码中，大家应该注意到三点：<br>1、MessageBox的预制件路径，修改为自己的路径；<br>2、加载该预制件的方法，我用的是Resources.Load，这里并没有将我的资源管理介绍出来，所以就用的这个；<br>3、实例化该UI，给该UI赋父物体的时候，用的是比较low的方法，注释已经解释了。</p>
+<p>接下来，就直接上工程了，大家 如有疑问，请留言。<br>链接： <a href="http://pan.baidu.com/s/1kVibxQJ" target="_blank" rel="noopener"> http://pan.baidu.com/s/1kVibxQJ </a><br>密码：45ql</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2017/04/25/Unity之MessageBox/">https://jingfengji.github.io/2017/04/25/Unity之MessageBox/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2017/04/26/Unity之DOTweenPath轨迹移动/" title="Unity之DOTweenPath轨迹移动"><span>< PreviousPost</span><br><span class="prevTitle">Unity之DOTweenPath轨迹移动</span></a><a class="nextSlogan" href="/2017/04/25/Lua/" title="Lua"><span>NextPost ></span><br><span class="nextTitle">Lua</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

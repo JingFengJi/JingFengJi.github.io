@@ -1,9 +1,165 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  include includes/recent-posts.pug
-  include includes/partial/page-nav.pug
-    
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
 
 
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1>Mr.Long's Blog</h1><h5>Welcome to my Blog!</h5><div class="intro-social"><a class="fa fa-github" href="//github.com/" target="_blank" title="github"></a><a class="fa fa-weibo" href="//www.weibo.com" target="_blank" title="weibo"></a><a class="fa fa-facebook" href="//www.facebook.com" target="_blank" title="facebook"></a><a class="fa fa-twitter" href="//twitter.com" target="_blank" title="twitter"></a><a class="fa fa-rss" href="/atom.xml" target="_blank" title="rss"></a></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><section id="recent-posts"><div class="recent-post-item"><div class="post-title"><a href="/2019/02/01/Unity编辑器拓展之二十四：基于Unity Node Editor、ScriptableObject的配置化新手引导系统/">Unity编辑器拓展之二十四：基于Unity Node Editor、ScriptableObject的配置化新手引导系统</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2019-02-01T06:34:39.000Z">2019-02-01</time></div><div class="recent-post-content">
 
+
+本文主要介绍根据一款Node Editor库开发的新手引导系统git地址如下： https://github.com/luis-l/UnityNodeEditorBase
+一、旧版新手引导做法
+GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，当前无引导，则直接进行引导，否则存入缓存队列中。
+GuideCheckManager注册跟引导有关的消息通知，等收到通知，做一些check工作。
+一个大步引导包含多个单线的单步引导，每个单步引导又可有check条件，如果中间某一单步引导未check通过，则打断引导。
+缺点：
+（1）配置采用CSV，可 ...</div><div class="read-more"><a class="more" href="/2019/02/01/Unity编辑器拓展之二十四：基于Unity Node Editor、ScriptableObject的配置化新手引导系统/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/12/22/Unity Shader编程之一：多颜色条纹背景/">Unity Shader编程之一：多颜色条纹背景</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-12-22T06:53:14.000Z">2018-12-22</time></div><div class="recent-post-content">
+
+两种颜色的条纹状背景Shader &quot;Custom/Flag&quot;
+{
+    Properties
+    {
+        [PerRendererData]_MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {}
+        _1stColor(&quot;1stColo&quot;,Color) = (0,0,0,1)
+        _2ndColor(&quot;2ndColor&quot;,Color) = (1,1,1,1)
+        _tileNum(&quot;tile num&quot ...</div><div class="read-more"><a class="more" href="/2018/12/22/Unity Shader编程之一：多颜色条纹背景/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/12/22/Unity编辑器拓展之二十三：基于ObjectField的FileField/">Unity编辑器拓展之二十三：基于ObjectField的FileField</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-12-22T05:49:09.000Z">2018-12-22</time></div><div class="recent-post-content">
+
+使用场景最近在做资源管理模块时，关于资源引用这方面的问题，并不想直接引用某一个asset，比如Prefab、或者sprite、material等资源，当然可以由资源管理模块统一管理，然后对业务层提供获取的接口。由业务层传入文件名、或者AssetBundleName、path之类的数据，资源管理模块内加载出来然后返回。结合ObjectFiled这个编辑器类来介绍，我们拖入某一个asset，然后序列化存储其guid和assetpath，表面上看起来是引用了该asset，实际上只是存住了guid和path（用于load，结合资源管理模块而定），guid用于绝对指向asset资源，就算路径更改，也 ...</div><div class="read-more"><a class="more" href="/2018/12/22/Unity编辑器拓展之二十三：基于ObjectField的FileField/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/09/09/Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具/">Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-09-09T05:29:04.000Z">2018-09-09</time></div><div class="recent-post-content">
+
+Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。
+使用TexturePacker打图集，会输出两个文件，一个PNG合图，一个txt图集信息文件，而到Unity中使用UIAtlas，则需要一个Material材质文件和一个Prefab预制体文件，这两个文件也由工具生成。
+鉴于项目不是从一开始就用该工具进行打图集工作的，因此这些文件的命名不具有统一的规范，因此使用一个配置文件来 ...</div><div class="read-more"><a class="more" href="/2018/09/09/Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/08/22/Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）/">Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-08-22T15:49:57.000Z">2018-08-22</time></div><div class="recent-post-content">
+
+拓展Unity模块，打造私人工具库（二）前言：上一篇，实现了基本Unity模块拓展的功能，本篇将介绍如何通过反射来实现导入UnityPackage
+Gif示意图
+程序导入UnityPackage通过查阅UnityEditor源代码发现，UnityEditor命名空间下有个EditorWindow的子类PackageImport，该类有个静态函数ShowImportPackage如下：
+public static void ShowImportPackage(string packagePath, ImportPackageItem[] items, string packageIconPa ...</div><div class="read-more"><a class="more" href="/2018/08/22/Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/08/20/Unity编辑器拓展之二十：拓展Unity模块，打造私人工具库（一）/">Unity编辑器拓展之二十：拓展Unity模块，打造私人工具库（一）</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-08-20T14:40:22.000Z">2018-08-20</time></div><div class="recent-post-content">
+
+拓展Unity模块，打造私人工具库（一）功能介绍经过平时的项目积累，使用以及自己编写的编辑器工具越来越多，有些工具在别的项目中同样用的上，但是不希望每次都重新拷贝新代码到项目中，于是就希望能够拓展Unity模块，实现自己的工具库，方便导入工具到项目中。
+通过查阅资料发现，在Unity的安装目录 Unity2017.3.1f1\Editor\Data\UnityExtensions\Unity(我的版本是2017.3.1f1)下，有一些Unity自带的模块，可以通过在该路径下放入自己的模块，就可以实现Unity新建的项目都拥有该拓展模块的功能。那么，接下来就写一个工具导入模块放入该文件夹中。 ...</div><div class="read-more"><a class="more" href="/2018/08/20/Unity编辑器拓展之二十：拓展Unity模块，打造私人工具库（一）/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/08/10/Unity编辑器拓展之十九：NGUI  UISprite预览图Preview拓展/">Unity编辑器拓展之十九：NGUI  UISprite预览图Preview拓展</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-08-10T14:42:22.000Z">2018-08-10</time></div><div class="recent-post-content">
+
+NGUI UISprite预览图Preview拓展功能说明1、拓展UISprite的Preview视图，同时显示UIAtlas Texture和Sprite2、支持在UIAtlas上直接点选Sprite3、无需打开Atlas选择框和Sprite选择框两步操作
+Gif示意图
+逻辑介绍1、找到UISpriteInspector脚本，其脚本的OnPreView函数逻辑，源码如下：
+public override void OnPreviewGUI (Rect rect, GUIStyle background)
+{
+    UISprite sprite = target as UISprite ...</div><div class="read-more"><a class="more" href="/2018/08/10/Unity编辑器拓展之十九：NGUI  UISprite预览图Preview拓展/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/08/06/常用软件集锦/">常用软件集锦</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-08-06T13:25:30.000Z">2018-08-06</time></div><div class="recent-post-content">
+
+1、图片查重文件查重，如果只是文件名或者md5码的匹配查重，功能就不全面了，尤其是图片查重。图片查重应该更侧重于图片内容相似度查重。最近项目中使用TexturePacker&amp; NGUI，发现存在一些图片重复，新人对业务逻辑不熟悉，导致图片乱放等问题，使得图片存在重复、浪费资源等。因此收集了Windows 和Mac下使用的两款图片查重软件。
+Win http://www.newrain.cn/app/info/1 
+
+支持修改相似度进行匹配查重
+MacSnapSelect软件
+官网：  https://skylum.com/snapselect pojie版请自行下载
+
+支持四个级别 ...</div><div class="read-more"><a class="more" href="/2018/08/06/常用软件集锦/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/08/04/Unity编辑器拓展之十八：NGUI批量替换图集工具 2.0版本/">Unity编辑器拓展之十八：NGUI批量替换图集工具 2.0版本</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-08-04T14:47:41.000Z">2018-08-04</time></div><div class="recent-post-content">
+
+Unity编辑器拓展之十五：NGUI批量替换图集工具 2.0版本1.0版本 https://blog.csdn.net/qq_26999509/article/details/81256493
+
+新增内容工具1.0版本，同事在使用过程中，发现批量替换图集时，不一定是全部都替换，这样的话，工具就没法使用了。2.0版本新增功能：对于替换图集的Sprite支持可选择性的是否替换。
+工具截图
+在之前的右下角空白区域，增加了预制体所有UISprite的列表显示，使用的TreeView编写的。
+TreeView介绍目前，TreeView我还没有单独写文字来介绍该内容，后续会更新。官方文档：  http ...</div><div class="read-more"><a class="more" href="/2018/08/04/Unity编辑器拓展之十八：NGUI批量替换图集工具 2.0版本/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2018/07/31/Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框/">Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-07-31T15:24:56.000Z">2018-07-31</time></div><div class="recent-post-content">
+
+NGUI ComponentSelector增加搜索框目的最近在使用NGUI，给Sprite选择图集的时候，没有搜索框要挨个找挺麻烦，因此修改一下ComponentSelector组件，增加一个搜索框，便于搜索图集
+
+Gif动图展示
+SearchField介绍关于SearchField介绍请看  Unity编辑器拓展之九
+代码以下代码是修改的NGUI里的ComponentSelector脚本
+private SearchField search;
+private bool isInit = false;
+private string searchStr = &quot;&quot;;
+pr ...</div><div class="read-more"><a class="more" href="/2018/07/31/Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框/#more">ReadMore</a></div><hr></div></section><nav class="cxo-page-nav"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">NEXT &#62;</a></nav></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

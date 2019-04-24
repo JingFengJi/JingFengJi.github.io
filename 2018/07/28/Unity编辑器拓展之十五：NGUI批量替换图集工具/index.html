@@ -1,23 +1,458 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Unity编辑器拓展之十五：NGUI批量替换图集工具 · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Unity编辑器拓展之十五：NGUI批量替换图集工具</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2018-07-28</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<h1 id="NGUI批量替换图集工具"><a href="#NGUI批量替换图集工具" class="headerlink" title="NGUI批量替换图集工具"></a>NGUI批量替换图集工具</h1><h2 id="工具目的"><a href="#工具目的" class="headerlink" title="工具目的"></a>工具目的</h2><p>因项目需要实现换肤的功能，也就是多套UI图集，提供工具批量换图集，方便查看Prebab各皮肤（图集）下的效果</p>
+<h2 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h2><p>Gif 操作动图：<br><img src="https://img-blog.csdn.net/20180728004232812?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>工具截图：<br><img src="https://img-blog.csdn.net/20180728004352956?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>工具左侧是工程所有Prefab列表，右侧是替换图集的功能菜单，从指定原图集替换成目标图集</p>
+<h2 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h2><p>与上文：Unity编辑器之十四：字体替换工具 <a href="https://blog.csdn.net/qq_26999509/article/details/81106083" target="_blank" rel="noopener">https://blog.csdn.net/qq_26999509/article/details/81106083</a><br>一样，其实找到Prebfab下所有UISprite，并将其所有指定原图集 替换成<br>指定的目标图集，以此实现换肤的功能，当然两图集的SpriteName应该保持一致，不然没办法知道要换成目标图集里的那张图。</p>
+<h2 id="重点代码"><a href="#重点代码" class="headerlink" title="重点代码"></a>重点代码</h2><pre><code>private void ReplacePrefabAtalas(GameObject prefab , UIAtlas atlas,UIAtlas targetAtlas)
+{
+    if(prefab == null || atlas == null) return;
+    UISprite[] sprites = prefab.GetComponentsInChildren&lt;UISprite&gt;(true);
+    if(sprites != null &amp;&amp; sprites.Length &gt; 0)
+    {
+        int num = sprites.Length;
+        for (int i = 0; i &lt; num; i++)
+        {
+            UISprite s = sprites[i];
+            if(s != null &amp;&amp; s.atlas == atlas)
+            {
+                s.atlas = targetAtlas;
+                EditorUtility.SetDirty(s);
+            }
+        }
+    }
+    AssetDatabase.SaveAssets();
+}
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>1、Tools-&gt;ReplaceAtalas 打开工具</p>
+<p><img src="https://img-blog.csdn.net/20180728005410396?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>2、选中待处理预制体，鼠标右键-&gt;替换图集</p>
+<p><img src="https://img-blog.csdn.net/20180728005536617?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>3、<br><img src="https://img-blog.csdn.net/20180728005711218?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>4、 <img src="https://img-blog.csdn.net/20180728010026779?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<h2 id="工具代码"><a href="#工具代码" class="headerlink" title="工具代码"></a>工具代码</h2><pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+using UnityEditor.IMGUI.Controls;
+
+public class ReplaceAtalas : EditorWindow 
+{
+
+    private static ReplaceAtalas window = null;
+    private static List&lt;string&gt; prefabPathList = new List&lt;string&gt; ();
+    private static string assetPath;
+
+    Rect SearchFieldRect
+    {
+        get
+        {
+            return new Rect(interval,interval,position.width * 0.3f,20f);
+        }
+    }
+
+    Rect prefabListRect 
+    {
+        get { return new Rect (interval, interval + SearchFieldRect.yMax, SearchFieldRect.width, window.position.height - SearchFieldRect.yMax - 2 * interval); }
+    }
+
+    Rect replaceAtalsRect
+    {
+        get{return new Rect(prefabListRect.xMax + interval,interval,window.position.width - SearchFieldRect.width - 3 * interval,window.position.height - 2 * interval);}
+    }
+
+    private Vector2 scrollWidgetPos;
+    private float interval = 20f;
+    private string searchStr = &quot;&quot;;
+    private SearchField searchField;
+    private bool initialized = false;
+
+    [MenuItem(&quot;Assets/替换图集&quot;, false, 2001)]
+    public static void OpenWindow()
+    {
+        string selectedAssetPath = AssetDatabase.GetAssetPath (Selection.activeObject);
+        if(!string.IsNullOrEmpty(selectedAssetPath) &amp;&amp; selectedAssetPath.EndsWith(&quot;.prefab&quot;))
+        {
+            ReplaceAtalas window = ShowWindow();
+            if(window != null)
+            {
+                window.AutoSelctPrefab(selectedAssetPath);
+            }
+        }
+    }
+
+    [MenuItem(&quot;Tools/ReplaceAtalas&quot;)]
+    public static ReplaceAtalas ShowWindow() 
+    {
+        prefabPathList.Clear ();
+        assetPath = Application.dataPath;
+        GetFiles (new DirectoryInfo (assetPath), &quot;*.prefab&quot;, ref prefabPathList);
+        if (window == null)
+            window = EditorWindow.GetWindow(typeof(ReplaceAtalas)) as ReplaceAtalas;
+        window.titleContent = new GUIContent(&quot;ReplaceAtalas&quot;);
+        window.Show();
+        return window;
+    }
+
+    public static void GetFiles (DirectoryInfo directory, string pattern, ref List&lt;string&gt; fileList) 
+    {
+        if (directory != null &amp;&amp; directory.Exists &amp;&amp; !string.IsNullOrEmpty (pattern)) {
+            try {
+                foreach (FileInfo info in directory.GetFiles (pattern)) {
+                    string path = info.FullName.ToString ();
+                    fileList.Add (path.Substring (path.IndexOf (&quot;Assets&quot;)));
+                }
+            } catch (System.Exception) 
+            {
+                throw;
+            }
+            foreach (DirectoryInfo info in directory.GetDirectories ()) 
+            {
+                GetFiles (info, pattern, ref fileList);
+            }
+        }
+    }
+
+    private void OnGUI() 
+    {
+        InitIfNeeded();
+        DrawWindow();
+    }
+
+    private void DrawWindow()
+    {
+        DrawSearchField();
+        DrawPrefabList();
+        DrawReplaceAtalasTool();
+    }
+
+    private void InitIfNeeded()
+    {
+        if(!initialized)
+        {
+            if (null == searchField)
+                searchField = new SearchField ();
+        }
+        initialized = true;
+    }
+
+    private void DrawSearchField()
+    {
+        GUI.backgroundColor = Color.white;
+        searchStr = searchField.OnGUI (SearchFieldRect, searchStr);
+        searchStr = searchStr.ToLower();
+    }
+
+    private void DrawPrefabList()
+    {
+        GUI.backgroundColor = Color.white;
+
+        GUI.Box(prefabListRect,&quot;&quot;);
+        GUILayout.BeginArea(prefabListRect);
+        scrollWidgetPos = EditorGUILayout.BeginScrollView(scrollWidgetPos);
+        for (int i = 0; i &lt; prefabPathList.Count; i++)
+        {
+            if(CheckShowPrefab(prefabPathList[i],searchStr))
+            {
+                if(GUILayout.Button(prefabPathList[i]))
+                {
+                    curReplacePrefabPath = prefabPathList[i];
+                    curPrefabAtlas = GetPrefabAllAtlas(curReplacePrefabPath);
+                }
+            }
+        }
+        EditorGUILayout.EndScrollView();
+        GUILayout.EndArea();
+    }
+
+    private string curReplacePrefabPath = &quot;&quot;;
+
+    private bool CheckShowPrefab(string path,string searchstr)
+    {
+        if(string.IsNullOrEmpty(searchStr)) return true;
+        if(string.IsNullOrEmpty(path)) return false;
+        return GetFileNameWithSuffix(path.ToLower()).Contains(searchStr);
+    }
+
+    //包括后缀名
+    private string GetFileNameWithSuffix(string path)
+    {
+        if(string.IsNullOrEmpty(path)) return string.Empty;
+        return path.Substring(path.LastIndexOf(&quot;/&quot;)+1);
+    }
+
+    private UIAtlas curAtlas;
+    private UIAtlas targetAtlas;
+
+    void OnSelectAtlas (Object obj)
+    {
+        UIAtlas atlas = obj as UIAtlas;
+        if(isSelectCurAtlas)
+        {
+            curAtlas = obj as UIAtlas;
+        }
+        else if(isSelectTargetAtlas)
+        {
+            targetAtlas = obj as UIAtlas;
+        }
+        isSelectCurAtlas = false;
+        isSelectTargetAtlas = false;
+    }
+
+    private bool isSelectCurAtlas = false;
+    private bool isSelectTargetAtlas = false;
+    private List&lt;UIAtlas&gt; curPrefabAtlas = new List&lt;UIAtlas&gt;();
+    private void DrawReplaceAtalasTool()
+    {
+        GUI.backgroundColor = Color.white;
+
+        GUILayout.BeginArea(replaceAtalsRect);
+        EditorGUILayout.LabelField(curReplacePrefabPath);
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField(&quot;该预制体含有的所有图集:&quot;,GUILayout.Width(150));
+        if(curPrefabAtlas.Count &gt; 0)
+        {
+            for (int i = 0; i &lt; curPrefabAtlas.Count; i++)
+            {
+                if(GUILayout.Button(curPrefabAtlas[i].name))
+                {
+                    curAtlas = curPrefabAtlas[i];
+                }
+                if(GUILayout.Button(&quot;Edit&quot;))
+                {
+                    //NGUISettings.atlas = mFont.atlas;
+                    //NGUISettings.selectedSprite = sym.spriteName;
+                    NGUIEditorTools.Select(curPrefabAtlas[i].gameObject);
+                }
+            }
+        }
+        GUILayout.EndHorizontal();
+
+        //原图集
+        GUILayout.BeginHorizontal();
+        curAtlas = (UIAtlas)EditorGUILayout.ObjectField(&quot;被替换图集&quot;, curAtlas, typeof(UIAtlas), true);
+        if (NGUIEditorTools.DrawPrefixButton(&quot;选择Atlas&quot;,GUILayout.Width(200)))
+        {
+            isSelectCurAtlas = true;
+            ComponentSelector.Show&lt;UIAtlas&gt;(OnSelectAtlas);
+        }
+        GUILayout.EndHorizontal();
+
+        //目标图集
+        GUILayout.BeginHorizontal();
+        targetAtlas = (UIAtlas)EditorGUILayout.ObjectField(&quot;目标图集&quot;, targetAtlas, typeof(UIAtlas), true);     
+
+        if (NGUIEditorTools.DrawPrefixButton(&quot;选择Atlas&quot;,GUILayout.Width(200)))
+        {
+            isSelectTargetAtlas = true;
+            ComponentSelector.Show&lt;UIAtlas&gt;(OnSelectAtlas);
+        }
+        GUILayout.EndHorizontal();
+
+        if(GUILayout.Button(&quot;互换&quot;))
+        {
+            UIAtlas tmpCurAtlas = curAtlas;
+            curAtlas = targetAtlas;
+            targetAtlas = tmpCurAtlas;
+        }
+
+        //替换按钮
+        if(GUILayout.Button(&quot;替换图集&quot;))
+        {
+            if(string.IsNullOrEmpty(curReplacePrefabPath))
+            {
+                EditorUtility.DisplayDialog(&quot;提示&quot;, &quot;请先选择一个预制体!&quot;, &quot;确定&quot;);
+            }
+            else if (curAtlas == null)
+            {
+                EditorUtility.DisplayDialog(&quot;提示&quot;, &quot;请先指定被替换图集!&quot;, &quot;确定&quot;);
+            }
+            else
+            {
+                if(targetAtlas == null)
+                {
+                    if(EditorUtility.DisplayDialog(&quot;提示&quot;, &quot;原图集将被清空，确定替换吗？&quot;, &quot;确定&quot;,&quot;取消&quot;))
+                    {
+                        ReplacePrefabAtalas(curReplacePrefabPath);
+                    }
+                }
+                else
+                {
+                    ReplacePrefabAtalas(curReplacePrefabPath);
+                }
+            }
+        }
+        //保存按钮
+
+        //撤销按钮
+
+        GUILayout.EndArea();
+    }
+
+    private void ReplacePrefabAtalas(string path)
+    {
+        if(string.IsNullOrEmpty(path)) return;
+        GameObject gameObj = AssetDatabase.LoadAssetAtPath&lt;GameObject&gt;(path);
+        ReplacePrefabAtalas(gameObj,curAtlas,targetAtlas);
+    }   
+
+    private List&lt;UIAtlas&gt; GetPrefabAllAtlas(string path)
+    {
+        if(string.IsNullOrEmpty(path)) return null;
+        GameObject gameObj = AssetDatabase.LoadAssetAtPath&lt;GameObject&gt;(path);
+        return GetPrefabAllAtlas(gameObj);
+    }
+
+    private List&lt;UIAtlas&gt; GetPrefabAllAtlas(GameObject prefab)
+    {
+        if(null == prefab) return null;
+        List&lt;UIAtlas&gt; atlass = new List&lt;UIAtlas&gt;();
+        UISprite[] sprites = prefab.GetComponentsInChildren&lt;UISprite&gt;(true);
+        if(sprites != null &amp;&amp; sprites.Length &gt; 0)
+        {
+            int num = sprites.Length;
+            for (int i = 0; i &lt; num; i++)
+            {
+                UISprite s = sprites[i];
+                if(s != null &amp;&amp; !atlass.Contains(s.atlas))
+                {
+                    atlass.Add(s.atlas);
+                }
+            }
+        }
+        return atlass;
+    }
+
+    private void ReplacePrefabAtalas(GameObject prefab , UIAtlas atlas,UIAtlas targetAtlas)
+    {
+        if(prefab == null || atlas == null) return;
+        UISprite[] sprites = prefab.GetComponentsInChildren&lt;UISprite&gt;(true);
+        if(sprites != null &amp;&amp; sprites.Length &gt; 0)
+        {
+            int num = sprites.Length;
+            for (int i = 0; i &lt; num; i++)
+            {
+                UISprite s = sprites[i];
+                if(s != null &amp;&amp; s.atlas == atlas)
+                {
+                    s.atlas = targetAtlas;
+                    EditorUtility.SetDirty(s);
+                }
+            }
+        }
+        AssetDatabase.SaveAssets();
+    }
+
+    public void AutoSelctPrefab(string prefabPath)
+    {
+        if(string.IsNullOrEmpty(prefabPath)) return;
+        curReplacePrefabPath = prefabPath;
+        curPrefabAtlas = GetPrefabAllAtlas(curReplacePrefabPath);
+        curAtlas = null;
+        targetAtlas = null;
+    }
+}
+</code></pre><h2 id="代码Git地址"><a href="#代码Git地址" class="headerlink" title="代码Git地址"></a>代码Git地址</h2><p><a href="https://github.com/JingFengJi/ReplaceAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/ReplaceAtlas</a><br>欢迎加星</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2018/07/28/Unity编辑器拓展之十五：NGUI批量替换图集工具/">https://jingfengji.github.io/2018/07/28/Unity编辑器拓展之十五：NGUI批量替换图集工具/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2018/07/30/Unity编辑器拓展之十六：监听Scene Drag事件/" title="Unity编辑器拓展之十六：监听Scene Drag事件"><span>< PreviousPost</span><br><span class="prevTitle">Unity编辑器拓展之十六：监听Scene Drag事件</span></a><a class="nextSlogan" href="/2018/07/18/Unity编辑器拓展之十四：字体替换工具/" title="Unity编辑器拓展之十四：字体替换工具"><span>NextPost ></span><br><span class="nextTitle">Unity编辑器拓展之十四：字体替换工具</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NGUI批量替换图集工具"><span class="toc-number">1.</span> <span class="toc-text">NGUI批量替换图集工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#工具目的"><span class="toc-number">1.1.</span> <span class="toc-text">工具目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示意图"><span class="toc-number">1.2.</span> <span class="toc-text">示意图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑"><span class="toc-number">1.3.</span> <span class="toc-text">逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重点代码"><span class="toc-number">1.4.</span> <span class="toc-text">重点代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">1.5.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具代码"><span class="toc-number">1.6.</span> <span class="toc-text">工具代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码Git地址"><span class="toc-number">1.7.</span> <span class="toc-text">代码Git地址</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

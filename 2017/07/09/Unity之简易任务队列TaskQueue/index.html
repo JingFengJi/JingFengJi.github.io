@@ -1,23 +1,249 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Unity之简易任务队列TaskQueue · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Unity之简易任务队列TaskQueue</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2017-07-09</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<h1 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h1><p>该功能包括两个类：Task任务类，TaskQueue任务队列类<br>其中TaskQueue负责：<br>1、开始任务<br>2、添加任务<br>3、清空任务<br>4、开始任务回调<br>5、完成队列中所有任务回调<br>6、下一个任务<br>7、当前任务进度<br>8、队列存储所有任务</p>
+<p>其中Task类代码如下：</p>
+<pre><code>using System;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Task 
+{
+    //任务名
+    private string m_TaskName;
+    public string TaskName
+    {
+        set
+        {
+            m_TaskName = value;
+        }
+        get
+        {
+            return m_TaskName;
+        }
+    }
+
+    //任务具体内容，外部传入
+    public Action Work;
+
+    public Task(Action work, string taskName = &quot;defaultTaskName&quot;)
+    {
+        this.Work = work;
+        this.m_TaskName = taskName;
+    }
+}
+</code></pre><p>TaskQueue类代码如下：</p>
+<pre><code>using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TaskQueue 
+{
+    //构造函数
+    public TaskQueue()
+    {
+        m_TaskQueue = new Queue&lt;Task&gt;();
+        m_TasksNum = 0;
+    }
+
+    //1、添加任务
+    public void AddTask(Task task)
+    {
+        m_TaskQueue.Enqueue(task);
+    }
+
+    public void AddTask(Action work)
+    {
+        Task task = new Task(work);
+        m_TaskQueue.Enqueue(task);
+    }
+
+    //2、开始任务
+    public void Start()
+    {
+        //获取任务队列的总任务数
+        m_TasksNum = m_TaskQueue.Count;
+
+        if (OnStart != null)
+        {
+            OnStart();
+        }
+        NextTask();
+    }
+
+    //3、清空任务
+    public void Clear()
+    {
+        m_TaskQueue.Clear();
+        m_TasksNum = 0;
+    }
+
+    //4、开始任务回调
+    public Action OnStart = null;
+
+    //5、完成所有任务回调
+    public Action OnFinish = null;
+
+    //6、下一个任务
+    private void NextTask()
+    {
+        if (m_TaskQueue.Count &gt; 0)
+        {
+            Task task = m_TaskQueue.Dequeue();
+            task.Work();
+            NextTask();
+        }
+        else
+        {
+            if (OnFinish != null)
+            {
+                OnFinish();
+            }
+        }
+    }
+
+    //7、当前任务进度
+    public float TaskProcess
+    {
+        get
+        {
+            return 1 - m_TaskQueue.Count * 1.0f / m_TasksNum;
+        }
+    }
+
+    //8、任务队列总任务量
+    private int m_TasksNum = 0;
+
+    //9、任务队列
+    private Queue&lt;Task&gt; m_TaskQueue;
+}
+</code></pre><p>然后写一个test脚本挂在相机上，测试前面的代码：</p>
+<pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Test : MonoBehaviour 
+{
+    void Start () 
+    {
+        TaskQueue taskQueue = new TaskQueue();
+        taskQueue.OnStart = () =&gt; { Debug.Log(&quot;OnStart&quot;); };
+        taskQueue.OnFinish = () =&gt; { Debug.Log(&quot;OnFinish&quot;); };
+        taskQueue.AddTask(Task1);
+        taskQueue.AddTask(Task2);
+        taskQueue.Start();
+    }
+
+    private void Task1()
+    {
+        Debug.Log(&quot;Task1&quot;);
+    }
+
+    private void Task2()
+    {
+        Debug.Log(&quot;Task2&quot;);
+    }
+}
+</code></pre><p>执行结果如下图：<br><img src="https://img-blog.csdn.net/20170709182839383?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>该任务队列写的比较简单，后期会拓展，敬请期待。</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2017/07/09/Unity之简易任务队列TaskQueue/">https://jingfengji.github.io/2017/07/09/Unity之简易任务队列TaskQueue/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2017/07/15/Unity之粘贴板操作/" title="Unity之粘贴板操作"><span>< PreviousPost</span><br><span class="prevTitle">Unity之粘贴板操作</span></a><a class="nextSlogan" href="/2017/07/06/Unity之NetworkReachability描述网络可达性选项。/" title="Unity之NetworkReachability描述网络可达性选项。"><span>NextPost ></span><br><span class="nextTitle">Unity之NetworkReachability描述网络可达性选项。</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#任务队列"><span class="toc-number">1.</span> <span class="toc-text">任务队列</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

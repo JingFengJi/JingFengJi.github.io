@@ -1,23 +1,199 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Lua · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Lua</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2017-04-25</span></span><span class="post-intro-tags"><a class="intro-tag fa fa-tag" href="javascript:void(0)" date-tags="lua"> lua</a></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<p>两个连字符（–）在Lua中表示开始一条注释</p>
+<p>Lua定义一个计算阶乘的函数：<br>–定义一个阶乘函数<br>function fact(n)<br>if n == 0 then<br>return 1<br>else<br>return n * fact(n-1)<br>end<br>end</p>
+<p>–打印<br>print(“Hello World”)</p>
+<p>–读取一个数字<br>a = io.read(“*number”)</p>
+<p>Lua执行的 每段代码，例如一个源代码文件或在交互模式中输入的一行代码，都称为一个“程序块”，一个程序块也就是一连串的语句或命令。</p>
+<p>几条连续的Lua语句之间并不需要分隔符，但也可以使用分号来分割语句。<br>代码中的换行不起任何作用<br>a = 1 b=a*2 –有点难看，但是合法</p>
+<p>程序块可以是任意大小</p>
+<h2 id="语法规范"><a href="#语法规范" class="headerlink" title="语法规范"></a>语法规范</h2><p>Lua的标识符可以是任意字母、数字和下画线构成的字符串，但不能以数字开头</p>
+<p>Lua的保留字：<br>and break do else elseif<br>end false for function if<br>in local nil not or<br>repeat return then true unitl<br>while</p>
+<p>Lua 是有大小写之分的</p>
+<p>Lua注释：<br>可以在任何地方以两个连字符（–）开始一个“行注释”，该注释一直延伸到一行的结尾。<br>Lua也提供了“块注释”，以“–[[”开始，直至“–]]”，如果块注释包含的“–]]”并非是注释结尾，例如下面的例子</p>
+<pre><code>--[[
+function fact(n)
+    if n == 0 then
+        return 1
+    else
+        return n * fact(n - 1)
+    end
+end
+--]]
+print(&quot;enter a number:&quot;)            --打印
+a = io.read(&quot;*number&quot;)              --读取一个数字
+print(fact(a))
+--]]
+</code></pre><p>如果代码中的第一个“–]]”并非是想要的块注释结尾，那么就改为以下依然合法</p>
+<pre><code>--[=[
+function fact(n)
+    if n == 0 then
+        return 1
+    else
+        return n * fact(n - 1)
+    end
+end
+--]]
+print(&quot;enter a number:&quot;)            --打印
+a = io.read(&quot;*number&quot;)              --读取一个数字
+print(fact(a))
+--]=]
+</code></pre><p>Lua全局变量：<br>全局变量不需要声明。只需要将一个值赋予一个全局变量就可以创建了。在Lua中，访问一个未初始化的变量不会引发错误，访问结果是一个特殊的值nil。</p>
+<pre><code>print(a)        --nil
+a=10
+print(a)        --10
+</code></pre><p>删除一个全局变量，只需要将其赋值为nil</p>
+<p>Lua类型与值：<br>Lua是一种动态类型的语言。在语言中没有类型定义的语法，每个值都“携带”了它本身的类型信息。<br>在Lua中有8种基础类型：nil（空），boolean（布尔），number（数字），string（字符串），userdata（自定义类型），function（函数），thread（线程），table（表）。函数type可根据一个值返回其类型名称。</p>
+<pre><code>print(type(&quot;Hello world&quot;))      --string
+print(type(10.4 * 3))           --number
+print(type(print))              --function
+print(type(type))               --function
+print(type(true))               --boolean
+print(type(nil))                --nil
+print(type(type(X)))            --string
+</code></pre><p>最后一行将永远返回“string”，而无关乎X这个值的内容，这是因为type函数总是返回一个字符串。</p>
+<p>变量没有预定义的类型，任何变量都可以包含任何类型的值：</p>
+<pre><code>print(type(a))          --nil
+a = 10
+print(type(a))          --number
+a = &quot;a string&quot;
+print(type(a))          --string
+a = print
+a(type(a))              --function
+</code></pre><p>将一个变量用于不同类型，通常会导致代码混乱，但有时明智地使用这种特性会带来便利。</p>
+<h2 id="nil（空）"><a href="#nil（空）" class="headerlink" title="nil（空）"></a>nil（空）</h2><p>nil是一种类型，只有一个值nil，它的主要功能是用于区别其他任何值。一个全局变量在第一次赋值前的默认值就是nil，将nil赋予一个全局变量等同于删除它。Lua将nil用于表示一种无效值的情况，也就是没有任何有效值的情况。</p>
+<h2 id="boolean（布尔）"><a href="#boolean（布尔）" class="headerlink" title="boolean（布尔）"></a>boolean（布尔）</h2><p>boolean类型有两个可选值：false和true，在Lua中任何值都可以表示一个条件。Lua将false和nil视为假，其他值全为真，Lua在条件测试中，将数字零和空字符串也都视为真</p>
+<h2 id="number（数字）"><a href="#number（数字）" class="headerlink" title="number（数字）"></a>number（数字）</h2><p>number类型用于表示双精度浮点数，支持科学计数法：0.3e12</p>
+<h2 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h2><p>Lua中的字符串通常表示“一个字符序列”。可以将任意二进制数据存储到一个字符串中。Lua的字符串是不可变的值，不能直接修改字符串的某个字符，而是根据修改要求来创建一个新的字符串。</p>
+<pre><code>a=&quot;Hello world&quot;
+b=string.gsub(a,&quot;world&quot;,&quot;lua&quot;)      --修改字符串的一部分
+c=string.gsub(a,&quot;o&quot;,&quot;c&quot;)
+print(a)                            --Hello world
+print(b)                            --Hello lua
+print(c)                            --Hellc wcrld
+</code></pre><p>string的gsub函数修改所有匹配到的子串。<br>Lua的字符串和其他Lua对象一样，都是自动内存管理机制所管理的对象。以一对匹配的单引号或者双引号来界定字符串，根据编程风格，应该坚持在程序中使用相同类型的引号，如果字符串本身包含引号，那么使用转义序列</p>
+<p><img src="https://img-
+blog.csdn.net/20170313192419753?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>Lua字符串中的转义序列</p>
+<p>还可以通过数值来指定字符串中的字符，数值以转义序列“\”给出，其中是一个至多3个十进制数字组成的序列。例如：<br>“alo\n123\””与字符串”\97lo\10\04923”是相同的，在ASCII中，’a’的ASCII编码是97，换行是10，’1’的编码是49.这里必须将49写成三个数字049，不然Lua会读取到数值492.</p>
+<p>另外，可以用一对匹配的双方括号来界定一个字母字符串，就像写“块注释”那样，不过Lua不会解释其中的转义序列，并且会忽略第一个字符是换行字符的部分，这种写法对于书写那种含有程序代码的字符串尤为有用。</p>
+<pre><code>page=[[
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;an html page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href=&quot;http://www.lua.org&quot;&gt;lua&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;]]
+print(page)
+print(type(page))                   --string
+</code></pre><p>Lua提供了运行时的数字与字符串的自动转换。在一个字符串上应用算术操作时，Lua会尝试将这个字符串转换成一个数字:</p>
+<pre><code>print(&quot;10&quot; + 1)         --11
+print(&quot;10+1&quot;)           --10+1
+print(&quot;hello&quot; + 1)      --报错，不能将string字符串转换成一个数字
+</code></pre><p>在Lua期望一个字符串但却得到一个数字时，它也会将数字转换成字符串：</p>
+<pre><code>a=10 .. 20
+print(10 .. 20)         --1020
+print(a)                --1020
+print(type(a))          --string
+</code></pre><p>在Lua中，“..”是字符串连接操作符，记得该操作符与数字之间必须要用空格来分隔，不然Lua会将第一个点理解为一个小数点。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2017/04/25/Lua/">https://jingfengji.github.io/2017/04/25/Lua/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2017/04/25/Unity之MessageBox/" title="Unity之MessageBox"><span>< PreviousPost</span><br><span class="prevTitle">Unity之MessageBox</span></a><a class="nextSlogan" href="/2016/12/29/Unity之事件机制/" title="Unity之事件机制"><span>NextPost ></span><br><span class="nextTitle">Unity之事件机制</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法规范"><span class="toc-number">1.</span> <span class="toc-text">语法规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nil（空）"><span class="toc-number">2.</span> <span class="toc-text">nil（空）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boolean（布尔）"><span class="toc-number">3.</span> <span class="toc-text">boolean（布尔）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#number（数字）"><span class="toc-number">4.</span> <span class="toc-text">number（数字）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string（字符串）"><span class="toc-number">5.</span> <span class="toc-text">string（字符串）</span></a></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

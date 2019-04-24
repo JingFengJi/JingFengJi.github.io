@@ -1,23 +1,119 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具 · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2018-09-09</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<h1 id="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"><a href="#Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具" class="headerlink" title="Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"></a>Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具</h1><p>NGUI使用TexturePacker打图集是一件频繁且费时的工作，只要美术稍一更新图片，就需要重新打图集，而且每次打图集的操作其实都是一样的重复劳动，基于此，开发工具批量打图集时很有必要的。</p>
+<p>使用TexturePacker打图集，会输出两个文件，一个PNG合图，一个txt图集信息文件，而到Unity中使用UIAtlas，则需要一个Material材质文件和一个Prefab预制体文件，这两个文件也由工具生成。</p>
+<p>鉴于项目不是从一开始就用该工具进行打图集工作的，因此这些文件的命名不具有统一的规范，因此使用一个配置文件来记录每个图集的输出文件信息。</p>
+<p><img src="https://img-blog.csdn.net/20180909133119352?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<h3 id="Atlas-ini图集配置文件"><a href="#Atlas-ini图集配置文件" class="headerlink" title="Atlas.ini图集配置文件"></a>Atlas.ini图集配置文件</h3><p>该文件以CSV格式进行配置，共有5列，图片文件夹相对路径、PNG合图输出路径、txt图集信息文件输出路径、UIAtlasPrefab输出路径、Material材质输出路径，后面四个输出路径都是基于Unity工程的Assets目录。</p>
+<h3 id="命令行打图集"><a href="#命令行打图集" class="headerlink" title="命令行打图集"></a>命令行打图集</h3><p>TexturePacker支持使用命令行打图集</p>
+<pre><code>$TexturePacker_PATH $imgDir --max-size 4096 --allow-free-size --format unity --size-constraints POT --shape-padding 2 --border-padding 2 --common-divisor-x 1 --common-divisor-y 1 --disable-rotation --algorithm MaxRects --opt RGBA8888 --scale 1 --scale-mode Smooth --smart-update --sheet $ASSETS_PATH$atlasPng --data $ASSETS_PATH$atlasData
+</code></pre><p>详细命令行介绍请自行搜索相关文档</p>
+<h3 id="一键批量设置图片资源设置"><a href="#一键批量设置图片资源设置" class="headerlink" title="一键批量设置图片资源设置"></a>一键批量设置图片资源设置</h3><p>PNG合图文件输出到Unity后，通过使用Unity提供的TextureImporter类和TextImporterPlatformSetting类进行图片设置</p>
+<h3 id="生成材质和Prefab问阿金并自动关联引用"><a href="#生成材质和Prefab问阿金并自动关联引用" class="headerlink" title="生成材质和Prefab问阿金并自动关联引用"></a>生成材质和Prefab问阿金并自动关联引用</h3><p>材质使用的Shader是“Unlit/Transparent<br>Colored”，mainTexture则为TexturePacker输出的合图，创建Prefab，并Add UIAtlas<br>Component，给UIAtlas组件导入texture和txt图集信息文件</p>
+<pre><code>NGUIEditorTools.ImportTexture(uiAtlas.texture, false, false, !uiAtlas.premultipliedAlpha);
+NGUIJson.LoadSpriteData(uiAtlas, atlasTextAsset);
+</code></pre><h3 id="UIAtlas信息拷贝"><a href="#UIAtlas信息拷贝" class="headerlink" title="UIAtlas信息拷贝"></a>UIAtlas信息拷贝</h3><p>创建图集后，有时需要拷贝另一个图集的border和padding信息，例如两个图集内容其实是一直的，只是皮肤颜色不一样（换肤图集），因此这两个图集的border和padding数据是一样的，提供工具进行数据拷贝。</p>
+<p><img src="https://img-blog.csdn.net/20180909131827960?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<h3 id="清理Editor进度条"><a href="#清理Editor进度条" class="headerlink" title="清理Editor进度条"></a>清理Editor进度条</h3><p>为避免Atlas.ini配置错误，导致打图集中断，而EditorUtility.DisplayProgressBar进度条无法清除，提供Editor进度条清理功能，菜单栏Tools-&gt;清理进度条</p>
+<h3 id="工程下载"><a href="#工程下载" class="headerlink" title="工程下载"></a>工程下载</h3><p>GitHub地址： <a href="https://github.com/JingFengJi/CreateAtlas" target="_blank" rel="noopener"> https://github.com/JingFengJi/CreateAtlas</a></p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2018/09/09/Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具/">https://jingfengji.github.io/2018/09/09/Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2018/12/22/Unity编辑器拓展之二十三：基于ObjectField的FileField/" title="Unity编辑器拓展之二十三：基于ObjectField的FileField"><span>< PreviousPost</span><br><span class="prevTitle">Unity编辑器拓展之二十三：基于ObjectField的FileField</span></a><a class="nextSlogan" href="/2018/08/22/Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）/" title="Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）"><span>NextPost ></span><br><span class="nextTitle">Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具"><span class="toc-number">1.</span> <span class="toc-text">Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Atlas-ini图集配置文件"><span class="toc-number">1.0.1.</span> <span class="toc-text">Atlas.ini图集配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行打图集"><span class="toc-number">1.0.2.</span> <span class="toc-text">命令行打图集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一键批量设置图片资源设置"><span class="toc-number">1.0.3.</span> <span class="toc-text">一键批量设置图片资源设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成材质和Prefab问阿金并自动关联引用"><span class="toc-number">1.0.4.</span> <span class="toc-text">生成材质和Prefab问阿金并自动关联引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIAtlas信息拷贝"><span class="toc-number">1.0.5.</span> <span class="toc-text">UIAtlas信息拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#清理Editor进度条"><span class="toc-number">1.0.6.</span> <span class="toc-text">清理Editor进度条</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工程下载"><span class="toc-number">1.0.7.</span> <span class="toc-text">工程下载</span></a></li></ol></li></ol></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

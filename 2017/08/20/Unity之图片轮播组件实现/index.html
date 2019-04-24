@@ -1,23 +1,673 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Unity之图片轮播组件实现 · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Unity之图片轮播组件实现</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2017-08-20</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<p>游戏中有时候会见到图片轮播的效果，那么这里就自己封装了一个，包括自动轮播、切页按钮控制、页码下标更新、滑动轮播、切页后的回调等等<br>下面，先上一个简陋的gif动态效果图</p>
+<p><img src="https://img-blog.csdn.net/20170820225254127?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>从图中可以看出，该示例包括了三张图片的轮播，左右分别是上一张和下一张的按钮，右下角显示了当前是第几章的页码下标。</p>
+<p>直接上脚本：</p>
+<pre><code>using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace UnityEngine.UI
+{
+    [AddComponentMenu(&quot;UI/Slidershow&quot;, 39)]          //添加菜单
+    [ExecuteInEditMode]                             //编辑模式下可执行
+    [DisallowMultipleComponent]                     //不可重复
+    [RequireComponent(typeof(RectTransform))]       //依赖于RectTransform组件
+    public class Slideshow : UIBehaviour,IPointerDownHandler,IPointerUpHandler
+    {
+        public enum MovementType
+        {
+            /// &lt;summary&gt;
+            /// 循环
+            /// &lt;/summary&gt;
+            Circulation,        //循环，轮播到最后一页之后，直接回到第一页
+
+            /// &lt;summary&gt;
+            /// 来回往复
+            /// &lt;/summary&gt;
+            PingPong,           //来回往复，轮播到最后一页之后，倒序轮播，到第一页之后，同理
+        }
+
+        public enum MoveDir
+        {
+            Left,
+            Right,
+        }
+
+        [SerializeField]
+        private MovementType m_movement = MovementType.Circulation;
+        public MovementType Movement { get { return m_movement; } set { m_movement = value; } }
+
+        [SerializeField]
+        private RectTransform m_content;
+        public RectTransform Content { get { return m_content; } set { m_content = value; } }
+
+        [SerializeField]
+        private Button m_lastPageButton;
+        public Button LastPageButton { get { return m_lastPageButton; } set { m_lastPageButton = value; } }
+
+        [SerializeField]
+        private Button m_nextPageButton;
+        public Button NextPageButton { get { return m_nextPageButton; } set { m_nextPageButton = value; } }
+
+        /// &lt;summary&gt;
+        /// 自动轮播时长
+        /// &lt;/summary&gt;
+        [SerializeField]
+        private float m_showTime = 2.0f;
+        public float ShowTime { get { return m_showTime; } set { m_showTime = value; } }
+
+        /// &lt;summary&gt;
+        /// 是否自动轮播
+        /// &lt;/summary&gt;
+        [SerializeField]
+        private bool m_autoSlide = false;
+        public bool AutoSlide { get { return m_autoSlide; }set { m_autoSlide = value; } }
+
+        /// &lt;summary&gt;
+        /// 自动轮播方向，-1表示向左，1表示向右
+        /// &lt;/summary&gt;
+        private MoveDir m_autoSlideDir = MoveDir.Right;
+
+        /// &lt;summary&gt;
+        /// 是否允许拖动切页
+        /// &lt;/summary&gt;
+        [SerializeField]
+        private bool m_allowDrag = true;
+        public bool AllowDrag { get { return m_allowDrag; }set { m_allowDrag = value; } }
+
+        /// &lt;summary&gt;
+        /// 当前显示页的页码，下标从0开始
+        /// &lt;/summary&gt;
+        private int m_curPageIndex = 0;
+        public int CurPageIndex { get { return m_curPageIndex; } }
+
+        /// &lt;summary&gt;
+        /// 最大页码
+        /// &lt;/summary&gt;
+        private int m_maxPageIndex = 0;
+        public int MaxPageIndex { get { return m_maxPageIndex; } }
+
+        /// &lt;summary&gt;
+        /// 圆圈页码ToggleGroup
+        /// &lt;/summary&gt;
+        [SerializeField]
+        private ToggleGroup m_pageToggleGroup;
+        public ToggleGroup PageToggleGroup { get { return m_pageToggleGroup; } set { m_pageToggleGroup = value; } }
+
+        /// &lt;summary&gt;
+        /// 圆圈页码Toggle List
+        /// &lt;/summary&gt;
+        private List&lt;Toggle&gt; m_pageToggleList;
+        public List&lt;Toggle&gt; PageToggleLise { get { return m_pageToggleList; }}
+
+        //item数目
+        private int m_itemNum = 0;
+        public int ItemNum { get { return m_itemNum; } }
+
+        //以Toggle为Key，返回页码
+        private Dictionary&lt;Toggle, int&gt; m_togglePageNumDic = null;
+
+        private float m_time = 0f;
+
+        private List&lt;float&gt; m_childItemPos = new List&lt;float&gt;();
+
+        private GridLayoutGroup m_grid = null;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            if (null == m_content)
+            {
+                throw new Exception(&quot;Slideshow content is null&quot;);
+            }
+            else
+            {
+                m_grid = m_content.GetComponent&lt;GridLayoutGroup&gt;();
+                if (m_grid == null)
+                {
+                    throw new Exception(&quot;Slideshow content is miss GridLayoutGroup Component&quot;);
+                }
+                InitChildItemPos();
+            }
+
+
+            if (null != m_lastPageButton)
+            {
+                m_lastPageButton.onClick.AddListener(OnLastPageButtonClick);
+            }
+            if (null != m_nextPageButton)
+            {
+                m_nextPageButton.onClick.AddListener(OnNextPageButtonClick);
+            }
+            if (null != m_pageToggleGroup)
+            {
+                int toggleNum = m_pageToggleGroup.transform.childCount;
+                if (toggleNum &gt; 0)
+                {
+                    m_pageToggleList = new List&lt;Toggle&gt;();
+                    m_togglePageNumDic = new Dictionary&lt;Toggle, int&gt;();
+                    for (int i = 0; i &lt; toggleNum; i++)
+                    {
+                        Toggle childToggle = m_pageToggleGroup.transform.GetChild(i).GetComponent&lt;Toggle&gt;();
+                        if (null != childToggle)
+                        {
+                            m_pageToggleList.Add(childToggle);
+                            m_togglePageNumDic.Add(childToggle, i);
+                            childToggle.onValueChanged.AddListener(OnPageToggleValueChanged);
+                        }
+                    }
+                    m_itemNum = m_pageToggleList.Count;
+                    m_maxPageIndex = m_pageToggleList.Count - 1;
+                }
+            }
+            UpdateCutPageButtonActive(m_curPageIndex);
+        }
+
+        private void InitChildItemPos()
+        {
+            int childCount = m_content.transform.childCount;
+            float cellSizeX = m_grid.cellSize.x;
+            float spacingX = m_grid.spacing.x;
+            float posX = -cellSizeX * 0.5f;
+            m_childItemPos.Add(posX);
+            for (int i = 1; i &lt; childCount; i++)
+            {
+                posX -= cellSizeX + spacingX;
+                m_childItemPos.Add(posX);
+            }
+        }
+
+        private void OnPageToggleValueChanged(bool ison)
+        {
+            if (ison)
+            {
+                Toggle activeToggle = GetActivePageToggle();
+                if (m_togglePageNumDic.ContainsKey(activeToggle))
+                {
+                    int page = m_togglePageNumDic[activeToggle];
+                    SwitchToPageNum(page);
+                }
+            }
+        }
+
+        private Toggle GetActivePageToggle()
+        {
+            if (m_pageToggleGroup == null || m_pageToggleList == null || m_pageToggleList.Count &lt;= 0)
+            {
+                return null;
+            }
+            for (int i = 0; i &lt; m_pageToggleList.Count; i++)
+            {
+                if (m_pageToggleList[i].isOn)
+                {
+                    return m_pageToggleList[i];
+                }
+            }
+            return null;
+        }
+
+        /// &lt;summary&gt;
+        /// 切换至某页
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;pageNum&quot;&gt;页码&lt;/param&gt;
+        private void SwitchToPageNum(int pageNum)
+        {
+            if (pageNum &lt; 0 || pageNum &gt; m_maxPageIndex)
+            {
+                throw new Exception(&quot;page num is error&quot;);
+            }
+            if (pageNum == m_curPageIndex)
+            {
+                //目标页与当前页是同一页
+                return;
+            }
+            m_curPageIndex = pageNum;
+            if (m_movement == MovementType.PingPong)
+            {
+                UpdateCutPageButtonActive(m_curPageIndex);
+            }
+            Vector3 pos = m_content.localPosition;
+            m_content.localPosition = new Vector3(m_childItemPos[m_curPageIndex], pos.y, pos.z);
+            m_pageToggleList[m_curPageIndex].isOn = true;
+
+            if (m_onValueChanged != null)
+            {
+                //执行回调
+                m_onValueChanged.Invoke(m_pageToggleList[m_curPageIndex].gameObject);
+            }
+        }
+
+        /// &lt;summary&gt;
+        /// 根据页码更新切页按钮active
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;pageNum&quot;&gt;&lt;/param&gt;
+        private void UpdateCutPageButtonActive(int pageNum)
+        {
+            if (pageNum == 0)
+            {
+                UpdateLastButtonActive(false);
+                UpdateNextButtonActive(true);
+            }
+            else if (pageNum == m_maxPageIndex)
+            {
+                UpdateLastButtonActive(true);
+                UpdateNextButtonActive(false);
+            }
+            else
+            {
+                UpdateLastButtonActive(true);
+                UpdateNextButtonActive(true);
+            }
+        }
+
+        private void OnNextPageButtonClick()
+        {
+            m_time = Time.time;     //重新计时
+            switch (m_movement)
+            {
+                case MovementType.Circulation:
+                    SwitchToPageNum((m_curPageIndex + 1) % m_itemNum);
+                    break;
+                case MovementType.PingPong:
+                    //该模式下，会自动隐藏切页按钮
+                    SwitchToPageNum(m_curPageIndex + 1);
+                    break;
+                default:
+                    break;
+            }
+            Debug.Log(m_content.localPosition);
+        }
+
+        private void OnLastPageButtonClick()
+        {
+            m_time = Time.time; //重新计时
+            switch (m_movement)
+            {
+                case MovementType.Circulation:
+                    SwitchToPageNum((m_curPageIndex + m_itemNum - 1) % m_itemNum);
+                    break;
+                case MovementType.PingPong:
+                    //该模式下，会自动隐藏切页按钮
+                    SwitchToPageNum(m_curPageIndex - 1);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void UpdateLastButtonActive(bool activeSelf)
+        {
+            if (null == m_lastPageButton)
+            {
+                throw new Exception(&quot;Last Page Button is null&quot;);
+            }
+            bool curActive = m_lastPageButton.gameObject.activeSelf;
+            if (curActive != activeSelf)
+            {
+                m_lastPageButton.gameObject.SetActive(activeSelf);
+            }
+        }
+
+        private void UpdateNextButtonActive(bool activeSelf)
+        {
+            if (null == m_nextPageButton)
+            {
+                throw new Exception(&quot;Next Page Button is null&quot;);
+            }
+            bool curActive = m_nextPageButton.gameObject.activeSelf;
+            if (curActive != activeSelf)
+            {
+                m_nextPageButton.gameObject.SetActive(activeSelf);
+            }
+        }
+
+        private Vector3 m_originDragPos = Vector3.zero;
+        private Vector3 m_desDragPos = Vector3.zero;
+        private bool m_isDrag = false;
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (!m_allowDrag)
+            {
+                return;
+            }
+            if (eventData.button != PointerEventData.InputButton.Left)
+            {
+                return;
+            }
+            if (!IsActive())
+            {
+                return;
+            }
+
+            m_isDrag = true;
+            m_originDragPos = eventData.position;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            m_desDragPos = eventData.position;
+            MoveDir dir = MoveDir.Right;
+            if (m_desDragPos.x &lt; m_originDragPos.x)
+            {
+                dir = MoveDir.Left;
+            }
+            switch (dir)
+            {
+                case MoveDir.Left:
+                    if (m_movement == MovementType.Circulation || (m_movement == MovementType.PingPong &amp;&amp; m_curPageIndex != 0))
+                    {
+                        OnLastPageButtonClick();
+                    }
+
+                    break;
+                case MoveDir.Right:
+                    if (m_movement == MovementType.Circulation || (m_movement == MovementType.PingPong &amp;&amp; m_curPageIndex != m_maxPageIndex))
+                    {
+                        OnNextPageButtonClick();
+                    }
+                    break;
+            }
+            m_isDrag = false;
+        }
+
+        /// &lt;summary&gt;
+        /// 切页后回调函数
+        /// &lt;/summary&gt;
+        [Serializable]
+        public class SlideshowEvent : UnityEvent&lt;GameObject&gt; { }
+
+        [SerializeField]
+        private SlideshowEvent m_onValueChanged = new SlideshowEvent();
+        public SlideshowEvent OnValueChanged { get { return m_onValueChanged; } set { m_onValueChanged = value; } }
+
+        public override bool IsActive()
+        {
+            return base.IsActive() &amp;&amp; m_content != null;
+        }
+
+        private void Update()
+        {
+            if (m_autoSlide &amp;&amp; !m_isDrag)
+            {
+                if (Time.time &gt; m_time + m_showTime)
+                {
+                    m_time = Time.time;
+                    switch (m_movement)
+                    {
+                        case MovementType.Circulation:
+                            m_autoSlideDir = MoveDir.Right;
+                            break;
+                        case MovementType.PingPong:
+                            if (m_curPageIndex == 0)
+                            {
+                                m_autoSlideDir = MoveDir.Right;
+                            }
+                            else if (m_curPageIndex == m_maxPageIndex)
+                            {
+                                m_autoSlideDir = MoveDir.Left;
+                            }
+                            break;
+                    }
+                    switch (m_autoSlideDir)
+                    {
+                        case MoveDir.Left:
+                            OnLastPageButtonClick();
+                            break;
+                        case MoveDir.Right:
+                            OnNextPageButtonClick();
+                            break;
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre><p>这里提供了一个枚举MovementType，该枚举定义了两种循环方式，其中Circulation循环，是指轮播到最后一页之后，直接回到第一页；而PingPong相信大家你熟悉了，就是来回往复的。</p>
+<p>其中还提供了对每张图显示的时长进行设置，还有是否允许自动轮播的控制，是否允许拖动切页控制，等等。。其实将图片作为轮播子元素只是其中之一而已，完全可以将ScrollRect作为轮播子元素，这样每个子元素又可以滑动阅览了。。</p>
+<p>这里还提供了两个编辑器脚本，一个是SlideshowEditor（依赖Slideshow组件），另一个是给用户提供菜单用的CreateSlideshow，代码分别如下：</p>
+<pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class CreateSlideshow : Editor
+{
+    private static GameObject m_slideshowPrefab = null;
+
+    private static GameObject m_canvas = null;
+
+    [MenuItem(&quot;GameObject/UI/Slideshow&quot;)]
+    static void CreateSlideshowUI(MenuCommand menuCommand)
+    {
+        if (null == m_slideshowPrefab)
+        {
+            m_slideshowPrefab = Resources.Load&lt;GameObject&gt;(&quot;Slideshow&quot;);
+            if (null == m_slideshowPrefab)
+            {
+                Debug.LogError(&quot;Prefab Slideshow is null&quot;);
+                return;
+            }
+        }
+
+        m_canvas = menuCommand.context as GameObject;
+        if (m_canvas == null || m_canvas.GetComponentInParent&lt;Canvas&gt;() == null)
+        {
+            m_canvas = GetOrCreateCanvasGameObject();
+        }
+
+        GameObject go = GameObject.Instantiate(m_slideshowPrefab, m_canvas.transform);
+        go.transform.localPosition = Vector3.zero;
+        go.name = &quot;Slideshow&quot;;
+        Selection.activeGameObject = go;
+    }
+
+    static public GameObject GetOrCreateCanvasGameObject()
+    {
+        GameObject selectedGo = Selection.activeGameObject;
+
+        Canvas canvas = (selectedGo != null) ? selectedGo.GetComponentInParent&lt;Canvas&gt;() : null;
+        if (canvas != null &amp;&amp; canvas.gameObject.activeInHierarchy)
+            return canvas.gameObject;
+
+        canvas = Object.FindObjectOfType(typeof(Canvas)) as Canvas;
+        if (canvas != null &amp;&amp; canvas.gameObject.activeInHierarchy)
+            return canvas.gameObject;
+
+        return CreateCanvas();
+    }
+
+    public static GameObject CreateCanvas()
+    {
+        var root = new GameObject(&quot;Canvas&quot;);
+        root.layer = LayerMask.NameToLayer(&quot;UI&quot;);
+        Canvas canvas = root.AddComponent&lt;Canvas&gt;();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        root.AddComponent&lt;CanvasScaler&gt;();
+        root.AddComponent&lt;GraphicRaycaster&gt;();
+        Undo.RegisterCreatedObjectUndo(root, &quot;Create &quot; + root.name);
+
+        CreateEventSystem();
+        return root;
+    }
+
+    public static void CreateEventSystem()
+    {
+        var esys = Object.FindObjectOfType&lt;EventSystem&gt;();
+        if (esys == null)
+        {
+            var eventSystem = new GameObject(&quot;EventSystem&quot;);
+            GameObjectUtility.SetParentAndAlign(eventSystem, null);
+            esys = eventSystem.AddComponent&lt;EventSystem&gt;();
+            eventSystem.AddComponent&lt;StandaloneInputModule&gt;();
+
+            Undo.RegisterCreatedObjectUndo(eventSystem, &quot;Create &quot; + eventSystem.name);
+        }
+    }
+}
+
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor.Advertisements;
+using UnityEngine.UI;
+
+namespace UnityEditor.UI
+{
+    [CustomEditor(typeof(Slideshow), true)]
+    public class SlideshowEditor : Editor
+    {
+        SerializedProperty m_movement;
+        SerializedProperty m_content;
+        SerializedProperty m_lastPageButton;
+        SerializedProperty m_nextPageButton;
+        SerializedProperty m_showTime;
+        SerializedProperty m_pageToggleGroup;
+        SerializedProperty m_onValueChanged;
+        SerializedProperty m_allowDrag;
+        SerializedProperty m_autoSlide;
+
+        protected virtual void OnEnable()
+        {
+            m_movement = serializedObject.FindProperty(&quot;m_movement&quot;);
+            m_content = serializedObject.FindProperty(&quot;m_content&quot;);
+            m_lastPageButton = serializedObject.FindProperty(&quot;m_lastPageButton&quot;);
+            m_nextPageButton = serializedObject.FindProperty(&quot;m_nextPageButton&quot;);
+            m_showTime = serializedObject.FindProperty(&quot;m_showTime&quot;);
+            m_pageToggleGroup = serializedObject.FindProperty(&quot;m_pageToggleGroup&quot;);
+            m_onValueChanged = serializedObject.FindProperty(&quot;m_onValueChanged&quot;);
+            m_allowDrag = serializedObject.FindProperty(&quot;m_allowDrag&quot;);
+            m_autoSlide = serializedObject.FindProperty(&quot;m_autoSlide&quot;);
+        }
+
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            EditorGUILayout.PropertyField(m_movement);
+            EditorGUILayout.PropertyField(m_content);
+            EditorGUILayout.PropertyField(m_lastPageButton);
+            EditorGUILayout.PropertyField(m_nextPageButton);
+            EditorGUILayout.PropertyField(m_allowDrag);
+            EditorGUILayout.PropertyField(m_autoSlide);
+            EditorGUILayout.PropertyField(m_showTime);
+            EditorGUILayout.PropertyField(m_pageToggleGroup);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(m_onValueChanged);
+
+            //不加这句代码，在编辑模式下，无法将物体拖拽赋值
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+}
+</code></pre><p>这两个脚本中使用了一些拓展编辑器的知识，后续在另外写博客介绍<br>其中脚本CreateSlideshow中使用UGUI源码中的DefaultControls脚本里的方法，有兴趣可以去下载查阅。<br>Demo工程下载地址如下：<br>链接： <a href="http://pan.baidu.com/s/1i4Rralf" target="_blank" rel="noopener"> http://pan.baidu.com/s/1i4Rralf </a><br>密码：7loe<br>链接如有私有，请及时联系补充</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2017/08/20/Unity之图片轮播组件实现/">https://jingfengji.github.io/2017/08/20/Unity之图片轮播组件实现/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2017/09/01/Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）/" title="Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）"><span>< PreviousPost</span><br><span class="prevTitle">Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）</span></a><a class="nextSlogan" href="/2017/08/09/Unity之UGUI脚本自动生成/" title="Unity之UGUI脚本自动生成"><span>NextPost ></span><br><span class="nextTitle">Unity之UGUI脚本自动生成</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

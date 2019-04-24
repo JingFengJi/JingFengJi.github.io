@@ -1,23 +1,153 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>UGUI之Horizontal Layout Group组件介绍 · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">UGUI之Horizontal Layout Group组件介绍</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2016-11-30</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<p>Horizontal Layout<br>Group是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类</p>
+<p>脚本截图如下：<br><img src="https://img-blog.csdn.net/20161130105302623" alt="这里写图片描述"></p>
+<p>图中包括以下属性：<br>1、Padding：RectOffset类型，矩形偏移<br>源码如下：</p>
+<pre><code>public sealed class RectOffset
+{
+    public RectOffset();
+    public RectOffset(int left, int right, int top, int bottom);
+
+    ~RectOffset();
+
+    public int bottom { get; set; }       //底边缘
+    public int horizontal { get; }        //水平
+    public int left { get; set; }         //左边缘
+    public int right { get; set; }        //右边缘
+    public int top { get; set; }          //顶边缘
+    public int vertical { get; }          //垂直
+
+    public Rect Add(Rect rect);           //向一个Rect添加边框偏移
+    public Rect Remove(Rect rect);        //从一个Rect移除边框偏移
+    public override string ToString();      
+}
+</code></pre><p>如下面几个图中：<br>图一：默认情况</p>
+<p><img src="https://img-blog.csdn.net/20161130112111669" alt="这里写图片描述"></p>
+<p>图二：只改变Padding</p>
+<p><img src="https://img-blog.csdn.net/20161130112316107" alt="这里写图片描述"></p>
+<p>当Padding中的边缘大小过大时，会自动缩放布局元素以保持布局元素均在边框内，从下图可以看出<br>图三<br><img src="https://img-blog.csdn.net/20161130113434288" alt="这里写图片描述"></p>
+<p>2、Spacing：float类型<br>布局元素之间的间隔</p>
+<p>图四：只改变Spacing</p>
+<p><img src="https://img-blog.csdn.net/20161130112521843" alt="这里写图片描述"></p>
+<p>当Spacing过大，会自动缩放布局元素以保持布局元素均在边框内，从下图可以看出布局元素宽度缩小了<br>图五：</p>
+<p><img src="https://img-blog.csdn.net/20161130112740875" alt="这里写图片描述"></p>
+<p>3、Child Alignment：TextAnchor枚举类型，文本锚点<br>源码如下：</p>
+<pre><code>public enum TextAnchor
+{
+    UpperLeft = 0,           //上左
+    UpperCenter = 1,         //上中
+    UpperRight = 2,          //上右
+    MiddleLeft = 3,          //中左
+    MiddleCenter = 4,        //中中
+    MiddleRight = 5,         //中右
+    LowerLeft = 6,           //下左
+    LowerCenter = 7,         //下中
+    LowerRight = 8           //下右
+}
+</code></pre><p>4、Child Force Expand：有两个可选<br>（1）Width：是否强行扩大布局元素宽度以填补额外可用的空间<br>（2）Height：是否强行扩大布局元素高度以填补额外可用的空间<br>下面结合截图来说明：<br>图六：勾选Width，填补宽度<br><img src="https://img-blog.csdn.net/20161130113918270" alt="这里写图片描述"></p>
+<p>图七：勾选Height，填补高度<br><img src="https://img-blog.csdn.net/20161130114007873" alt="这里写图片描述"></p>
+<p>图八：勾选Width和Height，填补宽度和高度<br><img src="https://img-blog.csdn.net/20161130114047546" alt="这里写图片描述"></p>
+<p>从以上三图结合图一默认图可以看出其具体效果</p>
+<p>实际开发中，我经常结合Content Size Fitter组件一起使用<br><img src="https://img-blog.csdn.net/20161130114433364" alt="这里写图片描述"></p>
+<p>关于UI布局，大家开发的多了，就熟练了。</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2016/11/30/UGUI之Horizontal Layout Group组件介绍/">https://jingfengji.github.io/2016/11/30/UGUI之Horizontal Layout Group组件介绍/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2016/11/30/UGUI之Vertical Layout Group组件介绍/" title="UGUI之Vertical Layout Group组件介绍"><span>< PreviousPost</span><br><span class="prevTitle">UGUI之Vertical Layout Group组件介绍</span></a><a class="nextSlogan" href="/2016/11/29/UGUI之Content Size Fitter组件/" title="UGUI之Content Size Fitter组件"><span>NextPost ></span><br><span class="nextTitle">UGUI之Content Size Fitter组件</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

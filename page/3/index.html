@@ -1,9 +1,207 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  include includes/recent-posts.pug
-  include includes/partial/page-nav.pug
-    
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
 
 
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1>Mr.Long's Blog</h1><h5>Welcome to my Blog!</h5><div class="intro-social"><a class="fa fa-github" href="//github.com/" target="_blank" title="github"></a><a class="fa fa-weibo" href="//www.weibo.com" target="_blank" title="weibo"></a><a class="fa fa-facebook" href="//www.facebook.com" target="_blank" title="facebook"></a><a class="fa fa-twitter" href="//twitter.com" target="_blank" title="twitter"></a><a class="fa fa-rss" href="/atom.xml" target="_blank" title="rss"></a></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><section id="recent-posts"><div class="recent-post-item"><div class="post-title"><a href="/2018/04/05/Unity编辑器拓展之六：利用反射打开Unity Preferences Window/">Unity编辑器拓展之六：利用反射打开Unity Preferences Window</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2018-04-05T13:54:45.000Z">2018-04-05</time></div><div class="recent-post-content">
 
+如何利用反射打开Unity Preferences WindowUnity Preferences Window如下图所示：
+
+作为Unity 的参数设置窗口，这个窗口支持新增项，当然本文不介绍这个内容，本次介绍如何利用反射、以及UnityEditor代码来实现用代码打开Preferences Window以及设置选中项。
+使用ILSpy工具反编译UnityEditor.dll后呢，在下图目录中的PreferencesWinndow.cs脚本
+
+里面有一个接口是”ShowPreferencesWindow”，从字面上就可以理解到是用来打开PreferencesWindow的。
+privat ...</div><div class="read-more"><a class="more" href="/2018/04/05/Unity编辑器拓展之六：利用反射打开Unity Preferences Window/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/12/28/Unity编辑器拓展之五：修改脚本icon/">Unity编辑器拓展之五：修改脚本icon</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-12-27T16:15:40.000Z">2017-12-28</time></div><div class="recent-post-content">
+
+Unity修改脚本在Project面板中显示的icon有两种方法，先看示意图：
+方法1：修改脚本的meta文件脚本的 meta文件默认如下所示：
+
+注意到，图中的icon，填的“instanceID = 0”即为默认显示
+在里面填入icon文件的fileid和guid，如下所示，即可实现。
+
+方法二：简单粗暴，Unity直接可以设置。。。
+
+以上知识分享，如有错误，欢迎指出，共同学习，共同进步。
+</div><div class="read-more"><a class="more" href="/2017/12/28/Unity编辑器拓展之五：修改脚本icon/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/11/12/Unity编辑器拓展之四：ConsoleWindow中的双击日志定位/">Unity编辑器拓展之四：ConsoleWindow中的双击日志定位</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-11-12T15:21:54.000Z">2017-11-12</time></div><div class="recent-post-content">
+
+原文地址：  http://blog.csdn.net/l449612236/article/details/76087616
+感谢上位博主的分享。
+本文在此基础上，做了分析加上了更加详细的介绍。
+新建LogEditor脚本直接上源码以及注释：
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+
+public class LogEditor 
+{
+    private class LogEditorConfig
+    {
+        public string logScriptPath = &quot;& ...</div><div class="read-more"><a class="more" href="/2017/11/12/Unity编辑器拓展之四：ConsoleWindow中的双击日志定位/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/11/07/Unity插件推荐/">Unity插件推荐</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-11-06T16:11:54.000Z">2017-11-07</time></div><div class="recent-post-content">
+
+一、可视化PlayerPrefsAdvanced PlayerPrefs Window插件是一款PlayerPrefs数据的可视化管理插件
+下载地址： http://www.taidous.com/forum.php?mod=viewthread&amp;tid=59744&amp;highlight=PlayerPrefs
+或者链接：  http://pan.baidu.com/s/1bpg0AYF 密码：w9vm
+插件界面如下图所示：
+
+插件代码分析：至于编辑器的代码就不解释了，主要来看一下该插件是如何获取到工程里关于PlayerPrefs数据的所有的key 的。先看一下官方文档中关于 ...</div><div class="read-more"><a class="more" href="/2017/11/07/Unity插件推荐/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/11/04/Unity与Android之二：获取手机电量信息、网络状况/">Unity&amp;Android之二：获取手机电量信息、网络状况</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-11-04T08:12:19.000Z">2017-11-04</time></div><div class="recent-post-content">
+
+Unity&amp;Android之二：获取手机电量信息、网络状况游戏中经常会在UI显示电量以及网络状况
+手机电量包括：1、当前正在充电还是放电2、当前电量值
+网络包括：1、如果是WIFI，WIFI信号强度2、如果是流量，信号强度等数据
+例如王者荣耀中右上角所示
+那么接下来就介绍一下如何实现获取手机电量信息以及网络状况等数据。
+1、打开Eclipse建一个安卓库工程，注意是库工程
+这里注意一下包名
+
+Icon显示方式选择，默认即可
+
+选择一个空的activity
+
+安卓Activity名称，默认即可，Finish
+
+创建完之后，就会得到这样一个工程
+
+至于目录结构，请自行补充相关知识
+工程 ...</div><div class="read-more"><a class="more" href="/2017/11/04/Unity与Android之二：获取手机电量信息、网络状况/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/11/04/Unity与Android之一：手机震动/">Unity&amp;Android之一：手机震动</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-11-03T16:06:42.000Z">2017-11-04</time></div><div class="recent-post-content">
+
+Unity调用手机震动在游戏中，有时为了增加游戏的打击感，会使用手机震动。关于手机震动其实很简单。
+实现步骤Unity中提供了一个接口
+Handheld.Vibrate();
+该接口无需做平台判断。官方介绍：Triggers device vibration.翻译就是指触发装置振动。https://docs.unity3d.com/2017.3/Documentation/ScriptReference/Handheld.Vibrate.html
+该接口无法为振动设置时长、频率等。如有需要，安卓则需要通过获取系统服务后开启振动
+public void Shake()
+    {
+      ...</div><div class="read-more"><a class="more" href="/2017/11/04/Unity与Android之一：手机震动/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/">Unity编辑器拓展之三：拓展Unity的Hierarchy面板</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-09-16T13:58:42.000Z">2017-09-16</time></div><div class="recent-post-content">
+
+效果图：
+
+上图中在Hierarchy右侧绘制了Toggle，Label，以及自定义的texture和Unity原声的Texture，知道了原理，其实这些都很简单。。
+这里主要是使用了EditorApplication类下的HierarchyWindowItemCallback类型的hierarchyWindowItemOnGUI
+//
+// 摘要:
+//     ///
+//     Delegate to be called for every visible list item in the HierarchyWindow on every
+//     OnGUI event.
+/ ...</div><div class="read-more"><a class="more" href="/2017/09/16/Unity编辑器拓展之三：拓展Unity的Hierarchy面板/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/09/02/Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）/">Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-09-02T08:07:25.000Z">2017-09-02</time></div><div class="recent-post-content">
+
+先看效果gif图：
+如果没有看过Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）的，可以先看这一篇： http://blog.csdn.net/qq_26999509/article/details/77782177
+在此基础上，来绘制更加复杂的类
+先提供一个需要绘制的类
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+
+public class CharacterTest : MonoBehaviour 
+{
+   ...</div><div class="read-more"><a class="more" href="/2017/09/02/Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/09/01/Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）/">Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-09-01T15:28:46.000Z">2017-09-01</time></div><div class="recent-post-content">
+
+可重新排序的列表框先看效果图：
+UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。
+基本使用：名称 描述draggable 拖曳排序displayAdd 显示添加按钮displayRemove 显示移除按钮elementHeight 元素高度headerHeight 表头高度footerHeight 尾部高度showDefaultBackground 显示默认背景drawHeaderCallback 绘制表头回调drawFooterCallback 绘制尾部回调drawElementCallback 绘制元素 ...</div><div class="read-more"><a class="more" href="/2017/09/01/Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）/#more">ReadMore</a></div><hr></div><div class="recent-post-item"><div class="post-title"><a href="/2017/08/20/Unity之图片轮播组件实现/">Unity之图片轮播组件实现</a></div><div class="post-time"><i class="fa fa-table"></i><time datetime="2017-08-20T15:07:12.000Z">2017-08-20</time></div><div class="recent-post-content">
+
+游戏中有时候会见到图片轮播的效果，那么这里就自己封装了一个，包括自动轮播、切页按钮控制、页码下标更新、滑动轮播、切页后的回调等等下面，先上一个简陋的gif动态效果图
+
+从图中可以看出，该示例包括了三张图片的轮播，左右分别是上一张和下一张的按钮，右下角显示了当前是第几章的页码下标。
+直接上脚本：
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems; ...</div><div class="read-more"><a class="more" href="/2017/08/20/Unity之图片轮播组件实现/#more">ReadMore</a></div><hr></div></section><nav class="cxo-page-nav"><a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">NEXT &#62;</a></nav></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>

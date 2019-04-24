@@ -1,23 +1,669 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><meta name="author" content="Mr.Ding"><meta name="renderer" content="webkit"><meta name="copyright" content="Mr.Ding"><meta name="keywords" content="JingFengJi"><meta name="description" content="null"><meta name="Cache-Control" content="no-cache"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Unity之Vector3D：重现Vector3 · Mr.Long's Blog</title><link rel="stylesheet" href="/css/style.css?v=2018.7.9"><link rel="stylesheet" href="/css/animation.css?v=2018.7.9"><link rel="icon" href="/img/assets/favicon.ico"><link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version=1.5.6"><!-- scripts--><script>(function( w ){
+  "use strict";
+  // rel=preload support test
+  if( !w.loadCSS ){
+    w.loadCSS = function(){};
+  }
+  // define on the loadCSS obj
+  var rp = loadCSS.relpreload = {};
+  // rel=preload feature support test
+  // runs once and returns a function for compat purposes
+  rp.support = (function(){
+    var ret;
+    try {
+      ret = w.document.createElement( "link" ).relList.supports( "preload" );
+    } catch (e) {
+      ret = false;
+    }
+    return function(){
+      return ret;
+    };
+  })();
 
-block content
-  article#post.article-entry
-    != page.content
-  // lincense
-  if(theme.copyright.enable === true && page.copyright !== false)
-    .license-wrapper
-      p 
-        span Author:  
-        a(href=config.url)= config.author
-      p 
-        span Link:  
-        a(href=page.permalink)= page.permalink
-      p 
-        span Copyright:  
-        span!= theme.copyright.license
-  include includes/partial/post-nav.pug
-  #comment
-    include includes/comment/livere.pug
-    include includes/comment/disqus.pug
-    include includes/comment/changyan.pug
-    include includes/comment/gitment.pug
+  // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+  // then change that media back to its intended value on load
+  rp.bindMediaToggle = function( link ){
+    // remember existing media attr for ultimate state, or default to 'all'
+    var finalMedia = link.media || "all";
+
+    function enableStylesheet(){
+      link.media = finalMedia;
+    }
+
+    // bind load handlers to enable media
+    if( link.addEventListener ){
+      link.addEventListener( "load", enableStylesheet );
+    } else if( link.attachEvent ){
+      link.attachEvent( "onload", enableStylesheet );
+    }
+
+    // Set rel and non-applicable media type to start an async request
+    // note: timeout allows this to happen async to let rendering continue in IE
+    setTimeout(function(){
+      link.rel = "stylesheet";
+      link.media = "only x";
+    });
+    // also enable media after 3 seconds,
+    // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+    setTimeout( enableStylesheet, 3000 );
+  };
+
+  // loop through link elements in DOM
+  rp.poly = function(){
+    // double check this to prevent external calls from running
+    if( rp.support() ){
+      return;
+    }
+    var links = w.document.getElementsByTagName( "link" );
+    for( var i = 0; i < links.length; i++ ){
+      var link = links[ i ];
+      // qualify links to those with rel=preload and as=style attrs
+      if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+        // prevent rerunning on link
+        link.setAttribute( "data-loadcss", true );
+        // bind listeners to toggle media back
+        rp.bindMediaToggle( link );
+      }
+    }
+  };
+
+  // if unsupported, run the polyfill
+  if( !rp.support() ){
+    // run once at least
+    rp.poly();
+
+    // rerun poly on an interval until onload
+    var run = w.setInterval( rp.poly, 500 );
+    if( w.addEventListener ){
+      w.addEventListener( "load", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    } else if( w.attachEvent ){
+      w.attachEvent( "onload", function(){
+        rp.poly();
+        w.clearInterval( run );
+      } );
+    }
+  }
+
+
+  // commonjs
+  if( typeof exports !== "undefined" ){
+    exports.loadCSS = loadCSS;
+  }
+  else {
+    w.loadCSS = loadCSS;
+  }
+}( typeof global !== "undefined" ? global : this ) );</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" defer></script><script src="/js/main.js?v=2018.7.9" defer></script><!-- fancybox--><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script><!-- busuanzi--><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script></head><body><section class="profile-close" id="cxo-profile"><div class="profile-avatar"><i class="fa fa-caret-left"></i><img src="/img/assets/cat.png"></div><!--.profile-saying
+  i.fa.fa-comment
+  .saying--><div class="cxo-profile-inner"><div class="profile-name">longlongyu</div><div class="profile-signature">for me</div><div class="friends"><div>FRIENDS</div><span><a href="//github.com/Longlongyu" target="_black">friendA</a></span><span><a href="//github.com/" target="_black">friendB</a></span><span><a href="//github.com/" target="_black">friendC</a></span></div><div class="read-progress"></div></div></section><header id="cxo-intro" style="height: 70vh;background-image: url(/img/intro/index-bg.png);"><nav id="cxo-intro-nav"><section><div class="intro-nav-title"><a href="/">Mr.Long's Blog</a></div><div class="intro-nav-label-box"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div><i class="fa fa-bars intro-nav-menu"><div class="intro-nav-drop"><a href="/">Home</a><a href="/about/">About</a><a href="/archives/">Archives</a><a href="/tags/">Tags</a></div></i><div class="clear"></div></section></nav><h1 class="post-title">Unity之Vector3D：重现Vector3</h1><div class="post-intros"><div class="post-intro-meta"><span class="post-intro-time"><i class="post-intro-calendar fa fa-calendar"></i><span>2016-12-13</span></span></div></div></header><article class="cxo-up" id="cxo-content-outer"><section id="cxo-content-inner"><article class="article-entry" id="post"><meta name="referrer" content="no-referrer">
+
+<p>直接上代码</p>
+<pre><code>using System;
+using System.Text;
+using UnityEngine;
+
+public class Vector3D
+{
+
+    public static Vector3D back
+    {
+        get
+        {
+            return new Vector3D(0, 0, -1);
+        }
+    }
+
+    public static Vector3D down
+    {
+        get
+        {
+            return new Vector3D(0, -1, 0);
+        }
+    }
+
+    public static Vector3D forward
+    {
+        get
+        {
+            return new Vector3D(0, 0, 1);
+        }
+    }
+
+    public static Vector3D left
+    {
+        get
+        {
+            return new Vector3D(-1, 0, 0);
+        }
+    }
+
+    public static Vector3D right
+    {
+        get
+        {
+            return new Vector3D(1, 0, 0);
+        }
+    }
+
+    public static Vector3D up
+    {
+        get
+        {
+            return new Vector3D(0, 1, 0);
+        }
+    }
+
+    public static Vector3D one
+    {
+        get
+        {
+            return new Vector3D(1, 1, 1);
+        }
+    }
+
+    public static Vector3D zero
+    {
+        get
+        {
+            return new Vector3D(0, 0, 0);
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 向量的长度
+    /// &lt;/summary&gt;
+    public float magnitude
+    {
+        get
+        {
+            return (float)Math.Sqrt(sqrMagnitudfe);
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 向量的的长度的平方
+    /// &lt;/summary&gt;
+    public float sqrMagnitudfe
+    {
+        get
+        {
+            return x * x + y * y + z * z;
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 规范化
+    /// &lt;/summary&gt;
+    public Vector3D normalized
+    {
+        get
+        {
+            if (IsZero)
+            {
+                return Vector3D.zero;
+            }
+            else
+            {
+                Vector3D v = new Vector3D();
+                float length = magnitude;
+                v.x = this.x / length;
+                v.y = this.y / length;
+                v.z = this.z / length;
+                return v;
+            }
+        }
+    }
+
+    /// &lt;summary&gt;
+    /// 是否是零向量
+    /// &lt;/summary&gt;
+    public bool IsZero
+    {
+        get
+        {
+            return this.x == 0 &amp;&amp; this.y == 0 &amp;&amp; this.z == 0;
+        }
+    }
+
+    #region 操作符重载
+
+    /// &lt;summary&gt;
+    /// 两个向量相加
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
+    /// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
+    /// &lt;returns&gt;两个向量的和&lt;/returns&gt;
+    public static Vector3D operator +(Vector3D a,Vector3D b)
+    {
+        return new Vector3D(a.x + b.x, a.y + b.y, a.z + b.z);
+    }
+
+    /// &lt;summary&gt;
+    /// 两个向量相减
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
+    /// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
+    /// &lt;returns&gt;两个向量的差&lt;/returns&gt;
+    public static Vector3D operator -(Vector3D a,Vector3D b)
+    {
+        return new Vector3D(a.x - b.x, a.y - b.y, a.z - b.z);
+    }
+
+    /// &lt;summary&gt;
+    /// 向量取反
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
+    /// &lt;returns&gt;向量a的反向量&lt;/returns&gt;
+    public static Vector3D operator -(Vector3D a)
+    {
+        return new Vector3D(-a.x, -a.y, -a.z);
+    }
+
+    /// &lt;summary&gt;
+    /// 一个数乘以一个向量
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;d&quot;&gt;一个数&lt;/param&gt;
+    /// &lt;param name=&quot;a&quot;&gt;一个向量&lt;/param&gt;
+    /// &lt;returns&gt;返回数与向量的乘积&lt;/returns&gt;
+    public static Vector3D operator *(float d, Vector3D a)
+    {
+        return new Vector3D(a.x * d, a.y * d, a.z * d);
+    }
+
+    /// &lt;summary&gt;
+    /// 一个向量乘以一个数
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;一个向量&lt;/param&gt;
+    /// &lt;param name=&quot;d&quot;&gt;一个数&lt;/param&gt;
+    /// &lt;returns&gt;返回向量与数的乘积&lt;/returns&gt;
+    public static Vector3D operator *(Vector3D a, float d)
+    {
+        return new Vector3D(a.x * d, a.y * d, a.z * d);
+    }
+
+    /// &lt;summary&gt;
+    /// 一个数除一个向量，向量a/数b
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;一个向量&lt;/param&gt;
+    /// &lt;param name=&quot;d&quot;&gt;一个数&lt;/param&gt;
+    /// &lt;returns&gt;返回向量a/d&lt;/returns&gt;
+    public static Vector3D operator /(Vector3D a,float d)
+    {
+        return new Vector3D(a.x / d, a.y / d, a.z / d);
+    }
+
+    /// &lt;summary&gt;
+    /// 两个向量是否相等
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;lhs&quot;&gt;向量lhs&lt;/param&gt;
+    /// &lt;param name=&quot;rhs&quot;&gt;向量rhs&lt;/param&gt;
+    /// &lt;returns&gt;如果相等，则为true，否则为false&lt;/returns&gt;
+    public static bool operator ==(Vector3D lhs, Vector3D rhs)
+    {
+        bool x = Math.Abs(lhs.x - rhs.x) &lt; 0.00001f;
+        bool y = Math.Abs(lhs.y - rhs.y) &lt; 0.00001f;
+        bool z = Math.Abs(lhs.z - rhs.z) &lt; 0.00001f;
+        return x &amp;&amp; y &amp;&amp; z;
+    }
+
+    /// &lt;summary&gt;
+    /// 两个向量是否不等
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;lhs&quot;&gt;向量lhs&lt;/param&gt;
+    /// &lt;param name=&quot;rhs&quot;&gt;向量rhs&lt;/param&gt;
+    /// &lt;returns&gt;如果不等，则为true，否则为false&lt;/returns&gt;
+    public static bool operator !=(Vector3D lhs, Vector3D rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    #endregion
+
+    public float x;
+    public float y;
+    public float z;
+
+    private float[] data = new float[3];
+
+    #region 构造器
+    public Vector3D()
+    {
+        this.x = 0.0f;
+        this.y = 0.0f;
+        this.z = 0.0f;
+
+        data[0] = 0.0f;
+        data[1] = 0.0f;
+        data[2] = 0.0f;
+    }
+
+    public Vector3D(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = 1.0f;
+
+        data[0] = 0.0f;
+        data[1] = 0.0f;
+        data[2] = 1.0f;
+    }
+
+    public Vector3D(float x, float y, float z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+
+        data[0] = x;
+        data[1] = y;
+        data[2] = z;
+    }
+
+    #endregion
+
+    public float this[int index]
+    {
+        get
+        {
+            switch (index)
+            {
+                case 0:
+                    return this.x;
+                case 1:
+                    return this.y;
+                case 2:
+                    return this.z;
+                default:
+                    throw new Exception(&quot;index is out of array&quot;);
+            }
+        }
+        set
+        {
+            data[index] = value;
+            switch (index)
+            {
+                case 0:
+                    this.x = value;
+                    break;
+                case 1:
+                    this.y = value;
+                    break;
+                case 2:
+                    this.z = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(&quot;(&quot;);
+        sb.Append(this.x);
+        sb.Append(&quot;,&quot;);
+        sb.Append(this.y);
+        sb.Append(&quot;,&quot;);
+        sb.Append(this.z);
+        sb.Append(&quot;)&quot;);
+        return sb.ToString();
+    }
+
+    public void Set(float new_x, float new_y, float new_z)
+    {
+        this.x = new_x;
+        this.y = new_y;
+        this.z = new_z;
+        data[0] = new_x;
+        data[1] = new_y;
+        data[2] = new_z;
+    }
+
+    /// &lt;summary&gt;
+    /// 规范化，使向量长度为1
+    /// &lt;/summary&gt;
+    public void Normalize()
+    {
+        if (!IsZero)
+        {
+            this.x /= magnitude;
+            this.y /= magnitude;
+            this.z /= magnitude;
+        }
+    }
+
+    #region 静态函数
+
+    /// &lt;summary&gt;
+    /// 距离
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;返回a和b之间的距离&lt;/returns&gt;
+    public static float Distance(Vector3D a, Vector3D b)
+    {
+        return (float)Math.Sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + (a.z - b.z) * (a.z - b.z));
+    }
+
+    /// &lt;summary&gt;
+    /// 计算两个向量的点乘积
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;lhs&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;rhs&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static float Dot(Vector3D lhs, Vector3D rhs)
+    {
+        return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
+    }
+
+    /// &lt;summary&gt;
+    /// 计算两个向量的叉乘
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;v1&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;v2&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector3D Cross(Vector3D v1, Vector3D v2)
+    {
+        float x = v1.y * v2.z - v2.y * v1.z;
+        float y = v1.z * v2.x - v2.z * v1.x;
+        float z = v1.x * v2.y - v2.x * v1.y;
+        return new Vector3D(x, y, z);
+    }
+
+    /// &lt;summary&gt;
+    /// 限制长度
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;v&quot;&gt;向量v&lt;/param&gt;
+    /// &lt;param name=&quot;maxLength&quot;&gt;最长长度&lt;/param&gt;
+    /// &lt;returns&gt;返回限制长度后的向量&lt;/returns&gt;
+    public static Vector3D ClampMagnitude(Vector3D v,float maxLength)
+    {
+        if (maxLength &gt;= v.magnitude)
+        {
+            return v;
+        }
+
+        return (maxLength / v.magnitude) * v;
+    }
+
+    /// &lt;summary&gt;
+    /// 计算两个向量的夹角
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;from&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;to&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static float Angle(Vector3D from,Vector3D to)
+    {
+        float dot = Dot(from, to);
+        return (float)(180 * Math.Acos(dot / (from.magnitude * to.magnitude)) / Math.PI);
+    }
+
+    /// &lt;summary&gt;
+    /// 投射一个向量到另一个向量
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;vector&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;onNormal&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;返回被投射到onNormal的vector&lt;/returns&gt;
+    public static Vector3D Project(Vector3D vector, Vector3D onNormal)
+    {
+        if (vector.IsZero || onNormal == Vector3D.zero)
+        {
+            return Vector3D.zero;
+        }
+        return Dot(vector, onNormal) / (onNormal.magnitude * onNormal.magnitude) * onNormal;
+    }
+
+    /// &lt;summary&gt;
+    /// 反射
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;inDirection&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;inNormal&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector3D Reflect(Vector3D inDirection,Vector3D inNormal)
+    {
+        return Vector3D.zero;
+    }
+
+    /// &lt;summary&gt;
+    /// 缩放
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;scale&quot;&gt;&lt;/param&gt;
+    public void Scale(Vector3D scale)
+    {
+        this.x *= scale.x;
+        this.y *= scale.y;
+        this.z *= scale.z;
+    }
+    /// &lt;summary&gt;
+    /// 缩放
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector3D Scale(Vector3D a,Vector3D b)
+    {
+        return new Vector3D(a.x * b.x, a.y * b.y, a.z * b.z);
+    }
+
+    /// &lt;summary&gt;
+    /// 两个向量是否平行
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;b&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static bool Parallel(Vector3D a, Vector3D b)
+    {
+        return Cross(a,b).IsZero;
+    }
+
+    /// &lt;summary&gt;
+    /// 两个向量之间的线性插值
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;from&quot;&gt;向量from&lt;/param&gt;
+    /// &lt;param name=&quot;to&quot;&gt;向量to&lt;/param&gt;
+    /// &lt;param name=&quot;t&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector3D Lerp(Vector3D from, Vector3D to, float t)
+    {
+        if (t &lt;= 0)
+        {
+            return from;
+        }
+        else if (t &gt;= 1)
+        {
+            return to;
+        }
+        return t * to + (1 - t) * from;
+    }
+
+    /// &lt;summary&gt;
+    /// 两个向量的球形插值
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;a&quot;&gt;向量a&lt;/param&gt;
+    /// &lt;param name=&quot;b&quot;&gt;向量b&lt;/param&gt;
+    /// &lt;param name=&quot;t&quot;&gt;t的值在[0..1]&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector3D Slerp(Vector3D a, Vector3D b, float t)
+    {
+        if (t &lt;= 0)
+        {
+            return a;
+        }
+        else if (t &gt;= 1)
+        {
+            return b;
+        }
+
+        Vector3D v = RotateTo(a, b, Vector3D.Angle(a, b) * t);
+
+        //向量的长度，跟线性插值一样计算
+        float length = b.magnitude * t + a.magnitude * (1 - t);
+        return v.normalized * length;
+    }
+
+    /// &lt;summary&gt;
+    /// 将向量from向向量to旋转角度angle
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;from&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;to&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;angle&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector3D RotateTo(Vector3D from, Vector3D to, float angle)
+    {
+        //如果两向量角度为0
+        if (Vector3D.Angle(from, to) == 0)
+        {
+            return from;
+        }
+
+        //旋转轴
+        Vector3D n = Vector3D.Cross(from, to);
+        n.Normalize();
+
+        //旋转矩阵
+        Matrix4x4 rotateMatrix = new Matrix4x4();
+
+        //旋转的弧度
+        double radian = angle * Math.PI / 180;
+        float cosAngle = (float)Math.Cos(radian);
+        float sinAngle = (float)Math.Sin(radian);
+        rotateMatrix.SetRow(0, new Vector4(n.x * n.x * (1 - cosAngle) + cosAngle, n.x * n.y * (1 - cosAngle) + n.z * sinAngle, n.x * n.z * (1 - cosAngle) - n.y * sinAngle, 0));
+        rotateMatrix.SetRow(1, new Vector4(n.x * n.y * (1 - cosAngle) - n.z * sinAngle, n.y * n.y * (1 - cosAngle) + cosAngle, n.y * n.z * (1 - cosAngle) + n.x * sinAngle, 0));
+        rotateMatrix.SetRow(2, new Vector4(n.x * n.z * (1 - cosAngle) + n.y * sinAngle, n.y * n.z * (1 - cosAngle) - n.x * sinAngle, n.z * n.z * (1 - cosAngle) + cosAngle, 0));
+        rotateMatrix.SetRow(3, new Vector4(0, 0, 0, 1));
+
+        Vector4 v = Vector3D.ToVector4(from);
+        Vector3D vector = new Vector3D();
+        for (int i = 0; i &lt; 3; ++i)
+        {
+            for (int j = 0; j &lt; 3; j++)
+            {
+                vector[i] += v[j] * rotateMatrix[j, i];
+            }
+        }
+        return vector;
+    }
+
+    /// &lt;summary&gt;
+    /// 将一个Vector3D转换为Vector4
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;v&quot;&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public static Vector4 ToVector4(Vector3D v)
+    {
+        return new Vector4(v.x, v.y, v.z, 0);
+    }
+
+    public Vector3 ToVector3()
+    {
+        return new Vector3(x, y, z);
+    }
+
+    #endregion
+}
+</code></pre><p>以上代码只是自己在学习过程中一点成果，希望对大家有帮助，当然跟Vector3比起来肯定差很多。</p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
+</article><!-- lincense--><div class="license-wrapper"><p> <span>Author:  </span><a href="https://jingfengji.github.io">Mr.Ding</a></p><p> <span>Link:  </span><a href="https://jingfengji.github.io/2016/12/13/Unity之Vector3D：重现Vector3/">https://jingfengji.github.io/2016/12/13/Unity之Vector3D：重现Vector3/</a></p><p> <span>Copyright:  </span><span>All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/3.0">CC BY-NC-SA 3.0</a> unless stating additionally.</span></p></div><div class="post-paginator"><a class="prevSlogan" href="/2016/12/14/Unity之私人订制Debug/" title="Unity之私人订制Debug"><span>< PreviousPost</span><br><span class="prevTitle">Unity之私人订制Debug</span></a><a class="nextSlogan" href="/2016/12/13/Unity之Vector3.Lerp线性插值原理介绍/" title="Unity之Vector3.Lerp线性插值原理介绍"><span>NextPost ></span><br><span class="nextTitle">Unity之Vector3.Lerp线性插值原理介绍</span></a><div class="clear"></div></div><div id="comment"></div></section></article><footer id="cxo-footer-outer"><div id="cxo-footer-inner"><p class="footer-container"><span>Site by </span><a href="http://hexo.io"><span>Hexo</span></a><span> | theme </span><a href="https://github.com/Longlongyu/hexo-theme-Cxo"><span>Cxo</span></a></p><i class="fa fa-user"> </i><span id="busuanzi_value_site_uv"></span><span> | </span><i class="fa fa-eye"> </i><span id="busuanzi_value_site_pv"></span></div></footer><!-- catelog--><div class="toc-wrapper" style="top: 70vh;"><div class="toc-catalog"><i class="fa fa-list"> </i><span>CATALOG</span></div></div><!-- top--><i class="fa fa-arrow-up close" id="go-up" aria-hidden="true"></i></body></html>
