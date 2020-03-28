@@ -1,17 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[UnityTips——Unity小技巧集合]]></title>
+    <url>%2F2020%2F03%2F28%2Funitytips-unity-xiao-ji-qiao-ji-he%2F</url>
+    <content type="text"><![CDATA[@[toc] AttributeRequiredAttribute效果图如下：当引用类型的property为空时，使用红色提示。 代码如下： 1、RequiredAttribute.cs using UnityEngine; public class RequiredAttribute : PropertyAttribute { } 2、RequiredDrawer.cs using UnityEditor; using UnityEngine; [CustomPropertyDrawer(typeof(RequiredAttribute))] public class RequiredDrawer : PropertyDrawer { public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) { Color c = GUI.backgroundColor; if ((property.propertyType == SerializedPropertyType.ObjectReference || property.propertyType == SerializedPropertyType.ExposedReference) &amp;&amp; property.objectReferenceValue == null) { GUI.backgroundColor = Color.red; } EditorGUI.PropertyField(position, property); GUI.backgroundColor = c; } } 3、测试脚本RequiredAttributeDemo.cs using UnityEngine; public class RequiredAttributeDemo : MonoBehaviour { [Required] public Transform _transform; } TipsDebug.Log日志点击Debug.Log 官方文档介绍地址：https://docs.unity3d.com/ScriptReference/Debug.Log.html 脚本改类名，同时修改文件名Rider、VS使用快捷键Ctrl+R+R，弹出改名框 离开编辑模式，进入运行模式时，保存Scene和Assets using UnityEditor; using UnityEditor.SceneManagement; using UnityEngine; [InitializeOnLoad] public class AutoSave { static AutoSave() { EditorApplication.playModeStateChanged += SaveOnPlay; } private static void SaveOnPlay(PlayModeStateChange state) { if (state == PlayModeStateChange.ExitingEditMode) { Debug.Log("Exiting Edit Mode,Auto Save..."); EditorSceneManager.SaveOpenScenes(); AssetDatabase.SaveAssets(); } } } Unity多语言修改起因：群友想修改AudioSource组件的Inspector面板中Volume字段的提示内容。 然后我一查Editor脚本，https://github.com/Unity-Technologies/UnityCsReference/blob/2019.3/Editor/Mono/Inspector/AudioSourceInspector.cs 这写死了，，，怎么改。。。 后来群友提醒到Unity现在支持多语言，那就下载一个中文包看看。 中文包下载下来是上图中的一个.po文件 看样子是以一个msgid对应一个msgstr，msgid就是英文的内容，msgstr就是各语言的内容了。 接着找”Sets the overall volume of the sound.” 对应的中文内容就是上面了。。 那么.po文件自己修改后，重启Unity后就可以应用上去了。 测试以下: msgstr “设置声音的整体音量。” 修改成 msgstr “设置声音的整体音量。（修改版）” 如上图，修改成功。 那么，回到那位群友的问题，如果只修改那个Volume的提示文本呢，很简单，把.po文件的其他内容都删掉，文件头的内容别删了，只留下这个msgid和msgstr，别的都id和str都删了，这样就实现了修改Volume的提示文本了。 如下图： 不过中文的.po文件 是用的 中文的字体，总之，看着就是别扭。。。 添加自定义HeaderGUI官方链接说明 using UnityEditor; [InitializeOnLoadAttribute] static class EditorHeaderGUID { static EditorHeaderGUID() { Editor.finishedDefaultHeaderGUI += DisplayGUIDIfPersistent; } static void DisplayGUIDIfPersistent(Editor editor) { if (!EditorUtility.IsPersistent(editor.target)) return; var guid = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(editor.target)); var totalRect = EditorGUILayout.GetControlRect(); var controlRect = EditorGUI.PrefixLabel(totalRect, EditorGUIUtility.TrTempContent("GUID")); if (editor.targets.Length > 1) EditorGUI.LabelField(controlRect, EditorGUIUtility.TrTempContent("[Multiple objects selected]")); else EditorGUI.SelectableLabel(controlRect, guid); } } OnValidata数据检查OnValidata官方文档介绍 在编辑器中可以使用 OnValidate() 对输入的数据进行检查。（仅编辑状态下有效） using UnityEngine; using System.Collections; public class OnValidateExample : MonoBehaviour { public float validateTestValue; void OnValidate() { //Check validateTestValue } } 拖拽多个元素到 inspector可以拖拽元素直接加到 inspector 中去，但是选择多个元素的时候就不容易做到了，其实有一个方法，就是先锁定 inspector，就可以轻易的将多个元素（对象）拖拽到 inspector 中了。 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。本主题持续更新。。。]]></content>
+      <categories>
+        <category>UnityTips</category>
+      </categories>
+      <tags>
+        <tag>UnityTips</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[GameFramework框架源码解读（一）：Editor篇]]></title>
+    <url>%2F2020%2F03%2F28%2Fgameframework-kuang-jia-yuan-ma-jie-du-yi-editor-pian%2F</url>
+    <content type="text"><![CDATA[笔记目录@[toc] 前言本文将使用StarForce案例，结合源码和Editor界面介绍一下GF中所有的Editor界面（包括Inspector），持续更新。 StarForce地址：https://github.com/EllanJiang/StarForceGameFramework地址：https://github.com/EllanJiang/GameFrameworkUnityGameFramework地址：https://github.com/EllanJiang/UnityGameFrameworkGameFramework官方网站：http://gameframework.cn/ 本文所讲解的内容如与你使用的框架版本有所差异，请阅读源码，源码即文档。。 菜单栏Game FrameworkOpen Folder待续 Scenes in Build Settings待续 Log Scripting Define Symbols待续 AssetBundle Tools AssetBundle工具相关配置AB的XML配置一共有三个，分别是AssetBundleEditor.xml、AssetBundleCollection.xml、AssetBundleBuilder.xml在StarForce案例中，它们在Assets/GameMain/Configs文件中，然而配置的默认路径并不在这里，这个路径是可以自定义的。 //AssetBundleEditorController.cs文件中 public AssetBundleEditorController() { m_ConfigurationPath = Type.GetConfigurationPath&lt;AssetBundleEditorConfigPathAttribute>() ?? Utility.Path.GetCombinePath(Application.dataPath, "GameFramework/Configs/AssetBundleEditor.xml"); //...省略 } //AssetBundleCollection.cs文件中 public AssetBundleCollection() { m_ConfigurationPath = Type.GetConfigurationPath&lt;AssetBundleCollectionConfigPathAttribute>() ?? Utility.Path.GetCombinePath(Application.dataPath, "GameFramework/Configs/AssetBundleCollection.xml"); m_AssetBundles = new SortedDictionary&lt;string, AssetBundle>(); m_Assets = new SortedDictionary&lt;string, Asset>(); } //AssetBundleBuilderController.cs文件中 public AssetBundleBuilderController() { m_ConfigurationPath = Type.GetConfigurationPath&lt;AssetBundleBuilderConfigPathAttribute>() ?? Utility.Path.GetCombinePath(Application.dataPath, "GameFramework/Configs/AssetBundleBuilder.xml"); //...省略 } 从上面摘抄的源码中可以看出，会先通过Type.GetConfigurationPath接口（AssetBundleEditorConfigPathAttribute、AssetBundleCollectionConfigPathAttribute、AssetBundleBuilderConfigPathAttribute）找到本地定义的路径，如果没有找到，则使用后面的默认路径。【注：Type.GetConfigurationPath接口自行看源码】 而在StarForce案例中，GameFrameworkConfigs.cs案例中定义了这几个路径 AssetBundleEditor.xml配置格式介绍 &lt;?xml version="1.0" encoding="UTF-8"?> &lt;UnityGameFramework> &lt;AssetBundleEditor> &lt;Settings> &lt;!--配置资源搜索的根目录，可以从Assets根部全部查找，可以配置成子目录--> &lt;SourceAssetRootPath>Assets/GameMain&lt;/SourceAssetRootPath> &lt;!--配置资源搜索的子目录，相对于根目录的路径，支持配置多个子目录，如果为空，则搜索所有子目录--> &lt;SourceAssetSearchPaths> &lt;SourceAssetSearchPath RelativePath="" /> &lt;/SourceAssetSearchPaths> &lt;!--筛选并包含的资源类型--> &lt;SourceAssetUnionTypeFilter>t:Scene t:Prefab t:Shader t:Model t:Material t:Texture t:AudioClip t:AnimationClip t:AnimatorController t:Font t:TextAsset t:ScriptableObject&lt;/SourceAssetUnionTypeFilter> &lt;!--筛选并包含的标签类型--> &lt;SourceAssetUnionLabelFilter>l:AssetBundleInclusive&lt;/SourceAssetUnionLabelFilter> &lt;!--筛选并排除的资源类型--> &lt;SourceAssetExceptTypeFilter>t:Script&lt;/SourceAssetExceptTypeFilter> &lt;!--筛选并排除的标签类型--> &lt;SourceAssetExceptLabelFilter>l:AssetBundleExclusive&lt;/SourceAssetExceptLabelFilter> &lt;!--编辑器中资源列表的排序，可以是Name(资源文件名），Path（资源全路径），Guid（资源Guid）--> &lt;AssetSorter>Path&lt;/AssetSorter> &lt;/Settings> &lt;/AssetBundleEditor> &lt;/UnityGameFramework> AssetBundleEditorController.cs中的ScanSourceAssets就是通过以上配置搜索筛选的资源。 public void ScanSourceAssets() { m_SourceAssets.Clear(); m_SourceAssetRoot.Clear(); string[] sourceAssetSearchPaths = m_SourceAssetSearchPaths.ToArray(); HashSet&lt;string> tempGuids = new HashSet&lt;string>(); //AssetDatabase.FindAssets接口返回的是搜索到的资源列表的guid数组，在Project的搜索栏中输入t:prefab也是进行这个接口的操作 //筛选并包含指定类型的资源 tempGuids.UnionWith(AssetDatabase.FindAssets(SourceAssetUnionTypeFilter, sourceAssetSearchPaths)); //筛选并包含指定标签的资源 tempGuids.UnionWith(AssetDatabase.FindAssets(SourceAssetUnionLabelFilter, sourceAssetSearchPaths)); //筛选并排除指定类型的资源 tempGuids.ExceptWith(AssetDatabase.FindAssets(SourceAssetExceptTypeFilter, sourceAssetSearchPaths)); //筛选并排除指定标签的资源 tempGuids.ExceptWith(AssetDatabase.FindAssets(SourceAssetExceptLabelFilter, sourceAssetSearchPaths)); string[] assetGuids = new List&lt;string>(tempGuids).ToArray(); foreach (string assetGuid in assetGuids) { string fullPath = AssetDatabase.GUIDToAssetPath(assetGuid); if (AssetDatabase.IsValidFolder(fullPath)) { // Skip folder. continue; } string assetPath = fullPath.Substring(SourceAssetRootPath.Length + 1); string[] splitPath = assetPath.Split('/'); SourceFolder folder = m_SourceAssetRoot; for (int i = 0; i &lt; splitPath.Length - 1; i++) { SourceFolder subFolder = folder.GetFolder(splitPath[i]); folder = subFolder == null ? folder.AddFolder(splitPath[i]) : subFolder; } SourceAsset asset = folder.AddAsset(assetGuid, fullPath, splitPath[splitPath.Length - 1]); m_SourceAssets.Add(asset.Guid, asset); } } 目前官方没有提供这个配置的编辑工具，需手动编辑xml文件。打开AssetBundleEditor窗口后，根据以上配置筛选资源形成界面的右侧树状图。 AssetBundleCollection.xml这个文件是通过AssetBundleEditor工具编辑好AB后，生成的文件。里面用来记录包含了哪些AB，AB中分别又包含了哪些资源，也就是对应了AssetBundleEditor窗口的左侧列表。 其中看一下AssetBundle和Asset中包含的内容： AssetBundle：（1）Name：AB的名称，主持路径（2）LoadType：AB的加载方式，对应下面的枚举 /// &lt;summary> /// 资源加载方式类型。 /// &lt;/summary> public enum AssetBundleLoadType { /// &lt;summary> /// 从文件加载。 /// &lt;/summary> LoadFromFile = 0, /// &lt;summary> /// 从内存加载。 /// &lt;/summary> LoadFromMemory, /// &lt;summary> /// 从内存快速解密加载。 /// &lt;/summary> LoadFromMemoryAndQuickDecrypt, /// &lt;summary> /// 从内存解密加载。 /// &lt;/summary> LoadFromMemoryAndDecrypt, } （3）Variant：变体（4）ResourceGroups：资源组 Asset:（1）Guid：资源的guid（2）AssetBundleName：配置中上面所记录的AssetBundleName（3）AssetBundleVariant：变体 打开AssetBundleEditor窗口后，解析该配置，形成窗口左侧的树状图。 AssetBundleBuilder.xml该配置用来存储AB打包配置。界面如下图： &lt;?xml version="1.0" encoding="UTF-8"?> &lt;UnityGameFramework> &lt;AssetBundleBuilder> &lt;Settings> &lt;!--内部资源版本号（Internal Resource Version）建议每次自增 1 即可，Game Framework 判定资源包是否需要更新，是使用此编号作为判定依据的。--> &lt;InternalResourceVersion>0&lt;/InternalResourceVersion> &lt;!--打包平台--> &lt;Platforms>1&lt;/Platforms> &lt;!--Zip All AssetBundles是否勾选，true为勾选，false为不勾选--> &lt;ZipSelected>True&lt;/ZipSelected> &lt;!--以下几个配置分别对应AssetBundleOptions的几个Option是否勾选，true为勾选，false为不勾选--> &lt;UncompressedAssetBundleSelected>False&lt;/UncompressedAssetBundleSelected> &lt;DisableWriteTypeTreeSelected>False&lt;/DisableWriteTypeTreeSelected> &lt;DeterministicAssetBundleSelected>True&lt;/DeterministicAssetBundleSelected> &lt;ForceRebuildAssetBundleSelected>False&lt;/ForceRebuildAssetBundleSelected> &lt;IgnoreTypeTreeChangesSelected>False&lt;/IgnoreTypeTreeChangesSelected> &lt;AppendHashToAssetBundleNameSelected>False&lt;/AppendHashToAssetBundleNameSelected> &lt;ChunkBasedCompressionSelected>True&lt;/ChunkBasedCompressionSelected> &lt;!--Package输出路径是否勾选，True表示勾选即输出，False表示不勾选即不输出--> &lt;OutputPackageSelected>True&lt;/OutputPackageSelected> &lt;!--Full输出路径是否勾选，True表示勾选即输出，False表示不勾选即不输出--> &lt;OutputFullSelected>False&lt;/OutputFullSelected> &lt;!--Packed输出路径是否勾选，True表示勾选即输出，False表示不勾选即不输出--> &lt;OutputPackedSelected>False&lt;/OutputPackedSelected> &lt;!--Build Event Handler类型名称--> &lt;BuildEventHandlerTypeName>StarForce.Editor.StarForceBuildEventHandler&lt;/BuildEventHandlerTypeName> &lt;!--AB输出路径--> &lt;OutputDirectory>&lt;/OutputDirectory> &lt;/Settings> &lt;/AssetBundleBuilder> &lt;/UnityGameFramework> AssetBundle Editor菜单路径：Game Framework/AssetBundle Tools/AssetBundle Editor界面分为三个部分:AssetBundleList、AssetBundleContent、Asset ListAssetBundleList是通过读取解析AssetBundleCollection.xml，Asset List是通过AssetBundleEditor.xml里的配置筛选资源而来，而AssetBundleContent部分在是选中AssetBundleList里的一个AB后显示被选中的AB里包含的资源。这三个部分下面都有对应的工具菜单。 官方文档：使用 AssetBundle 编辑工具 AssetBundleList（1）以AssetBundles为根结点（2）这些AB的结点层级路径表示打包后的资源相对路径（3）AB的层级路径参考AssetBundle的Name属性，也就是AssetBundleCollection.xml配置中的AssetBundle的Name（4）AB结点的名称前缀[Packed]表示其Packed，参考AssetBundleEditor脚本中的DrawAssetBundleItem函数（5）AB结点的名称后面 “.{变体名}”，例如StarForce例子中的Dictionaries.en-us这个AB中的en-us表示其变体名（6）通过选中AB后，点击下方的Rename按钮，在第一个输入框中输入层级名称，即可更改其相对路径，第二个输入框是变体名。点击后面ok按钮或者按回车均可改名。（7）不支持多选、不支持拖拽修改相对路径。 AssetBundleContent（1）显示左侧选中的AB里所包含的资源清单（2）All：全部选中（3）None：全部不选中（4）AssetSorterType枚举下拉框 public enum AssetSorterType { Path, Name, Guid, } 除了修改排序外，还会修改这个界面显示的内容，Path对应资源路径，Name对应资源名，Guid自然是资源的Guid。（5）右边的 0 &gt;&gt; 按钮，数字表示勾选的资源数量，&gt;&gt; 表示将选中的资源移除这个AB，还给右侧的Asset List。（又没有借，哪来的还。。不过&gt;&gt;很形象嘛。。） Asset List资源树状视图，支持多选（1）资源如果包含在某个AB里，其后面会有AssetBundle Name（2）&lt;&lt;0 按钮：同理，数字表示选中的资源数量。功能在于将选中的资源 给左侧选中的A版中，如果此前资源已经在别的AB中，则会先移出。未选中资源 和 未选中AB 这两种情况均无法点击该按钮。（3）&lt;&lt;&lt; 0 按钮：同理，数字表示选中的资源数量。那么与上面按钮有什么区别呢？（不就多了一个 &lt; 吗，难道一个 &lt;&lt; 表示移到中间的Asset List，多了一个 &lt; 还能移到 AssetBundleList 中吗。。）这个按钮用于批量添加AB，将选中的一个或多个资源作为 AssetBundle 名来创建 AssetBundle，并将自身加入到对应的 AssetBundle 里。（4）Hie Assigne：隐藏已经存在于 AssetBundle 中的资源，只列出尚未指定 AssetBundle 的资源。（5）Clean：从所有的 AssetBundle 中清理无效的资源，并移除所有空的 AssetBundle。建议 Save 前总是点一下 Clean 按钮，因为构建 AssetBundle 的时候，Unity 不允许存在无效的资源或者空的 AssetBundle。空的AB在左侧中会显示成灰色，会导致打包失败。（6）Save：保存当前所有 AssetBundle 和资源的状态。注意保存 AssetBundle Analyzer待续。 AssetBundle Builder 界面分为以下几个部分： Environment Information：工程的基本信息（1）ProductName：PlayerSettings.productName（2）Company Name：PlayerSettings.companyName（3）Game Identifier： public string GameIdentifier { get { #if UNITY_5_6_OR_NEWER return PlayerSettings.applicationIdentifier; #else return PlayerSettings.bundleIdentifier; #endif } } （4）Applicable Game Version：Application.version以上这些数据在File-&gt;Build Settings-&gt;Player Settings中可以看到 Platforms：打包平台勾选，支持多选如果一个平台都不勾选，界面下方会出现红色警告：Platform undefined. AssetBundle Options：参考UnityEditor.BuildAssetBundleOptions枚举官方文档介绍：https://docs.unity3d.com/ScriptReference/BuildAssetBundleOptions.html，此处不再赘述AssetBundleBuilderController.cs脚本中的GetBuildAssetBundleOptions函数会将这里勾选的选项转换为BuildAssetBundleOptions private BuildAssetBundleOptions GetBuildAssetBundleOptions() { BuildAssetBundleOptions buildOptions = BuildAssetBundleOptions.None; if (UncompressedAssetBundleSelected) { buildOptions |= BuildAssetBundleOptions.UncompressedAssetBundle; } if (DisableWriteTypeTreeSelected) { buildOptions |= BuildAssetBundleOptions.DisableWriteTypeTree; } if (DeterministicAssetBundleSelected) { buildOptions |= BuildAssetBundleOptions.DeterministicAssetBundle; } if (ForceRebuildAssetBundleSelected) { buildOptions |= BuildAssetBundleOptions.ForceRebuildAssetBundle; } if (IgnoreTypeTreeChangesSelected) { buildOptions |= BuildAssetBundleOptions.IgnoreTypeTreeChanges; } if (AppendHashToAssetBundleNameSelected) { buildOptions |= BuildAssetBundleOptions.AppendHashToAssetBundleName; } if (ChunkBasedCompressionSelected) { buildOptions |= BuildAssetBundleOptions.ChunkBasedCompression; } return buildOptions; } 这个BuildAssetBundleOptions最终是传给了BuildPipeline.BuildAssetBundle函数。由于构建过程需要对生成的 AssetBundle 名称进行处理，故这里不允许使用 Append Hash To AssetBundle Name 选项。 Zip All AssetBundles : 压缩所有 AssetBundles（Zip All AssetBundles）用于指定构建 AssetBundle 后，是否进一步使用 Zip 压缩 AssetBundle 包。 Build部分: Build Event Handler：这里会显示一个实现了IBuildEventHandler接口的所有TypeName的下拉框，例如StarForce工程中StarForceBuildEventHandler类接口包含以下部分：（1）ContinueOnFailure：获取当某个平台生成失败时，是否继续生成下一个平台。（2）PreprocessAllPlatforms：所有平台生成开始前的预处理事件（3）PostprocessAllPlatforms：所有平台生成结束后的后处理事件（4）PreprocessPlatform：某个平台生成开始前的预处理事件（5）PostprocessPlatform：某个平台生成结束后的后处理事件大家可以根据自己的需求定义不同的Handler。例如：StarForce案例中：PreprocessAllPlatforms函数中清空了StreamingAssets文件夹。PostprocessPlatform函数中把outputPackagePath里的文件给拷贝到工程的StreamingAssets目录下。 Internal Resource Version:内部资源版本号（Internal Resource Version）建议每次自增 1 即可，Game Framework 判定资源包是否需要更新，是使用此编号作为判定依据的。 Resource Version:资源版本号（Resource Version）根据当前 App 版本号和内部资源版本号自动生成，并不会存储在AssetBundleBuilder.xml中。 Output Directory：输出目录（Output Directory）用于指定构建过程的结果输出目录，绝对路径，支持直接输入（记得回车）,右边Browse按钮可以选择路径。如果路径无效，下方会提示Output directory is invalid. Output Directory选中后，下方会出现Working Path、Output Package Path、Output Full Path、Output Packed Path、Build Report Path这五个子路径。 当这些配置都配好后，就会出现提示：Ready to build.点击Start Build AssetBundles按钮开始打包，点击Save按钮保存配置到AssetBundleBuilder.xml配置中。 打包成功： 打包完后，再来介绍这五个目录:（1）BuildReport：该目录包含了两个文件，BuildLog.txt和BuildReport.xml。BuildLog.txt用来记录打包日志，打包失败的时候可以通过查看该日志来判断是哪一步出现了问题。AssetBundleBuilderController脚本中通过m_BuildReport.LogInfo接口进行日志记录。而BuildReport.xml文件则用来记录本次打包设置、本次打包的AB信息、AB中包含的Asset信息等等。（2）Full:为可更新模式生成的完整文件包（3）Package：为单机模式生成的文件，若游戏是单机游戏，生成结束后将此目录中对应平台的文件拷贝至 StreamingAssets 后打包 App 即可。（4）Packed：为可更新模式生成的文件（5）Working：Unity生成AssetBundle时的工作目录 请注意：不知道从哪个版本开始，GameResourceVersion_x_x_x.xml文件不再生成。相关数据可以在BuildReport目录下的BuildLog.txt中查看到，如下： [15:51:32.383][INFO] Process version list for &#39;MacOS&#39; complete, version list path is &#39;/Users/teitomonari/Documents/WorkSpace/UnityProjects/Study/StarForce/StarForce/AssetBundle/Full/0_1_0_1/MacOS/version.7fe1ca32.dat&#39;, length is &#39;11641&#39;, hash code is &#39;2145503794[0x7FE1CA32]&#39;, zip length is &#39;4100&#39;, zip hash code is &#39;111937434[0x06AC079A]&#39;.Build AssetBundle待续。 Documentation待续。 API Reference待续。 使用UnityGameFramework编辑器出现的常见问题记录1. AssetBundleEditor界面中的Asset列表是空的？待续。]]></content>
+      <categories>
+        <category>GF源码解读</category>
+      </categories>
+      <tags>
+        <tag>GF源码解读</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Unity编辑器拓展之二十九：资源弱引用文件选择器]]></title>
+    <url>%2F2020%2F03%2F28%2Funity-bian-ji-qi-tuo-zhan-zhi-er-shi-jiu-zi-yuan-ruo-yin-yong-wen-jian-xuan-ze-qi%2F</url>
+    <content type="text"><![CDATA[笔记目录@[toc] 写在开头AdvancedDropdown只在Unity 2019下才可用。。。 工具介绍文件选择器顾名思义是用来选中文件用的，那么与上图中Unity自带的点击右边的小圆点 弹出文件搜索框有什么区别呢？ 工具界面如下： 其中点击Select按钮，弹出文件搜索框（类比Add Component按钮点击后弹出的框）,根据资源类型筛选后形成的资源树状结构显示在下面的框中，点击其中一个结点进入子树，点击右侧的X按钮进行清空。（小声哔哔：看起来好像没啥用） gif动图： 资源弱引用首先说明一下个人理解的资源弱引用：不直接引用游戏资源，通过序列化存储一些用来从资源管理系统中加载资源的参数，来间接引用资源，这些参数可以称之为地址（不要强行沾边Addressable）。使用一个地址来加载资源，资源如何更改，地址都不要变，保证地址唯一性。无论是使用Resources文件夹进行资源加载管理、还是使用AssetBundle进行资源加载管理，都可以使用弱引用。 弱引用需要存储的数据： GuidEditor可使用Guid来加载资源、定位资源，保证资源的路径修改后依然可以定位到资源。 用来加载的数据取决于你的资源管理系统如何加载资源，如果使用Resources加载，可以存储Resources文件夹下的路径 WeakReference弱引用基类，其中存储了Guid 各种资源类型对应的弱引用类型 文件选择器该文件选择器参考的Editor源码中AddComponent部分 Unity-Technologies Add Component Editor源码地址 AdvancedDropdown官方介绍 AdvancedDropdown部分此文不过多介绍，可能会另外开篇。本例中只存储了guid，其余数据在文件被选择的时候也可以赋值。 源码地址Github仓库地址 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>Unity编辑器拓展</category>
+      </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python工具之一：九宫格图片极致裁剪]]></title>
+    <url>%2F2020%2F03%2F28%2Fpython-gong-ju-zhi-yi-jiu-gong-ge-tu-pian-ji-zhi-cai-jian%2F</url>
+    <content type="text"><![CDATA[Python工具之一：九宫格图片极致裁剪工具用途在读到文章(https://blog.uwa4d.com/archives/PSD4UGUI.html)时，文章中提到“e.通过设定参数即可自动生成九宫图片，优化九宫图片面积”，引发的思考：如何优化九宫图片面积？九宫图片作为拉伸图片使用，拉伸区域越小越能缩小图片面积，达到优化的目的。进一步找到文章（https://gameinstitute.qq.com/community/detail/103423) 文章中提到下图 将连续相同的行（列）裁剪掉，只保留一行（列）即可，依次达到九宫图片面积缩小的目的。 （ps：讲道理，图片处理软件里应该能精准控制裁剪的，为啥要程序写工具来做这件事？美术表示我不会…） 本文中并没有写的上文中那么详细，我的最终目的是给Unity中使用的九宫图片做裁剪，因此文章中有部分内容跟Unity沾边，不过不影响工具的使用，工具使用Python开发。 如下图：Unity中两纯色像素之间有颜色过渡，因此工具没有将图片的连续相同行（列）裁剪到只保留一行（列），而是三行（列）。 开发思考（1）如何加载、保存、读写一个image，本工具使用OpenCV2 （2）如何判断图片的两行（列）是否完全相同 （3）如何计算出图片的最佳九宫区域 （4）如何裁剪九宫区域 裁剪结果看起来很像变成了一个圆形，其实四条边上有三行（列）像素是九宫区域 代码介绍# 比较两行是否相等 # 相等返回true，否则返回false def equal_row_pixel(img,row1,row2): height = img.shape[0] #将tuple中的元素取出，赋值给height，width，channels width = img.shape[1] channels = img.shape[2] if(row1 &lt; 0 or row1 &gt;= height): return False if(row2 &lt; 0 or row2 &gt;= height): return False for col in range(width): for channel in range(channels): if(img[row1][col][channel] != img[row2][col][channel]): return False return True# 比较两列是否相等 # 相等返回true，否则返回false def equal_col_pixel(img,col1,col2): height = img.shape[0] #将tuple中的元素取出，赋值给height，width，channels width = img.shape[1] channels = img.shape[2] if(col1 &lt; 0 or col1 &gt;= width): return False if(col2 &lt; 0 or col2 &gt;= width): return False for row in range(height): for channel in range(channels): if(img[row][col1][channel] != img[row][col2][channel]): return False return True# 横向是否可以处理九宫 # img:图片 # continuous_col_num:连续的列数，大于等于这个值判定为横向可以九宫处理 def horizontal_slice(img,continuous_col_num): cur_begin_col_index = 0 cur_end_col_index = 0 slice_begin_col_index = 0 slice_end_col_index = 0 height = img.shape[0] width = img.shape[1] channels = img.shape[2] for col in range(width): if(col &lt; width - 1): if(equal_col_pixel(img,col,col+1) == False): # begin与end指向不是同一列时，判断连续列数是否满足九宫条件 if((cur_begin_col_index != cur_end_col_index) and (cur_end_col_index - cur_begin_col_index &gt;= continuous_col_num) and (cur_end_col_index - cur_begin_col_index &gt; slice_end_col_index - slice_begin_col_index)): # 已经达到了连续列数，满足九宫条件 slice_begin_col_index = cur_begin_col_index slice_end_col_index = cur_end_col_index cur_begin_col_index = col + 1 cur_end_col_index = col + 1 else: # 相等，end后移一位 cur_end_col_index = col + 1 if(slice_end_col_index - slice_begin_col_index &gt;= continuous_col_num): return True,slice_begin_col_index,slice_end_col_index else: return False,0,0# 纵向是否可以处理九宫 def vertical_slice(img,continuous_row_num): cur_begin_row_index = 0 cur_end_row_index = 0 slice_begin_row_index = 0 slice_end_row_index = 0 height = img.shape[0] width = img.shape[1] channels = img.shape[2] for row in range(height): if(row &lt; height - 1): if(equal_row_pixel(img,row,row+1) == False): if((cur_begin_row_index != cur_end_row_index) and (cur_end_row_index - cur_begin_row_index &gt;= continuous_row_num) and (cur_end_row_index - cur_begin_row_index &gt; slice_end_row_index - slice_begin_row_index)): slice_begin_row_index = cur_begin_row_index slice_end_row_index = cur_end_row_index cur_begin_row_index = row + 1 cur_end_row_index = row + 1 else: cur_end_row_index = row + 1 if(slice_end_row_index - slice_begin_row_index &gt;= continuous_row_num): return True,slice_begin_row_index,slice_end_row_index else: return False,0,0完整代码#!/usr/bin/python # -*- coding: UTF-8 -*- import cv2 from PIL import Image import numpy as np import os import tkFileDialog import Tkinter import tkMessageBox # 比较两行是否相等 # 相等返回true，否则返回false def equal_row_pixel(img,row1,row2): height = img.shape[0] #将tuple中的元素取出，赋值给height，width，channels width = img.shape[1] channels = img.shape[2] if(row1 &lt; 0 or row1 &gt;= height): return False if(row2 &lt; 0 or row2 &gt;= height): return False for col in range(width): for channel in range(channels): if(img[row1][col][channel] != img[row2][col][channel]): return False return True # 比较两列是否相等 # 相等返回true，否则返回false def equal_col_pixel(img,col1,col2): height = img.shape[0] #将tuple中的元素取出，赋值给height，width，channels width = img.shape[1] channels = img.shape[2] if(col1 &lt; 0 or col1 &gt;= width): return False if(col2 &lt; 0 or col2 &gt;= width): return False for row in range(height): for channel in range(channels): if(img[row][col1][channel] != img[row][col2][channel]): return False return True # 横向是否可以处理九宫 # img:图片 # continuous_col_num:连续的列数，大于等于这个值判定为横向可以九宫处理 def horizontal_slice(img,continuous_col_num): cur_begin_col_index = 0 cur_end_col_index = 0 slice_begin_col_index = 0 slice_end_col_index = 0 height = img.shape[0] width = img.shape[1] channels = img.shape[2] for col in range(width): if(col &lt; width - 1): if(equal_col_pixel(img,col,col+1) == False): # begin与end指向不是同一列时，判断连续列数是否满足九宫条件 if((cur_begin_col_index != cur_end_col_index) and (cur_end_col_index - cur_begin_col_index &gt;= continuous_col_num) and (cur_end_col_index - cur_begin_col_index &gt; slice_end_col_index - slice_begin_col_index)): # 已经达到了连续列数，满足九宫条件 slice_begin_col_index = cur_begin_col_index slice_end_col_index = cur_end_col_index cur_begin_col_index = col + 1 cur_end_col_index = col + 1 else: # 相等，end后移一位 cur_end_col_index = col + 1 if(slice_end_col_index - slice_begin_col_index &gt;= continuous_col_num): return True,slice_begin_col_index,slice_end_col_index else: return False,0,0 # 纵向是否可以处理九宫 def vertical_slice(img,continuous_row_num): cur_begin_row_index = 0 cur_end_row_index = 0 slice_begin_row_index = 0 slice_end_row_index = 0 height = img.shape[0] width = img.shape[1] channels = img.shape[2] for row in range(height): if(row &lt; height - 1): if(equal_row_pixel(img,row,row+1) == False): if((cur_begin_row_index != cur_end_row_index) and (cur_end_row_index - cur_begin_row_index &gt;= continuous_row_num) and (cur_end_row_index - cur_begin_row_index &gt; slice_end_row_index - slice_begin_row_index)): slice_begin_row_index = cur_begin_row_index slice_end_row_index = cur_end_row_index cur_begin_row_index = row + 1 cur_end_row_index = row + 1 else: cur_end_row_index = row + 1 if(slice_end_row_index - slice_begin_row_index &gt;= continuous_row_num): return True,slice_begin_row_index,slice_end_row_index else: return False,0,0 # 标记Sprite的九宫区域 def tag_image_slice_area(img,slice_row_begin,slice_row_end,slice_col_begin,slice_col_end,color): height = img.shape[0] width = img.shape[1] channels = img.shape[2] for row in range(height): #遍历每一行 for col in range(width): #遍历每一列 if((row &gt;= slice_row_begin and row &lt;= slice_row_end and slice_row_begin != slice_row_end) or (col &gt;= slice_col_begin and col &lt;= slice_col_end and slice_col_begin != slice_col_end)): alter_image_pixel_color(img,row,col,color) return img # 修改img指定像素的颜色 # img:修改的img # row:行索引 # col:列索引 # color:颜色rgb数组 def alter_image_pixel_color(img,row,col,color): img.itemset((row, col, 0), color[0]) img.itemset((row, col, 1), color[1]) img.itemset((row, col, 2), color[2]) # 九宫区域裁剪 def tailor_image_slice_area(img,slice_row_begin,slice_row_end,slice_col_begin,slice_col_end): height = img.shape[0] width = img.shape[1] new_width = width - (slice_col_end - slice_col_begin) new_height = height - (slice_row_end - slice_row_begin) target = np.zeros(shape=(new_height,new_width,img.shape[2]), dtype=np.uint8) # img[0:4,0:3] 第0行-第4行，第0列到第3列的交叉区域 # 左上 roiImg = img[0:slice_row_begin,0:slice_col_begin] target[0:slice_row_begin,0:slice_col_begin] = roiImg # 右上 roiImg = img[0:slice_row_begin,slice_col_end:width] target[0:slice_row_begin,slice_col_begin:new_width] = roiImg # 左下 roiImg = img[slice_row_end:height,0:slice_col_begin] target[slice_row_begin:new_height,0:slice_col_begin] = roiImg # 右下 roiImg = img[slice_row_end:height,slice_col_end:width] target[slice_row_begin:new_height,slice_col_begin:new_width] = roiImg return target def load_sprite(): continuous_row_num_input_str = continuous_row_num_input.get() #获取文本框内容 continuous_col_num_input_str = continuous_col_num_input.get() continuous_row_num = 0 continuous_col_num = 0 try: if continuous_row_num_input_str != &quot;&quot;: continuous_row_num = float(continuous_row_num_input_str) if continuous_col_num_input_str != &quot;&quot;: continuous_col_num = float(continuous_col_num_input_str) except ValueError: tkMessageBox.showinfo( &quot;Error&quot;, &quot;无效的线宽输入&quot;) return if continuous_row_num &lt;= 0 or continuous_col_num &lt;= 0: tkMessageBox.showinfo( &quot;Error&quot;, &quot;无效的线宽输入&quot;) return fname = tkFileDialog.askopenfilename(title=u&quot;选择文件&quot;) img1 = cv2.imread(fname,cv2.IMREAD_UNCHANGED) a1,b1,c1 = horizontal_slice(img1,continuous_col_num) a2,b2,c2 = vertical_slice(img1,continuous_row_num) # 九宫区域保留在3像素的宽高 b1 = b1 + 1 c1 = c1 - 1 b2 = b2 + 1 c2 = c2 - 1 if toggle_tailor_hor.get() == 0: b1 = 0 c1 = 0 if toggle_tailor_ver.get() == 0: b2 = 0 c2 = 0 new_sprite = tailor_image_slice_area(img1,b2,c2,b1,c1) cv2.imwrite(fname, new_sprite) print(fname) root = Tkinter.Tk() root.geometry(&#39;400x300&#39;) root.title(&quot;Sprite九宫区域极致裁剪修改器&quot;) frame = Tkinter.Frame(root) frame.pack() toggle_tailor_hor = Tkinter.IntVar() toggle_tailor_ver = Tkinter.IntVar() Tkinter.Checkbutton(root, text = &quot;是否横向九宫处理&quot;, variable = toggle_tailor_hor,onvalue = 1, offvalue = 0).pack() Tkinter.Checkbutton(root, text = &quot;是否纵向九宫迷宫&quot;, variable = toggle_tailor_ver,onvalue = 1, offvalue = 0).pack() Tkinter.Label(frame, text=&quot;横向最小连续列数&quot;).pack() continuous_row_num_input = Tkinter.Entry(frame) continuous_row_num_input.pack() Tkinter.Label(frame, text=&quot;纵向最小连续行数&quot;).pack() continuous_col_num_input = Tkinter.Entry(frame) continuous_col_num_input.pack() load_sprite_button = Tkinter.Button(root, text=&quot;加载Sprite文件并修改&quot;,command=load_sprite) load_sprite_button.pack() root.mainloop()工具界面 点击按钮”加载Sprite文件并修改“后，打开文件框选中要处理的图片后进行处理，覆盖原图片，可以根据自己的需要进行修改。 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Border自动设置工具]]></title>
+    <url>%2F2020%2F03%2F28%2Funity-bian-ji-qi-tuo-zhan-zhi-er-shi-ba-sprite-border-zi-dong-she-zhi-gong-ju%2F</url>
+    <content type="text"><![CDATA[Unity编辑器拓展之二十八：Sprite Border自动设置工具1.0 功能介绍自动计算出九宫格Sprite 的border数据并直接赋值保存的工具。【纯属偷懒，可能各位觉得没啥用吧，哈哈】 当需要为一个九宫格Sprite 设置Border数据时，需要打开Sprite Editor，然后输入Border数据。 工具会直接计算横向、纵向连续完全相同的列数、行数（当然连续区域取最大的），当计算出的九宫区域满足条件时（我设定的条件是连续列数或者行数有个最小值设定），就任务该图可以处理为九宫格Sprite。 以上九宫格Sprite，又称为 点九图【废话】。 2.0 源码脚本放置在Editor文件夹下 using System.IO; using UnityEditor; using UnityEngine; public class SpriteImporterTool : UnityEditor.Editor { public static int continuousColNum = 10; //continuousColNum:连续的列数，大于等于这个值判定为横向可以九宫处理 public static int continuousRowNum = 10; //continuousRowNum:连续的行数，大于等于这个值判定为纵向可以九宫处理 //自动计算Sprite Border数据 [MenuItem(&quot;Assets/SpriteBorder/AutoSetSpriteBorder&quot;, false, 500)] public static void AutoSetSpriteBorder() { foreach (var spriteAsset in Selection.objects) { AutoSetSpriteBorder(AssetDatabase.GetAssetPath(spriteAsset)); } } //设置Sprite Border为Zero [MenuItem(&quot;Assets/SpriteBorder/Reset Zero&quot;, false)] public static void AutoSetSpriteBorderZero() { foreach (var spriteAsset in Selection.objects) { SetSpriteBorder(AssetDatabase.GetAssetPath(spriteAsset), Vector4.zero); } } private static void AutoSetSpriteBorder(string spriteAssetPath) { TextureImporter textureImporter = AssetImporter.GetAtPath(spriteAssetPath) as TextureImporter; if (textureImporter != null &amp;&amp; textureImporter.textureType == TextureImporterType.Sprite) { Sprite sprite = AssetDatabase.LoadAssetAtPath&lt;Sprite&gt;(spriteAssetPath); Vector4 border = Vector4.zero; GetBorderSliceInfo(sprite.texture, continuousColNum, continuousRowNum, ref border); if (border != Vector4.zero) { textureImporter.spriteBorder = border; EditorUtility.SetDirty(sprite); AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); } } } private static void SetSpriteBorder(string spriteAssetPath, Vector4 border) { TextureImporter textureImporter = AssetImporter.GetAtPath(spriteAssetPath) as TextureImporter; if (textureImporter != null &amp;&amp; textureImporter.textureType == TextureImporterType.Sprite) { Sprite sprite = AssetDatabase.LoadAssetAtPath&lt;Sprite&gt;(spriteAssetPath); textureImporter.spriteBorder = border; EditorUtility.SetDirty(sprite); AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); } } public static void GetBorderSliceInfo(Texture2D texture, int continuousColNum, int continuousRowNum, ref Vector4 border) { int width = texture.width; int height = texture.height; //咳咳，这里的命名规则请忽略，从另一个python工具拷贝过来 int cur_begin_col_index = 0; int cur_end_col_index = 0; int slice_begin_col_index = 0; int slice_end_col_index = 0; Texture2D readTexture2D = GetReadTexture2D(texture); for (int col = 0; col &lt; width - 1; col++) { if (EqualColPixel(readTexture2D, col, col + 1) == false) { if ((cur_begin_col_index != cur_end_col_index) &amp;&amp; (cur_end_col_index - cur_begin_col_index &gt;= continuousColNum) &amp;&amp; (cur_end_col_index - cur_begin_col_index &gt; slice_end_col_index - slice_begin_col_index)) { slice_begin_col_index = cur_begin_col_index; slice_end_col_index = cur_end_col_index; } cur_begin_col_index = col + 1; cur_end_col_index = col + 1; } else { cur_end_col_index = col + 1; } } int cur_begin_row_index = 0; int cur_end_row_index = 0; int slice_begin_row_index = 0; int slice_end_row_index = 0; for (int row = 0; row &lt; height - 1; row++) { if (EqualRowPixel(readTexture2D, row, row + 1) == false) { if ((cur_begin_row_index != cur_end_row_index) &amp;&amp; (cur_end_row_index - cur_begin_row_index &gt;= continuousRowNum) &amp;&amp; (cur_end_row_index - cur_begin_row_index &gt; slice_end_row_index - slice_begin_row_index)) { slice_begin_row_index = cur_begin_row_index; slice_end_row_index = cur_end_row_index; } cur_begin_row_index = row + 1; cur_end_row_index = row + 1; } else { cur_end_row_index = row + 1; } } if (slice_end_col_index - slice_begin_col_index &lt; continuousColNum) { slice_begin_col_index = 0; slice_end_col_index = width - 1; } if (slice_end_row_index - slice_begin_row_index &lt; continuousRowNum) { slice_begin_row_index = 0; slice_end_row_index = height - 1; } //LTRB //row 是纵向的 T B //col 是横向的 L R border = new Vector4(slice_begin_col_index, slice_begin_row_index, width - slice_end_col_index - 1, height - slice_end_row_index - 1); } public static string GetAssetFullPath(UnityEngine.Object asset) { return System.Environment.CurrentDirectory + Path.DirectorySeparatorChar + AssetDatabase.GetAssetPath(asset); } public static Texture2D GetReadTexture2D(Texture texture) { string textureFilePath = GetAssetFullPath(texture); FileStream fileStream = new FileStream(textureFilePath, FileMode.Open, FileAccess.Read); fileStream.Seek(0, SeekOrigin.Begin); byte[] bytes = new byte[fileStream.Length]; fileStream.Read(bytes, 0, (int) fileStream.Length); fileStream.Close(); fileStream.Dispose(); Texture2D new_texture = new Texture2D(texture.width, texture.height); new_texture.LoadImage(bytes); return new_texture; } /// &lt;summary&gt; /// 比较两行像素是否完全相等 /// &lt;/summary&gt; /// &lt;param name=&quot;texture&quot;&gt;isReadable为true，可读的texture&lt;/param&gt; /// &lt;param name=&quot;row1&quot;&gt;&lt;/param&gt; /// &lt;param name=&quot;row2&quot;&gt;&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool EqualRowPixel(Texture2D texture, int row1, int row2) { Color[] row1Colors = texture.GetPixels(0, row1, texture.width, 1); Color[] row2Colors = texture.GetPixels(0, row2, texture.width, 1); for (int i = 0; i &lt; row1Colors.Length; i++) { if (!row1Colors[i].Equals(row2Colors[i])) { return false; } } return true; } /// &lt;summary&gt; /// 比较两列像素是否完全相等 /// &lt;/summary&gt; /// &lt;param name=&quot;texture&quot;&gt;isReadable为true，可读的texture&lt;/param&gt; /// &lt;param name=&quot;col1&quot;&gt;&lt;/param&gt; /// &lt;param name=&quot;col2&quot;&gt;&lt;/param&gt; /// &lt;returns&gt;&lt;/returns&gt; public static bool EqualColPixel(Texture2D texture, int col1, int col2) { Color[] col1Colors = texture.GetPixels(col1, 0, 1, texture.height); Color[] col2Colors = texture.GetPixels(col2, 0, 1, texture.height); for (int i = 0; i &lt; col1Colors.Length; i++) { if (!col1Colors[i].Equals(col2Colors[i])) { return false; } } return true; } }以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>Unity编辑器拓展</category>
+      </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Unity编辑器拓展之二十七：TextMeshPro的TMP_SpriteAsset图文混排图集快捷更新工具]]></title>
+    <url>%2F2020%2F03%2F28%2Funity-bian-ji-qi-tuo-zhan-zhi-er-shi-qi-textmeshpro-de-tmp-spriteasset-tu-wen-hun-pai-tu-ji-kuai-jie-geng-xin-gong-ju%2F</url>
+    <content type="text"><![CDATA[Unity编辑器拓展之二十七：TextMeshPro的TMP_SpriteAsset图文混排图集快捷更新工具1.TextMeshPro的SpriteAsset制作此文不再赘述，参考此文：https://blog.csdn.net/qq_37057633/article/details/81120583 2.工具使用场景当图文混排图集需要加一个新图时，需要重新按照上文的流程重新打一遍Json(Array)格式和一遍Unity-Texture2D Sprite格式的，打完之后，图集里的图文位置就会发生变化，TMP_SpriteAsset里存储的spriteGlyphTable和spriteCharacterTable并不会自动更新（包括旧的sprite相关数据和新增的sprite数据），而且旧的图文混排图集里的Sprite ID也应该保持不变，如果我们手动修改了Sprite的GlyphMetrics数据，这个数据也会被重打的覆盖掉，使得之前的数据丢失。那么，开发一款快捷更新图文混排的工具就十分有必要。 3.工具介绍3.1 工具界面 3.2 工具功能1.缓存数据 主要是缓存旧的图集数据，spriteGlyphTable和spriteCharacterTable 2.一键打Json格式图集 使用命令行打图集，此文不再赘述，参考：https://blog.csdn.net/u014065445/article/details/54289787 使用命令行打json格式文件 3.一键打Unity格式图集 使用命令行打Unity格式图集 /// &lt;summary&gt; /// 打Unity格式图集 /// &lt;/summary&gt; private void UnitySpriteTexturePacker() { curTime = System.DateTime.Now; //获取打Unity格式的TexturePacker命令 string cmd = TexturePackerCommond.GetPackCommond(arangeSpritesFolderPath,arrangeIconAtlasPngPath,arrangeIconAtlasTpsheetFilePath); //使用ShellHelper生成一个ShellRequest对象 ShellHelper.ShellRequest request = ShellHelper.ProcessCommand(cmd,null); EditorUtility.DisplayProgressBar(&quot;批量处理中...&quot;,&quot;Shell脚本生成Json图集信息...&quot;, 0); //注册命令执行完回调 request.onDone += ()=&gt; { { //打包结束 EditorUtility.DisplayProgressBar(&quot;批量处理中...&quot;,&quot;Shell脚本执行完毕...开始打图集...&quot;, 0); AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); CreateUIAtlas(); } }; //注册命令执行错误的回调 request.onError += ()=&gt; { Debug.LogError(&quot;Texture Packer Error!!! Please Check Your Config&quot;); EditorUtility.ClearProgressBar(); }; }4.数据更新 解析Tpsheet格式文件，从中拿到所有Sprite的GlyphRect数据，【注意】Tpsheet文件中Sprite的GlyphRect数据是以SpriteName区分的，因此TMP_SpriteAsset里的spriteCharacterTable里的name一定要正确，不然数据会错位。 4.使用说明1.TexturePacker_PATH更改为自己电脑的TexturePacker路径 2.工具开发环境是mac端，windows端下自行类比修改 3.需要导入TexturePackerImporter工具配合TexturePacker打出来的图集使用 4.代码中的路径自行修改 5.工具仓库地址https://github.com/JingFengJi/UpdateSpriteAssetTool.git 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>Unity编辑器拓展</category>
+      </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Unity编辑器拓展之二十六：基于UGUI的Sprite引用查询]]></title>
+    <url>%2F2020%2F03%2F28%2Funity-bian-ji-qi-tuo-zhan-zhi-er-shi-liu-ji-yu-ugui-de-sprite-yin-yong-cha-xun%2F</url>
+    <content type="text"><![CDATA[基于UGUI的Sprite引用查询使用TexturePacker打的图集，sprite引用查询工具示意图如下。菜单栏：1、选择图集，输入sprite name，一键搜索按钮，导出搜索数据成CSV格式，一键断开所有引用2、界面下方是搜索结果的Tree视图。 下面是操作示意图。 适用场景图片从一个图集更改到别的图集，如果是用Unity的打图集方式（PackingTag），这种场景就方便多了，修改PackingTag即可。使用TexturePacker打的图集，就没办法这样了。 Code地址https://github.com/JingFengJi/SpriteReferenceCheck 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>Unity编辑器拓展</category>
+      </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Unity编辑器拓展之二十五：图集SpriteMetaData数据拷贝]]></title>
+    <url>%2F2020%2F03%2F28%2Funity-bian-ji-qi-tuo-zhan-zhi-er-shi-wu-tu-ji-spritemetadata-shu-ju-kao-bei%2F</url>
+    <content type="text"><![CDATA[图集SpriteMetaData数据拷贝关于SpriteMetaData类： 用于生成精灵的编辑器数据。官方文档介绍：https://docs.unity3d.com/2017.2/Documentation/ScriptReference/SpriteMetaData.html 工具界面 工具使用场景适用于游戏中存在多套皮肤图集 使用方法拖入数据源图集的texture、克隆图集的texture，然后点击Copy，就会将clone texture 的Sprite data 拷贝到clone texture 中，对应关系是按照sprite name来对比的。 具体代码using System.Collections.Generic; using UnityEditor; using UnityEngine; namespace Editor.CopyAtlasDataTool { public class CopyAtlasDataTool : EditorWindow { private static CopyAtlasDataTool window = null; [MenuItem(&quot;Tools/CopyAtlasDataTool&quot;)] public static CopyAtlasDataTool ShowGameDataEditorWindow() { if (window == null) window = EditorWindow.GetWindow(typeof(CopyAtlasDataTool)) as CopyAtlasDataTool; window.titleContent = new GUIContent(&quot;CopyAtlasDataTool&quot;); window.Show(); return window; } private UnityEngine.Object _originObject; private UnityEngine.Object _cloneObject; private void OnGUI() { _originObject = EditorGUILayout.ObjectField(&quot;数据源图集&quot;, _originObject,typeof(Texture)); _cloneObject = EditorGUILayout.ObjectField(&quot;克隆图集&quot;, _cloneObject, typeof(Texture)); if (GUILayout.Button(&quot;Copy&quot;)) { if (_originObject != null &amp;&amp; _cloneObject != null) { CopyData(_originObject, _cloneObject); } } } public void CopyData(Object origin, Object clone) { string originAssetPath = AssetDatabase.GetAssetPath(origin); string cloneAssetPath = AssetDatabase.GetAssetPath(clone); TextureImporter originTi = AssetImporter.GetAtPath(originAssetPath) as TextureImporter; TextureImporter cloneTi = AssetImporter.GetAtPath(cloneAssetPath) as TextureImporter; if (originTi != null &amp;&amp; cloneTi != null) { //打开读写，才能写入数据 cloneTi.isReadable = true; List &lt; SpriteMetaData &gt; newData = new List &lt; SpriteMetaData &gt; (); List&lt;string&gt; hasAddData = new List&lt;string&gt;(); for (int i = 0; i &lt; originTi.spritesheet.Length; i++) { for (int j = 0; j &lt; cloneTi.spritesheet.Length; j++) { SpriteMetaData oSm = originTi.spritesheet[i]; SpriteMetaData cSm = cloneTi.spritesheet[j]; //根绝sprite name进行匹配的 if (oSm.name == cSm.name) { cSm.border = oSm.border; cSm.pivot = oSm.pivot; cSm.alignment = oSm.alignment; newData.Add(cSm); hasAddData.Add(cSm.name); } } } for (int j = 0; j &lt; cloneTi.spritesheet.Length; j++) { SpriteMetaData cSm = cloneTi.spritesheet[j]; if (!hasAddData.Contains(cSm.name)) { newData.Add(cSm); } } cloneTi.spritesheet = newData.ToArray(); AssetDatabase.ImportAsset(cloneAssetPath, ImportAssetOptions.ForceUpdate); cloneTi = AssetImporter.GetAtPath(cloneAssetPath) as TextureImporter; if(cloneTi != null) cloneTi.isReadable = false; AssetDatabase.ImportAsset(cloneAssetPath, ImportAssetOptions.ForceUpdate); } } } }注意点（1）克隆图集的TextureImporter的isReadable要在复制前打开，不然不能写入数据（2）SpriteMetaData是结构体，要注意结构体和类的区别（3）copy完后，注意检查两个图集的读写是否正确关闭了 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>Unity编辑器拓展</category>
+      </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Unity编辑器拓展之二十四：基于Unity Node Editor、ScriptableObject的配置化新手引导系统]]></title>
     <url>%2F2019%2F02%2F01%2Funity-bian-ji-qi-tuo-zhan-zhi-er-shi-si-ji-yu-unity-node-editor-scriptableobject-de-pei-zhi-hua-xin-shou-yin-dao-xi-tong%2F</url>
     <content type="text"><![CDATA[本文主要介绍根据一款Node Editor库开发的新手引导系统git地址如下： https://github.com/luis-l/UnityNodeEditorBase 一、旧版新手引导做法 GuideCheckManager负责check各种类型的引导，判断是否达到触发条件，如果达到条件，当前无引导，则直接进行引导，否则存入缓存队列中。 GuideCheckManager注册跟引导有关的消息通知，等收到通知，做一些check工作。 一个大步引导包含多个单线的单步引导，每个单步引导又可有check条件，如果中间某一单步引导未check通过，则打断引导。 缺点： （1）配置采用CSV，可读性极差 使用CSV作为配置，为了将触发条件也配置化，就必须做一些数据解析的工作，如下图所示： 然后在程序中定义各种类型trigger的数据解析函数。从CSV中无法很直观的知道这一单步引导具体是引导什么。 填充数据也较为繁琐。 二、基于结点编辑的配置化新手引导系统 （1）基于ScriptableObject、结点编辑的配置 工具截图如下： GuideNodeGraph：一个结点树称为一个大步引导 GuideNode：一个结点称为一个单步引导 一个GuideNodeGraph就是一个ScriptableObject文件 一个GuideNodeGraph包含多个Node，连接NextStepGuide-&gt; LastStepGuide，形成结点树。 每个GuideNode，包含一个Input（LastStepGuide，目前无实际作用，只是为了连接结点树，OutPut必与Input连接)，三个Output（NextStepGuide、Trigger、Condition） NextStepGuide：用来存储下一个单步引导结点，如果无下一单步引导结点，则当前引导结点完成时，引导结束。 Trigger：该单步引导结点触发条件，如果有多个Trigger，则只要有一个Trigger Success，则该引导则触发。 Condition：引导条件结点。单步引导结点可包含多个Condition引导条件，只有当多个Condition均成立时，才会引导。 Trigger和Condition均为Node 的子类。 库中ActionTriggerSystem类的setupNodeCreateMenu函数，实现了在NodeEditor中的右键菜单，自行修改可以实现排序，某一类node在前，某一类在后 根据Guide View界面类型的不同，可以定义多种Guide Node保存数据，一般有对话模式的，以及点击UI模式的，本文主要讲如何使用NodeEditor、ScriptableObject进行配置化，如果项目中不是使用ScriptableObject进行配置存储的话，该方案就不适用了。 可以NodeEditor的优点：配置引导可读性高，并且不存在配置数据解析逻辑，更改引导内顺序也很方便快捷。 最后感谢作者提供的Node Editor库git地址如下： https://github.com/luis-l/UnityNodeEditorBase 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity Shader编程之一：多颜色条纹背景]]></title>
     <url>%2F2018%2F12%2F22%2Funity-shader-bian-cheng-zhi-yi-duo-yan-se-tiao-wen-bei-jing%2F</url>
     <content type="text"><![CDATA[两种颜色的条纹状背景Shader &quot;Custom/Flag&quot; { Properties { [PerRendererData]_MainTex (&quot;Texture&quot;, 2D) = &quot;white&quot; {} _1stColor(&quot;1stColo&quot;,Color) = (0,0,0,1) _2ndColor(&quot;2ndColor&quot;,Color) = (1,1,1,1) _tileNum(&quot;tile num&quot;, Range (2, 20)) = 10 } SubShader { Tags { &quot;RenderType&quot;=&quot;Opaque&quot; } LOD 100 Pass { CGPROGRAM #pragma vertex vert #pragma fragment frag // make fog work #pragma multi_compile_fog #include &quot;UnityCG.cginc&quot; struct appdata { float4 vertex : POSITION; float2 uv : TEXCOORD0; }; struct v2f { float2 uv : TEXCOORD0; float4 vertex : SV_POSITION; }; sampler2D _MainTex; fixed4 _1stColor; fixed4 _2ndColor; int _tileNum; v2f vert (appdata v) { v2f o; o.vertex = UnityObjectToClipPos(v.vertex); o.uv = v.uv; return o; } fixed4 frag (v2f i) : SV_Target { //i.uv * _tileNum 将uv放大 //frac函数，取其小数部分 float2 newuv = frac(i.uv*_tileNum); //step函数小于0.5返回0，否则返回1，再lerp一下，也就是uv.x小于0.5，返回_1stColor，否则返回_2ndColor fixed4 color = lerp(_1stColor,_2ndColor,step(0.5,newuv.x)); return color; } ENDCG } } }效果图：]]></content>
+      <categories>
+        <category>UnityShader</category>
+      </categories>
+      <tags>
+        <tag>UnityShader</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之二十三：基于ObjectField的FileField]]></title>
@@ -20,6 +117,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之二十二：基于TexturePacker的一键打图集工具]]></title>
@@ -28,6 +128,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之二十一：拓展Unity模块，打造私人工具库（二）]]></title>
@@ -36,6 +139,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之二十：拓展Unity模块，打造私人工具库（一）]]></title>
@@ -44,6 +150,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十九：NGUI UISprite预览图Preview拓展]]></title>
@@ -52,6 +161,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[常用软件集锦]]></title>
@@ -65,6 +177,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框]]></title>
@@ -73,6 +188,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十六：监听Scene Drag事件]]></title>
@@ -81,6 +199,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十五：NGUI批量替换图集工具]]></title>
@@ -89,6 +210,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十四：字体替换工具]]></title>
@@ -97,6 +221,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十三：CSV文件解析代码生成工具]]></title>
@@ -105,6 +232,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[游戏功能模块——新手引导]]></title>
@@ -118,6 +248,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十一：通过Image Name反查Prefab]]></title>
@@ -126,6 +259,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之十：UI对齐工具]]></title>
@@ -134,6 +270,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之九：SearchField]]></title>
@@ -142,6 +281,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之七：如何在PreferencesWindow中新增条目]]></title>
@@ -163,6 +305,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之五：修改脚本icon]]></title>
@@ -171,6 +316,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之四：ConsoleWindow中的双击日志定位]]></title>
@@ -179,6 +327,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity插件推荐]]></title>
@@ -202,6 +353,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之二：ReorderableList可重新排序的列表框（复杂使用）]]></title>
@@ -210,6 +364,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）]]></title>
@@ -218,6 +375,9 @@
       <categories>
         <category>Unity编辑器拓展</category>
       </categories>
+      <tags>
+        <tag>Unity编辑器拓展</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Unity之图片轮播组件实现]]></title>
@@ -314,51 +474,111 @@
     <title><![CDATA[UGUI之Aspect Ratio Fitter组件介绍]]></title>
     <url>%2F2016%2F12%2F08%2Fugui-zhi-aspect-ratio-fitter-zu-jian-jie-shao%2F</url>
     <content type="text"><![CDATA[组件截图如下： 1、Aspect Mode：AspectMode枚举类型 public enum AspectMode { //不使用适合的纵横比 None, //让Height随着Width自动调节 WidthControlsHeight, //让Width随着Height自动调节 HeightControlsWidth, //宽度、高度、位置和锚点都会被自动调整，以使得该矩形拟合父物体的矩形内，同时保持宽高比例 FitInParent, //宽度、高度、位置和锚点都会被自动调整，以使得该矩形覆盖父物体的整个区域，同时保持宽高比 EnvelopeParent }2、Aspect Ratio：宽高比例，width/height 下面根据实际情况来介绍一下该组件。在我的工作中，遇到一种情况，玩家获得一些奖励，做成一个通用的UI界面，该界面通常包括以下东西：标题、获得按钮、中间是一排物品item，显然中间的一排物品item会用到水平布局，并且居中显示，每一个item又包括一个icon和一个text（显示count），如果此时存在某一个icon比其他的大些，就会显得很突兀，这个时候我就用到了该组件 给item预制件 中的icon 添加一个父物体，然后给icon加一个Aspect RatioFitter，AspectMode选用FitInParent，Aspect Ratio的值需要在代码中计算，因为我们在做这个UI的时候，肯定是根据数据来动态实例化这些item的，每一个icon的宽高比不一样，所以需要在代码中计算，代码如下： Rect rect = GetComponent&lt;Image&gt;().sprite.rect; AspectRatioFitter fitter = GetComponent&lt;AspectRatioFitter&gt;(); fitter.aspectRatio = rect.width / rect.height;这种做法就会保持icon的大小基本一致，当然如果美术团队出的物品图片资源都一致大小，咱们也就省去了这一步。 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之布局实战——聊天系统]]></title>
     <url>%2F2016%2F11%2F30%2Fugui-zhi-bu-ju-shi-zhan-liao-tian-xi-tong%2F</url>
     <content type="text"><![CDATA[聊天系统中的UGUI布局常用的聊天系统内容包括以下几点：1、发言内容；2、发言人头像3、发言人名称4、语言聊天（本文不考虑该功能，与布局无关）5、表情（本文暂不考虑该功能，后续补充）（4.1）表情与文字混排，比如：PC端的QQ聊天（4.2）表情与文字分开，比如：移动端的QQ6、聊天模式：文本模式、气泡模式（5.1）文本模式：参与聊天的所有人均在左边（5.2）气泡模式：自己的气泡在左边，其余玩家的气泡在右边，如下图： 这里以气泡模式为例进行讲解：先上类似效果图： 先简单分析一下：这里分为三个预制件：（1）整个对话框作为一个预制件a（2）玩家自己的气泡作为一个预制件b（3）其余玩家的气泡作为一个预制件c然后预制件a对气泡用了垂直布局；预制件b和c做法类似，大小一致；预制件b和c中的气泡背景图片要随着文字内容变化而自动缩放，因此背景图片身上挂上一个VerticalLayout Group组件和Content Size Fitter组件，相关设置如下：然后将文字内容物体作为背景图片的子物体，并添加组件Content Size Fitter相关设置如下： 预制件b和c还有一点区别就是b（玩家自己）的Pivot为（1,1），预制件c（其他玩家）的Pivot为（0,1） 这样描述可能不太好理解，最后会直接给大家提供一个工程下载地址。 然后聊天框还支持滚动翻阅浏览前面的聊天记录，因此还需要Scroll Rect、Mask等组件 由于聊天窗口下方几个按钮和输入框不是布局的重点，这里就不做介绍，如有需要，后续给大家提供一个工程下载地址。 那么，布局实战——聊天系统就介绍到这里。 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。 更新：Demo示意图如下： 此时图中是空的聊天窗口，每发送或者收到一条聊天记录，只需要生成一个相应 的预制件并作为Content的子物体 关于聊天系统的布局呢，根据设计不同布局也就不同，这里是将我工作中的一个聊天系统讲解给大家，具体详情如有兴趣欢迎点击链接： http://pan.baidu.com/s/1hrMxwf6 密码：6bss下载工程 我用的unity版本是5.3.7，工程所用美术资源非本人原创，请不要商用，仅限学习使用，如因此出现版权问题，与本人无关。 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Grid Layout Group组件介绍]]></title>
     <url>%2F2016%2F11%2F30%2Fugui-zhi-grid-layout-group-zu-jian-jie-shao%2F</url>
     <content type="text"><![CDATA[Grid Layout Group是LayoutGroup的子类 脚本属性截图如下： 1、Padding：RectOffset类型，矩形偏移，详解请戳 UGUI之Horizontal Layout Group组件介绍 2、Cell Size：Vector2类型，默认值为(100,100)，网格中的每个单元格的大小 [SerializeField] protected Vector2 m_CellSize = new Vector2(100, 100); public Vector2 cellSize { get { return m_CellSize; } set { SetProperty(ref m_CellSize, value); } }3、Spacing：这里的Spacing不同于水平布局、垂直布局，是Vector2类型，既然是网格布局，当然存在水平方向的间隔和垂直方向的间隔，这里也不做过多的介绍。 3、Start Corner：Corner枚举类型 public enum Corner { UpperLeft = 0, //左上角 UpperRight = 1, //右上角 LowerLeft = 2, //左下角 LowerRight = 3 //右下角 }第一个单元格放在哪个角落，默认为UpperLeft左上角 4、Start Axis：Axis枚举类型 public enum Axis { Horizontal = 0, //水平 Vertical = 1 //垂直 }（1）Horizontal：水平优先水平排列单元格（2）Vertical：垂直优先垂直排列单元格 5、Child Alignment：TextAnchor枚举类型，文本锚点，详解请戳 UGUI之Horizontal Layout Group组件介绍 6、Constraint：Constraint枚举类型 public enum Constraint { Flexible = 0, //不限制行数和列数 FixedColumnCount = 1, //约束指定数量的列数 FixedRowCount = 2 //约束指定数量的行数 }下面以几个截图来看看上面几个设置具体是怎样的作用：以下单元格物体加了一个Text来表示其编号，并且Hierarchy面板中的层级关系并未调整 图一：默认情况 图二：设置Start Corner为Upper Right 图三：设置Start Axis为Vertical 图四：设置Start Corner为Lower Left、Start Axis为Vertical 从以上图中不难看出这两个设置的使用用途。 实际开发中，我常与Content Size Fitter组件一起使用 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Vertical Layout Group组件介绍]]></title>
     <url>%2F2016%2F11%2F30%2Fugui-zhi-vertical-layout-group-zu-jian-jie-shao%2F</url>
     <content type="text"><![CDATA[VerticalLayoutGroup也是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup是LayoutGroup的子类，下面从源码中进行对比 namespace UnityEngine.UI { [AddComponentMenu(&quot;Layout/Horizontal Layout Group&quot;, 150)] public class HorizontalLayoutGroup : HorizontalOrVerticalLayoutGroup { protected HorizontalLayoutGroup() {} public override void CalculateLayoutInputHorizontal() { base.CalculateLayoutInputHorizontal(); CalcAlongAxis(0, false); } public override void CalculateLayoutInputVertical() { CalcAlongAxis(1, false); } public override void SetLayoutHorizontal() { SetChildrenAlongAxis(0, false); } public override void SetLayoutVertical() { SetChildrenAlongAxis(1, false); } } } namespace UnityEngine.UI { [AddComponentMenu(&quot;Layout/Vertical Layout Group&quot;, 151)] public class VerticalLayoutGroup : HorizontalOrVerticalLayoutGroup { protected VerticalLayoutGroup() {} public override void CalculateLayoutInputHorizontal() { base.CalculateLayoutInputHorizontal(); CalcAlongAxis(0, true); } public override void CalculateLayoutInputVertical() { CalcAlongAxis(1, true); } public override void SetLayoutHorizontal() { SetChildrenAlongAxis(0, true); } public override void SetLayoutVertical() { SetChildrenAlongAxis(1, true); } } }可以看出，唯一的区别就是四个重写的基方法里的调用的CalcAlongAxis、SetChildrenAlongAxis一个是false，一个是true，那么显然true表示是vertical，false表示horizontal 所以在这就不过多的对Vertical Layout Group组件做过多的介绍，用法跟 Horizontal LayoutGroup组件一样的用，如果对Horizontal Layout Group组件有不了解的，详情请点击这里 Horizontal LayoutGroup组件介绍 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Horizontal Layout Group组件介绍]]></title>
     <url>%2F2016%2F11%2F30%2Fugui-zhi-horizontal-layout-group-zu-jian-jie-shao%2F</url>
     <content type="text"><![CDATA[Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类 脚本截图如下： 图中包括以下属性：1、Padding：RectOffset类型，矩形偏移源码如下： public sealed class RectOffset { public RectOffset(); public RectOffset(int left, int right, int top, int bottom); ~RectOffset(); public int bottom { get; set; } //底边缘 public int horizontal { get; } //水平 public int left { get; set; } //左边缘 public int right { get; set; } //右边缘 public int top { get; set; } //顶边缘 public int vertical { get; } //垂直 public Rect Add(Rect rect); //向一个Rect添加边框偏移 public Rect Remove(Rect rect); //从一个Rect移除边框偏移 public override string ToString(); }如下面几个图中：图一：默认情况 图二：只改变Padding 当Padding中的边缘大小过大时，会自动缩放布局元素以保持布局元素均在边框内，从下图可以看出图三 2、Spacing：float类型布局元素之间的间隔 图四：只改变Spacing 当Spacing过大，会自动缩放布局元素以保持布局元素均在边框内，从下图可以看出布局元素宽度缩小了图五： 3、Child Alignment：TextAnchor枚举类型，文本锚点源码如下： public enum TextAnchor { UpperLeft = 0, //上左 UpperCenter = 1, //上中 UpperRight = 2, //上右 MiddleLeft = 3, //中左 MiddleCenter = 4, //中中 MiddleRight = 5, //中右 LowerLeft = 6, //下左 LowerCenter = 7, //下中 LowerRight = 8 //下右 }4、Child Force Expand：有两个可选（1）Width：是否强行扩大布局元素宽度以填补额外可用的空间（2）Height：是否强行扩大布局元素高度以填补额外可用的空间下面结合截图来说明：图六：勾选Width，填补宽度 图七：勾选Height，填补高度 图八：勾选Width和Height，填补宽度和高度 从以上三图结合图一默认图可以看出其具体效果 实际开发中，我经常结合Content Size Fitter组件一起使用 关于UI布局，大家开发的多了，就熟练了。 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Content Size Fitter组件]]></title>
     <url>%2F2016%2F11%2F29%2Fugui-zhi-content-size-fitter-zu-jian%2F</url>
     <content type="text"><![CDATA[具体属性截图： Horizontal Fit和VerticalFit均为UI.ContentSizeFitter.FitMode枚举类型，有三个值可选：Unconstrained，MinSize，PreferredSize Unconstrained：不执行任何调整MinSize：调整内容的最小大小PreferredSize：调整内容的首选大小，也就是会自动根据内容来调整大小 使用Content Size Fitter组件，RectTransform组件会发生响应的变化默认情况下RectTransform组件的Width 和 Height 可以在编辑模式下就行修改，当HorizontalFit不为Unconstrained时，Width不可修改，同理，Vertical Fit不为Unconstrained时，Height不可修改。 代码中，如果需要获取这个gameobject的Width 和Height，下图中提供了Preferred Height和PreferredWidth的获取方式 右下角可以看出数据的Source是Text组件，那么我们就可以通过GetComponent().PreferredWidth和PreferredHeight来获得。 当然不是所有情况，这两个数据的source都是Text！！！ 关于Content Size Fitter介绍暂时就到这里，后续完善 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Outline轮廓组件]]></title>
     <url>%2F2016%2F11%2F29%2Fugui-zhi-outline-lun-kuo-zu-jian%2F</url>
     <content type="text"><![CDATA[属性图如下： 从源码中可以看出，其实Outline是Shadow的子类，只不过Outline脚本在四个方向上调用了Shadow的ApplyShadowZeroAlloc函数而已，具体源码如下： using System.Collections.Generic; namespace UnityEngine.UI { [AddComponentMenu(&quot;UI/Effects/Outline&quot;, 15)] public class Outline : Shadow { protected Outline() {} public override void ModifyMesh(VertexHelper vh) { if (!IsActive()) return; var verts = ListPool&lt;UIVertex&gt;.Get(); vh.GetUIVertexStream(verts); var neededCpacity = verts.Count * 5; if (verts.Capacity &lt; neededCpacity) verts.Capacity = neededCpacity; var start = 0; var end = verts.Count; ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, effectDistance.x, effectDistance.y); start = end; end = verts.Count; ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, effectDistance.x, -effectDistance.y); start = end; end = verts.Count; ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, -effectDistance.x, effectDistance.y); start = end; end = verts.Count; ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, -effectDistance.x, -effectDistance.y); vh.Clear(); vh.AddUIVertexTriangleStream(verts); ListPool&lt;UIVertex&gt;.Release(verts); } } }这里不再赘述Outline组件的属性了，跟Shadow组件一样用，关于Shadow组件的介绍请戳这里 UGUI之Shadow阴影组件 相应的，使用Outline组件，顶点数加了四倍 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Shadow阴影组件]]></title>
     <url>%2F2016%2F11%2F29%2Fugui-zhi-shadow-yin-ying-zu-jian%2F</url>
     <content type="text"><![CDATA[基本属性图如下： 1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&gt;0时，阴影在右方；当x&lt;0时，阴影在左方（2）y轴垂直方向：当y=0时，阴影在垂直方向上中间；当y&gt;0时，阴影在上方；当y&lt;0时，阴影在下方从上图中可见其效果，另外从源码中可以看出x、y的范围均为[-600,600]，当然实际应用中这个范围是绝对足够用的源码如下： public Vector2 effectDistance { get { return m_EffectDistance; } set { if (value.x &gt; 600) value.x = 600; if (value.x &lt; -600) value.x = -600; if (value.y &gt; 600) value.y = 600; if (value.y &lt; -600) value.y = -600; if (m_EffectDistance == value) return; m_EffectDistance = value; if (graphic != null) graphic.SetVerticesDirty(); } }3、Use Graphic Alpha：是否使用Graphic中的Alpha透明度（1）勾选：阴影的透明度会根据Graphic的透明度变化而变化注意看下面两个图中的颜色Alpha值以及左边的Text透明度变化图一 图二 从以上可以看出勾选Use Graphic Alpha的效果（2）不勾选：阴影的透明度不会根据Graphic的透明度变化而变化在图二的基础上，去掉Use Graphic Alpha的勾选，结果如下：阴影部分透明度并没有受到Graphic的影响源码部分：如果Use GraphicAlpha被勾选，m_UseGraphicAlpha为true，否则为false，从源码中可以如果m_UseGraphicAlpha为true，阴影的alpha经过了以下运算：newColor.a= (byte)((newColor.a * verts[i].color.a) / 255)； protected void ApplyShadowZeroAlloc(List&lt;UIVertex&gt; verts, Color32 color, int start, int end, float x, float y) { UIVertex vt; var neededCpacity = verts.Count * 2; if (verts.Capacity &lt; neededCpacity) verts.Capacity = neededCpacity; for (int i = start; i &lt; end; ++i) { vt = verts[i]; verts.Add(vt); Vector3 v = vt.position; v.x += x; v.y += y; vt.position = v; var newColor = color; if (m_UseGraphicAlpha) newColor.a = (byte)((newColor.a * verts[i].color.a) / 255); vt.color = newColor; verts[i] = vt; } }以上为Shadow结合Text组件的使用介绍，下面看一下Shadow结合Image组件的使用： 这里不再过多介绍，大家有兴趣，可以深入研究源码。 另外，使用Shadow会导致顶点数翻倍： 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Text组件详解]]></title>
     <url>%2F2016%2F11%2F29%2Fugui-zhi-text-zu-jian-xiang-jie%2F</url>
     <content type="text"><![CDATA[基本属性如下图： Character：1、Font：字体2、Font Style：（1）Normal：正常（2）Bold：粗体（3）Italic：斜体（4）Bold And Italic：粗体+斜体3、Font Size：字体大小4、Line Spacing：行间距（注：Text组件没有提供修改字间距的属性，在前面写过修改字间距的脚本）5、Rich Text：富文本支持多组合的语法例如下面例子： Paragraph：1、Alignment： 前面三个按钮是水平方向（分别为左对齐、居中、右对齐），后面三个按钮是垂直方向（分别为顶对齐，居中，底对齐） 2、Align By Geometry：官方解释：Use the extents of glyph geometry to perform horizontal alignment rather thanglyph metrics.This can result in better fitting left and right alignment, but may result inincorrect positioning when attempting to overlay multiple fonts (such as aspecialized outline font) on top of each other.使用区段的字形几何执行水平对齐,而不是字形指标。这可以导致更好的拟合左和右对齐,但可能会导致不正确的定位当试图覆盖多个字体(如专业轮廓字体)上。 3、Horizontal Overflow：水平溢出（1）Wrap：文本将自动换行，当达到水平边界（2）Overflow：文本可以超出水平边界，继续显示4、Vertical Overflow：垂直溢出（1）Truncate：文本不显示超出垂直边界的部分（2）Overflow：文本可以超出垂直边界，继续显示5、Best Fit：勾选之后，编辑器发生变化，显示Min Size和Max Size（1）Min Size：最小大小（2）Max Size：最大大小当边框很大时，文字最大显示Max Size字体大小；当边框很小时，文字最小显示Min Size字体大小，边框显示不了MinSize字体大小就不再显示文字了。 Color：颜色 Material：材质 Raycast Target：来自类Graphic，当该项为false时，消息会透传]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Text对齐至格子]]></title>
     <url>%2F2016%2F08%2F06%2Fugui-zhi-text-dui-qi-zhi-ge-zi%2F</url>
     <content type="text"><![CDATA[UGUI之Text对齐至格子背景：前几天有个需求：玩家输入的6位房间ID号，要对齐至背景格子图中，故将前面写的调整Text字间距勉强给boss用了 大致效果如图： 具体脚本代码如下: using UnityEngine; using System.Collections; using UnityEngine.UI; using System; using System.Collections.Generic; [AddComponentMenu(&quot;UI/Effects/TextAlignToGrid&quot;)] public class TextAlignToGrid : BaseMeshEffect { public RectTransform _gridBg; //格子背景 public int _gridNum; //我的格子数为6 private Vector2 _gridSize; //格子大小 private Vector3[] _targetFocusPos; //目标中心点，也就是对应的格子中心点 public override void ModifyMesh(VertexHelper vh) { if (!IsActive() || vh.currentVertCount == 0) { return; } if (_gridBg == null) { Debug.Log(&quot;Missing Grid Background&quot;); return; } Text text = GetComponent&lt;Text&gt;(); if (text == null) { Debug.Log(&quot;Missing Text component&quot;); return; } _gridSize = _gridBg.sizeDelta; int textLen = text.text.Length; Vector3[] textFocusPos = new Vector3[textLen]; List&lt;UIVertex&gt; vertexs = new List&lt;UIVertex&gt;(); _targetFocusPos = new Vector3[textLen]; vh.GetUIVertexStream(vertexs); //计算text各文字中心点坐标 for (int i = 0; i &lt; textLen; i++) { float x = (vertexs[i * 6].position.x + vertexs[i * 6 + 1].position.x) / 2; float y = (vertexs[i * 6 + 1].position.y + vertexs[i * 6 + 2].position.y) / 2; textFocusPos[i] = new Vector3(x, y, 0); } //根据格子大小_gridSize计算目标中心点 float xOffset = _gridSize.x / _gridNum; for (int i = 0; i &lt; textLen; i++) { float x = (float)(-_gridSize.x / 2 + xOffset * (i + 0.5)); _targetFocusPos[i] = new Vector3(x, 0, 0); } //计算text各顶点新坐标 UIVertex v = new UIVertex(); for (int i = 0; i &lt; vh.currentVertCount; i++) { vh.PopulateUIVertex(ref v, i); float x = v.position.x + _targetFocusPos[i / 4].x - textFocusPos[i / 4].x; float y = v.position.y + _targetFocusPos[i / 4].y - textFocusPos[i / 4].y; v.position = new Vector3(x, y, 0); vh.SetUIVertex(v, i); } } }]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之修改Text字间距]]></title>
@@ -371,17 +591,28 @@
         <tag>UGUI</tag>
         <tag>Unity</tag>
         <tag>Text</tag>
-        <tag>字间距</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Text镜像效果]]></title>
     <url>%2F2016%2F07%2F11%2Fugui-zhi-text-jing-xiang-xiao-guo%2F</url>
     <content type="text"><![CDATA[UGUI之Text镜像效果先上效果图： 脚本Mirror直接挂在Text下，distance是镜像距离 Mirror脚本如下： using UnityEngine; using System.Collections; using UnityEngine.UI; using System; using System.Collections.Generic; [AddComponentMenu(&quot;UI/Effects/Mirror&quot;)] public class Mirror : BaseMeshEffect { //距离，限制范围0-30 [Range(0,30)] public float distance; public override void ModifyMesh(VertexHelper vh) { if (!IsActive() || vh.currentVertCount == 0) { return; } List&lt;UIVertex&gt; vertexs = new List&lt;UIVertex&gt;(); vh.GetUIVertexStream(vertexs); UIVertex vt; int count = vertexs.Count; float miny = vertexs[0].position.y; float maxy = vertexs[0].position.y; for (int i = 1; i &lt; count; i++) { if (vertexs[i].position.y &lt; miny) { miny = vertexs[i].position.y; } else if (vertexs[i].position.y &gt; maxy) { maxy = vertexs[i].position.y; } } float uiElementHeight = maxy - miny; float mirrorMinY = -maxy + 2 * miny - distance; Color32 top = GetComponent&lt;Text&gt;().color; Color32 bottom = new Color(top.r, top.g, top.b, 0); for (int i = 0; i &lt; count; i++) { vt = vertexs[i]; vertexs.Add(vt); Vector3 v = vt.position; v.y = -v.y + 2 * miny - distance; vt.position = v; //透明度效果 vt.color = Color32.Lerp(bottom, top, (vt.position.y - mirrorMinY) / uiElementHeight); vertexs[i + count] = vt; } vh.Clear(); vh.AddUIVertexTriangleStream(vertexs); } }]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[UGUI之Text彩虹字]]></title>
     <url>%2F2016%2F07%2F08%2Fugui-zhi-text-cai-hong-zi%2F</url>
     <content type="text"><![CDATA[UGUI之Text彩虹字脚本Rainbow直接挂在Text下 使得每个字母或者汉字均为一种随机颜色 Rainbow脚本如下： using UnityEngine; using System.Collections; using UnityEngine.UI; using System.Collections.Generic; [AddComponentMenu(&quot;UI/Effects/Gradient&quot;)] public class Rainbow : BaseMeshEffect { private Color32[] colors; public override void ModifyMesh(VertexHelper vh) { if (!IsActive() || vh.currentVertCount == 0) { return; } List&lt;UIVertex&gt; vertices = new List&lt;UIVertex&gt;(); vh.GetUIVertexStream(vertices); int count = vertices.Count; colors = new Color32[count / 6]; for (int i = 0; i &lt; colors.Length; i++) { //随机颜色 float r = Random.value; float g = Random.value; float b = Random.value; colors[i] = new Color(r, g, b); } UIVertex v = new UIVertex(); for (int i = 0; i &lt; vh.currentVertCount; i++) { vh.PopulateUIVertex(ref v, i); v.color = colors[i / 4]; vh.SetUIVertex(v, i); } } }]]></content>
+      <categories>
+        <category>UGUI</category>
+      </categories>
+      <tags>
+        <tag>UGUI</tag>
+      </tags>
   </entry>
 </search>

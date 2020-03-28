@@ -358,6 +358,327 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2017/09/01/unity-bian-ji-qi-tuo-zhan-zhi-yi-reorderablelist-ke-chong-xin-pai-xu-de-lie-biao-kuang-jian-dan-shi-yong/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）">
+                            
+                            <span class="card-title">Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+可重新排序的列表框先看效果图：
+UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。
+基本使用：名称 描述draggable 拖曳排序displayAdd 
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-09-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" class="post-category">
+                                    Unity编辑器拓展
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">
+                            <span class="chip bg-color">Unity编辑器拓展</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/08/20/unity-zhi-tu-pian-lun-bo-zu-jian-shi-xian/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Unity之图片轮播组件实现">
+                            
+                            <span class="card-title">Unity之图片轮播组件实现</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+游戏中有时候会见到图片轮播的效果，那么这里就自己封装了一个，包括自动轮播、切页按钮控制、页码下标更新、滑动轮播、切页后的回调等等下面，先上一个简陋的gif动态效果图
+
+从图中可以看出，该示例包括了三张图片的轮播，左右分别是上一张和下一张
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-08-20
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/08/09/unity-zhi-ugui-jiao-ben-zi-dong-sheng-cheng/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Unity之UGUI脚本自动生成">
+                            
+                            <span class="card-title">Unity之UGUI脚本自动生成</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-08-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/08/06/unity-zhi-jian-yi-ding-shi-qi-timer/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Unity之简易定时器Timer">
+                            
+                            <span class="card-title">Unity之简易定时器Timer</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+有时候我们会有这样的需求：几秒或者几帧之后做什么事，也就是一个定时器。这里我利用Time.realtimeSinceStartup实现了一个简单的秒钟定时器，当然还可以利用Time.frameCount实现一个帧计时器
+上代码：
+usi
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-08-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/08/06/unity-zhi-tuo-zhan-button-zhi-chi-shuang-ji-yu-chang-an/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Unity之拓展Button：支持双击与长按">
+                            
+                            <span class="card-title">Unity之拓展Button：支持双击与长按</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+双击直接利用的eventData.clickCount实现，而长按则是在PointerDown的时候记录时间，然后在Update里判断时间即可，由于代码比较简单，直接上源码。
+using System.Collections;
+usin
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-08-06
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/07/16/unity-zhi-scrollrect-hua-dong-ju-zhong/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Unity之ScrollRect滑动居中">
+                            
+                            <span class="card-title">Unity之ScrollRect滑动居中</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+先上效果图
+这里同时支持水平方向和垂直方向，同时ScrollRect支持使用GridLayoutGroup、HorizontalLayoutGroup、VerticalLayoutGroup三种LayoutGroup，不过水平方向的Sc
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-16
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/07/15/unity-zhi-nian-tie-ban-cao-zuo/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Unity之粘贴板操作">
+                            
+                            <span class="card-title">Unity之粘贴板操作</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+Unity之粘贴板操作Untiy提供GUIUtility.systemCopyBuffer进行对粘贴板缓存数据存储与获取
+官方解释为访问系统的粘贴板，可set，可get
+上图
+附上官方文档地址： https://docs.unity3d
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-15
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2017/07/09/unity-zhi-jian-yi-ren-wu-dui-lie-taskqueue/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Unity之简易任务队列TaskQueue">
+                            
+                            <span class="card-title">Unity之简易任务队列TaskQueue</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+任务队列该功能包括两个类：Task任务类，TaskQueue任务队列类其中TaskQueue负责：1、开始任务2、添加任务3、清空任务4、开始任务回调5、完成队列中所有任务回调6、下一个任务7、当前任务进度8、队列存储所有任务
+其中Ta
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2017-07-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                Mr.Ding
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2017/07/06/unity-zhi-networkreachability-miao-shu-wang-luo-ke-da-xing-xuan-xiang/">
                         <div class="card-image">
                             
@@ -749,321 +1070,6 @@ public class Vector3D
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2016-12-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/12/08/ugui-zhi-aspect-ratio-fitter-zu-jian-jie-shao/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="UGUI之Aspect Ratio Fitter组件介绍">
-                            
-                            <span class="card-title">UGUI之Aspect Ratio Fitter组件介绍</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-组件截图如下：
-1、Aspect Mode：AspectMode枚举类型
-public enum AspectMode 
-{                     
-    //不使用适合的纵横比
-    None,
-
-    //让
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-12-08
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/30/ugui-zhi-bu-ju-shi-zhan-liao-tian-xi-tong/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="UGUI之布局实战——聊天系统">
-                            
-                            <span class="card-title">UGUI之布局实战——聊天系统</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-聊天系统中的UGUI布局常用的聊天系统内容包括以下几点：1、发言内容；2、发言人头像3、发言人名称4、语言聊天（本文不考虑该功能，与布局无关）5、表情（本文暂不考虑该功能，后续补充）（4.1）表情与文字混排，比如：PC端的QQ聊天（4.
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/30/ugui-zhi-grid-layout-group-zu-jian-jie-shao/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="UGUI之Grid Layout Group组件介绍">
-                            
-                            <span class="card-title">UGUI之Grid Layout Group组件介绍</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-Grid Layout Group是LayoutGroup的子类
-脚本属性截图如下：
-1、Padding：RectOffset类型，矩形偏移，详解请戳  UGUI之Horizontal Layout Group组件介绍
-
-2、Cell 
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/30/ugui-zhi-vertical-layout-group-zu-jian-jie-shao/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="UGUI之Vertical Layout Group组件介绍">
-                            
-                            <span class="card-title">UGUI之Vertical Layout Group组件介绍</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-VerticalLayoutGroup也是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup是LayoutGroup的子类，下面从源码中进行对比
-name
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/30/ugui-zhi-horizontal-layout-group-zu-jian-jie-shao/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="UGUI之Horizontal Layout Group组件介绍">
-                            
-                            <span class="card-title">UGUI之Horizontal Layout Group组件介绍</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-Horizontal LayoutGroup是HorizontalOrVerticalLayoutGroup的子类，HorizontalOrVerticalLayoutGroup又是LayoutGroup的子类
-脚本截图如下：
-图中包括
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/29/ugui-zhi-content-size-fitter-zu-jian/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="UGUI之Content Size Fitter组件">
-                            
-                            <span class="card-title">UGUI之Content Size Fitter组件</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-具体属性截图：
-Horizontal Fit和VerticalFit均为UI.ContentSizeFitter.FitMode枚举类型，有三个值可选：Unconstrained，MinSize，PreferredSize
-Uncons
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/29/ugui-zhi-outline-lun-kuo-zu-jian/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="UGUI之Outline轮廓组件">
-                            
-                            <span class="card-title">UGUI之Outline轮廓组件</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-属性图如下：
-从源码中可以看出，其实Outline是Shadow的子类，只不过Outline脚本在四个方向上调用了Shadow的ApplyShadowZeroAlloc函数而已，具体源码如下：
-using System.Collecti
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                Mr.Ding
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2016/11/29/ugui-zhi-shadow-yin-ying-zu-jian/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="UGUI之Shadow阴影组件">
-                            
-                            <span class="card-title">UGUI之Shadow阴影组件</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                
-
-基本属性图如下：
-1、Effect Color：阴影的颜色2、Effect Distance：阴影的偏移距离（1）x轴水平方向：当x=0时，阴影在水平方向上中间；当x&gt;0时，阴影在右方；当x&lt;0时，阴影在左方（2）y轴垂直方
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2016-11-29
                             </span>
                             <span class="publish-author">
                                 
