@@ -461,14 +461,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-28
+                    2020-03-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    752
+                    851
                 </div>
                 
 
@@ -493,7 +493,6 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer">
 
-<p>@[toc]</p>
 <h1 id="Attribute"><a href="#Attribute" class="headerlink" title="Attribute"></a>Attribute</h1><h2 id="RequiredAttribute"><a href="#RequiredAttribute" class="headerlink" title="RequiredAttribute"></a>RequiredAttribute</h2><p>效果图如下：当引用类型的property为空时，使用红色提示。</p>
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly90dmExLnNpbmFpbWcuY24vbGFyZ2UvMDA2dE5iUndneTFnYTQ2am9taHUxZzMwa2UwODg3d2ouZ2lm" alt></p>
 <p>代码如下：</p>
@@ -618,6 +617,23 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 <h1 id="拖拽多个元素到-inspector"><a href="#拖拽多个元素到-inspector" class="headerlink" title="拖拽多个元素到 inspector"></a>拖拽多个元素到 inspector</h1><p>可以拖拽元素直接加到 inspector 中去，但是选择多个元素的时候就不容易做到了，其实有一个方法，就是先锁定 inspector，就可以轻易的将多个元素（对象）拖拽到 inspector 中了。</p>
+<h1 id="使用代码移动Component在Inspector中的顺序"><a href="#使用代码移动Component在Inspector中的顺序" class="headerlink" title="使用代码移动Component在Inspector中的顺序"></a>使用代码移动Component在Inspector中的顺序</h1><pre class=" language-csharp"><code class="language-csharp"><span class="token comment" spellcheck="true">//上移</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">MoveComponentUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//下移</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">MoveComponentDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>拓展讲解ComponentUtility</p>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token comment" spellcheck="true">//组件拷贝</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">CopyComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//组件粘贴values</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">PasteComponentValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//作为新组件粘贴</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">PasteComponentAsNew</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//如果两组件不同就替换</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">ReplaceComponentsIfDifferent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//根据自定义匹配规则删除组件</span>
+UnityEditorInternal<span class="token punctuation">.</span>ComponentUtility<span class="token punctuation">.</span><span class="token function">DestroyComponentsMatching</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>以上这几个接口在unity官方文档里没找到介绍。。。</p>
 <p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。<br>本主题持续更新。。。</p>
 
             </div>
@@ -1159,7 +1175,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">46.9k</span>&nbsp;字
+                class="white-color">47k</span>&nbsp;字
             
             
             
