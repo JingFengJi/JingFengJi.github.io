@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity编辑器拓展之十六：监听Scene Drag事件, JingFengJi">
+    <meta name="keywords" content="Unity之SpriteAtlas详解, JingFengJi">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unity编辑器拓展之十六：监听Scene Drag事件 | JingFengJi</title>
+    <title>Unity之SpriteAtlas详解 | JingFengJi</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -307,12 +307,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unity编辑器拓展之十六：监听Scene Drag事件</h1>
+                    <h1 class="description center-align post-title">Unity之SpriteAtlas详解</h1>
                 </div>
             </div>
         </div>
@@ -427,25 +427,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">
-                                <span class="chip bg-color">Unity编辑器拓展</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" class="post-category">
-                                Unity编辑器拓展
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -454,28 +441,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2018-07-30
+                    2020-03-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-03-28
+                    2020-03-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    159
+                    742
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -493,41 +480,19 @@
             <div id="articleContent">
                 <meta name="referrer" content="no-referrer">
 
-<h1 id="监听Scene-Drag事件"><a href="#监听Scene-Drag事件" class="headerlink" title="监听Scene Drag事件"></a>监听Scene Drag事件</h1><h2 id="Gif动图展示"><a href="#Gif动图展示" class="headerlink" title="Gif动图展示"></a>Gif动图展示</h2><p><img src="https://img-blog.csdn.net/20180730212155553?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2OTk5NTA5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>通过该监听，获取到被Drag进Scene的物体的类型，可以做一些预处理，例如：Drag一张图片，直接生成一个GameObject（带Image，前提是UGUI）的放在Canvas下</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-public class SceneManager
-{
-    [InitializeOnLoadMethod]
-    static void Init()
-    {
-        SceneView.onSceneGUIDelegate += OnSceneGUI;
-    }
-
-    private static void OnSceneGUI(SceneView sceneView)
-    {
-        Event e = Event.current;
-        if(e.type == EventType.DragUpdated || e.type == EventType.DragPerform)
-        {
-            DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
-            if(e.type == EventType.DragPerform)
-            {
-                DragAndDrop.AcceptDrag();
-                for (int i = 0; i &lt; DragAndDrop.objectReferences.Length; i++)
-                {
-                    Object handleObj = DragAndDrop.objectReferences[i];
-                    if(handleObj != null)
-                    {
-                        Debug.LogError(handleObj.GetType());
-                    }
-                }
-            }
-        }
-    }
-}</code></pre><p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步</p>
+<p>@[toc]</p>
+<h1 id="Unity之SpriteAtlas详解"><a href="#Unity之SpriteAtlas详解" class="headerlink" title="Unity之SpriteAtlas详解"></a>Unity之SpriteAtlas详解</h1><p>Unity官方介绍：<a href="https://docs.unity3d.com/Manual/class-SpriteAtlas.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/class-SpriteAtlas.html</a></p>
+<p>SpriteAtlas Inspector面板如下图：</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdatrsnat1j30i20pqjtb.jpg" alt></p>
+<p>创建方法：</p>
+<p>1、Project面板鼠标右键Create-&gt;Sprite Atlas</p>
+<p>2、菜单栏Asset-&gt;Create-&gt;Sprite Atlas</p>
+<h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍:"></a>属性介绍:</h2><h3 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h3><pre><code>SpriteAtlas有两种类型，Master或者Variant，默认类型是MAster；Variant是变体类型，创建一个变体图集，并声明它是项目中一个现有SpriteAtlas的变体，如下图，变体图集将复制母版图集的纹理，然后根据scale调整变体图集的大小。</code></pre><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdaukgd3y3j30ks09k3z3.jpg" alt></p>
+<h3 id="Include-in-Build"><a href="#Include-in-Build" class="headerlink" title="Include in Build"></a>Include in Build</h3><pre><code>选中此复选框以将Sprite Atlas资产包含在当前版本中。默认情况下启用此选项。</code></pre><h3 id="Scale"><a href="#Scale" class="headerlink" title="Scale"></a>Scale</h3><pre><code>变体图集缩放数值，值可以从0.1到1</code></pre><h3 id="Allow-Rotation"><a href="#Allow-Rotation" class="headerlink" title="Allow Rotation"></a>Allow Rotation</h3><pre><code>是否允许Unity将打包到SpriteAtlas中的Sprite进行旋转，如果允许，可以最大化提高图集中Sprite的密度，默认允许旋转。如果是在UGUI中使用SpriteAtlas，应该禁用旋转</code></pre><h3 id="Tight-Packing"><a href="#Tight-Packing" class="headerlink" title="Tight Packing"></a>Tight Packing</h3><pre><code>根据Sprite轮廓而不是默认的矩形轮廓打包Sprite，进一步提高图集中Sprite的密度，默认是启用的，在UGUI中使用SpriteAtlas应该禁用</code></pre><h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><pre><code>图集中各个Sprite之间的像素距离，避免图集中彼此相邻的Sprite发生像素重叠。默认为4像素，支持2、4、8三种选择。</code></pre><h3 id="Objects-For-Packing"><a href="#Objects-For-Packing" class="headerlink" title="Objects For Packing"></a>Objects For Packing</h3><pre><code>Unity将此列表中的所有内容打包成一个图集。支持拖入一个文件夹或者一个单独的Sprite。</code></pre><h2 id="Sprite-Packer"><a href="#Sprite-Packer" class="headerlink" title="Sprite Packer"></a>Sprite Packer</h2><pre><code>SpritePacker默认是关闭的状态，在Edit -&gt; Project Settings -&gt; Editor中将SpritePacker Mode更改为Enable，Always Enabled选项始终打开。打开后回到SpriteAtlas Inspector面板，点击Pack Preview按钮就可以在预览窗口看到图集了。</code></pre><h2 id="Late-Binding"><a href="#Late-Binding" class="headerlink" title="Late Binding"></a>Late Binding</h2><pre><code>从语义来看称之为后期绑定，也就是说在运行时以不引用图集的形式启动，并且在绑定图集之前将显示为空白。如果在启动过程中图集来源于网络下载，这样就允许用户进行后期绑定了。</code></pre><h2 id="Late-Binding-via-callback"><a href="#Late-Binding-via-callback" class="headerlink" title="Late Binding via callback"></a>Late Binding via callback</h2><p>1、Sprite打包到SpriteAtlas中，SpriteAtlas未选中Include In Build，sprite在场景中就不可见</p>
+<p>2、SpriteAtlas.atlasRequested这个委托方法提供一个告知上层逻辑要绑定的图集标签和包含SpriteAtlas资产的Action，通过这个委托，上层逻辑根据图集标签自行加载管理图集，并将加载好的图集通过第二个参数Action告知给底层。至于如何根据图集标签加载图集，不在本篇文章范围内。<br>SpriteAtlas.atlasRequested的第一个参数string类型的tag就是需要加载的图集文件名，SpriteAtlas本身无法指定Tag。</p>
+<h2 id="SpriteAtlas-amp-AssetBundle"><a href="#SpriteAtlas-amp-AssetBundle" class="headerlink" title="SpriteAtlas &amp; AssetBundle"></a>SpriteAtlas &amp; AssetBundle</h2><p>取消Inclue in build选项打包，运行时使用SpriteAtlas.atlasRequested回调得到需要加载的图集Tag，使用自己项目中的资源模块进行SpriteAtlas加载后并执行回调传给底层。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://forum.unity.com/threads/about-include-in-build-behaviour.481433/" target="_blank" rel="noopener">https://forum.unity.com/threads/about-include-in-build-behaviour.481433/</a></p>
+<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步。</p>
 
             </div>
             <hr/>
@@ -543,7 +508,7 @@ public class SceneManager
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.jingfengji.tech" rel="external nofollow noreferrer">Mr.Ding</a>
+                    <a href="https://www.jingfengji.tech" rel="external nofollow noreferrer">JingFengJi</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -553,7 +518,7 @@ public class SceneManager
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.jingfengji.tech/2018/07/30/unity-bian-ji-qi-tuo-zhan-zhi-shi-liu-jian-ting-scene-drag-shi-jian/">https://www.jingfengji.tech/2018/07/30/unity-bian-ji-qi-tuo-zhan-zhi-shi-liu-jian-ting-scene-drag-shi-jian/</a>
+                    <a href="https://www.jingfengji.tech/2020/03/29/unity-zhi-spriteatlas-xiang-jie/">https://www.jingfengji.tech/2020/03/29/unity-zhi-spriteatlas-xiang-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -566,7 +531,7 @@ public class SceneManager
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="https://www.jingfengji.tech" target="_blank">Mr.Ding</a>
+                    <a href="https://www.jingfengji.tech" target="_blank">JingFengJi</a>
                     !
                 </span>
             </div>
@@ -590,11 +555,7 @@ public class SceneManager
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">
-                                    <span class="chip bg-color">Unity编辑器拓展</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -763,7 +724,7 @@ public class SceneManager
         repo: 'JingFengJi.github.io',
         owner: 'JingFengJi',
         admin: "JingFengJi",
-        id: '2018-07-30T21-26-48',
+        id: '2020-03-29T14-15-42',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -785,54 +746,38 @@ public class SceneManager
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2018/07/31/unity-bian-ji-qi-tuo-zhan-zhi-shi-qi-ngui-componentselector-zeng-jia-sou-suo-kuang/">
+                <a href="/2020/03/29/unity-zhi-spriteatlas-xiang-jie/">
                     <div class="card-image">
                         
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Unity之SpriteAtlas详解">
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框">
-                        
-                        <span class="card-title">Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框</span>
+                        <span class="card-title">Unity之SpriteAtlas详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-
-NGUI ComponentSelector增加搜索框目的最近在使用NGUI，给Sprite选择图集的时候，没有搜索框要挨个找挺麻烦，因此修改一下ComponentSelector组件，增加一个搜索框，便于搜索图集
-
-Gif动图展示
-S
+                            简单介绍Unity的SpriteAtlas图集方案
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2018-07-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-29
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" class="post-category">
-                                    Unity编辑器拓展
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            JingFengJi
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">
-                        <span class="chip bg-color">Unity编辑器拓展</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -843,13 +788,12 @@ S
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/07/28/unity-bian-ji-qi-tuo-zhan-zhi-shi-wu-ngui-pi-liang-ti-huan-tu-ji-gong-ju/">
+                <a href="/2020/03/28/unitytips-unity-xiao-ji-qiao-ji-he/">
                     <div class="card-image">
                         
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="UnityTips——Unity小技巧集合">
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Unity编辑器拓展之十五：NGUI批量替换图集工具">
-                        
-                        <span class="card-title">Unity编辑器拓展之十五：NGUI批量替换图集工具</span>
+                        <span class="card-title">UnityTips——Unity小技巧集合</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -857,22 +801,25 @@ S
                         
                             
 
-NGUI批量替换图集工具工具目的因项目需要实现换肤的功能，也就是多套UI图集，提供工具批量换图集，方便查看Prebab各皮肤（图集）下的效果
-示意图Gif 操作动图：
-工具截图：
-工具左侧是工程所有Prefab列表，右侧是替换图集的功能
+@[toc]
+AttributeRequiredAttribute效果图如下：当引用类型的property为空时，使用红色提示。
+
+代码如下：
+1、RequiredAttribute.cs
+using UnityEngine;
+publ
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2018-07-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" class="post-category">
-                                    Unity编辑器拓展
+                            <a href="/categories/UnityTips/" class="post-category">
+                                    UnityTips
                                 </a>
                             
                             
@@ -882,8 +829,8 @@ NGUI批量替换图集工具工具目的因项目需要实现换肤的功能，�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">
-                        <span class="chip bg-color">Unity编辑器拓展</span>
+                    <a href="/tags/UnityTips/">
+                        <span class="chip bg-color">UnityTips</span>
                     </a>
                     
                 </div>

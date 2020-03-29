@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-03-28T14:53:32.196Z</updated>
+  <updated>2020-03-29T08:55:30.175Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity之SpriteAtlas详解</title>
+    <link href="https://www.jingfengji.tech/2020/03/29/unity-zhi-spriteatlas-xiang-jie/"/>
+    <id>https://www.jingfengji.tech/2020/03/29/unity-zhi-spriteatlas-xiang-jie/</id>
+    <published>2020-03-29T06:15:42.000Z</published>
+    <updated>2020-03-29T08:55:30.175Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+
+&lt;p&gt;@[toc]&lt;/p&gt;
+&lt;h1 id=&quot;Unity之SpriteAtlas详解&quot;&gt;&lt;a href=&quot;#Unity之SpriteAtlas详解&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>UnityTips——Unity小技巧集合</title>
@@ -556,35 +582,6 @@
           &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
 
 &lt;h1 id=&quot;监听Scene-Drag事件&quot;&gt;&lt;a href=&quot;#监听Scene-Drag事件&quot; class=&quot;headerlink&quot; title=&quot;监听Scene
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之十五：NGUI批量替换图集工具</title>
-    <link href="https://www.jingfengji.tech/2018/07/28/unity-bian-ji-qi-tuo-zhan-zhi-shi-wu-ngui-pi-liang-ti-huan-tu-ji-gong-ju/"/>
-    <id>https://www.jingfengji.tech/2018/07/28/unity-bian-ji-qi-tuo-zhan-zhi-shi-wu-ngui-pi-liang-ti-huan-tu-ji-gong-ju/</id>
-    <published>2018-07-27T18:18:07.000Z</published>
-    <updated>2020-03-28T10:09:20.925Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-
-&lt;h1 id=&quot;NGUI批量替换图集工具&quot;&gt;&lt;a href=&quot;#NGUI批量替换图集工具&quot; class=&quot;headerlink&quot;
         
       
     
