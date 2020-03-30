@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Unity之图片轮播组件实现, JingFengJi">
+    <meta name="keywords" content="sponsor, JingFengJi">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Unity之图片轮播组件实现 | JingFengJi</title>
+    <title>sponsor | JingFengJi</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -351,12 +351,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Unity之图片轮播组件实现</h1>
+                    <h1 class="description center-align post-title">sponsor</h1>
                 </div>
             </div>
         </div>
@@ -485,28 +485,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2017-08-20
+                    2020-03-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-03-11
+                    2020-03-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    10 分
+                    1 分
                 </div>
                 
 
@@ -522,578 +522,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <meta name="referrer" content="no-referrer">
-
-<p>游戏中有时候会见到图片轮播的效果，那么这里就自己封装了一个，包括自动轮播、切页按钮控制、页码下标更新、滑动轮播、切页后的回调等等<br>下面，先上一个简陋的gif动态效果图</p>
-<p><img src="https://img-blog.csdn.net/20170820225254127?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjY5OTk1MDk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>从图中可以看出，该示例包括了三张图片的轮播，左右分别是上一张和下一张的按钮，右下角显示了当前是第几章的页码下标。</p>
-<p>直接上脚本：</p>
-<pre><code>using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
-namespace UnityEngine.UI
-{
-    [AddComponentMenu(&quot;UI/Slidershow&quot;, 39)]          //添加菜单
-    [ExecuteInEditMode]                             //编辑模式下可执行
-    [DisallowMultipleComponent]                     //不可重复
-    [RequireComponent(typeof(RectTransform))]       //依赖于RectTransform组件
-    public class Slideshow : UIBehaviour,IPointerDownHandler,IPointerUpHandler
-    {
-        public enum MovementType
-        {
-            /// &lt;summary&gt;
-            /// 循环
-            /// &lt;/summary&gt;
-            Circulation,        //循环，轮播到最后一页之后，直接回到第一页
-
-            /// &lt;summary&gt;
-            /// 来回往复
-            /// &lt;/summary&gt;
-            PingPong,           //来回往复，轮播到最后一页之后，倒序轮播，到第一页之后，同理
-        }
-
-        public enum MoveDir
-        {
-            Left,
-            Right,
-        }
-
-        [SerializeField]
-        private MovementType m_movement = MovementType.Circulation;
-        public MovementType Movement { get { return m_movement; } set { m_movement = value; } }
-
-        [SerializeField]
-        private RectTransform m_content;
-        public RectTransform Content { get { return m_content; } set { m_content = value; } }
-
-        [SerializeField]
-        private Button m_lastPageButton;
-        public Button LastPageButton { get { return m_lastPageButton; } set { m_lastPageButton = value; } }
-
-        [SerializeField]
-        private Button m_nextPageButton;
-        public Button NextPageButton { get { return m_nextPageButton; } set { m_nextPageButton = value; } }
-
-        /// &lt;summary&gt;
-        /// 自动轮播时长
-        /// &lt;/summary&gt;
-        [SerializeField]
-        private float m_showTime = 2.0f;
-        public float ShowTime { get { return m_showTime; } set { m_showTime = value; } }
-
-        /// &lt;summary&gt;
-        /// 是否自动轮播
-        /// &lt;/summary&gt;
-        [SerializeField]
-        private bool m_autoSlide = false;
-        public bool AutoSlide { get { return m_autoSlide; }set { m_autoSlide = value; } }
-
-        /// &lt;summary&gt;
-        /// 自动轮播方向，-1表示向左，1表示向右
-        /// &lt;/summary&gt;
-        private MoveDir m_autoSlideDir = MoveDir.Right;
-
-        /// &lt;summary&gt;
-        /// 是否允许拖动切页
-        /// &lt;/summary&gt;
-        [SerializeField]
-        private bool m_allowDrag = true;
-        public bool AllowDrag { get { return m_allowDrag; }set { m_allowDrag = value; } }
-
-        /// &lt;summary&gt;
-        /// 当前显示页的页码，下标从0开始
-        /// &lt;/summary&gt;
-        private int m_curPageIndex = 0;
-        public int CurPageIndex { get { return m_curPageIndex; } }
-
-        /// &lt;summary&gt;
-        /// 最大页码
-        /// &lt;/summary&gt;
-        private int m_maxPageIndex = 0;
-        public int MaxPageIndex { get { return m_maxPageIndex; } }
-
-        /// &lt;summary&gt;
-        /// 圆圈页码ToggleGroup
-        /// &lt;/summary&gt;
-        [SerializeField]
-        private ToggleGroup m_pageToggleGroup;
-        public ToggleGroup PageToggleGroup { get { return m_pageToggleGroup; } set { m_pageToggleGroup = value; } }
-
-        /// &lt;summary&gt;
-        /// 圆圈页码Toggle List
-        /// &lt;/summary&gt;
-        private List&lt;Toggle&gt; m_pageToggleList;
-        public List&lt;Toggle&gt; PageToggleLise { get { return m_pageToggleList; }}
-
-        //item数目
-        private int m_itemNum = 0;
-        public int ItemNum { get { return m_itemNum; } }
-
-        //以Toggle为Key，返回页码
-        private Dictionary&lt;Toggle, int&gt; m_togglePageNumDic = null;
-
-        private float m_time = 0f;
-
-        private List&lt;float&gt; m_childItemPos = new List&lt;float&gt;();
-
-        private GridLayoutGroup m_grid = null;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            if (null == m_content)
-            {
-                throw new Exception(&quot;Slideshow content is null&quot;);
-            }
-            else
-            {
-                m_grid = m_content.GetComponent&lt;GridLayoutGroup&gt;();
-                if (m_grid == null)
-                {
-                    throw new Exception(&quot;Slideshow content is miss GridLayoutGroup Component&quot;);
-                }
-                InitChildItemPos();
-            }
-
-
-            if (null != m_lastPageButton)
-            {
-                m_lastPageButton.onClick.AddListener(OnLastPageButtonClick);
-            }
-            if (null != m_nextPageButton)
-            {
-                m_nextPageButton.onClick.AddListener(OnNextPageButtonClick);
-            }
-            if (null != m_pageToggleGroup)
-            {
-                int toggleNum = m_pageToggleGroup.transform.childCount;
-                if (toggleNum &gt; 0)
-                {
-                    m_pageToggleList = new List&lt;Toggle&gt;();
-                    m_togglePageNumDic = new Dictionary&lt;Toggle, int&gt;();
-                    for (int i = 0; i &lt; toggleNum; i++)
-                    {
-                        Toggle childToggle = m_pageToggleGroup.transform.GetChild(i).GetComponent&lt;Toggle&gt;();
-                        if (null != childToggle)
-                        {
-                            m_pageToggleList.Add(childToggle);
-                            m_togglePageNumDic.Add(childToggle, i);
-                            childToggle.onValueChanged.AddListener(OnPageToggleValueChanged);
-                        }
-                    }
-                    m_itemNum = m_pageToggleList.Count;
-                    m_maxPageIndex = m_pageToggleList.Count - 1;
-                }
-            }
-            UpdateCutPageButtonActive(m_curPageIndex);
-        }
-
-        private void InitChildItemPos()
-        {
-            int childCount = m_content.transform.childCount;
-            float cellSizeX = m_grid.cellSize.x;
-            float spacingX = m_grid.spacing.x;
-            float posX = -cellSizeX * 0.5f;
-            m_childItemPos.Add(posX);
-            for (int i = 1; i &lt; childCount; i++)
-            {
-                posX -= cellSizeX + spacingX;
-                m_childItemPos.Add(posX);
-            }
-        }
-
-        private void OnPageToggleValueChanged(bool ison)
-        {
-            if (ison)
-            {
-                Toggle activeToggle = GetActivePageToggle();
-                if (m_togglePageNumDic.ContainsKey(activeToggle))
-                {
-                    int page = m_togglePageNumDic[activeToggle];
-                    SwitchToPageNum(page);
-                }
-            }
-        }
-
-        private Toggle GetActivePageToggle()
-        {
-            if (m_pageToggleGroup == null || m_pageToggleList == null || m_pageToggleList.Count &lt;= 0)
-            {
-                return null;
-            }
-            for (int i = 0; i &lt; m_pageToggleList.Count; i++)
-            {
-                if (m_pageToggleList[i].isOn)
-                {
-                    return m_pageToggleList[i];
-                }
-            }
-            return null;
-        }
-
-        /// &lt;summary&gt;
-        /// 切换至某页
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;pageNum&quot;&gt;页码&lt;/param&gt;
-        private void SwitchToPageNum(int pageNum)
-        {
-            if (pageNum &lt; 0 || pageNum &gt; m_maxPageIndex)
-            {
-                throw new Exception(&quot;page num is error&quot;);
-            }
-            if (pageNum == m_curPageIndex)
-            {
-                //目标页与当前页是同一页
-                return;
-            }
-            m_curPageIndex = pageNum;
-            if (m_movement == MovementType.PingPong)
-            {
-                UpdateCutPageButtonActive(m_curPageIndex);
-            }
-            Vector3 pos = m_content.localPosition;
-            m_content.localPosition = new Vector3(m_childItemPos[m_curPageIndex], pos.y, pos.z);
-            m_pageToggleList[m_curPageIndex].isOn = true;
-
-            if (m_onValueChanged != null)
-            {
-                //执行回调
-                m_onValueChanged.Invoke(m_pageToggleList[m_curPageIndex].gameObject);
-            }
-        }
-
-        /// &lt;summary&gt;
-        /// 根据页码更新切页按钮active
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;pageNum&quot;&gt;&lt;/param&gt;
-        private void UpdateCutPageButtonActive(int pageNum)
-        {
-            if (pageNum == 0)
-            {
-                UpdateLastButtonActive(false);
-                UpdateNextButtonActive(true);
-            }
-            else if (pageNum == m_maxPageIndex)
-            {
-                UpdateLastButtonActive(true);
-                UpdateNextButtonActive(false);
-            }
-            else
-            {
-                UpdateLastButtonActive(true);
-                UpdateNextButtonActive(true);
-            }
-        }
-
-        private void OnNextPageButtonClick()
-        {
-            m_time = Time.time;     //重新计时
-            switch (m_movement)
-            {
-                case MovementType.Circulation:
-                    SwitchToPageNum((m_curPageIndex + 1) % m_itemNum);
-                    break;
-                case MovementType.PingPong:
-                    //该模式下，会自动隐藏切页按钮
-                    SwitchToPageNum(m_curPageIndex + 1);
-                    break;
-                default:
-                    break;
-            }
-            Debug.Log(m_content.localPosition);
-        }
-
-        private void OnLastPageButtonClick()
-        {
-            m_time = Time.time; //重新计时
-            switch (m_movement)
-            {
-                case MovementType.Circulation:
-                    SwitchToPageNum((m_curPageIndex + m_itemNum - 1) % m_itemNum);
-                    break;
-                case MovementType.PingPong:
-                    //该模式下，会自动隐藏切页按钮
-                    SwitchToPageNum(m_curPageIndex - 1);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void UpdateLastButtonActive(bool activeSelf)
-        {
-            if (null == m_lastPageButton)
-            {
-                throw new Exception(&quot;Last Page Button is null&quot;);
-            }
-            bool curActive = m_lastPageButton.gameObject.activeSelf;
-            if (curActive != activeSelf)
-            {
-                m_lastPageButton.gameObject.SetActive(activeSelf);
-            }
-        }
-
-        private void UpdateNextButtonActive(bool activeSelf)
-        {
-            if (null == m_nextPageButton)
-            {
-                throw new Exception(&quot;Next Page Button is null&quot;);
-            }
-            bool curActive = m_nextPageButton.gameObject.activeSelf;
-            if (curActive != activeSelf)
-            {
-                m_nextPageButton.gameObject.SetActive(activeSelf);
-            }
-        }
-
-        private Vector3 m_originDragPos = Vector3.zero;
-        private Vector3 m_desDragPos = Vector3.zero;
-        private bool m_isDrag = false;
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if (!m_allowDrag)
-            {
-                return;
-            }
-            if (eventData.button != PointerEventData.InputButton.Left)
-            {
-                return;
-            }
-            if (!IsActive())
-            {
-                return;
-            }
-
-            m_isDrag = true;
-            m_originDragPos = eventData.position;
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            m_desDragPos = eventData.position;
-            MoveDir dir = MoveDir.Right;
-            if (m_desDragPos.x &lt; m_originDragPos.x)
-            {
-                dir = MoveDir.Left;
-            }
-            switch (dir)
-            {
-                case MoveDir.Left:
-                    if (m_movement == MovementType.Circulation || (m_movement == MovementType.PingPong &amp;&amp; m_curPageIndex != 0))
-                    {
-                        OnLastPageButtonClick();
-                    }
-
-                    break;
-                case MoveDir.Right:
-                    if (m_movement == MovementType.Circulation || (m_movement == MovementType.PingPong &amp;&amp; m_curPageIndex != m_maxPageIndex))
-                    {
-                        OnNextPageButtonClick();
-                    }
-                    break;
-            }
-            m_isDrag = false;
-        }
-
-        /// &lt;summary&gt;
-        /// 切页后回调函数
-        /// &lt;/summary&gt;
-        [Serializable]
-        public class SlideshowEvent : UnityEvent&lt;GameObject&gt; { }
-
-        [SerializeField]
-        private SlideshowEvent m_onValueChanged = new SlideshowEvent();
-        public SlideshowEvent OnValueChanged { get { return m_onValueChanged; } set { m_onValueChanged = value; } }
-
-        public override bool IsActive()
-        {
-            return base.IsActive() &amp;&amp; m_content != null;
-        }
-
-        private void Update()
-        {
-            if (m_autoSlide &amp;&amp; !m_isDrag)
-            {
-                if (Time.time &gt; m_time + m_showTime)
-                {
-                    m_time = Time.time;
-                    switch (m_movement)
-                    {
-                        case MovementType.Circulation:
-                            m_autoSlideDir = MoveDir.Right;
-                            break;
-                        case MovementType.PingPong:
-                            if (m_curPageIndex == 0)
-                            {
-                                m_autoSlideDir = MoveDir.Right;
-                            }
-                            else if (m_curPageIndex == m_maxPageIndex)
-                            {
-                                m_autoSlideDir = MoveDir.Left;
-                            }
-                            break;
-                    }
-                    switch (m_autoSlideDir)
-                    {
-                        case MoveDir.Left:
-                            OnLastPageButtonClick();
-                            break;
-                        case MoveDir.Right:
-                            OnNextPageButtonClick();
-                            break;
-                    }
-                }
-            }
-        }
-    }
-}</code></pre><p>这里提供了一个枚举MovementType，该枚举定义了两种循环方式，其中Circulation循环，是指轮播到最后一页之后，直接回到第一页；而PingPong相信大家你熟悉了，就是来回往复的。</p>
-<p>其中还提供了对每张图显示的时长进行设置，还有是否允许自动轮播的控制，是否允许拖动切页控制，等等。。其实将图片作为轮播子元素只是其中之一而已，完全可以将ScrollRect作为轮播子元素，这样每个子元素又可以滑动阅览了。。</p>
-<p>这里还提供了两个编辑器脚本，一个是SlideshowEditor（依赖Slideshow组件），另一个是给用户提供菜单用的CreateSlideshow，代码分别如下：</p>
-<pre><code>using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
-public class CreateSlideshow : Editor
-{
-    private static GameObject m_slideshowPrefab = null;
-
-    private static GameObject m_canvas = null;
-
-    [MenuItem(&quot;GameObject/UI/Slideshow&quot;)]
-    static void CreateSlideshowUI(MenuCommand menuCommand)
-    {
-        if (null == m_slideshowPrefab)
-        {
-            m_slideshowPrefab = Resources.Load&lt;GameObject&gt;(&quot;Slideshow&quot;);
-            if (null == m_slideshowPrefab)
-            {
-                Debug.LogError(&quot;Prefab Slideshow is null&quot;);
-                return;
-            }
-        }
-
-        m_canvas = menuCommand.context as GameObject;
-        if (m_canvas == null || m_canvas.GetComponentInParent&lt;Canvas&gt;() == null)
-        {
-            m_canvas = GetOrCreateCanvasGameObject();
-        }
-
-        GameObject go = GameObject.Instantiate(m_slideshowPrefab, m_canvas.transform);
-        go.transform.localPosition = Vector3.zero;
-        go.name = &quot;Slideshow&quot;;
-        Selection.activeGameObject = go;
-    }
-
-    static public GameObject GetOrCreateCanvasGameObject()
-    {
-        GameObject selectedGo = Selection.activeGameObject;
-
-        Canvas canvas = (selectedGo != null) ? selectedGo.GetComponentInParent&lt;Canvas&gt;() : null;
-        if (canvas != null &amp;&amp; canvas.gameObject.activeInHierarchy)
-            return canvas.gameObject;
-
-        canvas = Object.FindObjectOfType(typeof(Canvas)) as Canvas;
-        if (canvas != null &amp;&amp; canvas.gameObject.activeInHierarchy)
-            return canvas.gameObject;
-
-        return CreateCanvas();
-    }
-
-    public static GameObject CreateCanvas()
-    {
-        var root = new GameObject(&quot;Canvas&quot;);
-        root.layer = LayerMask.NameToLayer(&quot;UI&quot;);
-        Canvas canvas = root.AddComponent&lt;Canvas&gt;();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        root.AddComponent&lt;CanvasScaler&gt;();
-        root.AddComponent&lt;GraphicRaycaster&gt;();
-        Undo.RegisterCreatedObjectUndo(root, &quot;Create &quot; + root.name);
-
-        CreateEventSystem();
-        return root;
-    }
-
-    public static void CreateEventSystem()
-    {
-        var esys = Object.FindObjectOfType&lt;EventSystem&gt;();
-        if (esys == null)
-        {
-            var eventSystem = new GameObject(&quot;EventSystem&quot;);
-            GameObjectUtility.SetParentAndAlign(eventSystem, null);
-            esys = eventSystem.AddComponent&lt;EventSystem&gt;();
-            eventSystem.AddComponent&lt;StandaloneInputModule&gt;();
-
-            Undo.RegisterCreatedObjectUndo(eventSystem, &quot;Create &quot; + eventSystem.name);
-        }
-    }
-}
-
-
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor.Advertisements;
-using UnityEngine.UI;
-
-namespace UnityEditor.UI
-{
-    [CustomEditor(typeof(Slideshow), true)]
-    public class SlideshowEditor : Editor
-    {
-        SerializedProperty m_movement;
-        SerializedProperty m_content;
-        SerializedProperty m_lastPageButton;
-        SerializedProperty m_nextPageButton;
-        SerializedProperty m_showTime;
-        SerializedProperty m_pageToggleGroup;
-        SerializedProperty m_onValueChanged;
-        SerializedProperty m_allowDrag;
-        SerializedProperty m_autoSlide;
-
-        protected virtual void OnEnable()
-        {
-            m_movement = serializedObject.FindProperty(&quot;m_movement&quot;);
-            m_content = serializedObject.FindProperty(&quot;m_content&quot;);
-            m_lastPageButton = serializedObject.FindProperty(&quot;m_lastPageButton&quot;);
-            m_nextPageButton = serializedObject.FindProperty(&quot;m_nextPageButton&quot;);
-            m_showTime = serializedObject.FindProperty(&quot;m_showTime&quot;);
-            m_pageToggleGroup = serializedObject.FindProperty(&quot;m_pageToggleGroup&quot;);
-            m_onValueChanged = serializedObject.FindProperty(&quot;m_onValueChanged&quot;);
-            m_allowDrag = serializedObject.FindProperty(&quot;m_allowDrag&quot;);
-            m_autoSlide = serializedObject.FindProperty(&quot;m_autoSlide&quot;);
-        }
-
-        public override void OnInspectorGUI()
-        {
-            serializedObject.Update();
-            EditorGUILayout.PropertyField(m_movement);
-            EditorGUILayout.PropertyField(m_content);
-            EditorGUILayout.PropertyField(m_lastPageButton);
-            EditorGUILayout.PropertyField(m_nextPageButton);
-            EditorGUILayout.PropertyField(m_allowDrag);
-            EditorGUILayout.PropertyField(m_autoSlide);
-            EditorGUILayout.PropertyField(m_showTime);
-            EditorGUILayout.PropertyField(m_pageToggleGroup);
-            EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(m_onValueChanged);
-
-            //不加这句代码，在编辑模式下，无法将物体拖拽赋值
-            serializedObject.ApplyModifiedProperties();
-        }
-    }
-}</code></pre><p>这两个脚本中使用了一些拓展编辑器的知识，后续在另外写博客介绍<br>其中脚本CreateSlideshow中使用UGUI源码中的DefaultControls脚本里的方法，有兴趣可以去下载查阅。<br>Demo工程下载地址如下：<br>链接： <a href="http://pan.baidu.com/s/1i4Rralf" target="_blank" rel="noopener"> http://pan.baidu.com/s/1i4Rralf </a><br>密码：7loe<br>链接如有私有，请及时联系补充</p>
-<p>以上知识分享，如有错误，欢迎指出，共同学习，共同进步</p>
-
+                
             </div>
             <hr/>
 
@@ -1118,7 +547,7 @@ namespace UnityEditor.UI
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.jingfengji.tech/2017/08/20/unity-zhi-tu-pian-lun-bo-zu-jian-shi-xian/">https://www.jingfengji.tech/2017/08/20/unity-zhi-tu-pian-lun-bo-zu-jian-shi-xian/</a>
+                    <a href="https://www.jingfengji.tech/sponsor/index.html">https://www.jingfengji.tech/sponsor/index.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1324,7 +753,7 @@ namespace UnityEditor.UI
         repo: 'JingFengJi.github.io',
         owner: 'JingFengJi',
         admin: "JingFengJi",
-        id: '2017-08-20T23-07-12',
+        id: '2020-03-30T13-35-44',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1346,83 +775,29 @@ namespace UnityEditor.UI
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2017/09/01/unity-bian-ji-qi-tuo-zhan-zhi-yi-reorderablelist-ke-chong-xin-pai-xu-de-lie-biao-kuang-jian-dan-shi-yong/">
+                <a href="/sponsor/index.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="sponsor">
                         
-                        <span class="card-title">Unity编辑器拓展之一：ReorderableList可重新排序的列表框（简单使用）</span>
+                        <span class="card-title">sponsor</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-
-可重新排序的列表框先看效果图：
-UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通过拖曳来达到列表元素的重新排序。
-基本使用：名称 描述draggable 拖曳排序displayAdd 
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2017-09-01
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/" class="post-category">
-                                    Unity编辑器拓展
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/">
-                        <span class="chip bg-color">Unity编辑器拓展</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2017/08/09/unity-zhi-ugui-jiao-ben-zi-dong-sheng-cheng/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Unity之UGUI脚本自动生成">
-                        
-                        <span class="card-title">Unity之UGUI脚本自动生成</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-
-在做UI开发工作中，往往会有很多重复工作，比如用FindChild找可交互的ui呀，比如给这些ui加Listener等，那么这里提供一种思路，通过给UI中需要加交互事件的ui物体加上标记脚本，然后就可以根据这些标记得出相对于UIRoot
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2017-08-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-30
                             </span>
                         <span class="publish-author">
                             
@@ -1432,6 +807,45 @@ UnityEditorInternal命名空间下提供 一个类ReorderableList可以实现通
                         </span>
                     </div>
                 </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/sponsor/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="sponsor">
+                        
+                        <span class="card-title">sponsor</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Mr.Ding
+                            
+                        </span>
+                    </div>
+                </div>
+
                 
             </div>
         </div>
