@@ -390,7 +390,8 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/JingFengJi/JingFengJi.github.io/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/JingFengJi/JingFengJi.github.io/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
 
 

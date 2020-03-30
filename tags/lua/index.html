@@ -336,7 +336,8 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/JingFengJi/JingFengJi.github.io/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(https://cdn.jsdelivr.net/gh/JingFengJi/JingFengJi.github.io/medias/banner/' + new Date().getDay() + '.jpg)');
 </script>
 
 
@@ -356,20 +357,20 @@
             <div class="tag-chips">
                 
                 
-                <a href="/tags/lua/" title="lua: 1">
+                <a href="/tags/UGUI/" title="UGUI: 13">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="lua" style="background-color: #F9EBEA;">lua
-                        <span class="tag-length">1</span>
+                             chip-default "
+                            data-tagname="UGUI" style="background-color: #F9EBEA;">UGUI
+                        <span class="tag-length">13</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/UGUI/" title="UGUI: 13">
+                <a href="/tags/lua/" title="lua: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="UGUI" style="background-color: #F5EEF8;">UGUI
-                        <span class="tag-length">13</span>
+                             chip-active "
+                            data-tagname="lua" style="background-color: #F5EEF8;">lua
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
