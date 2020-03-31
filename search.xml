@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo思维导图测试]]></title>
+    <url>%2F2020%2F03%2F31%2Fhexo-si-wei-dao-tu-ce-shi%2F</url>
+    <content type="text"><![CDATA[Hexo 的思维导图插件 前言 使用方法 一 二 三 太长不看 参考资料]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Unity之SpriteAtlas详解]]></title>
     <url>%2F2020%2F03%2F29%2Funity-zhi-spriteatlas-xiang-jie%2F</url>
     <content type="text"><![CDATA[Unity之SpriteAtlas详解Unity官方介绍：https://docs.unity3d.com/Manual/class-SpriteAtlas.html SpriteAtlas Inspector面板如下图： 创建方法： 1、Project面板鼠标右键Create-&gt;Sprite Atlas 2、菜单栏Asset-&gt;Create-&gt;Sprite Atlas 属性介绍:TypeSpriteAtlas有两种类型，Master或者Variant，默认类型是MAster；Variant是变体类型，创建一个变体图集，并声明它是项目中一个现有SpriteAtlas的变体，如下图，变体图集将复制母版图集的纹理，然后根据scale调整变体图集的大小。 Include in Build选中此复选框以将Sprite Atlas资产包含在当前版本中。默认情况下启用此选项。Scale变体图集缩放数值，值可以从0.1到1Allow Rotation是否允许Unity将打包到SpriteAtlas中的Sprite进行旋转，如果允许，可以最大化提高图集中Sprite的密度，默认允许旋转。如果是在UGUI中使用SpriteAtlas，应该禁用旋转Tight Packing根据Sprite轮廓而不是默认的矩形轮廓打包Sprite，进一步提高图集中Sprite的密度，默认是启用的，在UGUI中使用SpriteAtlas应该禁用Padding图集中各个Sprite之间的像素距离，避免图集中彼此相邻的Sprite发生像素重叠。默认为4像素，支持2、4、8三种选择。Objects For PackingUnity将此列表中的所有内容打包成一个图集。支持拖入一个文件夹或者一个单独的Sprite。Sprite PackerSpritePacker默认是关闭的状态，在Edit -&gt; Project Settings -&gt; Editor中将SpritePacker Mode更改为Enable，Always Enabled选项始终打开。打开后回到SpriteAtlas Inspector面板，点击Pack Preview按钮就可以在预览窗口看到图集了。Late Binding从语义来看称之为后期绑定，也就是说在运行时以不引用图集的形式启动，并且在绑定图集之前将显示为空白。如果在启动过程中图集来源于网络下载，这样就允许用户进行后期绑定了。Late Binding via callback1、Sprite打包到SpriteAtlas中，SpriteAtlas未选中Include In Build，sprite在场景中就不可见 2、SpriteAtlas.atlasRequested这个委托方法提供一个告知上层逻辑要绑定的图集标签和包含SpriteAtlas资产的Action，通过这个委托，上层逻辑根据图集标签自行加载管理图集，并将加载好的图集通过第二个参数Action告知给底层。至于如何根据图集标签加载图集，不在本篇文章范围内。SpriteAtlas.atlasRequested的第一个参数string类型的tag就是需要加载的图集文件名，SpriteAtlas本身无法指定Tag。 SpriteAtlas &amp; AssetBundle取消Inclue in build选项打包，运行时使用SpriteAtlas.atlasRequested回调得到需要加载的图集Tag，使用自己项目中的资源模块进行SpriteAtlas加载后并执行回调传给底层。 参考文章https://forum.unity.com/threads/about-include-in-build-behaviour.481433/ 以上知识分享，如有错误，欢迎指出，共同学习，共同进步。]]></content>
