@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.jingfengji.tech/sponsor/index.html</loc>
+    
+    <lastmod>2020-03-31T15:27:58.460Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.jingfengji.tech/tags/index.html</loc>
     
     <lastmod>2020-03-31T15:00:38.968Z</lastmod>
@@ -61,13 +68,6 @@
     <loc>https://www.jingfengji.tech/blogcollect/index.html</loc>
     
     <lastmod>2020-03-31T03:25:00.372Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.jingfengji.tech/sponsor/index.html</loc>
-    
-    <lastmod>2020-03-30T03:12:46.771Z</lastmod>
     
   </url>
   
