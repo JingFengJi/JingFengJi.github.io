@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.jingfengji.tech/link/index.html</loc>
+    
+    <lastmod>2020-03-31T15:54:38.751Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.jingfengji.tech/sponsor/index.html</loc>
     
     <lastmod>2020-03-31T15:27:58.460Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://www.jingfengji.tech/2020/03/31/hexo-si-wei-dao-tu-ce-shi/</loc>
     
     <lastmod>2020-03-31T14:03:01.674Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.jingfengji.tech/link/index.html</loc>
-    
-    <lastmod>2020-03-31T13:14:03.978Z</lastmod>
     
   </url>
   
