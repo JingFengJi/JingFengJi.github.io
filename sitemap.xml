@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.jingfengji.tech/tags/index.html</loc>
+    
+    <lastmod>2020-03-31T15:00:38.968Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.jingfengji.tech/about/index.html</loc>
+    
+    <lastmod>2020-03-31T14:59:59.678Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.jingfengji.tech/categories/index.html</loc>
+    
+    <lastmod>2020-03-31T14:55:14.126Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.jingfengji.tech/2020/03/28/unitytips-unity-xiao-ji-qiao-ji-he/</loc>
     
     <lastmod>2020-03-31T14:15:35.101Z</lastmod>
@@ -369,27 +390,6 @@
     <loc>https://www.jingfengji.tech/friends/index.html</loc>
     
     <lastmod>2020-03-28T05:36:06.509Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.jingfengji.tech/about/index.html</loc>
-    
-    <lastmod>2020-03-28T05:35:09.670Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.jingfengji.tech/tags/index.html</loc>
-    
-    <lastmod>2020-03-28T05:34:42.753Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.jingfengji.tech/categories/index.html</loc>
-    
-    <lastmod>2020-03-28T05:34:25.683Z</lastmod>
     
   </url>
   
