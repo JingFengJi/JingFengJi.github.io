@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.jingfengji.tech/contact/index.html</loc>
+    
+    <lastmod>2020-04-01T02:48:35.001Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-qi-textmeshpro-de-tmp-spriteasset-tu-wen-hun-pai-tu-ji-kuai-jie-geng-xin-gong-ju/</loc>
     
     <lastmod>2020-04-01T01:00:05.947Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>https://www.jingfengji.tech/blogcollect/index.html</loc>
     
     <lastmod>2020-03-31T03:25:00.372Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.jingfengji.tech/contact/index.html</loc>
-    
-    <lastmod>2020-03-28T10:42:04.326Z</lastmod>
     
   </url>
   
