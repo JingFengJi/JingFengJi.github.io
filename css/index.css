@@ -384,6 +384,12 @@ canvas,
   -ms-animation: tocsidebarRtoL 0.7s;
   animation: tocsidebarRtoL 0.7s;
 }
+html {
+  filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  -webkit-filter: grayscale(1);
+}
 @-moz-keyframes scroll-down-effect {
   0% {
     top: 0;
