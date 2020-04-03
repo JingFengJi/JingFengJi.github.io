@@ -42,32 +42,6 @@
   </entry>
   
   <entry>
-    <title>hexo思维导图测试</title>
-    <link href="https://www.jingfengji.tech/2020/03/31/hexo-si-wei-dao-tu-ce-shi/"/>
-    <id>https://www.jingfengji.tech/2020/03/31/hexo-si-wei-dao-tu-ce-shi/</id>
-    <published>2020-03-31T05:56:11.000Z</published>
-    <updated>2020-03-31T14:03:01.674Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-
-&lt;blockquote class=&quot;pullquote mindmap mindmap-md&quot;&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Unity之SpriteAtlas详解</title>
     <link href="https://www.jingfengji.tech/2020/03/29/unity-zhi-spriteatlas-xiang-jie/"/>
     <id>https://www.jingfengji.tech/2020/03/29/unity-zhi-spriteatlas-xiang-jie/</id>
@@ -579,6 +553,35 @@
           &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
 
 &lt;h1 id=&quot;Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本&quot;&gt;&lt;a href=&quot;#Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+    
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框</title>
+    <link href="https://www.jingfengji.tech/2018/07/31/unity-bian-ji-qi-tuo-zhan-zhi-shi-qi-ngui-componentselector-zeng-jia-sou-suo-kuang/"/>
+    <id>https://www.jingfengji.tech/2018/07/31/unity-bian-ji-qi-tuo-zhan-zhi-shi-qi-ngui-componentselector-zeng-jia-sou-suo-kuang/</id>
+    <published>2018-07-31T15:24:56.000Z</published>
+    <updated>2020-03-28T10:09:30.104Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+
+&lt;h1 id=&quot;NGUI-ComponentSelector增加搜索框&quot;&gt;&lt;a href=&quot;#NGUI-ComponentSelector增加搜索框&quot;
         
       
     
