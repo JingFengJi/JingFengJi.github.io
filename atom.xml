@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-03-31T14:03:01.674Z</updated>
+  <updated>2020-04-03T01:45:39.581Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity每天一个小技巧:UnityPackage的导入开始、完成、取消、失败回调事件</title>
+    <link href="https://www.jingfengji.tech/2020/04/03/unity-mei-tian-yi-ge-xiao-ji-qiao-unitypackage-de-dao-ru-kai-shi-wan-cheng-qu-xiao-shi-bai-hui-diao-shi-jian/"/>
+    <id>https://www.jingfengji.tech/2020/04/03/unity-mei-tian-yi-ge-xiao-ji-qiao-unitypackage-de-dao-ru-kai-shi-wan-cheng-qu-xiao-shi-bai-hui-diao-shi-jian/</id>
+    <published>2020-04-03T00:23:44.000Z</published>
+    <updated>2020-04-03T01:45:39.581Z</updated>
+    
+    <summary type="html">
+    
+      UnityPackage的导入开始、完成、取消、失败回调事件
+    
+    </summary>
+    
+    
+      <category term="UnityTips" scheme="https://www.jingfengji.tech/categories/UnityTips/"/>
+    
+    
+      <category term="Unity" scheme="https://www.jingfengji.tech/tags/Unity/"/>
+    
+      <category term="UnityTips" scheme="https://www.jingfengji.tech/tags/UnityTips/"/>
+    
+      <category term="UnityPackage" scheme="https://www.jingfengji.tech/tags/UnityPackage/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo思维导图测试</title>
@@ -554,35 +579,6 @@
           &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
 
 &lt;h1 id=&quot;Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本&quot;&gt;&lt;a href=&quot;#Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之十七：NGUI ComponentSelector增加搜索框</title>
-    <link href="https://www.jingfengji.tech/2018/07/31/unity-bian-ji-qi-tuo-zhan-zhi-shi-qi-ngui-componentselector-zeng-jia-sou-suo-kuang/"/>
-    <id>https://www.jingfengji.tech/2018/07/31/unity-bian-ji-qi-tuo-zhan-zhi-shi-qi-ngui-componentselector-zeng-jia-sou-suo-kuang/</id>
-    <published>2018-07-31T15:24:56.000Z</published>
-    <updated>2020-03-28T10:09:30.104Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-
-&lt;h1 id=&quot;NGUI-ComponentSelector增加搜索框&quot;&gt;&lt;a href=&quot;#NGUI-ComponentSelector增加搜索框&quot;
         
       
     
