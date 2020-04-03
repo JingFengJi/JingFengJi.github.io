@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-04-03T11:03:23.387Z</updated>
+  <updated>2020-04-03T14:32:02.710Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.jingfengji.tech/2020/04/03/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-tuo-zhan-unitytoolbar/"/>
     <id>https://www.jingfengji.tech/2020/04/03/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-tuo-zhan-unitytoolbar/</id>
     <published>2020-04-03T09:27:56.000Z</published>
-    <updated>2020-04-03T11:03:23.387Z</updated>
+    <updated>2020-04-03T14:32:02.710Z</updated>
     
     <summary type="html">
     
@@ -30,7 +30,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Untiy" scheme="https://www.jingfengji.tech/categories/Untiy/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Untiy/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -42,7 +44,7 @@
     <link href="https://www.jingfengji.tech/2020/04/03/unity-mei-tian-yi-ge-xiao-ji-qiao-unitypackage-de-dao-ru-kai-shi-wan-cheng-qu-xiao-shi-bai-hui-diao-shi-jian/"/>
     <id>https://www.jingfengji.tech/2020/04/03/unity-mei-tian-yi-ge-xiao-ji-qiao-unitypackage-de-dao-ru-kai-shi-wan-cheng-qu-xiao-shi-bai-hui-diao-shi-jian/</id>
     <published>2020-04-03T00:23:44.000Z</published>
-    <updated>2020-04-03T01:55:02.209Z</updated>
+    <updated>2020-04-03T14:28:39.137Z</updated>
     
     <summary type="html">
     
@@ -51,7 +53,9 @@
     </summary>
     
     
-      <category term="UnityTips" scheme="https://www.jingfengji.tech/categories/UnityTips/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="UnityTips" scheme="https://www.jingfengji.tech/categories/Unity/UnityTips/"/>
     
     
       <category term="Unity" scheme="https://www.jingfengji.tech/tags/Unity/"/>
@@ -98,7 +102,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/unitytips-unity-xiao-ji-qiao-ji-he/"/>
     <id>https://www.jingfengji.tech/2020/03/28/unitytips-unity-xiao-ji-qiao-ji-he/</id>
     <published>2020-03-28T10:07:59.000Z</published>
-    <updated>2020-03-31T14:15:35.101Z</updated>
+    <updated>2020-04-03T14:32:00.725Z</updated>
     
     <summary type="html">
     
@@ -115,7 +119,9 @@
     </summary>
     
     
-      <category term="UnityTips" scheme="https://www.jingfengji.tech/categories/UnityTips/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="UnityTips" scheme="https://www.jingfengji.tech/categories/Unity/UnityTips/"/>
     
     
       <category term="UnityTips" scheme="https://www.jingfengji.tech/tags/UnityTips/"/>
@@ -127,7 +133,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/gameframework-kuang-jia-yuan-ma-jie-du-yi-editor-pian/"/>
     <id>https://www.jingfengji.tech/2020/03/28/gameframework-kuang-jia-yuan-ma-jie-du-yi-editor-pian/</id>
     <published>2020-03-28T10:07:03.000Z</published>
-    <updated>2020-03-31T14:07:38.822Z</updated>
+    <updated>2020-04-03T14:31:21.089Z</updated>
     
     <summary type="html">
     
@@ -157,7 +163,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-jiu-zi-yuan-ruo-yin-yong-wen-jian-xuan-ze-qi/"/>
     <id>https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-jiu-zi-yuan-ruo-yin-yong-wen-jian-xuan-ze-qi/</id>
     <published>2020-03-28T10:06:12.000Z</published>
-    <updated>2020-03-28T10:06:40.065Z</updated>
+    <updated>2020-04-03T14:32:02.765Z</updated>
     
     <summary type="html">
     
@@ -176,7 +182,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -217,7 +225,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-ba-sprite-border-zi-dong-she-zhi-gong-ju/"/>
     <id>https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-ba-sprite-border-zi-dong-she-zhi-gong-ju/</id>
     <published>2020-03-28T10:03:32.000Z</published>
-    <updated>2020-04-01T00:59:57.536Z</updated>
+    <updated>2020-04-03T14:32:02.765Z</updated>
     
     <summary type="html">
     
@@ -234,7 +242,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -246,7 +256,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-qi-textmeshpro-de-tmp-spriteasset-tu-wen-hun-pai-tu-ji-kuai-jie-geng-xin-gong-ju/"/>
     <id>https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-qi-textmeshpro-de-tmp-spriteasset-tu-wen-hun-pai-tu-ji-kuai-jie-geng-xin-gong-ju/</id>
     <published>2020-03-28T10:02:24.000Z</published>
-    <updated>2020-04-01T01:00:05.947Z</updated>
+    <updated>2020-04-03T14:32:02.765Z</updated>
     
     <summary type="html">
     
@@ -264,7 +274,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -276,7 +288,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-liu-ji-yu-ugui-de-sprite-yin-yong-cha-xun/"/>
     <id>https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-liu-ji-yu-ugui-de-sprite-yin-yong-cha-xun/</id>
     <published>2020-03-28T10:01:05.000Z</published>
-    <updated>2020-03-28T10:01:42.527Z</updated>
+    <updated>2020-04-03T14:32:02.764Z</updated>
     
     <summary type="html">
     
@@ -293,7 +305,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -305,7 +319,7 @@
     <link href="https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-wu-tu-ji-spritemetadata-shu-ju-kao-bei/"/>
     <id>https://www.jingfengji.tech/2020/03/28/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-wu-tu-ji-spritemetadata-shu-ju-kao-bei/</id>
     <published>2020-03-28T09:58:26.000Z</published>
-    <updated>2020-03-28T10:01:50.759Z</updated>
+    <updated>2020-04-03T14:32:02.764Z</updated>
     
     <summary type="html">
     
@@ -322,7 +336,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -334,7 +350,7 @@
     <link href="https://www.jingfengji.tech/2019/02/01/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-si-ji-yu-unity-node-editor-scriptableobject-de-pei-zhi-hua-xin-shou-yin-dao-xi-tong/"/>
     <id>https://www.jingfengji.tech/2019/02/01/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-si-ji-yu-unity-node-editor-scriptableobject-de-pei-zhi-hua-xin-shou-yin-dao-xi-tong/</id>
     <published>2019-02-01T06:34:39.000Z</published>
-    <updated>2020-03-28T10:10:10.802Z</updated>
+    <updated>2020-04-03T14:32:02.764Z</updated>
     
     <summary type="html">
     
@@ -352,7 +368,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -364,7 +382,7 @@
     <link href="https://www.jingfengji.tech/2018/12/22/unity-shader-bian-cheng-zhi-yi-duo-yan-se-tiao-wen-bei-jing/"/>
     <id>https://www.jingfengji.tech/2018/12/22/unity-shader-bian-cheng-zhi-yi-duo-yan-se-tiao-wen-bei-jing/</id>
     <published>2018-12-22T06:53:14.000Z</published>
-    <updated>2020-03-28T10:10:42.686Z</updated>
+    <updated>2020-04-03T14:32:02.810Z</updated>
     
     <summary type="html">
     
@@ -381,7 +399,9 @@
     </summary>
     
     
-      <category term="UnityShader" scheme="https://www.jingfengji.tech/categories/UnityShader/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="UnityShader" scheme="https://www.jingfengji.tech/categories/Unity/UnityShader/"/>
     
     
       <category term="UnityShader" scheme="https://www.jingfengji.tech/tags/UnityShader/"/>
@@ -393,7 +413,7 @@
     <link href="https://www.jingfengji.tech/2018/12/22/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-san-ji-yu-objectfield-de-filefield/"/>
     <id>https://www.jingfengji.tech/2018/12/22/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-san-ji-yu-objectfield-de-filefield/</id>
     <published>2018-12-22T05:49:09.000Z</published>
-    <updated>2020-03-28T10:10:13.551Z</updated>
+    <updated>2020-04-03T14:32:02.765Z</updated>
     
     <summary type="html">
     
@@ -410,7 +430,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -422,7 +444,7 @@
     <link href="https://www.jingfengji.tech/2018/09/09/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-er-ji-yu-texturepacker-de-yi-jian-da-tu-ji-gong-ju/"/>
     <id>https://www.jingfengji.tech/2018/09/09/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-er-ji-yu-texturepacker-de-yi-jian-da-tu-ji-gong-ju/</id>
     <published>2018-09-09T05:29:04.000Z</published>
-    <updated>2020-03-28T10:10:21.335Z</updated>
+    <updated>2020-04-03T14:32:02.765Z</updated>
     
     <summary type="html">
     
@@ -439,7 +461,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -451,7 +475,7 @@
     <link href="https://www.jingfengji.tech/2018/08/22/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-yi-tuo-zhan-unity-mo-kuai-da-zao-si-ren-gong-ju-ku-er/"/>
     <id>https://www.jingfengji.tech/2018/08/22/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-yi-tuo-zhan-unity-mo-kuai-da-zao-si-ren-gong-ju-ku-er/</id>
     <published>2018-08-22T15:49:57.000Z</published>
-    <updated>2020-03-28T10:10:02.493Z</updated>
+    <updated>2020-04-03T14:32:02.764Z</updated>
     
     <summary type="html">
     
@@ -468,7 +492,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -480,7 +506,7 @@
     <link href="https://www.jingfengji.tech/2018/08/20/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-tuo-zhan-unity-mo-kuai-da-zao-si-ren-gong-ju-ku-yi/"/>
     <id>https://www.jingfengji.tech/2018/08/20/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-tuo-zhan-unity-mo-kuai-da-zao-si-ren-gong-ju-ku-yi/</id>
     <published>2018-08-20T14:40:22.000Z</published>
-    <updated>2020-03-28T10:10:26.189Z</updated>
+    <updated>2020-04-03T14:32:02.765Z</updated>
     
     <summary type="html">
     
@@ -497,7 +523,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -509,7 +537,7 @@
     <link href="https://www.jingfengji.tech/2018/08/10/unity-bian-ji-qi-tuo-zhan-zhi-shi-jiu-ngui-uisprite-yu-lan-tu-preview-tuo-zhan/"/>
     <id>https://www.jingfengji.tech/2018/08/10/unity-bian-ji-qi-tuo-zhan-zhi-shi-jiu-ngui-uisprite-yu-lan-tu-preview-tuo-zhan/</id>
     <published>2018-08-10T14:42:22.000Z</published>
-    <updated>2020-03-28T10:09:36.261Z</updated>
+    <updated>2020-04-03T14:32:02.710Z</updated>
     
     <summary type="html">
     
@@ -526,7 +554,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Untiy" scheme="https://www.jingfengji.tech/categories/Untiy/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Untiy/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
@@ -538,7 +568,7 @@
     <link href="https://www.jingfengji.tech/2018/08/06/chang-yong-ruan-jian-ji-jin/"/>
     <id>https://www.jingfengji.tech/2018/08/06/chang-yong-ruan-jian-ji-jin/</id>
     <published>2018-08-06T13:25:30.000Z</published>
-    <updated>2020-03-28T10:11:35.810Z</updated>
+    <updated>2020-04-03T14:31:56.020Z</updated>
     
     <summary type="html">
     
@@ -555,6 +585,10 @@
     </summary>
     
     
+      <category term="常用软件" scheme="https://www.jingfengji.tech/categories/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/"/>
+    
+    
+      <category term="常用软件" scheme="https://www.jingfengji.tech/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
@@ -563,7 +597,7 @@
     <link href="https://www.jingfengji.tech/2018/08/04/unity-bian-ji-qi-tuo-zhan-zhi-shi-ba-ngui-pi-liang-ti-huan-tu-ji-gong-ju-2.0-ban-ben/"/>
     <id>https://www.jingfengji.tech/2018/08/04/unity-bian-ji-qi-tuo-zhan-zhi-shi-ba-ngui-pi-liang-ti-huan-tu-ji-gong-ju-2.0-ban-ben/</id>
     <published>2018-08-04T14:47:41.000Z</published>
-    <updated>2020-03-28T10:09:41.582Z</updated>
+    <updated>2020-04-03T14:32:02.683Z</updated>
     
     <summary type="html">
     
@@ -580,7 +614,9 @@
     </summary>
     
     
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+      <category term="Untiy" scheme="https://www.jingfengji.tech/categories/Untiy/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Untiy/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
