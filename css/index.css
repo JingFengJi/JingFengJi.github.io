@@ -4531,6 +4531,43 @@ img {
     display: block !important;
   }
 }
+#vcomment button {
+  padding: 0.3rem 1rem;
+  border-color: #fff;
+  background-color: #49b1f5;
+  color: #fff;
+  font-size: 0.7rem;
+}
+#vcomment button:hover {
+  background-color: #ff7242;
+}
+#vcomment textarea {
+  background: url("/img/comment_bg.png") 100% 100% no-repeat;
+}
+#vcomment .info {
+  display: none;
+}
+#vcomment .vimg {
+  border: 0;
+}
+#vcomment .vimg:hover {
+  -webkit-transform: rotate(540deg);
+  -moz-transform: rotate(540deg);
+  -o-transform: rotate(540deg);
+  -ms-transform: rotate(540deg);
+  transform: rotate(540deg);
+}
+#vcomment .vat {
+  padding: 0 0.8rem;
+  border: 1px solid #49b1f5;
+  border-radius: 5px;
+  color: #49b1f5;
+  font-size: 0.7125rem;
+}
+#vcomment .vat:hover {
+  background-color: #49b1f5;
+  color: #fff;
+}
 #article-container .aplayer ol,
 #article-container .aplayer ul {
   margin: 0;
@@ -4818,15 +4855,62 @@ img {
 [data-theme='dark'] #hexo-blog-encrypt input {
   background-color: #121212;
 }
-[data-theme='dark'] #gitalk-container .gt-header-textarea,
-[data-theme='dark'] #gitalk-container .gt-header-preview,
-[data-theme='dark'] #gitalk-container .gt-comment-content,
-[data-theme='dark'] #gitalk-container button,
-[data-theme='dark'] #gitalk-container .gt-popup {
-  filter: brightness(0.7);
+[data-theme='dark'] #vcomment p,
+[data-theme='dark'] #vcomment a,
+[data-theme='dark'] #vcomment textarea,
+[data-theme='dark'] #vcomment .vemoji-btn,
+[data-theme='dark'] #vcomment .vpreview-btn,
+[data-theme='dark'] #vcomment input,
+[data-theme='dark'] #vcomment path,
+[data-theme='dark'] #vcomment .vcount,
+[data-theme='dark'] #vcomment .vnum,
+[data-theme='dark'] #vcomment .vtime,
+[data-theme='dark'] #vcomment .vsys,
+[data-theme='dark'] #vcomment .vnick {
+  color: rgba(255,255,255,0.6) !important;
 }
-[data-theme='dark'] #gitalk-container svg {
-  fill: rgba(255,255,255,0.6) !important;
+[data-theme='dark'] #vcomment .vsys {
+  background: #616a6b !important;
+}
+[data-theme='dark'] #vcomment .vbtn,
+[data-theme='dark'] #vcomment .vat {
+  border: 1px solid rgba(255,255,255,0.6);
+  background: #1f1f1f !important;
+  color: rgba(255,255,255,0.6) !important;
+}
+[data-theme='dark'] #vcomment .vbtn:hover,
+[data-theme='dark'] #vcomment .vat:hover {
+  background: #454545 !important;
+}
+[data-theme='dark'] #vcomment .vwrap {
+  border: 1px solid rgba(255,255,255,0.6);
+}
+[data-theme='dark'] #vcomment input {
+  border-bottom: 1px dashed #616a6b;
+}
+[data-theme='dark'] #vcomment .vh {
+  border-bottom: 1px dashed #616a6b;
+}
+[data-theme='dark'] #vcomment pre {
+  border: 1px solid rgba(255,255,255,0.6);
+  background-color: #121212;
+}
+[data-theme='dark'] #vcomment pre code {
+  background: transparent;
+}
+[data-theme='dark'] #vcomment code {
+  background-color: #2c2c2c;
+  color: rgba(255,255,255,0.6);
+}
+[data-theme='dark'] #vcomment .vcontent.expand:before {
+  background: -webkit-linear-gradient(270deg, hsla(0,0%,0%,0), hsla(218,8%,19%,1));
+  background: -moz-linear-gradient(270deg, hsla(0,0%,0%,0), hsla(218,8%,19%,1));
+  background: -o-linear-gradient(270deg, hsla(0,0%,0%,0), hsla(218,8%,19%,1));
+  background: -ms-linear-gradient(270deg, hsla(0,0%,0%,0), hsla(218,8%,19%,1));
+  background: linear-gradient(180deg, hsla(0,0%,0%,0), hsla(218,8%,19%,1));
+}
+[data-theme='dark'] #vcomment .vcontent.expand:after {
+  background: #35393b;
 }
 [data-theme='dark'] #local-search {
   background: #121212;
