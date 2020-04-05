@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-04-03T14:38:16.457Z</updated>
+  <updated>2020-04-05T06:38:55.130Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo-theme-butterfly拓展友链分类</title>
+    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
+    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
+    <published>2020-04-05T06:26:13.000Z</published>
+    <updated>2020-04-05T06:38:55.130Z</updated>
+    
+    <summary type="html">
+    
+      hexo-theme-butterfly拓展友链分类
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
+    
+      <category term="hexo-theme-butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/hexo-theme-butterfly/"/>
+    
+    
+      <category term="hexo" scheme="https://www.jingfengji.tech/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Unity编辑器拓展之三十：拓展UnityToolBar</title>
@@ -589,37 +612,6 @@
     
     
       <category term="常用软件" scheme="https://www.jingfengji.tech/tags/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之十八：NGUI批量替换图集工具 2.0版本</title>
-    <link href="https://www.jingfengji.tech/2018/08/04/unity-bian-ji-qi-tuo-zhan-zhi-shi-ba-ngui-pi-liang-ti-huan-tu-ji-gong-ju-2.0-ban-ben/"/>
-    <id>https://www.jingfengji.tech/2018/08/04/unity-bian-ji-qi-tuo-zhan-zhi-shi-ba-ngui-pi-liang-ti-huan-tu-ji-gong-ju-2.0-ban-ben/</id>
-    <published>2018-08-04T14:47:41.000Z</published>
-    <updated>2020-04-03T14:38:16.457Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-
-&lt;h1 id=&quot;Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本&quot;&gt;&lt;a href=&quot;#Unity编辑器拓展之十五：NGUI批量替换图集工具-2-0版本&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/tags/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
   </entry>
   
