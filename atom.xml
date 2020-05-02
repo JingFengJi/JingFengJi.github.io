@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-05-02T04:02:18.717Z</updated>
+  <updated>2020-05-02T07:13:20.137Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -17,43 +17,45 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Python:爬取FaceBook用户头像</title>
-    <link href="https://www.jingfengji.tech/2020/05/02/python-pa-qu-facebook-yong-hu-tou-xiang/"/>
-    <id>https://www.jingfengji.tech/2020/05/02/python-pa-qu-facebook-yong-hu-tou-xiang/</id>
-    <published>2020-05-02T01:48:10.000Z</published>
-    <updated>2020-05-02T04:02:18.717Z</updated>
+    <title>Unity每天一个小技巧-Image组件转换RawImage组件</title>
+    <link href="https://www.jingfengji.tech/2020/05/02/unity-mei-tian-yi-ge-xiao-ji-qiao-image-zu-jian-ti-huan-cheng-rawimage-zu-jian/"/>
+    <id>https://www.jingfengji.tech/2020/05/02/unity-mei-tian-yi-ge-xiao-ji-qiao-image-zu-jian-ti-huan-cheng-rawimage-zu-jian/</id>
+    <published>2020-05-02T07:02:28.000Z</published>
+    <updated>2020-05-02T07:13:20.137Z</updated>
     
     <summary type="html">
     
       &lt;div class=&quot;note primary no-icon&quot;&gt;
-            &lt;p&gt;使用Python批量爬取下去FB用户头像，欢迎访问😂&lt;/p&gt;
+            &lt;p&gt;Image组件转换为RawImage组件，方便快捷~&lt;/p&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity每天一个小技巧" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python:爬取FaceBook用户头像</title>
+    <link href="https://www.jingfengji.tech/2020/05/02/python-pa-qu-facebook-yong-hu-tou-xiang/"/>
+    <id>https://www.jingfengji.tech/2020/05/02/python-pa-qu-facebook-yong-hu-tou-xiang/</id>
+    <published>2020-05-02T01:48:10.000Z</published>
+    <updated>2020-05-02T06:55:40.381Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;使用Python批量爬取下载FB用户头像，欢迎访问😂&lt;/p&gt;
           &lt;/div&gt;
     
     </summary>
     
     
       <category term="Python" scheme="https://www.jingfengji.tech/categories/Python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>hexo-theme-butterfly拓展友链分类</title>
-    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
-    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
-    <published>2020-04-05T13:25:30.000Z</published>
-    <updated>2020-04-15T01:04:02.757Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍Hexo-Theme-Butterfly友链分类
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
-    
-      <category term="Hexo-Theme-Butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/Hexo-Theme-Butterfly/"/>
     
     
   </entry>
@@ -78,6 +80,27 @@
     
     
       <category term="ToolBar" scheme="https://www.jingfengji.tech/tags/ToolBar/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-theme-butterfly拓展友链分类</title>
+    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
+    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
+    <published>2020-04-05T13:25:30.000Z</published>
+    <updated>2020-04-15T01:04:02.757Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍Hexo-Theme-Butterfly友链分类
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
+    
+      <category term="Hexo-Theme-Butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/Hexo-Theme-Butterfly/"/>
+    
     
   </entry>
   
@@ -455,29 +478,6 @@
     
       <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之十九：NGUI UISprite预览图Preview拓展</title>
-    <link href="https://www.jingfengji.tech/2018/08/10/unity-bian-ji-qi-tuo-zhan-zhi-shi-jiu-ngui-uisprite-yu-lan-tu-preview-tuo-zhan/"/>
-    <id>https://www.jingfengji.tech/2018/08/10/unity-bian-ji-qi-tuo-zhan-zhi-shi-jiu-ngui-uisprite-yu-lan-tu-preview-tuo-zhan/</id>
-    <published>2018-08-10T14:42:22.000Z</published>
-    <updated>2020-04-15T00:43:32.506Z</updated>
-    
-    <summary type="html">
-    
-      UISprite预览图Preview拓展
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="UISprite组件预览拓展" scheme="https://www.jingfengji.tech/tags/UISprite%E7%BB%84%E4%BB%B6%E9%A2%84%E8%A7%88%E6%8B%93%E5%B1%95/"/>
     
   </entry>
   
