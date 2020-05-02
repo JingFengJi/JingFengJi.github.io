@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-05-02T02:29:16.053Z</updated>
+  <updated>2020-05-02T04:02:18.717Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -21,18 +21,13 @@
     <link href="https://www.jingfengji.tech/2020/05/02/python-pa-qu-facebook-yong-hu-tou-xiang/"/>
     <id>https://www.jingfengji.tech/2020/05/02/python-pa-qu-facebook-yong-hu-tou-xiang/</id>
     <published>2020-05-02T01:48:10.000Z</published>
-    <updated>2020-05-02T02:29:16.053Z</updated>
+    <updated>2020-05-02T04:02:18.717Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;div class=&quot;note info&quot;&gt;
-            &lt;p&gt;本篇文章，如果有不懂，欢迎留言~&lt;a
-        
-      
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;使用Python批量爬取下去FB用户头像，欢迎访问😂&lt;/p&gt;
+          &lt;/div&gt;
     
     </summary>
     
