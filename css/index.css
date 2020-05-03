@@ -2808,9 +2808,9 @@ blockquote footer cite:before {
   margin: 0 auto;
   padding: 2rem 15px;
   max-width: 1200px;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 #recent-posts {
   width: 75%;
