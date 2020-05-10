@@ -1460,7 +1460,7 @@ canvas:not(#ribbon-canvas),
   margin: 0 0 1rem;
   padding: 0;
   background: #f7f7f7;
-  color: #4d4d4c;
+  color: #0080ff;
   line-height: 20px;
 }
 .code-area-wrap {
@@ -1509,7 +1509,7 @@ blockquote footer cite:before {
 #article-container pre code {
   padding: 0;
   background: none;
-  color: #4d4d4c;
+  color: #0080ff;
   text-shadow: none;
 }
 #article-container figure.highlight {
@@ -1522,11 +1522,11 @@ blockquote footer cite:before {
   border: none;
 }
 #article-container figure.highlight .line::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container figure.highlight .line.marked {
-  background-color: #d6d6d6;
+  background-color: #8959a8;
 }
 #article-container figure.highlight table {
   position: relative;
@@ -1542,7 +1542,7 @@ blockquote footer cite:before {
 #article-container figure.highlight figcaption {
   zoom: 1;
   padding: 0.3rem 0 0.1rem 0.7rem;
-  color: #4d4d4c;
+  color: #0080ff;
   font-size: 1em;
   line-height: 1em;
 }
@@ -1557,10 +1557,10 @@ blockquote footer cite:before {
 #article-container figure.highlight figcaption a {
   float: right;
   padding-right: 10px;
-  color: #4d4d4c;
+  color: #0080ff;
 }
 #article-container figure.highlight figcaption a:hover {
-  border-bottom-color: #4d4d4c;
+  border-bottom-color: #0080ff;
 }
 #article-container figure.highlight .gutter pre {
   padding-right: 0.5rem;
@@ -1603,11 +1603,11 @@ blockquote footer cite:before {
   color: #8959a8;
 }
 #article-container pre .comment {
-  color: #8e908c;
+  color: #4271ae;
 }
 #article-container pre .comment::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .variable,
 #article-container pre .attribute,
@@ -1635,15 +1635,15 @@ blockquote footer cite:before {
 #article-container pre .tag .name::selection,
 #article-container pre .css .class::selection,
 #article-container pre .css .pseudo::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .tag {
-  color: #3e999f;
+  color: #f92672;
 }
 #article-container pre .tag::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .number,
 #article-container pre .preprocessor,
@@ -1659,15 +1659,15 @@ blockquote footer cite:before {
 #article-container pre .params::selection,
 #article-container pre .constant::selection,
 #article-container pre .command::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .built_in {
   color: #eab700;
 }
 #article-container pre .built_in::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .ruby .class .title,
 #article-container pre .css .rules .attribute,
@@ -1693,19 +1693,19 @@ blockquote footer cite:before {
 #article-container pre .special::selection,
 #article-container pre .number::selection,
 #article-container pre .formula::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .keyword,
 #article-container pre .title,
 #article-container pre .css .hexcolor {
-  color: #3e999f;
+  color: #f92672;
 }
 #article-container pre .keyword::selection,
 #article-container pre .title::selection,
 #article-container pre .css .hexcolor::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .function,
 #article-container pre .python .decorator,
@@ -1725,8 +1725,8 @@ blockquote footer cite:before {
 #article-container pre .perl .sub::selection,
 #article-container pre .javascript .title::selection,
 #article-container pre .coffeescript .title::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 #article-container pre .tag .attr,
 #article-container pre .javascript .function {
@@ -1734,8 +1734,8 @@ blockquote footer cite:before {
 }
 #article-container pre .tag .attr::selection,
 #article-container pre .javascript .function::selection {
-  background: #d6d6d6;
-  color: #4d4d4c;
+  background: #8959a8;
+  color: #0080ff;
 }
 .highlight-tools {
   position: relative;
@@ -1743,7 +1743,7 @@ blockquote footer cite:before {
   width: 100%;
   height: 1.4rem;
   background: #eaeaea;
-  color: #4d4d4c;
+  color: #0080ff;
   font-size: 14px;
 }
 #nav.error-no-found {
@@ -3645,7 +3645,7 @@ img {
   top: 0;
   z-index: 1;
   padding: 7px 10px;
-  color: #4d4d4c;
+  color: #0080ff;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -3677,7 +3677,7 @@ img {
   position: absolute;
   left: 15px;
   z-index: 1;
-  color: #4d4d4c;
+  color: #0080ff;
   text-transform: capitalize;
   font-weight: bold;
   font-size: 0.8rem;
@@ -3690,7 +3690,7 @@ img {
   right: 0;
   z-index: 1;
   background: #eaeaea;
-  color: #3e999f;
+  color: #f92672;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -3700,7 +3700,7 @@ img {
   top: 0.4rem;
   right: 10px;
   z-index: 1;
-  color: #3e999f;
+  color: #f92672;
   cursor: pointer;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -3709,7 +3709,7 @@ img {
   transition: color 0.2s;
 }
 .highlight-tools .fa-clipboard:hover {
-  color: #327a7f;
+  color: #df0654;
 }
 .katex-wrap {
   overflow: auto;
