@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-05-12T14:23:48.029Z</updated>
+  <updated>2020-05-13T09:47:04.534Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[UIElement入门]:2.UQuery介绍</title>
+    <link href="https://www.jingfengji.tech/2020/05/12/uielement-ru-men-2-uquery-jie-shao/"/>
+    <id>https://www.jingfengji.tech/2020/05/12/uielement-ru-men-2-uquery-jie-shao/</id>
+    <published>2020-05-12T14:45:44.000Z</published>
+    <updated>2020-05-13T09:47:04.534Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;本系列文章介绍UIElement知识点，欢迎访问😉&lt;/p&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="UIElement" scheme="https://www.jingfengji.tech/categories/Unity/UIElement/"/>
+    
+    
+      <category term="UIElement" scheme="https://www.jingfengji.tech/tags/UIElement/"/>
+    
+  </entry>
   
   <entry>
     <title>[UIElement入门]:1.UXML元素介绍</title>
@@ -463,29 +488,6 @@
       <category term="新手引导" scheme="https://www.jingfengji.tech/tags/%E6%96%B0%E6%89%8B%E5%BC%95%E5%AF%BC/"/>
     
       <category term="Node Editor" scheme="https://www.jingfengji.tech/tags/Node-Editor/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity Shader编程之一：多颜色条纹背景</title>
-    <link href="https://www.jingfengji.tech/2018/12/22/unity-shader-bian-cheng-zhi-yi-duo-yan-se-tiao-wen-bei-jing/"/>
-    <id>https://www.jingfengji.tech/2018/12/22/unity-shader-bian-cheng-zhi-yi-duo-yan-se-tiao-wen-bei-jing/</id>
-    <published>2018-12-22T06:53:14.000Z</published>
-    <updated>2020-04-15T00:57:29.447Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍使用Shader绘制多颜色条纹背景
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
-    
-      <category term="Unity Shader" scheme="https://www.jingfengji.tech/categories/Unity/Unity-Shader/"/>
-    
-    
-      <category term="多颜色条纹背景" scheme="https://www.jingfengji.tech/tags/%E5%A4%9A%E9%A2%9C%E8%89%B2%E6%9D%A1%E7%BA%B9%E8%83%8C%E6%99%AF/"/>
     
   </entry>
   
