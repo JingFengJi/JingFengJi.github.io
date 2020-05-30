@@ -4293,54 +4293,6 @@ img {
     display: block !important;
   }
 }
-#vcomment button {
-  padding: 0.3rem 0.8rem;
-  border-color: #fff;
-  background-color: #49b1f5;
-  color: #fff;
-  font-size: 0.7rem;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-}
-#vcomment button:hover {
-  background-color: #ff7242;
-}
-#vcomment textarea {
-  background: url("/img/comment_bg.png") 100% 100% no-repeat;
-}
-#vcomment .vimg {
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-}
-#vcomment .vimg:hover {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
-#vcomment .vat {
-  padding: 0 0.8rem;
-  border: 1px solid #49b1f5;
-  border-radius: 5px;
-  color: #49b1f5;
-  font-size: 0.7125rem;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-}
-#vcomment .vat:hover {
-  background-color: #49b1f5;
-  color: #fff;
-}
 #article-container .aplayer ol,
 #article-container .aplayer ul {
   margin: 0;
