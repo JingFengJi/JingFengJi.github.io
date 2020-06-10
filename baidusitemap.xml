@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.jingfengji.tech/2019/12/21/unitytips-unity-xiao-ji-qiao-ji-he/</loc>
+    <lastmod>2020-06-10</lastmod>
+  </url>  <url>
     <loc>https://www.jingfengji.tech/2020/05/17/uielement-ru-men-4-zi-ding-yi-yuan-su/</loc>
     <lastmod>2020-05-17</lastmod>
   </url>  <url>
@@ -233,9 +236,6 @@
     <lastmod>2020-04-15</lastmod>
   </url>  <url>
     <loc>https://www.jingfengji.tech/2016/12/13/unity-zhi-vector3d-chong-xian-vector3/</loc>
-    <lastmod>2020-04-15</lastmod>
-  </url>  <url>
-    <loc>https://www.jingfengji.tech/2019/12/21/unitytips-unity-xiao-ji-qiao-ji-he/</loc>
     <lastmod>2020-04-15</lastmod>
   </url>  <url>
     <loc>https://www.jingfengji.tech/2016/12/13/unity-zhi-vector3.lerp-xian-xing-cha-zhi-yuan-li-jie-shao/</loc>
