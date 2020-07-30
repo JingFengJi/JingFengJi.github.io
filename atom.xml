@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-07-20T15:02:52.572Z</updated>
+  <updated>2020-07-30T14:59:56.931Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity编辑器拓展之三十二:关于多选中Preview绘制探究</title>
+    <link href="https://www.jingfengji.tech/2020/07/30/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-er-guan-yu-duo-xuan-zhong-preview-hui-zhi-tan-jiu/"/>
+    <id>https://www.jingfengji.tech/2020/07/30/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-er-guan-yu-duo-xuan-zhong-preview-hui-zhi-tan-jiu/</id>
+    <published>2020-07-30T13:50:11.000Z</published>
+    <updated>2020-07-30T14:59:56.931Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;本文介绍在Unity中多选Object时，Preview视图的绘制，欢迎访问😁&lt;/p&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>GameFramework框架源码解读（二）：Setting</title>
@@ -257,27 +276,6 @@
   </entry>
   
   <entry>
-    <title>hexo-theme-butterfly拓展友链分类</title>
-    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
-    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
-    <published>2020-04-05T13:25:30.000Z</published>
-    <updated>2020-04-15T01:04:02.757Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍Hexo-Theme-Butterfly友链分类
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
-    
-      <category term="Hexo-Theme-Butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/Hexo-Theme-Butterfly/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Unity编辑器拓展之三十：拓展UnityToolBar</title>
     <link href="https://www.jingfengji.tech/2020/04/05/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-tuo-zhan-unitytoolbar/"/>
     <id>https://www.jingfengji.tech/2020/04/05/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-tuo-zhan-unitytoolbar/</id>
@@ -297,6 +295,27 @@
     
     
       <category term="ToolBar" scheme="https://www.jingfengji.tech/tags/ToolBar/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-theme-butterfly拓展友链分类</title>
+    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
+    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
+    <published>2020-04-05T13:25:30.000Z</published>
+    <updated>2020-04-15T01:04:02.757Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍Hexo-Theme-Butterfly友链分类
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
+    
+      <category term="Hexo-Theme-Butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/Hexo-Theme-Butterfly/"/>
+    
     
   </entry>
   
@@ -463,29 +482,6 @@
     
     
       <category term="SpriteBorder自动设置" scheme="https://www.jingfengji.tech/tags/SpriteBorder%E8%87%AA%E5%8A%A8%E8%AE%BE%E7%BD%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之二十七：TextMeshPro的TMP-SpriteAsset图文混排图集快捷更新工具</title>
-    <link href="https://www.jingfengji.tech/2019/08/09/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-qi-textmeshpro-de-tmp-spriteasset-tu-wen-hun-pai-tu-ji-kuai-jie-geng-xin-gong-ju/"/>
-    <id>https://www.jingfengji.tech/2019/08/09/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-qi-textmeshpro-de-tmp-spriteasset-tu-wen-hun-pai-tu-ji-kuai-jie-geng-xin-gong-ju/</id>
-    <published>2019-08-09T13:25:30.000Z</published>
-    <updated>2020-04-15T00:53:11.664Z</updated>
-    
-    <summary type="html">
-    
-      本篇介绍TextMeshPro的TMP-SpriteAsset图文混排图集快捷更新工具
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="图文混排" scheme="https://www.jingfengji.tech/tags/%E5%9B%BE%E6%96%87%E6%B7%B7%E6%8E%92/"/>
     
   </entry>
   
