@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-07-30T14:59:56.931Z</updated>
+  <updated>2020-08-22T07:28:33.225Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Unity编辑器拓展之三十三:ReplaceComponentAttributte组件替换</title>
+    <link href="https://www.jingfengji.tech/2020/08/22/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-san-replacecomponentattributte-zu-jian-ti-huan/"/>
+    <id>https://www.jingfengji.tech/2020/08/22/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-san-replacecomponentattributte-zu-jian-ti-huan/</id>
+    <published>2020-08-22T07:14:40.000Z</published>
+    <updated>2020-08-22T07:28:33.225Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;本文介绍ReplaceComponentAttributte，方便使用自定义组件替换Unity原生组件。&lt;/p&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+    
+    
+      <category term="Attributte" scheme="https://www.jingfengji.tech/tags/Attributte/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Unity编辑器拓展之三十二:关于多选中Preview绘制探究</title>
     <link href="https://www.jingfengji.tech/2020/07/30/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-er-guan-yu-duo-xuan-zhong-preview-hui-zhi-tan-jiu/"/>
     <id>https://www.jingfengji.tech/2020/07/30/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-er-guan-yu-duo-xuan-zhong-preview-hui-zhi-tan-jiu/</id>
     <published>2020-07-30T13:50:11.000Z</published>
-    <updated>2020-07-30T14:59:56.931Z</updated>
+    <updated>2020-08-22T07:15:25.661Z</updated>
     
     <summary type="html">
     
@@ -32,6 +57,12 @@
     </summary>
     
     
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+    
+    
+      <category term="Preview" scheme="https://www.jingfengji.tech/tags/Preview/"/>
     
   </entry>
   
@@ -459,29 +490,6 @@
     
     
       <category term="九宫格图片极致裁剪" scheme="https://www.jingfengji.tech/tags/%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE%E7%89%87%E6%9E%81%E8%87%B4%E8%A3%81%E5%89%AA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之二十八：Sprite Border自动设置工具</title>
-    <link href="https://www.jingfengji.tech/2019/08/13/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-ba-sprite-border-zi-dong-she-zhi-gong-ju/"/>
-    <id>https://www.jingfengji.tech/2019/08/13/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-ba-sprite-border-zi-dong-she-zhi-gong-ju/</id>
-    <published>2019-08-13T13:25:30.000Z</published>
-    <updated>2020-04-15T00:55:00.545Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍Sprite Border自动设置工具
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="SpriteBorder自动设置" scheme="https://www.jingfengji.tech/tags/SpriteBorder%E8%87%AA%E5%8A%A8%E8%AE%BE%E7%BD%AE/"/>
     
   </entry>
   
