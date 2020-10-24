@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-08-22T07:28:33.225Z</updated>
+  <updated>2020-10-24T11:15:10.298Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity编辑器拓展之三十四:在ShaderEditor中添加ToolTip</title>
+    <link href="https://www.jingfengji.tech/2020/10/24/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-si-zai-shadereditor-zhong-tian-jia-tooltip/"/>
+    <id>https://www.jingfengji.tech/2020/10/24/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-si-zai-shadereditor-zhong-tian-jia-tooltip/</id>
+    <published>2020-10-24T09:01:39.000Z</published>
+    <updated>2020-10-24T11:15:10.298Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;本文介绍在ShaderEditor中添加ToolTip字段提示。&lt;/p&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+    
+    
+      <category term="ShaderEditor" scheme="https://www.jingfengji.tech/tags/ShaderEditor/"/>
+    
+  </entry>
   
   <entry>
     <title>Unity编辑器拓展之三十三:ReplaceComponentAttributte组件替换</title>
@@ -307,6 +332,27 @@
   </entry>
   
   <entry>
+    <title>hexo-theme-butterfly拓展友链分类</title>
+    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
+    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
+    <published>2020-04-05T13:25:30.000Z</published>
+    <updated>2020-04-15T01:04:02.757Z</updated>
+    
+    <summary type="html">
+    
+      本文介绍Hexo-Theme-Butterfly友链分类
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
+    
+      <category term="Hexo-Theme-Butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/Hexo-Theme-Butterfly/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Unity编辑器拓展之三十：拓展UnityToolBar</title>
     <link href="https://www.jingfengji.tech/2020/04/05/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-tuo-zhan-unitytoolbar/"/>
     <id>https://www.jingfengji.tech/2020/04/05/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-tuo-zhan-unitytoolbar/</id>
@@ -326,27 +372,6 @@
     
     
       <category term="ToolBar" scheme="https://www.jingfengji.tech/tags/ToolBar/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo-theme-butterfly拓展友链分类</title>
-    <link href="https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/"/>
-    <id>https://www.jingfengji.tech/2020/04/05/hexo-theme-butterfly-tuo-zhan-you-lian-fen-lei/</id>
-    <published>2020-04-05T13:25:30.000Z</published>
-    <updated>2020-04-15T01:04:02.757Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍Hexo-Theme-Butterfly友链分类
-    
-    </summary>
-    
-    
-      <category term="Hexo" scheme="https://www.jingfengji.tech/categories/Hexo/"/>
-    
-      <category term="Hexo-Theme-Butterfly" scheme="https://www.jingfengji.tech/categories/Hexo/Hexo-Theme-Butterfly/"/>
-    
     
   </entry>
   
@@ -469,27 +494,6 @@
     
     
       <category term="资源弱引用文件选择器" scheme="https://www.jingfengji.tech/tags/%E8%B5%84%E6%BA%90%E5%BC%B1%E5%BC%95%E7%94%A8%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python工具之一：九宫格图片极致裁剪</title>
-    <link href="https://www.jingfengji.tech/2019/08/15/python-gong-ju-zhi-yi-jiu-gong-ge-tu-pian-ji-zhi-cai-jian/"/>
-    <id>https://www.jingfengji.tech/2019/08/15/python-gong-ju-zhi-yi-jiu-gong-ge-tu-pian-ji-zhi-cai-jian/</id>
-    <published>2019-08-15T13:25:30.000Z</published>
-    <updated>2020-04-15T01:03:25.444Z</updated>
-    
-    <summary type="html">
-    
-      本文介绍使用Python处理九宫格图片极致裁剪
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://www.jingfengji.tech/categories/Python/"/>
-    
-    
-      <category term="九宫格图片极致裁剪" scheme="https://www.jingfengji.tech/tags/%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE%E7%89%87%E6%9E%81%E8%87%B4%E8%A3%81%E5%89%AA/"/>
     
   </entry>
   
