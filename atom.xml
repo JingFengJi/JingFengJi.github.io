@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.jingfengji.tech/"/>
-  <updated>2020-10-24T11:15:10.298Z</updated>
+  <updated>2020-11-05T14:19:17.371Z</updated>
   <id>https://www.jingfengji.tech/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Unity编辑器拓展之三十五:如何在Editor下使用单例ScriptableObject</title>
+    <link href="https://www.jingfengji.tech/2020/11/05/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-wu-ru-he-zai-editor-xia-shi-yong-dan-li-scriptableobject/"/>
+    <id>https://www.jingfengji.tech/2020/11/05/unity-bian-ji-qi-tuo-zhan-zhi-san-shi-wu-ru-he-zai-editor-xia-shi-yong-dan-li-scriptableobject/</id>
+    <published>2020-11-05T13:09:24.000Z</published>
+    <updated>2020-11-05T14:19:17.371Z</updated>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note primary no-icon&quot;&gt;
+            &lt;p&gt;本文介绍在Editor下使用单例ScriptableObject&lt;/p&gt;
+          &lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
+    
+      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
+    
+    
+      <category term="ScriptableSingleton" scheme="https://www.jingfengji.tech/tags/ScriptableSingleton/"/>
+    
+  </entry>
   
   <entry>
     <title>Unity编辑器拓展之三十四:在ShaderEditor中添加ToolTip</title>
@@ -471,29 +496,6 @@
     
     
       <category term="GameFramework框架源码解读" scheme="https://www.jingfengji.tech/tags/GameFramework%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Unity编辑器拓展之二十九：资源弱引用文件选择器</title>
-    <link href="https://www.jingfengji.tech/2019/09/27/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-jiu-zi-yuan-ruo-yin-yong-wen-jian-xuan-ze-qi/"/>
-    <id>https://www.jingfengji.tech/2019/09/27/unity-bian-ji-qi-tuo-zhan-zhi-er-shi-jiu-zi-yuan-ruo-yin-yong-wen-jian-xuan-ze-qi/</id>
-    <published>2019-09-27T13:25:30.000Z</published>
-    <updated>2020-04-15T00:54:10.777Z</updated>
-    
-    <summary type="html">
-    
-      使用AdvancedDropdown开发资源文件选择器
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://www.jingfengji.tech/categories/Unity/"/>
-    
-      <category term="Unity编辑器拓展" scheme="https://www.jingfengji.tech/categories/Unity/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%8B%93%E5%B1%95/"/>
-    
-    
-      <category term="资源弱引用文件选择器" scheme="https://www.jingfengji.tech/tags/%E8%B5%84%E6%BA%90%E5%BC%B1%E5%BC%95%E7%94%A8%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     
   </entry>
   
